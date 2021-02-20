@@ -1,8 +1,6 @@
 # lemonade
-> A deep learning library for Electronic Health Record data.
+> An open source deep learning library for Electronic Health Record data.
 
-
-This file will become your README and also the index of your documentation.
 
 ## Install
 
@@ -22,3 +20,12 @@ Fill me in please! Don't forget code examples:
     2
 
 
+
+## Roadmap
+
+- NLP on clinical notes
+- More models
+- More datasets
+    - eICU and MIMIC3 possibly
+
+## Known Issues & Limitations
