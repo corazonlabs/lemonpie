@@ -14,7 +14,10 @@ entries:
       url: preprocessing_clean.html
     - output: web,pdf
       title: preprocessing.vocab
-      url: preprocessing_vocabs.html
+      url: preprocessing_vocab.html
+    - output: web,pdf
+      title: preprocessing.transform
+      url: preprocessing_transform.html
     output: web
     title: lemonade
   output: web

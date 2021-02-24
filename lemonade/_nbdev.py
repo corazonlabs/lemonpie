@@ -31,13 +31,23 @@ index = {"PATH": "01_preprocessing_clean.ipynb",
          "clean_raw_ehrdata": "01_preprocessing_clean.ipynb",
          "load_cleaned_ehrdata": "01_preprocessing_clean.ipynb",
          "load_ehr_vocabcodes": "01_preprocessing_clean.ipynb",
-         "EhrVocab": "02_preprocessing_vocabs.ipynb",
-         "ObsVocab": "02_preprocessing_vocabs.ipynb",
-         "EhrVocabList": "02_preprocessing_vocabs.ipynb",
-         "get_all_emb_dims": "02_preprocessing_vocabs.ipynb"}
+         "EhrVocab": "02_preprocessing_vocab.ipynb",
+         "ObsVocab": "02_preprocessing_vocab.ipynb",
+         "EhrVocabList": "02_preprocessing_vocab.ipynb",
+         "get_all_emb_dims": "02_preprocessing_vocab.ipynb",
+         "collate_codes_offsts": "03_preprocessing_transform.ipynb",
+         "get_codenums_offsts": "03_preprocessing_transform.ipynb",
+         "get_demographics": "03_preprocessing_transform.ipynb",
+         "Patient": "03_preprocessing_transform.ipynb",
+         "get_pckl_dir": "03_preprocessing_transform.ipynb",
+         "PatientList": "03_preprocessing_transform.ipynb",
+         "cpu_cnt": "03_preprocessing_transform.ipynb",
+         "create_all_ptlists": "03_preprocessing_transform.ipynb",
+         "preprocess_ehr_dataset": "03_preprocessing_transform.ipynb"}
 
 modules = ["preprocessing/clean.py",
-           "preprocessing/vocab.py"]
+           "preprocessing/vocab.py",
+           "preprocessing/transform.py"]
 
 doc_url = "https://corazonlabs.github.io/lemonade/"
 
