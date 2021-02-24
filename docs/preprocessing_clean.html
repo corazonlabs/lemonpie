@@ -29,9 +29,16 @@ nb_path: "01_preprocessing_clean.ipynb"
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data">Data<a class="anchor-link" href="#Data"> </a></h2>
+<h2 id="Assemble-Data">Assemble Data<a class="anchor-link" href="#Assemble-Data"> </a></h2>
 </div>
 </div>
 </div>
@@ -94,16 +101,16 @@ nb_path: "01_preprocessing_clean.ipynb"
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Split">Split<a class="anchor-link" href="#Split"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once dataset is assembled, the folder will look as follows ..</p>
+
 </div>
 </div>
 </div>
@@ -433,6 +440,577 @@ Saved test data to datasets/synthea/1K/raw_split/test
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>patients</code> data frame looks like this before cleanup..</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patients</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>BIRTHDATE</th>
+      <th>DEATHDATE</th>
+      <th>SSN</th>
+      <th>DRIVERS</th>
+      <th>PASSPORT</th>
+      <th>PREFIX</th>
+      <th>FIRST</th>
+      <th>LAST</th>
+      <th>SUFFIX</th>
+      <th>MAIDEN</th>
+      <th>MARITAL</th>
+      <th>RACE</th>
+      <th>ETHNICITY</th>
+      <th>GENDER</th>
+      <th>BIRTHPLACE</th>
+      <th>ADDRESS</th>
+      <th>CITY</th>
+      <th>STATE</th>
+      <th>ZIP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>1990-05-05</td>
+      <td>NaN</td>
+      <td>999-45-9813</td>
+      <td>S99921748</td>
+      <td>X74952757X</td>
+      <td>Mrs.</td>
+      <td>Nanci249</td>
+      <td>Hettinger594</td>
+      <td>NaN</td>
+      <td>Jones311</td>
+      <td>M</td>
+      <td>white</td>
+      <td>english</td>
+      <td>F</td>
+      <td>Bourne</td>
+      <td>540 Nikolaus Meadow</td>
+      <td>Billerica</td>
+      <td>Massachusetts</td>
+      <td>1821.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>92cb2e9a-1a29-450d-8a36-0242cf3c5355</td>
+      <td>1983-05-28</td>
+      <td>NaN</td>
+      <td>999-10-2955</td>
+      <td>S99983211</td>
+      <td>X67532687X</td>
+      <td>Mr.</td>
+      <td>Don899</td>
+      <td>Mitchell808</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>white</td>
+      <td>irish</td>
+      <td>M</td>
+      <td>Worcester</td>
+      <td>512 Pfeffer Byway</td>
+      <td>Shutesbury</td>
+      <td>Massachusetts</td>
+      <td>1072.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>116f1680-4fc0-4b2d-a59e-0e62231efe12</td>
+      <td>2011-10-23</td>
+      <td>NaN</td>
+      <td>999-97-3322</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>Belia417</td>
+      <td>Zieme486</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>white</td>
+      <td>irish</td>
+      <td>F</td>
+      <td>Braintree Town</td>
+      <td>891 Graham Harbor</td>
+      <td>Gloucester</td>
+      <td>Massachusetts</td>
+      <td>1930.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ffc93b3e-3fb3-4a6d-a53d-61de18ef4c23</td>
+      <td>1969-02-12</td>
+      <td>NaN</td>
+      <td>999-28-4068</td>
+      <td>S99952230</td>
+      <td>X32221027X</td>
+      <td>Mr.</td>
+      <td>Rhett759</td>
+      <td>Mosciski958</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>M</td>
+      <td>white</td>
+      <td>polish</td>
+      <td>M</td>
+      <td>Melrose</td>
+      <td>609 Eichmann Avenue</td>
+      <td>Woburn</td>
+      <td>Massachusetts</td>
+      <td>1801.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3189d8e4-653a-47c5-a700-941ebf2d02c6</td>
+      <td>1969-01-23</td>
+      <td>NaN</td>
+      <td>999-64-1895</td>
+      <td>S99914844</td>
+      <td>X20718523X</td>
+      <td>Mrs.</td>
+      <td>Augustine565</td>
+      <td>Rohan584</td>
+      <td>NaN</td>
+      <td>Cremin516</td>
+      <td>M</td>
+      <td>white</td>
+      <td>american</td>
+      <td>F</td>
+      <td>Upton</td>
+      <td>931 Watsica Lock</td>
+      <td>Worcester</td>
+      <td>Massachusetts</td>
+      <td>1545.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pt_data</span> <span class="o">=</span> <span class="n">cleanup_pts</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">today</span><span class="o">=</span><span class="n">SYNTHEA_DATAGEN_DATES</span><span class="p">[</span><span class="s1">&#39;1K&#39;</span><span class="p">])</span>
+<span class="n">patients</span><span class="p">,</span> <span class="n">pt_demo</span><span class="p">,</span> <span class="n">pt_codes</span> <span class="o">=</span> <span class="n">pt_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">pt_data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pt_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our cleanup function produces the following 3 dfs - <code>patients</code>, <code>pt_demographics</code>, <code>pt_codes</code></p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">pt_data</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>birthdate</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+    </tr>
+    <tr>
+      <th>92cb2e9a-1a29-450d-8a36-0242cf3c5355</th>
+      <td>1983-05-28</td>
+    </tr>
+    <tr>
+      <th>116f1680-4fc0-4b2d-a59e-0e62231efe12</th>
+      <td>2011-10-23</td>
+    </tr>
+    <tr>
+      <th>ffc93b3e-3fb3-4a6d-a53d-61de18ef4c23</th>
+      <td>1969-02-12</td>
+    </tr>
+    <tr>
+      <th>3189d8e4-653a-47c5-a700-941ebf2d02c6</th>
+      <td>1969-01-23</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>birthdate</th>
+      <th>marital</th>
+      <th>race</th>
+      <th>ethnicity</th>
+      <th>gender</th>
+      <th>birthplace</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zip</th>
+      <th>age_now_days</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+      <td>M</td>
+      <td>white</td>
+      <td>english</td>
+      <td>F</td>
+      <td>Bourne</td>
+      <td>Billerica</td>
+      <td>Massachusetts</td>
+      <td>1821</td>
+      <td>10422</td>
+    </tr>
+    <tr>
+      <th>92cb2e9a-1a29-450d-8a36-0242cf3c5355</th>
+      <td>1983-05-28</td>
+      <td>M</td>
+      <td>white</td>
+      <td>irish</td>
+      <td>M</td>
+      <td>Worcester</td>
+      <td>Shutesbury</td>
+      <td>Massachusetts</td>
+      <td>1072</td>
+      <td>12956</td>
+    </tr>
+    <tr>
+      <th>116f1680-4fc0-4b2d-a59e-0e62231efe12</th>
+      <td>2011-10-23</td>
+      <td>NaN</td>
+      <td>white</td>
+      <td>irish</td>
+      <td>F</td>
+      <td>Braintree Town</td>
+      <td>Gloucester</td>
+      <td>Massachusetts</td>
+      <td>1930</td>
+      <td>2581</td>
+    </tr>
+    <tr>
+      <th>ffc93b3e-3fb3-4a6d-a53d-61de18ef4c23</th>
+      <td>1969-02-12</td>
+      <td>M</td>
+      <td>white</td>
+      <td>polish</td>
+      <td>M</td>
+      <td>Melrose</td>
+      <td>Woburn</td>
+      <td>Massachusetts</td>
+      <td>1801</td>
+      <td>18174</td>
+    </tr>
+    <tr>
+      <th>3189d8e4-653a-47c5-a700-941ebf2d02c6</th>
+      <td>1969-01-23</td>
+      <td>M</td>
+      <td>white</td>
+      <td>american</td>
+      <td>F</td>
+      <td>Upton</td>
+      <td>Worcester</td>
+      <td>Massachusetts</td>
+      <td>1545</td>
+      <td>18194</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>birthdate</th>
+      <th>marital</th>
+      <th>race</th>
+      <th>ethnicity</th>
+      <th>gender</th>
+      <th>birthplace</th>
+      <th>city</th>
+      <th>state</th>
+      <th>zip</th>
+      <th>age_now_days</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-05-05</td>
+      <td>M</td>
+      <td>white</td>
+      <td>english</td>
+      <td>F</td>
+      <td>Bourne</td>
+      <td>Billerica</td>
+      <td>Massachusetts</td>
+      <td>1821</td>
+      <td>10422</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1983-05-28</td>
+      <td>M</td>
+      <td>white</td>
+      <td>irish</td>
+      <td>M</td>
+      <td>Worcester</td>
+      <td>Shutesbury</td>
+      <td>Massachusetts</td>
+      <td>1072</td>
+      <td>12956</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2011-10-23</td>
+      <td>NaN</td>
+      <td>white</td>
+      <td>irish</td>
+      <td>F</td>
+      <td>Braintree Town</td>
+      <td>Gloucester</td>
+      <td>Massachusetts</td>
+      <td>1930</td>
+      <td>2581</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1969-02-12</td>
+      <td>M</td>
+      <td>white</td>
+      <td>polish</td>
+      <td>M</td>
+      <td>Melrose</td>
+      <td>Woburn</td>
+      <td>Massachusetts</td>
+      <td>1801</td>
+      <td>18174</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1969-01-23</td>
+      <td>M</td>
+      <td>white</td>
+      <td>american</td>
+      <td>F</td>
+      <td>Upton</td>
+      <td>Worcester</td>
+      <td>Massachusetts</td>
+      <td>1545</td>
+      <td>18194</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>The case for keeping a record of the data generation date</strong></p>
+<p>Also note the difference in <code>age_now</code> if it were calculated based on default (<code>pd.Timestamp.today()</code>) vs <code>SYNTHEA_DATAGEN_DATES['1K']</code> which is the data generation date for this 1K dataset.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="o">.</span><span class="n">today</span><span class="p">())</span> <span class="o">-</span> <span class="n">patients</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">days</span><span class="p">,</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">SYNTHEA_DATAGEN_DATES</span><span class="p">[</span><span class="s1">&#39;1K&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">patients</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">days</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(3407, 2581)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -469,15 +1047,11 @@ Saved test data to datasets/synthea/1K/raw_split/test
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Drops rows with null in the <code>VALUE</code> column</li>
-<li>Creates a new <code>code</code> column with a concatenation of <code>code</code>, <code>value</code>, <code>units</code> and <code>type</code></li>
+<li>Creates a new <code>code</code> column with a concatenation of <code>code</code>, <code>value</code>, <code>units</code> and <code>type</code><ul>
+<li>so that we can use the following logic during vocab creation for observations (further detailed in the vocab documentation)</li>
 </ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Vocab creation for Observations</strong></p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -506,6 +1080,321 @@ Saved test data to datasets/synthea/1K/raw_split/test
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>'observations' df before cleanup ..</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">observations</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>DATE</th>
+      <th>PATIENT</th>
+      <th>ENCOUNTER</th>
+      <th>CODE</th>
+      <th>DESCRIPTION</th>
+      <th>VALUE</th>
+      <th>UNITS</th>
+      <th>TYPE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-05-05</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>62094db5-574e-4102-9488-ca3906ea85ff</td>
+      <td>8302-2</td>
+      <td>Body Height</td>
+      <td>58.3</td>
+      <td>cm</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1990-05-05</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>62094db5-574e-4102-9488-ca3906ea85ff</td>
+      <td>72514-3</td>
+      <td>Pain severity - 0-10 verbal numeric rating [Sc...</td>
+      <td>1.6</td>
+      <td>{score}</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1990-05-05</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>62094db5-574e-4102-9488-ca3906ea85ff</td>
+      <td>29463-7</td>
+      <td>Body Weight</td>
+      <td>3.7</td>
+      <td>kg</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1990-05-05</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>62094db5-574e-4102-9488-ca3906ea85ff</td>
+      <td>6690-2</td>
+      <td>Leukocytes [#/volume] in Blood by Automated count</td>
+      <td>7.9</td>
+      <td>10*3/uL</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1990-05-05</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>62094db5-574e-4102-9488-ca3906ea85ff</td>
+      <td>789-8</td>
+      <td>Erythrocytes [#/volume] in Blood by Automated ...</td>
+      <td>4.5</td>
+      <td>10*6/uL</td>
+      <td>numeric</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_data</span> <span class="o">=</span> <span class="n">cleanup_obs</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">observations</span><span class="p">,</span> <span class="n">obs_codes</span> <span class="o">=</span> <span class="n">obs_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">obs_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>after cleanup..</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">obs_data</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+      <td>8302-2||58.3||cm||numeric</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+      <td>72514-3||1.6||{score}||numeric</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+      <td>29463-7||3.7||kg||numeric</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+      <td>6690-2||7.9||10*3/uL||numeric</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-05-05</td>
+      <td>789-8||4.5||10*6/uL||numeric</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>orig_code</th>
+      <th>desc</th>
+      <th>value</th>
+      <th>units</th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>8302-2</td>
+      <td>Body Height</td>
+      <td>58.3</td>
+      <td>cm</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>72514-3</td>
+      <td>Pain severity - 0-10 verbal numeric rating [Sc...</td>
+      <td>1.6</td>
+      <td>{score}</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>29463-7</td>
+      <td>Body Weight</td>
+      <td>3.7</td>
+      <td>kg</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>6690-2</td>
+      <td>Leukocytes [#/volume] in Blood by Automated count</td>
+      <td>7.9</td>
+      <td>10*3/uL</td>
+      <td>numeric</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>789-8</td>
+      <td>Erythrocytes [#/volume] in Blood by Automated ...</td>
+      <td>4.5</td>
+      <td>10*6/uL</td>
+      <td>numeric</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -534,6 +1423,377 @@ Saved test data to datasets/synthea/1K/raw_split/test
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>allergies</code> have a start and stop date in the same row indicating when an allergy (indicated by its code) started and stopped (or not) for a patient. <br>
+So in the cleanup, we flatten that out, meaning create new rows for stop dates. <br>
+The dataframe looks as follows before cleanup..</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">allergies</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>START</th>
+      <th>STOP</th>
+      <th>PATIENT</th>
+      <th>ENCOUNTER</th>
+      <th>CODE</th>
+      <th>DESCRIPTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1956-07-24</td>
+      <td>NaN</td>
+      <td>2a45e46d-b4d0-4959-b07d-fb57b25e9f1d</td>
+      <td>91aff420-4326-42f2-abbc-bb26a5d8ae83</td>
+      <td>419474003</td>
+      <td>Allergy to mould</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1956-07-24</td>
+      <td>NaN</td>
+      <td>2a45e46d-b4d0-4959-b07d-fb57b25e9f1d</td>
+      <td>91aff420-4326-42f2-abbc-bb26a5d8ae83</td>
+      <td>232350006</td>
+      <td>House dust mite allergy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1956-07-24</td>
+      <td>1973-01-13</td>
+      <td>2a45e46d-b4d0-4959-b07d-fb57b25e9f1d</td>
+      <td>91aff420-4326-42f2-abbc-bb26a5d8ae83</td>
+      <td>714035009</td>
+      <td>Allergy to soya</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1971-05-13</td>
+      <td>NaN</td>
+      <td>1cdff491-7e96-4411-acee-d0f080423bb1</td>
+      <td>b3b00299-8e7a-4591-ae4a-e097dc6e7073</td>
+      <td>424213003</td>
+      <td>Allergy to bee venom</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1971-05-13</td>
+      <td>NaN</td>
+      <td>1cdff491-7e96-4411-acee-d0f080423bb1</td>
+      <td>b3b00299-8e7a-4591-ae4a-e097dc6e7073</td>
+      <td>419474003</td>
+      <td>Allergy to mould</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alg_data</span> <span class="o">=</span> <span class="n">cleanup_algs</span><span class="p">(</span><span class="n">allergies</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">allergies</span><span class="p">,</span> <span class="n">alg_codes</span> <span class="o">=</span> <span class="n">alg_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">alg_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Resulting in the following output after cleanup..</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">alg_data</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2a45e46d-b4d0-4959-b07d-fb57b25e9f1d</th>
+      <td>1956-07-24</td>
+      <td>419474003||START</td>
+    </tr>
+    <tr>
+      <th>2a45e46d-b4d0-4959-b07d-fb57b25e9f1d</th>
+      <td>1956-07-24</td>
+      <td>232350006||START</td>
+    </tr>
+    <tr>
+      <th>2a45e46d-b4d0-4959-b07d-fb57b25e9f1d</th>
+      <td>1956-07-24</td>
+      <td>714035009||START</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ace46042-749e-44ba-9c7c-92cf42c00eb1</th>
+      <td>2013-01-23</td>
+      <td>714035009||STOP</td>
+    </tr>
+    <tr>
+      <th>ace46042-749e-44ba-9c7c-92cf42c00eb1</th>
+      <td>2013-01-23</td>
+      <td>420174000||STOP</td>
+    </tr>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>1993-07-10</td>
+      <td>419474003||STOP</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>419474003||START</td>
+      <td>Allergy to mould</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>232350006||START</td>
+      <td>House dust mite allergy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>714035009||START</td>
+      <td>Allergy to soya</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>846</th>
+      <td>714035009||STOP</td>
+      <td>Allergy to soya</td>
+    </tr>
+    <tr>
+      <th>847</th>
+      <td>420174000||STOP</td>
+      <td>Allergy to wheat</td>
+    </tr>
+    <tr>
+      <th>848</th>
+      <td>419474003||STOP</td>
+      <td>Allergy to mould</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -573,6 +1833,379 @@ Saved test data to datasets/synthea/1K/raw_split/test
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">careplans</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>START</th>
+      <th>STOP</th>
+      <th>PATIENT</th>
+      <th>ENCOUNTER</th>
+      <th>CODE</th>
+      <th>DESCRIPTION</th>
+      <th>REASONCODE</th>
+      <th>REASONDESCRIPTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>991acfe9-0f58-4a3e-9af6-f5dcc2c8e1af</td>
+      <td>2002-12-28</td>
+      <td>2003-01-18</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>60717571-4b7b-49f0-8bee-cb99cef3eeeb</td>
+      <td>225358003</td>
+      <td>Wound care</td>
+      <td>283371005.0</td>
+      <td>Laceration of forearm</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7b021411-19c2-4a72-8f5b-ae8a63e3bb04</td>
+      <td>1990-12-19</td>
+      <td>1992-01-04</td>
+      <td>92cb2e9a-1a29-450d-8a36-0242cf3c5355</td>
+      <td>a1363162-be40-40c3-b8a6-ff03892220eb</td>
+      <td>53950000</td>
+      <td>Respiratory therapy</td>
+      <td>10509002.0</td>
+      <td>Acute bronchitis (disorder)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>dab0ef53-6e02-4487-9e58-43d6eb847908</td>
+      <td>2009-07-18</td>
+      <td>NaN</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>a143d31d-ca90-47d3-b3aa-be4443913807</td>
+      <td>134435003</td>
+      <td>Routine antenatal care</td>
+      <td>72892002.0</td>
+      <td>Normal pregnancy</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2ec6bac2-eee4-4e1a-bafd-e501b9efe17b</td>
+      <td>2010-03-22</td>
+      <td>2010-04-05</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>be9f572c-512f-4e62-b9c8-a190b9a5d5f8</td>
+      <td>53950000</td>
+      <td>Respiratory therapy</td>
+      <td>10509002.0</td>
+      <td>Acute bronchitis (disorder)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>b33af643-ad5d-45a4-81b2-3225cd8335dd</td>
+      <td>1997-06-13</td>
+      <td>1997-07-11</td>
+      <td>92cb2e9a-1a29-450d-8a36-0242cf3c5355</td>
+      <td>f5ed9a41-1faa-44f9-9f0b-75666d5244b7</td>
+      <td>91251008</td>
+      <td>Physical therapy procedure</td>
+      <td>44465007.0</td>
+      <td>Sprain of ankle</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">crpl_data</span> <span class="o">=</span> <span class="n">cleanup_crpls</span><span class="p">(</span><span class="n">careplans</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">careplans</span><span class="p">,</span> <span class="n">crpl_codes</span> <span class="o">=</span> <span class="n">crpl_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">crpl_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">crpl_data</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>2002-12-28</td>
+      <td>225358003||START</td>
+    </tr>
+    <tr>
+      <th>92cb2e9a-1a29-450d-8a36-0242cf3c5355</th>
+      <td>1990-12-19</td>
+      <td>53950000||START</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>2009-07-18</td>
+      <td>134435003||START</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>2003-12-21</td>
+      <td>385691007||STOP</td>
+    </tr>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>2007-02-24</td>
+      <td>225358003||STOP</td>
+    </tr>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>2008-06-07</td>
+      <td>53950000||STOP</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>225358003||START</td>
+      <td>Wound care</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>53950000||START</td>
+      <td>Respiratory therapy</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>134435003||START</td>
+      <td>Routine antenatal care</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>16585</th>
+      <td>385691007||STOP</td>
+      <td>Fracture care</td>
+    </tr>
+    <tr>
+      <th>16586</th>
+      <td>225358003||STOP</td>
+      <td>Wound care</td>
+    </tr>
+    <tr>
+      <th>16587</th>
+      <td>53950000||STOP</td>
+      <td>Respiratory therapy</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
 <div class="output">
@@ -598,6 +2231,391 @@ Saved test data to datasets/synthea/1K/raw_split/test
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">medications</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>START</th>
+      <th>STOP</th>
+      <th>PATIENT</th>
+      <th>ENCOUNTER</th>
+      <th>CODE</th>
+      <th>DESCRIPTION</th>
+      <th>COST</th>
+      <th>DISPENSES</th>
+      <th>TOTALCOST</th>
+      <th>REASONCODE</th>
+      <th>REASONDESCRIPTION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1990-08-03</td>
+      <td>1990-08-17</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>f46ed016-7cf8-4991-81f5-dad3d9f1b33e</td>
+      <td>198405</td>
+      <td>Ibuprofen 100 MG Oral Tablet</td>
+      <td>7.46</td>
+      <td>1</td>
+      <td>7.46</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1994-08-23</td>
+      <td>1994-09-06</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>9307c2e7-c41d-4634-9a8f-9dd317fd2acc</td>
+      <td>308182</td>
+      <td>Amoxicillin 250 MG Oral Capsule</td>
+      <td>7.26</td>
+      <td>1</td>
+      <td>7.26</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1994-08-23</td>
+      <td>1994-09-06</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>9307c2e7-c41d-4634-9a8f-9dd317fd2acc</td>
+      <td>198405</td>
+      <td>Ibuprofen 100 MG Oral Tablet</td>
+      <td>4.40</td>
+      <td>1</td>
+      <td>4.40</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2000-02-06</td>
+      <td>2000-02-13</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>6906c7bc-cbf2-41bd-a10d-4112248a6bac</td>
+      <td>834061</td>
+      <td>Penicillin V Potassium 250 MG Oral Tablet</td>
+      <td>5.95</td>
+      <td>1</td>
+      <td>5.95</td>
+      <td>43878008.0</td>
+      <td>Streptococcal sore throat (disorder)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2002-12-28</td>
+      <td>2003-01-18</td>
+      <td>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</td>
+      <td>60717571-4b7b-49f0-8bee-cb99cef3eeeb</td>
+      <td>313782</td>
+      <td>Acetaminophen 325 MG Oral Tablet</td>
+      <td>5.36</td>
+      <td>1</td>
+      <td>5.36</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_data</span> <span class="o">=</span> <span class="n">cleanup_meds</span><span class="p">(</span><span class="n">medications</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">medications</span><span class="p">,</span> <span class="n">med_codes</span> <span class="o">=</span> <span class="n">med_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">med_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">med_data</span><span class="p">:</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1990-08-03</td>
+      <td>198405||START</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1994-08-23</td>
+      <td>308182||START</td>
+    </tr>
+    <tr>
+      <th>d16cfd6a-d9c3-4754-a9f2-e8ce0b7ec40e</th>
+      <td>1994-08-23</td>
+      <td>198405||START</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <th>patient</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>2006-11-07</td>
+      <td>562251||STOP</td>
+    </tr>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>2007-02-24</td>
+      <td>313782||STOP</td>
+    </tr>
+    <tr>
+      <th>6e57d31b-8e6b-4007-8de1-431ae86a0f12</th>
+      <td>2007-06-10</td>
+      <td>313782||STOP</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>198405||START</td>
+      <td>Ibuprofen 100 MG Oral Tablet</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>308182||START</td>
+      <td>Amoxicillin 250 MG Oral Capsule</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>198405||START</td>
+      <td>Ibuprofen 100 MG Oral Tablet</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>code</th>
+      <th>desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>38380</th>
+      <td>562251||STOP</td>
+      <td>Amoxicillin 250 MG / Clavulanate 125 MG Oral T...</td>
+    </tr>
+    <tr>
+      <th>38381</th>
+      <td>313782||STOP</td>
+      <td>Acetaminophen 325 MG Oral Tablet</td>
+    </tr>
+    <tr>
+      <th>38382</th>
+      <td>313782||STOP</td>
+      <td>Acetaminophen 325 MG Oral Tablet</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -864,7 +2882,7 @@ dtype: int64</pre>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Extract-Labels-(y)-&amp;-Insert-Age">Extract Labels (y) &amp; Insert Age<a class="anchor-link" href="#Extract-Labels-(y)-&amp;-Insert-Age"> </a></h2>
+<h2 id="Extract-Labels-(y)">Extract Labels (y)<a class="anchor-link" href="#Extract-Labels-(y)"> </a></h2>
 </div>
 </div>
 </div>
@@ -873,11 +2891,7 @@ dtype: int64</pre>
 <p>The labels we intend to predict are conditions and must be in the <a href="/lemonade/preprocessing_clean.html#CONDITIONS"><code>CONDITIONS</code></a> dict</p>
 <ul>
 <li>Adding them to the <code>patients</code> df</li>
-<li>And adding the patient's age when the condition was recorded</li>
-</ul>
-<p>Also ..</p>
-<ul>
-<li>Inserting patient's age in months and years into each record df</li>
+<li>And adding the patient's age when the particular condition was recorded</li>
 </ul>
 
 </div>
@@ -1009,6 +3023,22 @@ dtype: int64</pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Insert-Age">Insert Age<a class="anchor-link" href="#Insert-Age"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Inserting patient's age in months and years into each record df</p>
+<ul>
+<li>this can be modified to records the patient's age in <strong>days</strong> or even <strong>hours</strong> that might be more relevant for datasets involving hospitalizations or ER admissions </li>
+</ul>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1043,7 +3073,8 @@ dtype: int64</pre>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Do-All-Functions">Do All Functions<a class="anchor-link" href="#Do-All-Functions"> </a></h2>
+<h2 id="Do-All-Functions">Do-All Functions<a class="anchor-link" href="#Do-All-Functions"> </a></h2><p>The actual functions that will be called from other modules</p>
+
 </div>
 </div>
 </div>
@@ -1139,6 +3170,58 @@ dtype: int64</pre>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_dfs</span><span class="p">,</span> <span class="n">valid_dfs</span><span class="p">,</span> <span class="n">test_dfs</span> <span class="o">=</span> <span class="n">load_cleaned_ehrdata</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">)</span>
+<span class="n">code_dfs</span> <span class="o">=</span> <span class="n">load_ehr_vocabcodes</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#     display(df.head())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#     display(df.head())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
