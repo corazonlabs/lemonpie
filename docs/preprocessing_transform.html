@@ -38,14 +38,8 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h1>Table of Contents<span class="tocSkip"></span></h1></p>
-<div class="toc"><ul class="toc-item"><li><span><a href="#Import" data-toc-modified-id="Import-1"><span class="toc-item-num">1&nbsp;&nbsp;</span>Import</a></span></li><li><span><a href="#Load-Data" data-toc-modified-id="Load-Data-2"><span class="toc-item-num">2&nbsp;&nbsp;</span>Load Data</a></span><ul class="toc-item"><li><span><a href="#Load-Cleaned-Data" data-toc-modified-id="Load-Cleaned-Data-2.1"><span class="toc-item-num">2.1&nbsp;&nbsp;</span>Load Cleaned Data</a></span></li><li><span><a href="#Load-Vocabs" data-toc-modified-id="Load-Vocabs-2.2"><span class="toc-item-num">2.2&nbsp;&nbsp;</span>Load Vocabs</a></span></li></ul></li><li><span><a href="#Assemble-Single-Patient" data-toc-modified-id="Assemble-Single-Patient-3"><span class="toc-item-num">3&nbsp;&nbsp;</span>Assemble Single Patient</a></span><ul class="toc-item"><li><span><a href="#Collate-Codes-&amp;-Offsets" data-toc-modified-id="Collate-Codes-&amp;-Offsets-3.1"><span class="toc-item-num">3.1&nbsp;&nbsp;</span>Collate Codes &amp; Offsets</a></span><ul class="toc-item"><li><span><a href="#rec_dfs[[ptid]]-+-demographics[[ptid]]" data-toc-modified-id="rec_dfs[[ptid]]-+-demographics[[ptid]]-3.1.1"><span class="toc-item-num">3.1.1&nbsp;&nbsp;</span><code>rec_dfs[[ptid]]</code> + <code>demographics[[ptid]]</code></a></span><ul class="toc-item"><li><span><a href="#Single-Value-Returned---Check" data-toc-modified-id="Single-Value-Returned---Check-3.1.1.1"><span class="toc-item-num">3.1.1.1&nbsp;&nbsp;</span>Single Value Returned - Check</a></span></li></ul></li><li><span><a href="#collate_codes_offsts()" data-toc-modified-id="collate_codes_offsts()-3.1.2"><span class="toc-item-num">3.1.2&nbsp;&nbsp;</span><code>collate_codes_offsts()</code></a></span><ul class="toc-item"><li><span><a href="#Old---delete" data-toc-modified-id="Old---delete-3.1.2.1"><span class="toc-item-num">3.1.2.1&nbsp;&nbsp;</span>Old - delete</a></span></li><li><span><a href="#Tests" data-toc-modified-id="Tests-3.1.2.2"><span class="toc-item-num">3.1.2.2&nbsp;&nbsp;</span>Tests</a></span></li></ul></li><li><span><a href="#Numericalize-codes" data-toc-modified-id="Numericalize-codes-3.1.3"><span class="toc-item-num">3.1.3&nbsp;&nbsp;</span>Numericalize codes</a></span><ul class="toc-item"><li><span><a href="#Experiments" data-toc-modified-id="Experiments-3.1.3.1"><span class="toc-item-num">3.1.3.1&nbsp;&nbsp;</span>Experiments</a></span></li><li><span><a href="#get_codenums_offsts()" data-toc-modified-id="get_codenums_offsts()-3.1.3.2"><span class="toc-item-num">3.1.3.2&nbsp;&nbsp;</span><code>get_codenums_offsts()</code></a></span></li></ul></li><li><span><a href="#get_demographics()" data-toc-modified-id="get_demographics()-3.1.4"><span class="toc-item-num">3.1.4&nbsp;&nbsp;</span><code>get_demographics()</code></a></span></li><li><span><a href="#Tests" data-toc-modified-id="Tests-3.1.5"><span class="toc-item-num">3.1.5&nbsp;&nbsp;</span>Tests</a></span><ul class="toc-item"><li><span><a href="#Codes-&amp;-Offsets" data-toc-modified-id="Codes-&amp;-Offsets-3.1.5.1"><span class="toc-item-num">3.1.5.1&nbsp;&nbsp;</span>Codes &amp; Offsets</a></span></li><li><span><a href="#Numericalize-+-tensor" data-toc-modified-id="Numericalize-+-tensor-3.1.5.2"><span class="toc-item-num">3.1.5.2&nbsp;&nbsp;</span>Numericalize + tensor</a></span></li><li><span><a href="#Demographics" data-toc-modified-id="Demographics-3.1.5.3"><span class="toc-item-num">3.1.5.3&nbsp;&nbsp;</span>Demographics</a></span></li></ul></li></ul></li></ul></li><li><span><a href="#ItemBase---Patient" data-toc-modified-id="ItemBase---Patient-4"><span class="toc-item-num">4&nbsp;&nbsp;</span><code>ItemBase</code> - Patient</a></span><ul class="toc-item"><li><ul class="toc-item"><li><span><a href="#.cuda(),-CUDA-Semantics,-Monkey-Patching-Lists-for-CUDA" data-toc-modified-id=".cuda(),-CUDA-Semantics,-Monkey-Patching-Lists-for-CUDA-4.0.1"><span class="toc-item-num">4.0.1&nbsp;&nbsp;</span><code>.cuda()</code>, CUDA Semantics, Monkey-Patching Lists for CUDA</a></span></li></ul></li><li><span><a href="#Class-Patient" data-toc-modified-id="Class-Patient-4.1"><span class="toc-item-num">4.1&nbsp;&nbsp;</span>Class <code>Patient</code></a></span><ul class="toc-item"><li><span><a href="#Tests" data-toc-modified-id="Tests-4.1.1"><span class="toc-item-num">4.1.1&nbsp;&nbsp;</span>Tests</a></span></li></ul></li></ul></li><li><span><a href="#ItemList---PatientList" data-toc-modified-id="ItemList---PatientList-5"><span class="toc-item-num">5&nbsp;&nbsp;</span><code>ItemList</code> - PatientList</a></span><ul class="toc-item"><li><span><a href="#Multiprocessing-Implementation" data-toc-modified-id="Multiprocessing-Implementation-5.1"><span class="toc-item-num">5.1&nbsp;&nbsp;</span>Multiprocessing Implementation</a></span><ul class="toc-item"><li><span><a href="#Chunking" data-toc-modified-id="Chunking-5.1.1"><span class="toc-item-num">5.1.1&nbsp;&nbsp;</span>Chunking</a></span></li><li><span><a href="#Multiprocessing-Logic" data-toc-modified-id="Multiprocessing-Logic-5.1.2"><span class="toc-item-num">5.1.2&nbsp;&nbsp;</span>Multiprocessing Logic</a></span><ul class="toc-item"><li><span><a href="#Useful-Links-+-Tips" data-toc-modified-id="Useful-Links-+-Tips-5.1.2.1"><span class="toc-item-num">5.1.2.1&nbsp;&nbsp;</span>Useful Links + Tips</a></span></li></ul></li></ul></li><li><span><a href="#Class-PatientList" data-toc-modified-id="Class-PatientList-5.2"><span class="toc-item-num">5.2&nbsp;&nbsp;</span>Class <code>PatientList</code></a></span><ul class="toc-item"><li><span><a href="#get_pckl_dir()-Util-Function" data-toc-modified-id="get_pckl_dir()-Util-Function-5.2.1"><span class="toc-item-num">5.2.1&nbsp;&nbsp;</span><code>get_pckl_dir()</code> Util Function</a></span></li><li><span><a href="#Awesome-&amp;-Fast-PatientList-class" data-toc-modified-id="Awesome-&amp;-Fast-PatientList-class-5.2.2"><span class="toc-item-num">5.2.2&nbsp;&nbsp;</span>Awesome &amp; Fast <code>PatientList</code> class</a></span><ul class="toc-item"><li><span><a href="#Test" data-toc-modified-id="Test-5.2.2.1"><span class="toc-item-num">5.2.2.1&nbsp;&nbsp;</span>Test</a></span></li></ul></li></ul></li></ul></li><li><span><a href="#create_all_ptlists()" data-toc-modified-id="create_all_ptlists()-6"><span class="toc-item-num">6&nbsp;&nbsp;</span><code>create_all_ptlists()</code></a></span><ul class="toc-item"><li><ul class="toc-item"><li><span><a href="#Tests" data-toc-modified-id="Tests-6.0.1"><span class="toc-item-num">6.0.1&nbsp;&nbsp;</span>Tests</a></span><ul class="toc-item"><li><span><a href="#1K" data-toc-modified-id="1K-6.0.1.1"><span class="toc-item-num">6.0.1.1&nbsp;&nbsp;</span>1K</a></span></li><li><span><a href="#10K" data-toc-modified-id="10K-6.0.1.2"><span class="toc-item-num">6.0.1.2&nbsp;&nbsp;</span>10K</a></span></li></ul></li></ul></li></ul></li><li><span><a href="#Do-All-Preprocessing" data-toc-modified-id="Do-All-Preprocessing-7"><span class="toc-item-num">7&nbsp;&nbsp;</span>Do All Preprocessing</a></span></li><li><span><a href="#Export" data-toc-modified-id="Export-8"><span class="toc-item-num">8&nbsp;&nbsp;</span>Export</a></span></li></ul></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Load-Cleaned-Data">Load Cleaned Data<a class="anchor-link" href="#Load-Cleaned-Data"> </a></h3>
+<p><strong>Load Cleaned Data</strong></p>
+
 </div>
 </div>
 </div>
@@ -388,7 +382,8 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Load-Vocabs">Load Vocabs<a class="anchor-link" href="#Load-Vocabs"> </a></h4>
+<p><strong>Load Vocabs</strong></p>
+
 </div>
 </div>
 </div>
@@ -558,23 +553,6 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tst_ptid</span><span class="o">=</span><span class="s1">&#39;0731de61-1a8b-4135-83c0-2ace696bcac8&#39;</span>
 </pre></div>
 
@@ -684,7 +662,8 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">patient_demographics_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tst_ptid</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">demograph_vector</span> <span class="o">=</span> <span class="n">patient_demographics_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tst_ptid</span><span class="p">]</span>
+<span class="n">demograph_vector</span>
 </pre></div>
 
     </div>
@@ -815,16 +794,42 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li><strong>Filter out for this patient</strong> <ul>
-<li>df already filtered by cutoff age)</li>
+<li><code>rec_dfs[[ptid]]</code> + <code>demographics[[ptid]]</code></li>
+<li><del>df already filtered by cutoff age</del></li>
 <li>This is being done in <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
 </ul>
 </li>
-<li>Use double <code>[[ptid]]</code> so that - even when single values are returned as a df</li>
+<li>Use double <code>[[ptid]]</code> so that - even when single values are returned, we get a df</li>
 </ul>
 
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_rec_dfs</span><span class="p">(</span><span class="n">all_rec_dfs</span><span class="p">,</span> <span class="n">ptid</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Get all dfs for this patient, this is being done in `PatientList` so this is for testing only&#39;&#39;&#39;</span>
+    <span class="n">rec_dfs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">rec_df</span> <span class="ow">in</span> <span class="n">all_rec_dfs</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rec_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rec_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="n">ptid</span><span class="p">]])</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">rec_dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">rec_dfs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -845,8 +850,8 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 32.4 ms, sys: 0 ns, total: 32.4 ms
-Wall time: 32.2 ms
+<pre>CPU times: user 28.6 ms, sys: 4.08 ms, total: 32.7 ms
+Wall time: 32.4 ms
 </pre>
 </div>
 </div>
@@ -860,7 +865,7 @@ Wall time: 32.2 ms
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>rec_dfs -- observations, allergies, careplans, medications, imaging_studies, procedures, conditions, immunizations</p>
-<p>The following are empty for this ptid</p>
+<p>The following are empty for this ptid (to check and confirm, uncomment following code snippet and run)</p>
 <ul>
 <li>allergies - 1</li>
 <li><del>imaging_studies - 4</del></li>
@@ -904,791 +909,26 @@ Wall time: 32.2 ms
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">demograph_vector</span> <span class="o">=</span> <span class="n">patient_demographics_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">tst_ptid</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">demograph_vector</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>birthdate          1934-11-27
-marital                     M
-race                    white
-ethnicity          portuguese
-gender                      F
-birthplace             Boston
-city               Foxborough
-state           Massachusetts
-zip                      2035
-age_now_days            30670
-Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">demograph_vector</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;Foxborough&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">demograph_vector</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;xxnone&#39;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>birthdate          1934-11-27
-marital                     M
-race                    white
-ethnicity          portuguese
-gender                      F
-birthplace             Boston
-city               Foxborough
-state           Massachusetts
-zip                      2035
-age_now_days            30670
-Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Single-Value-Returned---Check">Single Value Returned - Check<a class="anchor-link" href="#Single-Value-Returned---Check"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_ptid2</span> <span class="o">=</span> <span class="s1">&#39;7c2b8c3b-fa87-44e9-b868-01db98dad56c&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_ptid2_dfs</span> <span class="o">=</span> <span class="n">get_rec_dfs</span><span class="p">(</span><span class="n">all_rec_dfs</span><span class="p">,</span> <span class="n">test_ptid2</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">rec_df</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_ptid2_dfs</span><span class="p">,</span> <span class="n">FILENAMES</span><span class="p">[</span><span class="mi">1</span><span class="p">:]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">rec_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">rec_df</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>observations: (283, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>21000-5||41.5||fL||numeric</td>
-      <td>28</td>
-      <td>340</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>777-3||335.9||10*3/uL||numeric</td>
-      <td>28</td>
-      <td>340</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>32207-3||488.3||fL||numeric</td>
-      <td>28</td>
-      <td>340</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>32623-1||11.7||fL||numeric</td>
-      <td>28</td>
-      <td>340</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>72166-2||Never smoker||xxxnan||text</td>
-      <td>28</td>
-      <td>340</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>allergies: (0, 0)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>careplans: (13, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>53950000||STOP</td>
-      <td>8</td>
-      <td>98</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>91251008||STOP</td>
-      <td>11</td>
-      <td>141</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>91251008||STOP</td>
-      <td>14</td>
-      <td>173</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>53950000||STOP</td>
-      <td>19</td>
-      <td>232</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>91251008||STOP</td>
-      <td>25</td>
-      <td>306</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>medications: (21, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>198405||STOP</td>
-      <td>11</td>
-      <td>141</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>313782||STOP</td>
-      <td>14</td>
-      <td>173</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>1043400||STOP</td>
-      <td>19</td>
-      <td>230</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>849574||STOP</td>
-      <td>25</td>
-      <td>306</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>861467||STOP</td>
-      <td>25</td>
-      <td>306</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>imaging_studies: (1, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>72696002</td>
-      <td>25</td>
-      <td>305</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>procedures: (17, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>428191000124101</td>
-      <td>13</td>
-      <td>159</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>428191000124101</td>
-      <td>14</td>
-      <td>171</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>428191000124101</td>
-      <td>22</td>
-      <td>268</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>74016001</td>
-      <td>25</td>
-      <td>305</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>699253003</td>
-      <td>25</td>
-      <td>305</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>conditions: (34, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>10509002||STOP</td>
-      <td>19</td>
-      <td>230</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>195662009||STOP</td>
-      <td>19</td>
-      <td>235</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>444814009||STOP</td>
-      <td>21</td>
-      <td>254</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>444814009||STOP</td>
-      <td>22</td>
-      <td>266</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>444448004||STOP</td>
-      <td>25</td>
-      <td>306</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>immunizations: (40, 3)
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>code</th>
-      <th>age</th>
-      <th>age_months</th>
-    </tr>
-    <tr>
-      <th>patient</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>113</td>
-      <td>22</td>
-      <td>268</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>43</td>
-      <td>22</td>
-      <td>268</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>114</td>
-      <td>22</td>
-      <td>268</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>140</td>
-      <td>25</td>
-      <td>304</td>
-    </tr>
-    <tr>
-      <th>7c2b8c3b-fa87-44e9-b868-01db98dad56c</th>
-      <td>140</td>
-      <td>28</td>
-      <td>340</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="collate_codes_offsts()"><code>collate_codes_offsts()</code><a class="anchor-link" href="#collate_codes_offsts()"> </a></h3>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>For empty Code DFs like alg seen above - codes list will be 20 xxnones</li>
-<li>For non-empty Code DFs<ol>
-<li>Collate codes by year</li>
+<li>For empty rec dfs like alg seen above, we have to indicate that nothing was recorded for this particular record (say allergies)<ol>
+<li>So the codes list will be <code>xxnone</code>s of length <code>age_span</code><ul>
+<li>For example for <code>age_start</code>=10 and <code>age_stop</code>=35, we will get 25 <code>xxnone</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>For non-empty rec dfs<ol>
+<li>Collate codes by year or month (depending on <code>age_in_months</code> value)</li>
 <li>Compute respective offsets</li>
 </ol>
 </li>
+</ul>
+<p>For using age in days or hours (for example in case of hospitalization or ICU datasets)</p>
+<ul>
+<li>This function will need to be modified (in addition to <code>insert_age()</code> in <code>preprocessing.clean</code>)</li>
+<li>For example for age in days, <code>insert_age()</code> will insert a column in each data frame with the age in days, which then can be used by this function to filter for the right <code>age_span</code> </li>
 </ul>
 
 </div>
@@ -1722,160 +962,47 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
 
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Old---delete">Old - delete<a class="anchor-link" href="#Old---delete"> </a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="c1">#export</span>
-<span class="k">def</span> <span class="nf">collate_codes_offsts</span><span class="p">(</span><span class="n">rec_df</span><span class="p">,</span> <span class="n">cutoff_age</span><span class="p">):</span>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">collate_codes_offsts</span><span class="p">(</span><span class="n">rec_df</span><span class="p">,</span> <span class="n">age_start</span><span class="p">,</span> <span class="n">age_stop</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a single patient&#39;s EmbeddingBag lookup codes and offsets for the given age span and age units&quot;&quot;&quot;</span>
     <span class="n">codes</span>  <span class="o">=</span> <span class="p">[]</span>
     <span class="n">offsts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">age_span</span> <span class="o">=</span> <span class="n">age_stop</span> <span class="o">-</span> <span class="n">age_start</span>
     <span class="k">if</span> <span class="n">rec_df</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span> 
-        <span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;xxnone&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">cutoff_age</span>
-        <span class="n">offsts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">cutoff_age</span><span class="p">))</span>
+        <span class="n">codes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;xxnone&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">age_span</span>
+        <span class="n">offsts</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">age_span</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cutoff_age</span><span class="p">):</span>
-            <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec_df</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">rec_df</span><span class="o">.</span><span class="n">age</span><span class="o">==</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span> 
-                <span class="n">codes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>      <span class="c1"># old --&gt; for j in range(len(res)): codes.append(res[j])</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cutoff_age</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span> <span class="n">offsts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offsts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">age_start</span><span class="p">,</span> <span class="n">age_stop</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">age_in_months</span><span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec_df</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">rec_df</span><span class="o">.</span><span class="n">age_months</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">else</span>            <span class="p">:</span> <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">rec_df</span><span class="o">.</span><span class="n">code</span><span class="p">[</span><span class="n">rec_df</span><span class="o">.</span><span class="n">age</span> <span class="o">==</span> <span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">values</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> 
+                <span class="n">codes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>      
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">age_stop</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span> <span class="n">offsts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offsts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>          
                 <span class="n">codes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;xxnone&#39;</span><span class="p">)</span> 
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">cutoff_age</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span> <span class="n">offsts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offsts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">age_stop</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span> <span class="n">offsts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offsts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">offsts</span><span class="p">)</span> <span class="o">==</span> <span class="n">age_span</span>
     <span class="k">return</span> <span class="n">codes</span><span class="p">,</span> <span class="n">offsts</span>
 </pre></div>
 
+    </div>
 </div>
 </div>
+
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Tests">Tests<a class="anchor-link" href="#Tests"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts = [collate_codes_offsts(df, age_start=0, age_stop=20) for df in rec_dfs]
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 28.6 ms, sys: 3.4 ms, total: 32 ms
-Wall time: 30.5 ms
-</pre>
-</div>
-</div>
+<p>Collate EHR codes for our test patient, from month 95 to month 105</p>
 
 </div>
 </div>
-
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts_1 = [collate_codes_offsts(df, age_start=0, age_stop=20) for df in [p_obs, p_alg, p_crpl, p_med, p_img, p_proc, p_cnd, p_immn]]
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 28.4 ms, sys: 0 ns, total: 28.4 ms
-Wall time: 27.7 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">all_codes_offsts</span> <span class="o">==</span> <span class="n">all_codes_offsts_1</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_codes_offsts_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_obs</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(236, 236, 2044)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1896,8 +1023,8 @@ Wall time: 27.7 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 13.9 ms, sys: 261 µs, total: 14.2 ms
-Wall time: 13.9 ms
+<pre>CPU times: user 20.9 ms, sys: 141 µs, total: 21.1 ms
+Wall time: 20.2 ms
 </pre>
 </div>
 </div>
@@ -1908,6 +1035,13 @@ Wall time: 13.9 ms
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Observation codes for the above <code>age_span</code> is obtained as below ..</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1915,7 +1049,8 @@ Wall time: 13.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span> <span class="o">=</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">obs_codes</span>
 </pre></div>
 
     </div>
@@ -1930,29 +1065,28 @@ Wall time: 13.9 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([&#39;8302-2||136.6||cm||numeric&#39;,
-  &#39;72514-3||0.6||{score}||numeric&#39;,
-  &#39;29463-7||23.3||kg||numeric&#39;,
-  &#39;39156-5||12.5||kg/m2||numeric&#39;,
-  &#39;8462-4||82.4||mmHg||numeric&#39;,
-  &#39;8480-6||138.1||mmHg||numeric&#39;,
-  &#39;72166-2||Never smoker||xxxnan||text&#39;,
-  &#39;xxnone&#39;,
-  &#39;xxnone&#39;,
-  &#39;xxnone&#39;,
-  &#39;8302-2||138.6||cm||numeric&#39;,
-  &#39;72514-3||3.1||{score}||numeric&#39;,
-  &#39;29463-7||24.2||kg||numeric&#39;,
-  &#39;39156-5||12.6||kg/m2||numeric&#39;,
-  &#39;8462-4||70.2||mmHg||numeric&#39;,
-  &#39;8480-6||131.5||mmHg||numeric&#39;,
-  &#39;72166-2||Never smoker||xxxnan||text&#39;,
-  &#39;xxnone&#39;,
-  &#39;xxnone&#39;,
-  &#39;xxnone&#39;,
-  &#39;xxnone&#39;,
-  &#39;xxnone&#39;],
- [0, 7, 8, 9, 10, 17, 18, 19, 20, 21])</pre>
+<pre>[&#39;8302-2||136.6||cm||numeric&#39;,
+ &#39;72514-3||0.6||{score}||numeric&#39;,
+ &#39;29463-7||23.3||kg||numeric&#39;,
+ &#39;39156-5||12.5||kg/m2||numeric&#39;,
+ &#39;8462-4||82.4||mmHg||numeric&#39;,
+ &#39;8480-6||138.1||mmHg||numeric&#39;,
+ &#39;72166-2||Never smoker||xxxnan||text&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;8302-2||138.6||cm||numeric&#39;,
+ &#39;72514-3||3.1||{score}||numeric&#39;,
+ &#39;29463-7||24.2||kg||numeric&#39;,
+ &#39;39156-5||12.6||kg/m2||numeric&#39;,
+ &#39;8462-4||70.2||mmHg||numeric&#39;,
+ &#39;8480-6||131.5||mmHg||numeric&#39;,
+ &#39;72166-2||Never smoker||xxxnan||text&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;]</pre>
 </div>
 
 </div>
@@ -1965,27 +1099,135 @@ Wall time: 13.9 ms
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Numericalize-codes">Numericalize codes<a class="anchor-link" href="#Numericalize-codes"> </a></h3><ul>
+<p>and the corresponding offsets (to be used for EmbeddingBag lookups) is obtained as below.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_offsts</span> <span class="o">=</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">obs_offsts</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0, 7, 8, 9, 10, 17, 18, 19, 20, 21]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">obs_codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_offsts</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(22, 10)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that: no matter how many observations are recorded, the number of offsets will always be equal to the <code>age_span</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Collate EHR codes for our test patient, from 10 to 25 years</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts = [collate_codes_offsts(df, age_start=10, age_stop=25) for df in rec_dfs]
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 24.2 ms, sys: 35 µs, total: 24.2 ms
+Wall time: 23.5 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Numericalize">Numericalize<a class="anchor-link" href="#Numericalize"> </a></h3><ul>
+<li>Once we have all the codes from the vocabs, we need to numericalize them </li>
 <li>Call to <code>vocab.numericalize()</code> must always be a list</li>
-<li>Guaranteed given - <code>codes</code> returned from <code>collate_codes_offsts()</code> is always a list even if a single item</li>
+<li><code>codes</code> returned from <code>collate_codes_offsts()</code> is always a list even if a single item</li>
 </ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Do all</strong> -- Given patient id</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Experiments">Experiments<a class="anchor-link" href="#Experiments"> </a></h4>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1993,7 +1235,42 @@ Wall time: 13.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">PATH_1K</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span> <span class="o">=</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes_num</span> <span class="o">=</span> <span class="n">obs_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">(</span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="c1">#codes numericalized</span>
+<span class="n">obs_offsts</span> <span class="o">=</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="c1">#offsets</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2008,7 +1285,16 @@ Wall time: 13.9 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;./datasets/synthea/1K&#39;</pre>
+<pre>[&#39;8302-2||150.8||cm||numeric&#39;,
+ &#39;72514-3||3.9||{score}||numeric&#39;,
+ &#39;29463-7||31.1||kg||numeric&#39;,
+ &#39;39156-5||13.7||kg/m2||numeric&#39;,
+ &#39;8462-4||70.1||mmHg||numeric&#39;,
+ &#39;8480-6||110.2||mmHg||numeric&#39;,
+ &#39;72166-2||Never smoker||xxxnan||text&#39;,
+ &#39;8302-2||157.9||cm||numeric&#39;,
+ &#39;72514-3||1.9||{score}||numeric&#39;,
+ &#39;29463-7||34.9||kg||numeric&#39;]</pre>
 </div>
 
 </div>
@@ -2026,126 +1312,7 @@ Wall time: 13.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_obs_collated</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">oc</span><span class="p">,</span><span class="n">oo</span> <span class="o">=</span> <span class="n">obs_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">(</span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_obs_numericalized</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">oc</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">p_obs</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_obs_collated</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">oc</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes_num</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2160,7 +1327,7 @@ Wall time: 13.9 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(2044, 236, 236)</pre>
+<pre>[5, 9, 13, 87, 72, 77, 497, 5, 8, 13]</pre>
 </div>
 
 </div>
@@ -2178,24 +1345,7 @@ Wall time: 13.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">oc_1</span><span class="p">,</span><span class="n">oo_1</span> <span class="o">=</span> <span class="n">obs_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">(</span><span class="n">all_codes_offsts_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="n">all_codes_offsts_1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">oc</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">oc_1</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">oo</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">oo_1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">obs_codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_codes_num</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_offsts</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2210,7 +1360,7 @@ Wall time: 13.9 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(236, 236, 20, 20)</pre>
+<pre>(115, 115, 15)</pre>
 </div>
 
 </div>
@@ -2228,7 +1378,7 @@ Wall time: 13.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># oc</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_codes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_codes_num</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2245,74 +1395,7 @@ Wall time: 13.9 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">oc</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">oo</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(236, 20)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pc</span><span class="p">,</span><span class="n">po</span> <span class="o">=</span> <span class="n">proc_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">(</span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">pc</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">po</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">(</span><span class="n">obs_codes_num</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -2327,7 +1410,102 @@ Wall time: 13.9 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(23, 20)</pre>
+<pre>[(&#39;8302-2||158.45000000000002||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;72514-3||4.95||{score}||numeric&#39;,
+  &#39;Pain severity - 0-10 verbal numeric rating [Score] - Reported&#39;),
+ (&#39;29463-7||42.15||kg||numeric&#39;, &#39;Body Weight&#39;),
+ (&#39;39156-5||9.1||kg/m2||numeric&#39;, &#39;Body Mass Index&#39;),
+ (&#39;8462-4||70.0||mmHg||numeric&#39;, &#39;Diastolic Blood Pressure&#39;),
+ (&#39;8480-6||100.0||mmHg||numeric&#39;, &#39;Systolic Blood Pressure&#39;),
+ (&#39;72166-2||Never smoker||xxxnan||text&#39;, &#39;Tobacco smoking status NHIS&#39;),
+ (&#39;8302-2||158.45000000000002||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;72514-3||2.475||{score}||numeric&#39;,
+  &#39;Pain severity - 0-10 verbal numeric rating [Score] - Reported&#39;),
+ (&#39;29463-7||42.15||kg||numeric&#39;, &#39;Body Weight&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proc_codes</span> <span class="o">=</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">proc_codes_num</span><span class="p">,</span><span class="n">proc_offsts</span> <span class="o">=</span> <span class="n">proc_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">(</span><span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span> <span class="n">all_codes_offsts</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">proc_codes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">proc_codes_num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">proc_codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">proc_codes_num</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">proc_offsts</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(105, 105, 15)</pre>
 </div>
 
 </div>
@@ -2340,7 +1518,8 @@ Wall time: 13.9 ms
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="get_codenums_offsts()"><code>get_codenums_offsts()</code><a class="anchor-link" href="#get_codenums_offsts()"> </a></h4>
+<p><strong>Putting all this into a function</strong></p>
+
 </div>
 </div>
 </div>
@@ -2355,8 +1534,9 @@ Wall time: 13.9 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_codenums_offsts" class="doc_header"><code>get_codenums_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L35" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_codenums_offsts</code>(<strong><code>rec_dfs</code></strong>, <strong><code>all_vocabs</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="get_codenums_offsts" class="doc_header"><code>get_codenums_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_codenums_offsts</code>(<strong><code>rec_dfs</code></strong>, <strong><code>all_vocabs</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
+<p>Get numericalized record codes and offsets for a patient for a given age span</p>
 
 </div>
 
@@ -2375,12 +1555,6 @@ Wall time: 13.9 ms
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="get_demographics()"><code>get_demographics()</code><a class="anchor-link" href="#get_demographics()"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -2392,8 +1566,9 @@ Wall time: 13.9 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_demographics" class="doc_header"><code>get_demographics</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L55" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_demographics</code>(<strong><code>demograph_vector</code></strong>, <strong><code>demographics_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>)</p>
+<h4 id="get_demographics" class="doc_header"><code>get_demographics</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L57" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_demographics</code>(<strong><code>demograph_vector</code></strong>, <strong><code>demographics_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>)</p>
 </blockquote>
+<p>Numericalize demographics and normalize age for a given patient</p>
 
 </div>
 
@@ -2414,13 +1589,8 @@ Wall time: 13.9 ms
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tests">Tests<a class="anchor-link" href="#Tests"> </a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Codes-&amp;-Offsets">Codes &amp; Offsets<a class="anchor-link" href="#Codes-&amp;-Offsets"> </a></h4>
+<p><strong>Test - Codes &amp; Offsets</strong></p>
+
 </div>
 </div>
 </div>
@@ -2444,8 +1614,8 @@ Wall time: 13.9 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 342 ms, sys: 0 ns, total: 342 ms
-Wall time: 341 ms
+<pre>CPU times: user 368 ms, sys: 3.63 ms, total: 371 ms
+Wall time: 369 ms
 </pre>
 </div>
 </div>
@@ -2463,7 +1633,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_c</span><span class="p">,</span> <span class="n">med_o</span> <span class="o">=</span> <span class="n">codenums</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">offsts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_num</span><span class="p">,</span> <span class="n">med_o</span> <span class="o">=</span> <span class="n">codenums</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span><span class="n">offsts</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2480,7 +1650,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_med_codes</span><span class="p">,</span> <span class="n">p_med_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_med</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_codes</span><span class="p">,</span> <span class="n">med_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_med</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2497,7 +1667,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">med_c</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_med_codes</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">med_num</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">med_codes</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">med_o</span> <span class="o">==</span> <span class="n">p_med_offsts</span>
 </pre></div>
 
@@ -2515,7 +1685,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">(</span><span class="n">med_c</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">(</span><span class="n">med_num</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2548,7 +1718,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_med_codes</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_codes</span>
 </pre></div>
 
     </div>
@@ -2604,7 +1774,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_med_offsts</span><span class="p">,</span> <span class="n">med_o</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_offsts</span><span class="p">,</span> <span class="n">med_o</span>
 </pre></div>
 
     </div>
@@ -2638,7 +1808,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">p_med_codes</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">p_med_offsts</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">med_codes</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">med_offsts</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2671,7 +1841,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_alg_codes</span><span class="p">,</span> <span class="n">p_alg_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_alg</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alg_codes</span><span class="p">,</span> <span class="n">alg_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_alg</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2688,7 +1858,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_alg_codes</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alg_codes</span>
 </pre></div>
 
     </div>
@@ -2740,7 +1910,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_alg_offsts</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alg_offsts</span>
 </pre></div>
 
     </div>
@@ -2773,7 +1943,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_c</span><span class="p">,</span> <span class="n">obs_o</span> <span class="o">=</span> <span class="n">codenums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_num</span><span class="p">,</span> <span class="n">obs_o</span> <span class="o">=</span> <span class="n">codenums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">offsts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -2790,7 +1960,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_obs_codes</span><span class="p">,</span> <span class="n">p_obs_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_obs</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span><span class="p">,</span> <span class="n">obs_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_obs</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2807,7 +1977,7 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">p_obs_codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_obs_offsts</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_c</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_o</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">obs_codes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_offsts</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_num</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_o</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2840,7 +2010,8 @@ Wall time: 341 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">obs_o</span> <span class="o">==</span> <span class="n">p_obs_offsts</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_codes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_num</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">obs_o</span> <span class="o">==</span> <span class="n">obs_offsts</span>
 </pre></div>
 
     </div>
@@ -2870,8 +2041,8 @@ Wall time: 341 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 524 ms, sys: 0 ns, total: 524 ms
-Wall time: 520 ms
+<pre>CPU times: user 560 ms, sys: 6.92 ms, total: 567 ms
+Wall time: 564 ms
 </pre>
 </div>
 </div>
@@ -2924,194 +2095,8 @@ Wall time: 520 ms
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Numericalize-+-tensor">Numericalize + tensor<a class="anchor-link" href="#Numericalize-+-tensor"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<p><strong>Test - Demographics</strong></p>
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_med_indxs</span> <span class="o">=</span> <span class="n">med_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">(</span><span class="n">p_med_codes</span><span class="p">)</span>
-<span class="n">p_med_indxs</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[0,
- 0,
- 13,
- 141,
- 0,
- 0,
- 0,
- 0,
- 0,
- 4,
- 133,
- 0,
- 0,
- 0,
- 0,
- 0,
- 4,
- 133,
- 0,
- 13,
- 141,
- 0,
- 0,
- 0]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_c</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[0,
- 0,
- 13,
- 141,
- 0,
- 0,
- 0,
- 0,
- 0,
- 4,
- 133,
- 0,
- 0,
- 0,
- 0,
- 0,
- 4,
- 133,
- 0,
- 13,
- 141,
- 0,
- 0,
- 0]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_med_codes</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_med_indxs</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">p_med_indxs</span> <span class="o">==</span> <span class="n">med_c</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">p_med_indxs</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor([  0,   0,  13, 141,   0,   0,   0,   0,   0,   4, 133,   0,   0,   0,
-          0,   0,   4, 133,   0,  13, 141,   0,   0,   0])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Demographics">Demographics<a class="anchor-link" href="#Demographics"> </a></h4>
 </div>
 </div>
 </div>
@@ -3338,68 +2323,16 @@ dtype: object</pre>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="ItemBase---Patient"><code>ItemBase</code> - Patient<a class="anchor-link" href="#ItemBase---Patient"> </a></h1>
+<h2 id="ItemBase---Patient"><code>ItemBase</code> - Patient<a class="anchor-link" href="#ItemBase---Patient"> </a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Questions / TODOs</strong></p>
-<ol>
-<li><del>Delete y from here and only do in labelling</del></li>
-<li><del>Delete patient id</del></li>
-<li><del>Either implement <code>cuda()</code> or add <code>cuda()</code> call to each in <code>__init__()</code></del><ul>
-<li>See below for details</li>
-<li>Implemented separate method, to be called in <code>fit()</code></li>
-<li><span class="burk">Not sure if this is a good idea</span></li>
-</ul>
-</li>
-<li><strong>Implement a good <code>__repr__()</code></strong></li>
-<li>Clean up more<ul>
-<li>Each of <strong>obs, alg, etc could be positional</strong> once everything is tested out and functional</li>
-<li>Cleans up this class significantly</li>
-</ul>
-</li>
-</ol>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id=".cuda(),-CUDA-Semantics,-Monkey-Patching-Lists-for-CUDA"><code>.cuda()</code>, CUDA Semantics, Monkey-Patching Lists for CUDA<a class="anchor-link" href="#.cuda(),-CUDA-Semantics,-Monkey-Patching-Lists-for-CUDA"> </a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>CUDA</strong></p>
 <ul>
-<li><code>torch.Tensor.cuda()</code></li>
-<li><code>torch.nn.Module.cuda()</code></li>
-<li><a href="https://pytorch.org/docs/stable/notes/cuda.html#cuda-semantics">CUDA Semantics</a></li>
-</ul>
-<p><em>CUDA - summary</em></p>
-<ul>
-<li>the <code>.cuda()</code> call puts tensor or module (model) onto GPU <ul>
-<li>if not already there else returns existing copy from GPU</li>
-</ul>
-</li>
-</ul>
-<p><strong>Not Monkey-Patching Python List</strong></p>
-<ul>
-<li>Decided to drop the idea</li>
-<li>Not straightforward for Python list object - if possible at all</li>
-<li>No time to research that now</li>
-<li>And most importantly - <strong>future versions will use fastai L or something built on that</strong></li>
+<li>Based on the concept of <code>ItemBase</code> as used in fastai v1.x, in our case a single patient</li>
 </ul>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Class-Patient">Class <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a><a class="anchor-link" href="#Class-Patient"> </a></h2>
 </div>
 </div>
 </div>
@@ -3414,8 +2347,9 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Patient" class="doc_header"><code>class</code> <code>Patient</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L79" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Patient</code>(<strong><code>nums</code></strong>, <strong><code>offsts</code></strong>, <strong><code>demographics</code></strong>, <strong><code>age_now</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>ptid</code></strong>)</p>
+<h2 id="Patient" class="doc_header"><code>class</code> <code>Patient</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L81" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Patient</code>(<strong><code>nums</code></strong>, <strong><code>offsts</code></strong>, <strong><code>demographics</code></strong>, <strong><code>age_now</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>ptid</code></strong>)</p>
 </blockquote>
+<p>Class defining a patient object that holds all numericalized / transformed data for a single patient</p>
 
 </div>
 
@@ -3434,9 +2368,60 @@ dtype: object</pre>
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Patient.create" class="doc_header"><code>Patient.create</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.create</code>(<strong><code>rec_dfs</code></strong>, <strong><code>demograph</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>ptid</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+</blockquote>
+<p>Lookup codes, numericalize and then create patient object - given a patient id</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Patient.to_gpu" class="doc_header"><code>Patient.to_gpu</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.to_gpu</code>()</p>
+</blockquote>
+<p>Put this patient object on GPU</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tests">Tests<a class="anchor-link" href="#Tests"> </a></h3>
+<p><strong>Tests</strong></p>
+
 </div>
 </div>
 </div>
@@ -3461,8 +2446,8 @@ dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 336 ms, sys: 0 ns, total: 336 ms
-Wall time: 334 ms
+<pre>CPU times: user 368 ms, sys: 0 ns, total: 368 ms
+Wall time: 372 ms
 </pre>
 </div>
 </div>
@@ -3513,7 +2498,7 @@ Wall time: 334 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">obs_nums</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">p_obs_codes</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">obs_nums</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">obs_codes</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3862,315 +2847,89 @@ Wall time: 334 ms
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="ItemList---PatientList"><code>ItemList</code> - PatientList<a class="anchor-link" href="#ItemList---PatientList"> </a></h1>
+<h2 id="ItemList---PatientList"><code>ItemList</code> - PatientList<a class="anchor-link" href="#ItemList---PatientList"> </a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Fixes needed to de-crappify</strong></p>
 <ul>
-<li><code>ItemList</code> needs inherit from <code>L</code> which uses <code>listify()</code></li>
-<li><a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> needs to inherit <code>ItemList</code></li>
-<li>Cleanup up <code>__repr__</code>, <code>__iter__</code>, etc</li>
+<li>Based on the concept of <code>ItemList</code> as used in fastai v1.x, which is a list of <code>ItemBase</code> objects</li>
+<li>In our case <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</li>
 </ul>
-<p><strong>Performance - DONE for now</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Multiprocessing Implementation</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Add multiprocessing to use multiple CPU cores<ul>
-<li><a href="https://realpython.com/python-concurrency/#cpu-bound-multiprocessing-version">Python Concurrency - Multiprocessing for CPU bound tasks</a></li>
-<li><a href="https://medium.com/@urban_institute/using-multiprocessing-to-make-python-code-faster-23ea5ef996ba">Using Multiprocessing to Make Python Code Faster</a></li>
-<li>👍 - <a href="https://further-reading.net/2017/01/quick-tutorial-python-multiprocessing/">Quick Tutorial: Python Multiprocessing</a></li>
-<li><a href="https://towardsdatascience.com/10x-faster-parallel-python-without-python-multiprocessing-e5017c93cce1">Ray library</a> based on Apache Arrow</li>
-</ul>
-</li>
-<li>Upgrade pytorch - initial cuda call taking too long</li>
-</ul>
-<p><strong>File descriptor sharing strategy issue - FIXED</strong></p>
-<ul>
-<li><a href="https://discuss.pytorch.org/t/runtimeerror-received-0-items-of-ancdata/4999/4">Solution</a>👍<ul>
-<li><code>torch.multiprocessing.set_sharing_strategy('file_system')</code></li>
-</ul>
-</li>
-<li><a href="https://github.com/pytorch/pytorch/issues/973#issuecomment-346405667">Another solution</a> - increase <code>ulimit</code></li>
-<li><a href="https://github.com/pytorch/pytorch/issues/973#issuecomment-346439265">Yet another solution</a> - Jeremy (Nov 22, 2017) - use <code>ThreadPool</code><ul>
-<li><a href="https://github.com/fastai/fastai/issues/23#issuecomment-346405976">fastai forum discussion about ThreadPool solution</a></li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Multiprocessing-Implementation">Multiprocessing Implementation<a class="anchor-link" href="#Multiprocessing-Implementation"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Chunking">Chunking<a class="anchor-link" href="#Chunking"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">less_patients</span> <span class="o">=</span> <span class="n">patients_df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">48</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">all_indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">less_patients</span><span class="p">))</span>
-<span class="n">cpu_cnt</span> <span class="o">=</span> <span class="mi">24</span>
-<span class="n">chnk_sz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">all_indxs</span><span class="p">)</span><span class="o">/</span><span class="n">cpu_cnt</span><span class="p">)</span> 
-<span class="n">all_indxs</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_indxs</span><span class="p">),</span> <span class="n">chnk_sz</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(array([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
-        17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
-        34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47]), 48, 2)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">indx_chunks</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_indxs</span><span class="p">),</span> <span class="n">chnk_sz</span><span class="p">):</span>
-    <span class="n">indx_chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_indxs</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">chnk_sz</span><span class="p">]))</span>
-
-<span class="nb">len</span><span class="p">(</span><span class="n">indx_chunks</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">indx_chunks</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(24, 2)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Multiprocessing-Logic">Multiprocessing Logic<a class="anchor-link" href="#Multiprocessing-Logic"> </a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Current assumption of error is - main process dies and thus children see broken pipe error</p>
-<ul>
+<li>Chunk total number of patients based on number of cores available on machine</li>
+<li>Send each chunk of patients into a core<ul>
 <li>Let the parallelized sub proc in each core load all data and do the heavy lifting</li>
 <li>The main proc just sends a list of indxs (patients) to work on</li>
 </ul>
-
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">torch.multiprocessing</span> <span class="k">as</span> <span class="nn">multiprocessing</span>
-<span class="n">multiprocessing</span><span class="o">.</span><span class="n">set_sharing_strategy</span><span class="p">(</span><span class="s1">&#39;file_system&#39;</span><span class="p">)</span>
-<span class="n">cpu_cnt</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span>
-
-<span class="k">def</span> <span class="nf">subproc</span><span class="p">(</span><span class="n">indx_chnk</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;start: &#39;</span><span class="p">,</span><span class="n">indx_chnk</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;end: &#39;</span><span class="p">,</span><span class="n">indx_chnk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;len: &#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">indx_chnk</span><span class="p">))</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;start:</span><span class="si">{</span><span class="n">indx_chnk</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> -- len:</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">indx_chnk</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
-
-<span class="k">def</span> <span class="nf">driverproc</span><span class="p">(</span><span class="n">total_pts</span><span class="p">):</span>
-    <span class="n">indx_chnks</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">all_indxs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">total_pts</span><span class="p">)</span>
-    <span class="n">chnk_sz</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">total_pts</span> <span class="o">/</span> <span class="n">cpu_cnt</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">total_pts</span><span class="p">,</span> <span class="n">chnk_sz</span><span class="p">):</span>
-        <span class="n">indx_chnks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">all_indxs</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">chnk_sz</span><span class="p">]))</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">processes</span><span class="o">=</span><span class="n">cpu_cnt</span><span class="p">)</span>
-    <span class="n">rs</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">subproc</span><span class="p">,</span> <span class="n">indx_chnks</span><span class="p">)</span>
-    <span class="n">pool</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">rs</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">driverproc</span><span class="p">(</span><span class="mi">9969</span><span class="p">)</span> <span class="c1">#(len(data_tables[0]))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>ForkPoolWorker-1 start:  0 end:  414 len:  415
-ForkPoolWorker-2 start:  415 end:  829 len:  415
-ForkPoolWorker-3 start:  830 end:  1244 len:  415
-ForkPoolWorker-4 start:  1245 end:  1659 len:  415
-ForkPoolWorker-5 start:  1660 end:  2074 len:  415
-ForkPoolWorker-6 start:  2075 end:  2489 len:  415
-ForkPoolWorker-7 start:  2490 end:  2904 len:  415
-[&#39;start:0 -- len:415&#39;, &#39;start:415 -- len:415&#39;, &#39;start:830 -- len:415&#39;, &#39;start:1245 -- len:415&#39;, &#39;start:1660 -- len:415&#39;, &#39;start:2075 -- len:415&#39;, &#39;start:2490 -- len:415&#39;, &#39;start:2905 -- len:415&#39;, &#39;start:3320 -- len:415&#39;, &#39;start:3735 -- len:415&#39;, &#39;start:4150 -- len:415&#39;, &#39;start:4565 -- len:415&#39;, &#39;start:4980 -- len:415&#39;, &#39;start:5395 -- len:415&#39;, &#39;start:5810 -- len:415&#39;, &#39;start:6225 -- len:415&#39;, &#39;start:6640 -- len:415&#39;, &#39;start:7055 -- len:415&#39;, &#39;start:7470 -- len:415&#39;, &#39;start:7885 -- len:415&#39;, &#39;start:8300 -- len:415&#39;, &#39;start:8715 -- len:415&#39;, &#39;start:9130 -- len:415&#39;, &#39;start:9545 -- len:415&#39;, &#39;start:9960 -- len:9&#39;]
-ForkPoolWorker-8 start:  2905 end:  3319 len:  415
-ForkPoolWorker-9 start:  3320 end:  3734 len:  415
-ForkPoolWorker-10 start:  3735 end:  4149 len:  415
-ForkPoolWorker-11 start:  4150 end:  4564 len:  415
-ForkPoolWorker-12 start:  4565 end:  4979 len:  415
-ForkPoolWorker-13 start:  4980 end:  5394 len:  415
-ForkPoolWorker-14 start:  5395 end:  5809 len:  415
-ForkPoolWorker-15 start:  5810 end:  6224 len:  415
-ForkPoolWorker-16 start:  6225 end:  6639 len:  415
-ForkPoolWorker-17 start:  6640 end:  7054 len:  415
-ForkPoolWorker-18 start:  7055 end:  7469 len:  415
-ForkPoolWorker-19 start:  7470 end:  7884 len:  415
-ForkPoolWorker-20 start:  7885 end:  8299 len:  415
-ForkPoolWorker-21 start:  8300 end:  8714 len:  415
-ForkPoolWorker-22 start:  8715 end:  9129 len:  415
-ForkPoolWorker-23 start:  9130 end:  9544 len:  415
-ForkPoolWorker-1 start:  9960 end:  9968 len:  9
-ForkPoolWorker-24 start:  9545 end:  9959 len:  415
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So for 1,108 pts</p>
-<ul>
-<li>24 proc processed 46 pts each = 1,104</li>
-<li>then 1 proc (ForkPoolWorker-2 above) processed 4 more =&gt; 1108 total</li>
-</ul>
-<p>And for 9,969 pts</p>
-<ul>
-<li>24 processes 415 pts each = 9,960 </li>
-<li>then 1 proc (ForkPoolWorker-1) processed 9 more = total 9969</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Useful-Links-+-Tips">Useful Links + Tips<a class="anchor-link" href="#Useful-Links-+-Tips"> </a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><a href="https://www.cloudcity.io/blog/2019/02/27/things-i-wish-they-told-me-about-multiprocessing-in-python/">Things I Wish They Told Me About Multiprocessing in Python</a></li>
-<li>Log into <code>./logs</code> folder<div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;log/</span><span class="si">{</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_log.txt&#39;</span><span class="p">,</span><span class="s1">&#39;a+&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">ptid</span><span class="si">}</span><span class="s1"> -started&#39;</span><span class="p">)</span>
-<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot; --completed</span><span class="se">\r\n</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
 </li>
 </ul>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Class-PatientList">Class <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a><a class="anchor-link" href="#Class-PatientList"> </a></h2>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L148" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+</blockquote>
+<p>Util function to construct pickle dir name - for persisting transformed patient lists</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="get_pckl_dir()-Util-Function"><code>get_pckl_dir()</code> Util Function<a class="anchor-link" href="#get_pckl_dir()-Util-Function"> </a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>No need for this anymore</strong></p>
-<div class="highlight"><pre><span></span><span class="c1">#export</span>
-<span class="k">def</span> <span class="nf">list_files</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">extension</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">extension</span><span class="p">)]</span>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_pckl_dir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">age_start</span><span class="p">,</span> <span class="n">age_stop</span><span class="p">,</span> <span class="n">age_in_months</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Util function to construct pickle dir name - for persisting transformed patient lists&#39;&#39;&#39;</span>
+    <span class="n">dir_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">dir_name</span> <span class="o">+=</span> <span class="s1">&#39;months&#39;</span> <span class="k">if</span> <span class="n">age_in_months</span> <span class="k">else</span> <span class="s1">&#39;years&#39;</span>
+    <span class="n">dir_name</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">age_start</span><span class="si">}</span><span class="s1">_to_</span><span class="si">{</span><span class="n">age_stop</span><span class="si">}</span><span class="s1">&#39;</span>
+    <span class="n">pckl_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">/processed/</span><span class="si">{</span><span class="n">dir_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pckl_dir</span>
 </pre></div>
 
+    </div>
 </div>
 </div>
+
 </div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4182,8 +2941,9 @@ ForkPoolWorker-24 start:  9545 end:  9959 len:  415
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L143" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h2 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L161" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
+<p>A class to hold a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</p>
 
 </div>
 
@@ -4202,12 +2962,6 @@ ForkPoolWorker-24 start:  9545 end:  9959 len:  415
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Awesome-&amp;-Fast-PatientList-class">Awesome &amp; Fast <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> class<a class="anchor-link" href="#Awesome-&amp;-Fast-PatientList-class"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4219,8 +2973,9 @@ ForkPoolWorker-24 start:  9545 end:  9959 len:  415
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L155" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="PatientList.create_save" class="doc_header"><code>PatientList.create_save</code><a href="__main__.py#L58" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.create_save</code>(<strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
+<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
 
 </div>
 
@@ -4236,12 +2991,56 @@ ForkPoolWorker-24 start:  9545 end:  9959 len:  415
     
 <div class="cell border-box-sizing code_cell rendered">
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="PatientList._create_pts_chunk" class="doc_header"><code>PatientList._create_pts_chunk</code><a href="__main__.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList._create_pts_chunk</code>(<strong><code>indx_chnk</code></strong>, <strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>)</p>
+</blockquote>
+<p>Parallelized function to run on one core and transform a single chunk of patients and save</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="PatientList.load" class="doc_header"><code>PatientList.load</code><a href="__main__.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.load</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+</blockquote>
+<p>Load previously created <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Test">Test<a class="anchor-link" href="#Test"> </a></h4>
+<p><strong>Tests</strong></p>
+
 </div>
 </div>
 </div>
@@ -4284,7 +3083,7 @@ ForkPoolWorker-24 start:  9545 end:  9959 len:  415
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>PosixPath(&#39;datasets/synthea/1K/processed/years_0_to_20/train&#39;)</pre>
+<pre>Path(&#39;datasets/synthea/1K/processed/years_0_to_20/train&#39;)</pre>
 </div>
 
 </div>
@@ -4316,8 +3115,8 @@ ForkPoolWorker-24 start:  9545 end:  9959 len:  415
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/train
-CPU times: user 1.75 s, sys: 821 ms, total: 2.57 s
-Wall time: 17.6 s
+CPU times: user 1.89 s, sys: 633 ms, total: 2.52 s
+Wall time: 19.7 s
 </pre>
 </div>
 </div>
@@ -4328,12 +3127,6 @@ Wall time: 17.6 s
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="create_all_ptlists()"><code>create_all_ptlists()</code><a class="anchor-link" href="#create_all_ptlists()"> </a></h1>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4345,9 +3138,9 @@ Wall time: 17.6 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L236" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L244" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Create Patient Lists for train, valid and test</p>
+<p>Create and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
 
 </div>
 
@@ -4368,121 +3161,11 @@ Wall time: 17.6 s
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tests">Tests<a class="anchor-link" href="#Tests"> </a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1K">1K<a class="anchor-link" href="#1K"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> create_all_ptlists(PATH_1K, age_start=0, age_stop=20, age_in_months=False, verbose=False)
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/train
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/valid
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/test
-CPU times: user 3.66 s, sys: 1.98 s, total: 5.64 s
-Wall time: 32.4 s
-</pre>
-</div>
-</div>
+<p><strong>Tests</strong></p>
 
 </div>
 </div>
-
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> create_all_ptlists(PATH_1K, age_start=0, age_stop=35, age_in_months=False, verbose=False)
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_35/train
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_35/valid
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_35/test
-CPU times: user 3.66 s, sys: 1.93 s, total: 5.59 s
-Wall time: 40.2 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> create_all_ptlists(PATH_1K, age_start=120, age_stop=360, age_in_months=True) #10 to 30 yrs in mos (seq_len = 240)
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/months_120_to_360/train
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_120_to_360/valid
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_120_to_360/test
-CPU times: user 3.84 s, sys: 1.98 s, total: 5.82 s
-Wall time: 46.8 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4506,8 +3189,8 @@ Wall time: 46.8 s
 <pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/months_240_to_360/train
 222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_240_to_360/valid
 222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_240_to_360/test
-CPU times: user 3.81 s, sys: 1.91 s, total: 5.72 s
-Wall time: 22.8 s
+CPU times: user 3.51 s, sys: 1.66 s, total: 5.17 s
+Wall time: 24.4 s
 </pre>
 </div>
 </div>
@@ -4518,6 +3201,37 @@ Wall time: 22.8 s
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Other examples</strong></p>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">create_all_ptlists</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+<pre><code>664 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/train
+222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/valid
+222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/test
+CPU times: user 3.66 s, sys: 1.98 s, total: 5.64 s
+Wall time: 32.4 s</code></pre>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">create_all_ptlists</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+<pre><code>664 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_35/train
+222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_35/valid
+222 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_35/test
+CPU times: user 3.66 s, sys: 1.93 s, total: 5.59 s
+Wall time: 40.2 s</code></pre>
+<div class="highlight"><pre><span></span><span class="o">%</span><span class="n">time</span> <span class="n">create_all_ptlists</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1">#10 to 30 yrs in mos (seq_len = 240)</span>
+</pre></div>
+
+<pre><code>664 total patients completed, saved patient list to datasets/synthea/1K/processed/months_120_to_360/train
+222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_120_to_360/valid
+222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_120_to_360/test
+CPU times: user 3.84 s, sys: 1.98 s, total: 5.82 s
+Wall time: 46.8 s</code></pre>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4525,7 +3239,7 @@ Wall time: 22.8 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span> <span class="o">=</span> <span class="n">PatientList</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span> <span class="o">=</span> <span class="n">PatientList</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
 </pre></div>
 
     </div>
@@ -4591,8 +3305,8 @@ Wall time: 22.8 s
 
 <div class="output_text output_subarea output_execute_result">
 <pre>PatientList (664 items)
-base path:./datasets/synthea/1K; split:train; age span:240 months
-age_start:120; age_stop:360; age_type:months
+base path:./datasets/synthea/1K; split:train; age span:120 months
+age_start:240; age_stop:360; age_type:months
 ptid:12b42348-29bb-4cf4-b878-d419a4c8f067, birthdate:1951-09-04, diabetes:False, device:cpu
 ptid:4c59df3b-042b-42c2-901a-3783d6d77919, birthdate:1979-09-18, diabetes:False, device:cpu
 ptid:8f07e577-7ab4-4e89-ae98-6d394b3929a9, birthdate:1967-01-13, diabetes:False, device:cpu
@@ -4620,7 +3334,7 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">ptlist_1K</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">obs_nums</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ptlist_1K</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">obs_offsts</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">ptlist_1K</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">.</span><span class="n">obs_nums</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ptlist_1K</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">obs_offsts</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -4635,7 +3349,7 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(326, 240)</pre>
+<pre>(170, 120)</pre>
 </div>
 
 </div>
@@ -4653,7 +3367,52 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">.</span><span class="n">alg_nums</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">.</span><span class="n">obs_nums</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   5,   8,  14,  88,
+         75,  79,  18,  25,  30,  36,  40,  42,  50,  55,  61,  65,  69,  95,
+        497,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   5,   8,  14,  88,  75,  79,
+         96, 497,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   5,   7,  14,  88,  74,
+         80,  20,  24,  30,  35,  39,  46,  48,  53,  58,  65,  67,  94, 497,
+          5,   8,  14,  88,  75,  81,  95, 497,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">.</span><span class="n">proc_nums</span>
 </pre></div>
 
     </div>
@@ -4669,61 +3428,10 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 <div class="output_text output_subarea output_execute_result">
 <pre>tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">.</span><span class="n">alg_nums</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor([ 0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0, 19, 22, 23,  0,  0,  0,  0,  0,  0,  0, 25,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-         0,  0,  0,  0,  0,  0,  0,  0])</pre>
+        2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</pre>
 </div>
 
 </div>
@@ -4736,160 +3444,7 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="10K">10K<a class="anchor-link" href="#10K"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> create_all_ptlists(PATH_10K, age_start=0, age_stop=20, age_in_months=False, verbose=False)
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>6645 total patients completed, saved patient list to datasets/synthea/10K/processed/years_0_to_20/train
-2215 total patients completed, saved patient list to datasets/synthea/10K/processed/years_0_to_20/valid
-2216 total patients completed, saved patient list to datasets/synthea/10K/processed/years_0_to_20/test
-CPU times: user 30.4 s, sys: 7.74 s, total: 38.1 s
-Wall time: 5min 1s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_10K_test</span> <span class="o">=</span> <span class="n">PatientList</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH_10K</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_10K_test</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>PatientList (2216 items)
-base path:./datasets/synthea/10K; split:test; age span:20 years
-age_start:0; age_stop:20; age_type:years
-ptid:34b27871-713c-41e2-816c-c74bdfad0e39, birthdate:1991-01-23, diabetes:False, device:cpu
-ptid:d4bc2dec-8bf3-44ae-9c02-e3d27f917cbb, birthdate:2015-04-12, diabetes:False, device:cpu
-ptid:3b91276a-5b1c-4e8f-98cc-ff5743c05f0d, birthdate:1989-10-14, diabetes:False, device:cpu
-ptid:67672c74-d139-4b80-afa5-79866cc443b7, birthdate:1969-12-18, diabetes:False, device:cpu
-ptid:81ab3bbb-5764-4d4d-9dbb-0c4ed1a49063, birthdate:2000-09-28, diabetes:False, device:cpu
-ptid:898e007b-0c63-480e-9ce9-f64ed8ff0ae0, birthdate:1952-11-02, diabetes:False, device:cpu
-ptid:f87dba81-400c-4959-90c0-bce963b24c95, birthdate:1975-08-02, diabetes:False, device:cpu
-ptid:e8317720-ebd1-4bc1-9092-b9332361e8e3, birthdate:2008-09-06, diabetes:False, device:cpu
-ptid:8439fc83-0086-4b86-9f68-871f0c789414, birthdate:1947-10-06, diabetes:False, device:cpu
-ptid:efefc282-2add-405d-883b-ed83bdad0cc8, birthdate:1970-10-11, diabetes:False, device:cpu...]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_10K_test</span><span class="p">[</span><span class="mi">300</span><span class="p">]</span><span class="o">.</span><span class="n">obs_nums</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor([  2,   8,  12,  20,  24,  30,  34,  40,  45,  51,  54,  60,  65,  70,
-        597,   2,   8,  12,  73,  78, 597,   2,   7,  12,  72,  77, 597,   3,
-          8,  12,  73,  77, 597,   3,   7,  12,  73,  77, 597,   3,   8,  12,
-         74,  78, 597,   3,   7,  12,  73,  77, 597,   3,   8,  12,  73,  78,
-        597,   3,   7,  12,  73,  78, 597,   3,   7,  12,  82,  73,  78, 597,
-          3,   8,  12,  82,  72,  77, 597,   3,   8,  12,  82,  72,  78, 597,
-         88,   3,   8,  12,  82,  72,  78, 597,   4,   8,  12,  82,  73,  77,
-        597,   4,   8,  12,  82,  73,  78,  21,  23,  30,  35,  37,  42,  50,
-         54,  59,  63,  69, 597,   4,   7,  12,  82,  73,  78, 597,   4,   8,
-         12,  82,  72,  78, 597,   0,   4,   7,  12,  82,  72,  78, 597,   4,
-          8,  12,  82,  72,  78, 597,   4,   8,  12,  82,  72,  78, 597,   5,
-          7,  12,  82,  73,  78,  18,  25,  29,  34,  38,  43,  50,  54,  58,
-         65,  70, 597,   5,   9,  12,  82,  73,  77, 597,   5,   8,  12,  82,
-         73,  78, 597,   5,   8,  12,  82,  72,  78, 597,   5,   8,  12,  82,
-         74,  77, 597,   5,   8,  12,  82,  73,  77, 597,   5,   8,  12,  82,
-         73,  77,  20,  23,  31,  34,  37,  45,  48,  52,  60,  65,  68, 597,
-          5,   7,  12,  82,  72,  77, 597,   5,   8,  12,  82,  73,  78, 597,
-          5,   8,  12,  82,  73,  78, 597])</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Do-All-Preprocessing">Do All Preprocessing<a class="anchor-link" href="#Do-All-Preprocessing"> </a></h1>
+<h2 id="Do-All-Preprocessing">Do All Preprocessing<a class="anchor-link" href="#Do-All-Preprocessing"> </a></h2>
 </div>
 </div>
 </div>
@@ -4904,8 +3459,9 @@ ptid:efefc282-2add-405d-883b-ed83bdad0cc8, birthdate:1970-10-11, diabetes:False,
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="preprocess_ehr_dataset" class="doc_header"><code>preprocess_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L251" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>today</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>obs_vocab_buckets</code></strong>=<em><code>5</code></em>, <strong><code>age_start</code></strong>=<em><code>0</code></em>, <strong><code>age_stop</code></strong>=<em><code>20</code></em>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>, <strong><code>vocab_path</code></strong>=<em><code>None</code></em>, <strong><code>from_raw_data</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="preprocess_ehr_dataset" class="doc_header"><code>preprocess_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L259" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>today</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>obs_vocab_buckets</code></strong>=<em><code>5</code></em>, <strong><code>age_start</code></strong>=<em><code>0</code></em>, <strong><code>age_stop</code></strong>=<em><code>20</code></em>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>, <strong><code>vocab_path</code></strong>=<em><code>None</code></em>, <strong><code>from_raw_data</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
+<p>Util function to do all preprocessing - split &amp; clean raw dataset, create vocab lists and create patient lists</p>
 
 </div>
 
