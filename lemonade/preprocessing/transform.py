@@ -9,6 +9,7 @@ from .vocab import *
 from fastai.imports import *
 from fastai import *
 from datetime import date
+import torch.multiprocessing as multiprocessing
 
 # Cell
 def collate_codes_offsts(rec_df, age_start, age_stop, age_in_months=False):
@@ -146,7 +147,7 @@ class Patient():
 
 # Cell
 def get_pckl_dir(path, split, age_start, age_stop, age_in_months):
-    '''Util function to construct pickle dir name - for persisting transformed patient lists'''
+    '''Util function to construct pickle dir name - for persisting transformed `PatientList`s'''
     dir_name = ''
     dir_name += 'months' if age_in_months else 'years'
     dir_name += f'_{age_start}_to_{age_stop}'
@@ -154,7 +155,6 @@ def get_pckl_dir(path, split, age_start, age_stop, age_in_months):
     return pckl_dir
 
 # Cell
-import torch.multiprocessing as multiprocessing
 multiprocessing.set_sharing_strategy('file_system')
 cpu_cnt = int(multiprocessing.cpu_count())
 

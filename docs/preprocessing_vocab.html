@@ -6,8 +6,8 @@ title: preprocessing.vocab
 keywords: fastai
 sidebar: home_sidebar
 
-
-
+summary: "Classes and functions to create vocabs from cleaned EHR data."
+description: "Classes and functions to create vocabs from cleaned EHR data."
 nb_path: "02_preprocessing_vocab.ipynb"
 ---
 <!--
@@ -88,11 +88,11 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[-0.8246, -0.4822, -0.9968],
-         [-0.3546,  1.2317,  0.9929],
-         [ 0.6679, -0.1507, -2.3095],
-         [-1.6767, -0.4624, -0.6374],
-         [ 0.7486, -1.2633, -0.1052]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+<pre>tensor([[[-1.6646, -1.8043, -0.0576],
+         [ 0.5617, -0.3217,  0.3723],
+         [-1.0089, -1.2733, -1.6358],
+         [-0.0632, -0.0973,  0.5954],
+         [-1.6968, -1.8652, -0.3499]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -154,9 +154,9 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[-0.3546,  1.2317,  0.9929],
-         [ 0.6679, -0.1507, -2.3095],
-         [ 0.7486, -1.2633, -0.1052]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+<pre>tensor([[[ 0.5617, -0.3217,  0.3723],
+         [-1.0089, -1.2733, -1.6358],
+         [-1.6968, -1.8652, -0.3499]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -217,13 +217,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[-0.3546,  1.2317,  0.9929],
-         [ 0.6679, -0.1507, -2.3095],
-         [ 0.7486, -1.2633, -0.1052]],
+<pre>tensor([[[ 0.5617, -0.3217,  0.3723],
+         [-1.0089, -1.2733, -1.6358],
+         [-1.6968, -1.8652, -0.3499]],
 
-        [[-0.8246, -0.4822, -0.9968],
-         [-1.6767, -0.4624, -0.6374],
-         [ 0.6679, -0.1507, -2.3095]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+        [[-1.6646, -1.8043, -0.0576],
+         [-0.0632, -0.0973,  0.5954],
+         [-1.0089, -1.2733, -1.6358]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -308,8 +308,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.2607, -0.2411, -0.1735],
-        [-0.4628,  0.1948,  0.2288]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.3309,  0.2755, -0.2742],
+        [ 1.0297,  0.1700,  0.9263]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -367,8 +367,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.2607, -0.2411, -0.1735],
-        [-0.4628,  0.1948,  0.2288]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.3309,  0.2755, -0.2742],
+        [ 1.0297,  0.1700,  0.9263]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -419,8 +419,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.3061, -0.6667,  0.0523],
-        [-0.3239,  0.3875,  0.5752]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.6590,  0.2930, -0.0152],
+        [ 1.0006,  0.3582,  0.9454]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -479,9 +479,9 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.2607, -0.2411, -0.1735],
-        [-0.7404, -0.1908, -0.4639],
-        [ 0.2092, -0.0039,  1.3196]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.3309,  0.2755, -0.2742],
+        [ 1.0879, -0.2063,  0.8882],
+        [ 1.1566,  0.7302,  0.9224]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -563,6 +563,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -570,7 +577,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EhrVocab" class="doc_header"><code>class</code> <code>EhrVocab</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L12" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EhrVocab</code>(<strong><code>itoc</code></strong>, <strong><code>ctoi</code></strong>, <strong><code>ctod</code></strong>=<em><code>None</code></em>)</p>
+<h3 id="EhrVocab" class="doc_header"><code>class</code> <code>EhrVocab</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L12" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocab</code>(<strong><code>itoc</code></strong>, <strong><code>ctoi</code></strong>, <strong><code>ctod</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Vocab class for most EHR datatypes</p>
 
@@ -580,13 +587,6 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -695,6 +695,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -702,7 +709,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ObsVocab" class="doc_header"><code>class</code> <code>ObsVocab</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L74" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ObsVocab</code>(<strong><code>vocab_df</code></strong>) :: <a href="/lemonade/preprocessing_vocab.html#EhrVocab"><code>EhrVocab</code></a></p>
+<h3 id="ObsVocab" class="doc_header"><code>class</code> <code>ObsVocab</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L74" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>ObsVocab</code>(<strong><code>vocab_df</code></strong>) :: <a href="/lemonade/preprocessing_vocab.html#EhrVocab"><code>EhrVocab</code></a></p>
 </blockquote>
 <p>Special Vocab class for Observation codes</p>
 
@@ -712,13 +719,6 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -773,6 +773,25 @@ nb_path: "02_preprocessing_vocab.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>split incoming concated <code>code||value||units||type</code> string</li>
+<li>get a result_df based on everything except value</li>
+<li>then do an <code>argsort()</code> on the value column to determine closest value<ul>
+<li>based on example given in <a href="https://pandas.pydata.org/docs/user_guide/cookbook.html#building-criteria">pandas docs - cookbook</a><ul>
+<li><strong>cookbook example that uses <code>loc</code> doesnt work, instead <code>iloc</code> <a href="https://stackoverflow.com/questions/30112202/how-do-i-find-the-closest-values-in-a-pandas-series-to-an-input-number/53553226">works</a></strong></li>
+</ul>
+</li>
+<li><code>argsort()</code> - <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort">Returns the indices that would sort this array</a></li>
+<li><code>[:1]</code> on that returns the one row with the closest match, index of that is what we want</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -798,26 +817,6 @@ nb_path: "02_preprocessing_vocab.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong><code>numericalize()</code> Explanation</strong></p>
-<ul>
-<li>split incoming concated <code>code||value||units||type</code> string</li>
-<li>get a result_df based on everything except value</li>
-<li>then do an <code>argsort()</code> on the value column to determine closest value<ul>
-<li>based on example given in <a href="https://pandas.pydata.org/docs/user_guide/cookbook.html#building-criteria">pandas docs - cookbook</a><ul>
-<li><strong>cookbook example that uses <code>loc</code> doesnt work, instead <code>iloc</code> <a href="https://stackoverflow.com/questions/30112202/how-do-i-find-the-closest-values-in-a-pandas-series-to-an-input-number/53553226">works</a></strong></li>
-</ul>
-</li>
-<li><code>argsort()</code> - <a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort">Returns the indices that would sort this array</a></li>
-<li><code>[:1]</code> on that returns the one row with the closest match, index of that is what we want</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>Note about logging numericalize errors</p>
@@ -1207,6 +1206,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -1214,7 +1220,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EhrVocabList" class="doc_header"><code>class</code> <code>EhrVocabList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L146" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EhrVocabList</code>(<strong><code>demographics_vocabs</code></strong>, <strong><code>records_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>, <strong><code>path</code></strong>)</p>
+<h3 id="EhrVocabList" class="doc_header"><code>class</code> <code>EhrVocabList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L146" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocabList</code>(<strong><code>demographics_vocabs</code></strong>, <strong><code>records_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>, <strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Class to create and hold all vocab objects for an entire dataset</p>
 
@@ -1224,13 +1230,6 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -1360,7 +1359,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Tests">Tests<a class="anchor-link" href="#Tests"> </a></h4>
+<p><strong>Tests</strong></p>
+
 </div>
 </div>
 </div>
@@ -1385,7 +1385,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="records_vocabs"><code>records_vocabs</code><a class="anchor-link" href="#records_vocabs"> </a></h5>
+<p><strong><code>records_vocabs</code></strong></p>
+
 </div>
 </div>
 </div>
@@ -1875,7 +1876,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="demographics_vocabs"><code>demographics_vocabs</code><a class="anchor-link" href="#demographics_vocabs"> </a></h5>
+<p><strong><code>demographics_vocabs</code></strong></p>
+
 </div>
 </div>
 </div>

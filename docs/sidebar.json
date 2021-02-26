@@ -3,6 +3,10 @@
     "Overview": "/",
     "preprocessing.clean": "preprocessing_clean.html",
     "preprocessing.vocab": "preprocessing_vocab.html",
-    "preprocessing.transform": "preprocessing_transform.html"
+    "preprocessing.transform": "preprocessing_transform.html",
+    "data": "data.html",
+    "metrics": "metrics.html",
+    "learn": "learn.html",
+    "models": "models.html"
   }
 }

@@ -18,6 +18,18 @@ entries:
     - output: web,pdf
       title: preprocessing.transform
       url: preprocessing_transform.html
+    - output: web,pdf
+      title: data
+      url: data.html
+    - output: web,pdf
+      title: metrics
+      url: metrics.html
+    - output: web,pdf
+      title: learn
+      url: learn.html
+    - output: web,pdf
+      title: models
+      url: models.html
     output: web
     title: lemonade
   output: web
