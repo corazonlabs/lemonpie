@@ -1,0 +1,32 @@
+# infrastructure items in config
+config:
+  name: cnn_base
+  path: ./experiments
+  desc: base for CNN experiments
+  checkpoint_path: ./models
+
+params:
+  data_params:
+    dataset_path: ./datasets/synthea/1K
+    labels: ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
+    age_start: 0
+    age_stop: 20
+    age_in_months: False
+    bs: 64
+    num_workers: 0
+
+  optim_params:
+    optim: Adagrad
+    lr: 0.01
+    lr_decay: 0
+    weight_decay: 0
+
+  model_params:
+    model: CNN
+    αd: 0.5736
+    linear_layers: 4
+    initrange: 0.3
+    bn: True
+    input_drp: 0.3
+    linear_drp: 0.3
+    zero_bn: False

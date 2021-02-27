@@ -12,7 +12,7 @@ from fastai.imports import *
 # Cell
 def save_to_checkpoint(epoch_index, model, optimizer, path):
     '''Save model and optimizer state_dicts to checkpoint'''
-    if not os.path.isdir(path): os.mkdir(path)
+    if not os.path.isdir(path): Path(path).mkdir(parents=True, exist_ok=True)
     torch.save({
         'epoch_index':epoch_index,
         'model_state_dict': model.state_dict(),

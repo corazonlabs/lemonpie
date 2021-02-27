@@ -79,7 +79,11 @@ index = {"PATH": "01_preprocessing_clean.ipynb",
          "EHR_LSTM": "07_models.ipynb",
          "init_cnn": "07_models.ipynb",
          "conv_layer": "07_models.ipynb",
-         "EHR_CNN": "07_models.ipynb"}
+         "EHR_CNN": "07_models.ipynb",
+         "get_data": "08_experiment.ipynb",
+         "get_optimizer": "08_experiment.ipynb",
+         "get_model": "08_experiment.ipynb",
+         "Experiment": "08_experiment.ipynb"}
 
 modules = ["preprocessing/clean.py",
            "preprocessing/vocab.py",
@@ -87,7 +91,8 @@ modules = ["preprocessing/clean.py",
            "data.py",
            "metrics.py",
            "learn.py",
-           "models.py"]
+           "models.py",
+           "experiment.py"]
 
 doc_url = "https://corazonlabs.github.io/lemonade/"
 
