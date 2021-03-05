@@ -2,7 +2,9 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"PATH": "01_preprocessing_clean.ipynb",
+index = {"get_device": "01_preprocessing_clean.ipynb",
+         "DEVICE": "01_preprocessing_clean.ipynb",
+         "PATH": "01_preprocessing_clean.ipynb",
          "PATH_1K": "01_preprocessing_clean.ipynb",
          "PATH_10K": "01_preprocessing_clean.ipynb",
          "PATH_20K": "01_preprocessing_clean.ipynb",

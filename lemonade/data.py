@@ -6,6 +6,7 @@ __all__ = ['EHRDataSplits', 'LabelEHRData', 'EHRDataset', 'EHRData']
 from .preprocessing.clean import * #for GVs
 from .preprocessing.transform import *
 from fastai.imports import *
+import copy
 
 # Cell
 class EHRDataSplits():
@@ -68,17 +69,34 @@ class LabelEHRData():
 
 # Cell
 class EHRDataset(torch.utils.data.Dataset):
-    '''Class to hold a single EHR dataset - holds a tuple of x and y and implements `__len__()` and `__getitem__()`'''
-    def __init__(self, x, y): self.x,self.y = x,y
+    '''Class to hold a single EHR dataset (holds a tuple of x and y) -- handles lazy vs full loading of dataset on GPU'''
+    def __init__(self, x_labeled, y_labeled, lazy_load_gpu=True):
+        '''If `lazy_load_gpu` is `False`, load entire dataset on GPU'''
+        if lazy_load_gpu:
+            self.x, self.y = x_labeled, y_labeled
+            self.lazy = True
+        else:
+            self.x, self.y = [x.to_gpu() for x in x_labeled], y_labeled.to(DEVICE)
+            self.lazy = False
+
     def __len__(self): return len(self.x)
-    def __getitem__(self, i): return self.x[i],self.y[i]
+
+    def _test_getitem(self, i): return self.x[i],self.y[i]
+
+    def __getitem__(self, i):
+        '''If lazy loading, return deep copy of patient object `i`, else entire dataset already on GPU - just return `i`'''
+        if self.lazy:
+            return copy.deepcopy(self.x[i]), self.y[i]
+        else:
+            return self.x[i], self.y[i]
 
 # Cell
 class EHRData:
     '''All encompassing class for EHR data - holds Splits, Labels, Datasets, DataLoaders and provides convenience fns for training and prediction'''
-    def __init__(self, path, labels, age_start=0, age_stop=20, age_in_months=False):
+    def __init__(self, path, labels, age_start=0, age_stop=20, age_in_months=False, lazy_load_gpu=True):
         self.path, self.labels = path, labels
         self.age_start, self.age_stop, self.age_in_months = age_start, age_stop, age_in_months
+        self.lazy_load_gpu = lazy_load_gpu
 
     def load_splits(self):
         '''Load data splits given dataset path'''
@@ -90,33 +108,31 @@ class EHRData:
 
     def create_datasets(self):
         '''Create `EHRDataset`s'''
-        self.train_ds = EHRDataset(*self.labeled.train)
-        self.valid_ds = EHRDataset(*self.labeled.valid)
-        self.test_ds  = EHRDataset(*self.labeled.test)
+        self.train_ds = EHRDataset(*self.labeled.train, self.lazy_load_gpu)
+        self.valid_ds = EHRDataset(*self.labeled.valid, self.lazy_load_gpu)
+        self.test_ds  = EHRDataset(*self.labeled.test, self.lazy_load_gpu)
 
     def ehr_collate(b):
         '''Custom collate function for use in `DataLoader`'''
         xs,ys = zip(*b)
         return xs, torch.stack(ys)
 
-    def create_dls(self, bs, collate_fn=ehr_collate, **kwargs):
+    def create_dls(self, bs, lazy, c_fn=ehr_collate, **kwargs):
         '''Create `DataLoader`s'''
-        self.train_dl = DataLoader(self.train_ds, batch_size=bs, shuffle=True, collate_fn=collate_fn, **kwargs)
-        self.valid_dl = DataLoader(self.valid_ds, batch_size=bs*2, collate_fn=collate_fn, **kwargs)
-        self.test_dl  = DataLoader(self.test_ds,  batch_size=bs*2, collate_fn=collate_fn, **kwargs)
+        self.train_dl = DataLoader(self.train_ds, bs, shuffle=True, collate_fn=c_fn, pin_memory=lazy, **kwargs)
+        self.valid_dl = DataLoader(self.valid_ds, bs*2, collate_fn=c_fn, pin_memory=lazy, **kwargs)
+        self.test_dl  = DataLoader(self.test_ds,  bs*2, collate_fn=c_fn, pin_memory=lazy, **kwargs)
 
     def get_data(self, bs=64, num_workers=0):
         '''Convenience function - returns everything needed for training'''
         self.load_splits()
         self.label()
         self.create_datasets()
-        self.create_dls(bs, num_workers=num_workers)
+        self.create_dls(bs, self.lazy_load_gpu, num_workers=num_workers)
 
         pos_wts = self.splits.get_pos_wts(self.labels)
         train_pos_wts = torch.Tensor(pos_wts['train'].values)
         valid_pos_wts = torch.Tensor(pos_wts['valid'].values)
-#         demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd = get_all_emb_dims(EhrVocabList.load(self.path), αd)
-#         return self.train_dl, self.valid_dl, demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd, train_pos_wts, valid_pos_wts
         return self.train_dl, self.valid_dl, train_pos_wts, valid_pos_wts
 
     def get_test_data(self, bs=64, num_workers=0):
@@ -124,10 +140,8 @@ class EHRData:
         self.load_splits()
         self.label()
         self.create_datasets()
-        self.create_dls(bs, num_workers=num_workers)
+        self.create_dls(bs, self.lazy_load_gpu, num_workers=num_workers)
 
         pos_wts = self.splits.get_pos_wts(self.labels)
         test_pos_wts = torch.Tensor(pos_wts['test'].values)
-#         demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd = get_all_emb_dims(EhrVocabList.load(self.path))
-#         return self.test_dl, demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd, test_pos_wts
         return self.test_dl, test_pos_wts

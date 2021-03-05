@@ -50,14 +50,14 @@ class RunHistory:
         self.prediction_summary = pd.DataFrame()
 
 # Cell
-def train(model, train_dl, train_loss_fn, optimizer):
+def train(model, train_dl, train_loss_fn, optimizer, lazy=True):
     '''Train model using train dataset'''
     yhat_train = y_train = Tensor([])
     train_loss = 0.
     model.train()
 
     for xb, yb in train_dl:
-        xb, yb = [x.to_gpu() for x in xb], yb.cuda()
+        if lazy: xb, yb = [x.to_gpu(non_block=True) for x in xb], yb.to(DEVICE, non_blocking=True)
         y_hat  = model(xb)
         loss   = train_loss_fn(y_hat, yb)
 
@@ -72,7 +72,7 @@ def train(model, train_dl, train_loss_fn, optimizer):
     return train_loss, yhat_train, y_train, model
 
 # Cell
-def evaluate(model, eval_dl, eval_loss_fn):
+def evaluate(model, eval_dl, eval_loss_fn, lazy=True):
     '''Evaluate model - used for both eval during training and prediction'''
     yhat_eval = y_eval = Tensor([])
     eval_loss = 0.
@@ -80,7 +80,7 @@ def evaluate(model, eval_dl, eval_loss_fn):
 
     with torch.no_grad():
         for xb, yb in eval_dl:
-            xb, yb = [x.to_gpu() for x in xb], yb.cuda()
+            if lazy: xb, yb = [x.to_gpu(non_block=True) for x in xb], yb.to(DEVICE, non_blocking=True)
             y_hat  = model(xb)
 
             eval_loss += (eval_loss_fn(y_hat, yb)).item()
@@ -91,15 +91,16 @@ def evaluate(model, eval_dl, eval_loss_fn):
 
 # Cell
 def fit(epochs, history, model, train_loss_fn, valid_loss_fn, optimizer, accuracy_fn,
-        train_dl, valid_dl, to_chkpt_path=None, from_chkpt_path=None, verbosity=0.75):
+        train_dl, valid_dl, lazy=True, to_chkpt_path=None, from_chkpt_path=None, verbosity=0.75):
     '''Fit model and return results in `history`'''
 
     if from_chkpt_path:
-        epoch_index, model, optimizer = load_from_checkpoint(model, from_chkpt_path, optimizer, for_inference=False)
-        start_epoch = epoch_index
+        last_epoch, model, optimizer = load_from_checkpoint(model, from_chkpt_path, optimizer, for_inference=False)
+        start_epoch = last_epoch+1
     else:
         start_epoch = 0
-    print_epochs = np.linspace(start_epoch, start_epoch+epochs, int(epochs*verbosity), endpoint=False, dtype=int)
+    end_epoch = start_epoch+(epochs-1)
+    print_epochs = np.linspace(start_epoch, end_epoch, int(epochs*verbosity), endpoint=True, dtype=int)
     train_history, valid_history = [], []
 
     print('{:>5} {:>16} {:^20} {:>25} {:^20}'.format('epoch |', 'train loss |', 'train aurocs', 'valid loss |', 'valid aurocs'))
@@ -107,8 +108,8 @@ def fit(epochs, history, model, train_loss_fn, valid_loss_fn, optimizer, accurac
 
     for epoch in range (start_epoch, start_epoch+epochs):
 
-        train_loss, yhat_train, y_train, model = train(model, train_dl, train_loss_fn, optimizer)
-        valid_loss, yhat_valid, y_valid = evaluate(model, valid_dl, valid_loss_fn)
+        train_loss, yhat_train, y_train, model = train(model, train_dl, train_loss_fn, optimizer, lazy)
+        valid_loss, yhat_valid, y_valid = evaluate(model, valid_dl, valid_loss_fn, lazy)
 
         train_loss,   valid_loss   = train_loss/len(train_dl), valid_loss/len(valid_dl)
         train_aurocs, valid_aurocs = accuracy_fn(y_train, yhat_train), accuracy_fn(y_valid, yhat_valid)
@@ -123,7 +124,7 @@ def fit(epochs, history, model, train_loss_fn, valid_loss_fn, optimizer, accurac
             row += f'{[f"{a:.3f}" for a in valid_aurocs[:4]]}'
             print(re.sub("',*", "", row))
 
-    if to_chkpt_path: save_to_checkpoint(start_epoch+epochs, model, optimizer, to_chkpt_path)
+    if to_chkpt_path: save_to_checkpoint(end_epoch, model, optimizer, to_chkpt_path)
 
     h = history
     h.y_train, h.yhat_train, h.y_valid, h.yhat_valid = y_train, yhat_train, y_valid, yhat_valid
@@ -133,10 +134,10 @@ def fit(epochs, history, model, train_loss_fn, valid_loss_fn, optimizer, accurac
     return h
 
 # Cell
-def predict(history, model, test_loss_fn, accuracy_fn, test_dl, chkpt_path):
+def predict(history, model, test_loss_fn, accuracy_fn, test_dl, chkpt_path, lazy=True):
     '''Predict and return results in `history`'''
     model = load_from_checkpoint(model, chkpt_path, for_inference=True)
-    test_loss, yhat_test, y_test = evaluate(model, test_dl, test_loss_fn)
+    test_loss, yhat_test, y_test = evaluate(model, test_dl, test_loss_fn, lazy)
 
     test_loss = test_loss/len(test_dl)
     test_aurocs = accuracy_fn(y_test, yhat_test)
@@ -225,5 +226,5 @@ def count_parameters(model, printout=False):
     trainable     = sum(p.numel() for p in model.parameters() if p.requires_grad)
     non_trainable = sum(p.numel() for p in model.parameters() if p.requires_grad==False)
     assert total == (trainable+non_trainable)
-    if printout: print(f'total: {total}, trainable: {trainable}, non_trainable: {non_trainable}')
+    print(f'total: {total:,}, trainable: {trainable:,}, non_trainable: {non_trainable:,}')
     return total, trainable, non_trainable

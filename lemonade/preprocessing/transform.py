@@ -120,28 +120,55 @@ class Patient():
         demographics, age_now = get_demographics(demograph, vocablist.demographics_vocabs, vocablist.age_mean, vocablist.age_std)
         return cls(codenums, offsts, demographics, age_now, birthdate, diabetes, stroke, alzheimers, coronaryheart, ptid)
 
-    def to_gpu(self):
-        '''Put this patient object on GPU'''
-        self.obs_nums  = self.obs_nums.cuda()
-        self.alg_nums  = self.alg_nums.cuda()
-        self.crpl_nums = self.crpl_nums.cuda()
-        self.med_nums  = self.med_nums.cuda()
-        self.img_nums  = self.img_nums.cuda()
-        self.proc_nums = self.proc_nums.cuda()
-        self.cnd_nums  = self.cnd_nums.cuda()
-        self.imm_nums  = self.imm_nums.cuda()
+    def pin_memory(self):
+        '''Call `torch.Tensor.pin_memory` for (all tensors of) this patient object'''
 
-        self.obs_offsts  = self.obs_offsts.cuda()
-        self.alg_offsts  = self.alg_offsts.cuda()
-        self.crpl_offsts = self.crpl_offsts.cuda()
-        self.med_offsts  = self.med_offsts.cuda()
-        self.img_offsts  = self.img_offsts.cuda()
-        self.proc_offsts = self.proc_offsts.cuda()
-        self.cnd_offsts  = self.cnd_offsts.cuda()
-        self.imm_offsts  = self.imm_offsts.cuda()
+        if not self.obs_nums.is_pinned():
+            self.obs_nums  = self.obs_nums.pin_memory()
+            self.alg_nums  = self.alg_nums.pin_memory()
+            self.crpl_nums = self.crpl_nums.pin_memory()
+            self.med_nums  = self.med_nums.pin_memory()
+            self.img_nums  = self.img_nums.pin_memory()
+            self.proc_nums = self.proc_nums.pin_memory()
+            self.cnd_nums  = self.cnd_nums.pin_memory()
+            self.imm_nums  = self.imm_nums.pin_memory()
 
-        self.demographics = self.demographics.cuda()
-        self.age_now      = self.age_now.cuda()
+            self.obs_offsts  = self.obs_offsts.pin_memory()
+            self.alg_offsts  = self.alg_offsts.pin_memory()
+            self.crpl_offsts = self.crpl_offsts.pin_memory()
+            self.med_offsts  = self.med_offsts.pin_memory()
+            self.img_offsts  = self.img_offsts.pin_memory()
+            self.proc_offsts = self.proc_offsts.pin_memory()
+            self.cnd_offsts  = self.cnd_offsts.pin_memory()
+            self.imm_offsts  = self.imm_offsts.pin_memory()
+
+            self.demographics = self.demographics.pin_memory()
+            self.age_now      = self.age_now.pin_memory()
+
+        return self
+
+    def to_gpu(self, non_block=False):
+        '''Puts (all tensors of) this patient object on GPU'''
+        self.obs_nums  = self.obs_nums.to(DEVICE, non_blocking=non_block)
+        self.alg_nums  = self.alg_nums.to(DEVICE, non_blocking=non_block)
+        self.crpl_nums = self.crpl_nums.to(DEVICE, non_blocking=non_block)
+        self.med_nums  = self.med_nums.to(DEVICE, non_blocking=non_block)
+        self.img_nums  = self.img_nums.to(DEVICE, non_blocking=non_block)
+        self.proc_nums = self.proc_nums.to(DEVICE, non_blocking=non_block)
+        self.cnd_nums  = self.cnd_nums.to(DEVICE, non_blocking=non_block)
+        self.imm_nums  = self.imm_nums.to(DEVICE, non_blocking=non_block)
+
+        self.obs_offsts  = self.obs_offsts.to(DEVICE, non_blocking=non_block)
+        self.alg_offsts  = self.alg_offsts.to(DEVICE, non_blocking=non_block)
+        self.crpl_offsts = self.crpl_offsts.to(DEVICE, non_blocking=non_block)
+        self.med_offsts  = self.med_offsts.to(DEVICE, non_blocking=non_block)
+        self.img_offsts  = self.img_offsts.to(DEVICE, non_blocking=non_block)
+        self.proc_offsts = self.proc_offsts.to(DEVICE, non_blocking=non_block)
+        self.cnd_offsts  = self.cnd_offsts.to(DEVICE, non_blocking=non_block)
+        self.imm_offsts  = self.imm_offsts.to(DEVICE, non_blocking=non_block)
+
+        self.demographics = self.demographics.to(DEVICE, non_blocking=non_block)
+        self.age_now      = self.age_now.to(DEVICE, non_blocking=non_block)
 
         return self
 
