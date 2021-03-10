@@ -3,7 +3,7 @@
 __all__ = ['EHRDataSplits', 'LabelEHRData', 'EHRDataset', 'EHRData']
 
 # Cell
-from .preprocessing.clean import * #for GVs
+from .setup import *
 from .preprocessing.transform import *
 from fastai.imports import *
 import copy

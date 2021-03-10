@@ -2,7 +2,7 @@
 config:
   name: lstm_base
   path: ./experiments
-  desc: base for LSTM experiments
+  desc: Baseline settings for EHR_LSTM experiments
   checkpoint_path: ./models
 
 params:
@@ -12,14 +12,15 @@ params:
     age_start: 0
     age_stop: 20
     age_in_months: False
-    bs: 64
+    bs: 128
     num_workers: 0
+    lazy_load_gpu: True
 
   optim_params:
     optim: Adagrad
     lr: 0.01
     lr_decay: 0
-    weight_decay: 0
+    weight_decay: 0.
 
   model_params:
     model: LSTM

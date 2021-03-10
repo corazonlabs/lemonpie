@@ -3,7 +3,7 @@
 __all__ = ['get_data', 'get_optimizer', 'get_model', 'Experiment']
 
 # Cell
-# from lemonade.preprocessing.clean import * #for GVs
+from .setup import * #for GVs
 from .preprocessing.vocab import * #for loading vocabs
 from .preprocessing.transform import * #for loading ptlist thru EHRData
 from .data import * #for EHRData
@@ -13,13 +13,12 @@ from .models import * #for the models
 from fastai.imports import *
 
 # Cell
-import yaml
 from addict import Dict
 
 # Cell
 def get_data(params, for_training=True):
     '''Convenience fn to get data (for training or testing) based on `data_params` in `experiment.yaml`'''
-    ehr_data = EHRData(params.dataset_path, params.labels, params.age_start, params.age_stop, params.age_in_months)
+    ehr_data = EHRData(params.dataset_path, params.labels, params.age_start, params.age_stop, params.age_in_months, params.lazy_load_gpu)
     if for_training:
         return ehr_data.get_data(params.bs, params.num_workers)
     else:
@@ -46,7 +45,7 @@ def get_model(dataset_path, params):
         model = EHR_CNN(demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd,
                         params.linear_layers, params.initrange, params.bn,
                         params.input_drp, params.linear_drp, params.zero_bn)
-    return model.cuda()
+    return model.to(DEVICE)
 
 # Cell
 class Experiment:
@@ -81,7 +80,7 @@ class Experiment:
     @classmethod
     def load(cls, name, path=None):
         '''Load an existing Experiment'''
-        exp_dir = Path(f'./experiments/{name}') if path == None else Path(f'{path}/{name}')
+        exp_dir = Path(f'{EXP_STORE}/{name}') if path == None else Path(f'{path}/{name}')
         with open(f'{exp_dir}/{name}.experiment','rb') as infile:
             exp = pickle.load(infile)
         print(f'Loaded experiment from {exp_dir}/{name}.experiment')
@@ -103,11 +102,12 @@ class Experiment:
         model = get_model(self.params.data_params.dataset_path, self.params.model_params)
         train_loss_fn, valid_loss_fn = get_loss_fn(train_pos_wts), get_loss_fn(valid_pos_wts)
         optim = get_optimizer(model, self.params.optim_params)
+        lazy = self.params.data_params.lazy_load_gpu
         from_chkpt_path = self.chkpt_path if from_checkpoint else None
         to_chkpt_path   = self.chkpt_path if to_checkpoint   else None
 
         self.history = fit(epochs, self.history, model, train_loss_fn, valid_loss_fn, optim,
-                              auroc_score, train_dl, valid_dl, to_chkpt_path, from_chkpt_path, verbosity)
+                           auroc_score, train_dl, valid_dl, lazy, to_chkpt_path, from_chkpt_path, verbosity)
         if plot: plot_fit_results(self.history, self.labels)
         if save: self.save()
 
@@ -116,7 +116,8 @@ class Experiment:
         test_dl, test_pos_wts = get_data(self.params.data_params, for_training=False)
         model = get_model(self.params.data_params.dataset_path, self.params.model_params)
         test_loss_fn = get_loss_fn(test_pos_wts)
+        lazy = self.params.data_params.lazy_load_gpu
 
-        self.history = predict(self.history, model, test_loss_fn, auroc_score, test_dl, self.chkpt_path)
+        self.history = predict(self.history, model, test_loss_fn, auroc_score, test_dl, self.chkpt_path, lazy)
         self.history = summarize_prediction(self.history, self.labels, plot)
         if save: self.save()

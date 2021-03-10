@@ -88,11 +88,11 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[-1.6646, -1.8043, -0.0576],
-         [ 0.5617, -0.3217,  0.3723],
-         [-1.0089, -1.2733, -1.6358],
-         [-0.0632, -0.0973,  0.5954],
-         [-1.6968, -1.8652, -0.3499]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+<pre>tensor([[[ 0.7825,  1.2690, -0.8806],
+         [-0.0507,  0.8550,  1.2069],
+         [ 0.2229,  1.1121,  0.8509],
+         [ 0.2638,  1.2546,  0.7619],
+         [-0.2777, -0.1534,  3.0132]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -154,9 +154,9 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[ 0.5617, -0.3217,  0.3723],
-         [-1.0089, -1.2733, -1.6358],
-         [-1.6968, -1.8652, -0.3499]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+<pre>tensor([[[-0.0507,  0.8550,  1.2069],
+         [ 0.2229,  1.1121,  0.8509],
+         [-0.2777, -0.1534,  3.0132]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -217,13 +217,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[ 0.5617, -0.3217,  0.3723],
-         [-1.0089, -1.2733, -1.6358],
-         [-1.6968, -1.8652, -0.3499]],
+<pre>tensor([[[-0.0507,  0.8550,  1.2069],
+         [ 0.2229,  1.1121,  0.8509],
+         [-0.2777, -0.1534,  3.0132]],
 
-        [[-1.6646, -1.8043, -0.0576],
-         [-0.0632, -0.0973,  0.5954],
-         [-1.0089, -1.2733, -1.6358]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+        [[ 0.7825,  1.2690, -0.8806],
+         [ 0.2638,  1.2546,  0.7619],
+         [ 0.2229,  1.1121,  0.8509]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -308,8 +308,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.3309,  0.2755, -0.2742],
-        [ 1.0297,  0.1700,  0.9263]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[-0.4276,  0.0030,  1.0892],
+        [-0.5256,  0.3744,  0.9153]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -367,8 +367,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.3309,  0.2755, -0.2742],
-        [ 1.0297,  0.1700,  0.9263]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[-0.4276,  0.0030,  1.0892],
+        [-0.5256,  0.3744,  0.9153]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -419,8 +419,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.6590,  0.2930, -0.0152],
-        [ 1.0006,  0.3582,  0.9454]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[-0.6892, -0.2615,  0.9884],
+        [-0.0968,  0.4393,  1.0331]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -479,9 +479,9 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[ 0.3309,  0.2755, -0.2742],
-        [ 1.0879, -0.2063,  0.8882],
-        [ 1.1566,  0.7302,  0.9224]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[-0.4276,  0.0030,  1.0892],
+        [-1.3834,  0.2445,  0.6796],
+        [ 0.3019,  0.0710,  1.1530]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -627,7 +627,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.numericalize" class="doc_header"><code>EhrVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="EhrVocab.numericalize" class="doc_header"><code>EhrVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/code/logs/lemonade'</code></em>)</p>
 </blockquote>
 <p>Lookup and return indices for codes</p>
 
@@ -652,7 +652,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.textify" class="doc_header"><code>EhrVocab.textify</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
+<h4 id="EhrVocab.textify" class="doc_header"><code>EhrVocab.textify</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L68" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
 </blockquote>
 <p>Lookup and return descriptions for codes</p>
 
@@ -709,7 +709,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="ObsVocab" class="doc_header"><code>class</code> <code>ObsVocab</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L74" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>ObsVocab</code>(<strong><code>vocab_df</code></strong>) :: <a href="/lemonade/preprocessing_vocab.html#EhrVocab"><code>EhrVocab</code></a></p>
+<h3 id="ObsVocab" class="doc_header"><code>class</code> <code>ObsVocab</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L77" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>ObsVocab</code>(<strong><code>vocab_df</code></strong>) :: <a href="/lemonade/preprocessing_vocab.html#EhrVocab"><code>EhrVocab</code></a></p>
 </blockquote>
 <p>Special Vocab class for Observation codes</p>
 
@@ -734,7 +734,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.create" class="doc_header"><code>ObsVocab.create</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L117" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.create</code>(<strong><code>obs_codes</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
+<h4 id="ObsVocab.create" class="doc_header"><code>ObsVocab.create</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.create</code>(<strong><code>obs_codes</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Create vocab object from observation codes</p>
 
@@ -759,7 +759,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.numericalize" class="doc_header"><code>ObsVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>verbose</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'./log'</code></em>)</p>
+<h4 id="ObsVocab.numericalize" class="doc_header"><code>ObsVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/code/logs/lemonade'</code></em>)</p>
 </blockquote>
 <p>Numericalize observation codes (return indices for codes)</p>
 
@@ -803,7 +803,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.textify" class="doc_header"><code>ObsVocab.textify</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L107" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
+<h4 id="ObsVocab.textify" class="doc_header"><code>ObsVocab.textify</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L112" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
 </blockquote>
 <p>Textify observation codes (returns codes and descriptions)</p>
 
@@ -1220,7 +1220,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="EhrVocabList" class="doc_header"><code>class</code> <code>EhrVocabList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L146" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocabList</code>(<strong><code>demographics_vocabs</code></strong>, <strong><code>records_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>, <strong><code>path</code></strong>)</p>
+<h3 id="EhrVocabList" class="doc_header"><code>class</code> <code>EhrVocabList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L151" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocabList</code>(<strong><code>demographics_vocabs</code></strong>, <strong><code>records_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>, <strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Class to create and hold all vocab objects for an entire dataset</p>
 
@@ -1245,7 +1245,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocabList.create" class="doc_header"><code>EhrVocabList.create</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L152" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.create</code>(<strong><code>path</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
+<h4 id="EhrVocabList.create" class="doc_header"><code>EhrVocabList.create</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L157" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.create</code>(<strong><code>path</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Read all code dfs from the dataset path and create all vocab objects</p>
 
@@ -1270,7 +1270,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocabList.save" class="doc_header"><code>EhrVocabList.save</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L180" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.save</code>()</p>
+<h4 id="EhrVocabList.save" class="doc_header"><code>EhrVocabList.save</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L185" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.save</code>()</p>
 </blockquote>
 <p>Save vocablist (containing all vocab objects for the dataset)</p>
 
@@ -1295,7 +1295,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocabList.load" class="doc_header"><code>EhrVocabList.load</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L189" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.load</code>(<strong><code>path</code></strong>)</p>
+<h4 id="EhrVocabList.load" class="doc_header"><code>EhrVocabList.load</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.load</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Load previously created vocablist object (containing all vocab objects for the dataset)</p>
 
@@ -1346,7 +1346,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Saved vocab lists to datasets/synthea/1K/processed
+<pre>Saved vocab lists to /home/vinod/code/datasets/synthea/1K/processed
 </pre>
 </div>
 </div>
@@ -2204,7 +2204,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_all_emb_dims" class="doc_header"><code>get_all_emb_dims</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_emb_dims</code>(<strong><code>EhrVocabList</code></strong>, <strong><code>αd</code></strong>=<em><code>0.5736</code></em>)</p>
+<h4 id="get_all_emb_dims" class="doc_header"><code>get_all_emb_dims</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L203" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_emb_dims</code>(<strong><code>EhrVocabList</code></strong>, <strong><code>αd</code></strong>=<em><code>0.5736</code></em>)</p>
 </blockquote>
 <p>Get embedding dimensions for all vocab objects of the dataset</p>
 

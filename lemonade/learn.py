@@ -5,8 +5,8 @@ __all__ = ['save_to_checkpoint', 'load_from_checkpoint', 'get_loss_fn', 'RunHist
            'summarize_prediction', 'count_parameters']
 
 # Cell
-from .preprocessing.clean import * #for GVs
-from .metrics import * #plot_fit_results needs classes from metrics
+from .setup import *
+from .metrics import *
 from fastai.imports import *
 
 # Cell
@@ -27,7 +27,7 @@ def load_from_checkpoint(model, path, optimizer=None, for_inference=False):
     print(f'From "{path}/checkpoint.tar", loading model ...')
     chkpt = torch.load(f'{path}/checkpoint.tar')
     model.load_state_dict(chkpt['model_state_dict'])
-    model = model.cuda()
+    model = model.to(DEVICE)
 
     if for_inference:
         return model
@@ -39,7 +39,7 @@ def load_from_checkpoint(model, path, optimizer=None, for_inference=False):
 # Cell
 def get_loss_fn(pos_wts):
     '''Return `nn.BCEWithLogitsLoss` with the given positive weights'''
-    return nn.BCEWithLogitsLoss(pos_weight=pos_wts).cuda()
+    return nn.BCEWithLogitsLoss(pos_weight=pos_wts).to(DEVICE)
 
 # Cell
 class RunHistory:
@@ -67,13 +67,13 @@ def train(model, train_dl, train_loss_fn, optimizer, lazy=True):
 
         loss.backward()
         optimizer.step()
-        model.zero_grad()
+        model.zero_grad(set_to_none=True)
 
     return train_loss, yhat_train, y_train, model
 
 # Cell
 def evaluate(model, eval_dl, eval_loss_fn, lazy=True):
-    '''Evaluate model - used for both eval during training and prediction'''
+    '''Evaluate model - used for validation (while training) and prediction'''
     yhat_eval = y_eval = Tensor([])
     eval_loss = 0.
     model.eval()

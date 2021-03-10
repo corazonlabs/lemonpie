@@ -4,11 +4,10 @@ __all__ = ['collate_codes_offsts', 'get_codenums_offsts', 'get_demographics', 'P
            'cpu_cnt', 'create_all_ptlists', 'preprocess_ehr_dataset']
 
 # Cell
+from ..setup import *
 from .clean import *
 from .vocab import *
 from fastai.imports import *
-from fastai import *
-from datetime import date
 import torch.multiprocessing as multiprocessing
 
 # Cell
@@ -214,9 +213,8 @@ class PatientList():
 
     def _create_pts_chunk(indx_chnk, all_dfs, vocablist, pckl_dir, age_start, age_stop, age_in_months, verbose):
         '''Parallelized function to run on one core and transform a single chunk of patients and save'''
-        pckl_f = open(f'{pckl_dir}/patients_{indx_chnk[0]}_{indx_chnk[-1]}.ptlist', 'wb')
-        pts = []
 
+        pts = []
         for indx in indx_chnk:
             vals = all_dfs[0].iloc[indx].values
             ptid, birthdate = vals[0], vals[1]
@@ -232,8 +230,9 @@ class PatientList():
             demograph = all_dfs[1].loc[ptid]
             pts.append(Patient.create(rec_dfs, demograph, vocablist, ptid, birthdate, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months))
 
-        pickle.dump(pts,pckl_f)
-        pckl_f.close()
+        with open(f'{pckl_dir}/patients_{indx_chnk[0]}_{indx_chnk[-1]}.ptlist', 'wb') as pckl_f:
+            pickle.dump(pts,pckl_f)
+
         if verbose: print(f'{multiprocessing.current_process().name}-- completed {len(indx_chnk)} patients')
         return len(pts)
 
@@ -260,6 +259,7 @@ class PatientList():
     def load(cls, path, split, age_start, age_stop, age_in_months):
         '''Load previously created `PatientList` object'''
         pckl_dir = get_pckl_dir(path, split, age_start, age_stop, age_in_months)
+        if not pckl_dir.exists(): raise Exception(f'"{pckl_dir}" does not exist, run pre-processing to create that dataset first.')
         ptlist = []
         for file in Path(pckl_dir).glob("*.ptlist"):
             with open(file, 'rb') as infile:

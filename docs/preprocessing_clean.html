@@ -94,13 +94,6 @@ nb_path: "01_preprocessing_clean.ipynb"
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Split">Split<a class="anchor-link" href="#Split"> </a></h2>
@@ -167,7 +160,7 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="read_raw_ehrdata" class="doc_header"><code>read_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L28" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>csv_names</code></strong>=<em><code>['patients', 'observations', 'allergies', 'careplans', 'medications', 'imaging_studies', 'procedures', 'conditions', 'immunizations']</code></em>)</p>
+<h4 id="read_raw_ehrdata" class="doc_header"><code>read_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>csv_names</code></strong>=<em><code>['patients', 'observations', 'allergies', 'careplans', 'medications', 'imaging_studies', 'procedures', 'conditions', 'immunizations']</code></em>)</p>
 </blockquote>
 <p>Read raw EHR data</p>
 
@@ -233,7 +226,7 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="split_patients" class="doc_header"><code>split_patients</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L34" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_patients</code>(<strong><code>patients</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
+<h4 id="split_patients" class="doc_header"><code>split_patients</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_patients</code>(<strong><code>patients</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
 </blockquote>
 <p>Split the patients dataframe</p>
 
@@ -346,7 +339,7 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="split_ehr_dataset" class="doc_header"><code>split_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
+<h4 id="split_ehr_dataset" class="doc_header"><code>split_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L27" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
 </blockquote>
 <p>Split EHR dataset into train, valid, test and save</p>
 
@@ -389,9 +382,9 @@ nb_path: "01_preprocessing_clean.ipynb"
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Splits:: train: 0.6, valid: 0.2, test: 0.2
 Split patients into:: Train: 664, Valid: 222, Test: 222 -- Total before split: 1108
-Saved train data to datasets/synthea/1K/raw_split/train
-Saved valid data to datasets/synthea/1K/raw_split/valid
-Saved test data to datasets/synthea/1K/raw_split/test
+Saved train data to /home/vinod/code/datasets/synthea/1K/raw_split/train
+Saved valid data to /home/vinod/code/datasets/synthea/1K/raw_split/valid
+Saved test data to /home/vinod/code/datasets/synthea/1K/raw_split/test
 </pre>
 </div>
 </div>
@@ -419,7 +412,7 @@ Saved test data to datasets/synthea/1K/raw_split/test
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_pts" class="doc_header"><code>cleanup_pts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L85" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_pts</code>(<strong><code>pts</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="cleanup_pts" class="doc_header"><code>cleanup_pts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L70" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_pts</code>(<strong><code>pts</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Clean patients df</p>
 
@@ -1000,7 +993,7 @@ Saved test data to datasets/synthea/1K/raw_split/test
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(3413, 2581)</pre>
+<pre>(3425, 2581)</pre>
 </div>
 
 </div>
@@ -1022,7 +1015,7 @@ Saved test data to datasets/synthea/1K/raw_split/test
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_obs" class="doc_header"><code>cleanup_obs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L104" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_obs</code>(<strong><code>obs</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_obs" class="doc_header"><code>cleanup_obs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L89" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_obs</code>(<strong><code>obs</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean observations df</p>
 
@@ -1406,7 +1399,7 @@ Saved test data to datasets/synthea/1K/raw_split/test
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_algs" class="doc_header"><code>cleanup_algs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L121" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_algs</code>(<strong><code>allergies</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_algs" class="doc_header"><code>cleanup_algs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L106" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_algs</code>(<strong><code>allergies</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean allergies df</p>
 
@@ -1809,7 +1802,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_crpls" class="doc_header"><code>cleanup_crpls</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_crpls</code>(<strong><code>careplans</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_crpls" class="doc_header"><code>cleanup_crpls</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L127" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_crpls</code>(<strong><code>careplans</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean careplans df</p>
 
@@ -2214,7 +2207,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_meds" class="doc_header"><code>cleanup_meds</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L163" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_meds</code>(<strong><code>medications</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_meds" class="doc_header"><code>cleanup_meds</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L148" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_meds</code>(<strong><code>medications</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>medications</code> df</p>
 
@@ -2631,7 +2624,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_img" class="doc_header"><code>cleanup_img</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L183" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_img</code>(<strong><code>imaging_studies</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_img" class="doc_header"><code>cleanup_img</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_img</code>(<strong><code>imaging_studies</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>imaging</code> df</p>
 
@@ -2663,7 +2656,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_procs" class="doc_header"><code>cleanup_procs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L195" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_procs</code>(<strong><code>procedures</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_procs" class="doc_header"><code>cleanup_procs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L180" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_procs</code>(<strong><code>procedures</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>procedures</code> df</p>
 
@@ -2695,7 +2688,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_cnds" class="doc_header"><code>cleanup_cnds</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L207" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_cnds</code>(<strong><code>conditions</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_cnds" class="doc_header"><code>cleanup_cnds</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L192" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_cnds</code>(<strong><code>conditions</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>conditions</code> df</p>
 
@@ -2727,7 +2720,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_immns" class="doc_header"><code>cleanup_immns</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L227" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_immns</code>(<strong><code>immunizations</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_immns" class="doc_header"><code>cleanup_immns</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L212" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_immns</code>(<strong><code>immunizations</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -2764,7 +2757,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_dataset" class="doc_header"><code>cleanup_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L238" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_dataset</code>(<strong><code>path</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="cleanup_dataset" class="doc_header"><code>cleanup_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L223" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_dataset</code>(<strong><code>path</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Clean all dfs in a split</p>
 
@@ -2888,7 +2881,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The labels we intend to predict are conditions and must be in the <a href="/lemonade/preprocessing_clean.html#CONDITIONS"><code>CONDITIONS</code></a> dict</p>
+<p>The labels we intend to predict are conditions and must be in the <a href="/lemonade/setup.html#CONDITIONS"><code>CONDITIONS</code></a> dict</p>
 <ul>
 <li>Adding them to the <code>patients</code> df</li>
 <li>And adding the patient's age when the particular condition was recorded</li>
@@ -2943,7 +2936,7 @@ coronary_heart :: 53741008||START
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_ys" class="doc_header"><code>extract_ys</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L259" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_ys</code>(<strong><code>patients</code></strong>, <strong><code>conditions</code></strong>, <strong><code>cnd_dict</code></strong>=<em><code>{'diabetes': '44054006||START', 'stroke': '230690007||START', 'alzheimers': '26929004||START', 'coronary_heart': '53741008||START'}</code></em>)</p>
+<h4 id="extract_ys" class="doc_header"><code>extract_ys</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L244" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_ys</code>(<strong><code>patients</code></strong>, <strong><code>conditions</code></strong>, <strong><code>cnd_dict</code></strong>=<em><code>{'diabetes': '44054006||START', 'stroke': '230690007||START', 'alzheimers': '26929004||START', 'coronary_heart': '53741008||START'}</code></em>)</p>
 </blockquote>
 <p>Extract labels from conditions df and add them to patients df with age</p>
 
@@ -3050,7 +3043,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="insert_age" class="doc_header"><code>insert_age</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L269" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>insert_age</code>(<strong><code>df</code></strong>, <strong><code>pts_df</code></strong>)</p>
+<h4 id="insert_age" class="doc_header"><code>insert_age</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L254" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>insert_age</code>(<strong><code>df</code></strong>, <strong><code>pts_df</code></strong>)</p>
 </blockquote>
 <p>Insert age in years and months into each of the rec dfs</p>
 
@@ -3089,7 +3082,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clean_raw_ehrdata" class="doc_header"><code>clean_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L277" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="clean_raw_ehrdata" class="doc_header"><code>clean_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L262" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Split, clean, preprocess &amp; save raw EHR data</p>
 
@@ -3121,7 +3114,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_cleaned_ehrdata" class="doc_header"><code>load_cleaned_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L307" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_cleaned_ehrdata</code>(<strong><code>path</code></strong>)</p>
+<h4 id="load_cleaned_ehrdata" class="doc_header"><code>load_cleaned_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L292" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_cleaned_ehrdata</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Load cleaned, age-filtered EHR data</p>
 
@@ -3153,7 +3146,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_ehr_vocabcodes" class="doc_header"><code>load_ehr_vocabcodes</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L320" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_ehr_vocabcodes</code>(<strong><code>path</code></strong>)</p>
+<h4 id="load_ehr_vocabcodes" class="doc_header"><code>load_ehr_vocabcodes</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L305" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_ehr_vocabcodes</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Load codes for vocabs</p>
 

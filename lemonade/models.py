@@ -4,7 +4,7 @@ __all__ = ['dropout_mask', 'InputDropout', 'linear_layer', 'create_linear_layers
            'conv_layer', 'EHR_CNN']
 
 # Cell
-from .preprocessing.clean import * #for GVs
+from .setup import *
 from .preprocessing.vocab import * #for loading vocabs
 from .preprocessing.transform import * #for loading ptlist thru EHRData
 from .data import * #for EHRData
@@ -147,7 +147,7 @@ def init_cnn(m, initrange, zero_bn=False):
 
 def conv_layer(in_channels, out_channels, kernel_size, stride=1, padding=1, bn=False):
     '''Create a single conv layer - as described in fast.ai'''
-    layer = [nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding)]
+    layer = [nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding, bias=not bn)]
     if bn: layer.append(nn.BatchNorm2d(out_channels))
     layer.append(nn.ReLU(inplace=True))
     return layer
@@ -219,8 +219,8 @@ class EHR_CNN(nn.Module):
         height = len(x[0].obs_offsts)
         width  = self.rec_wd
 
-        ptbatch_recs   = torch.empty(bs,height,width).cuda()
-        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1).cuda()
+        ptbatch_recs   = torch.empty(bs,height,width, device=DEVICE)
+        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1, device=DEVICE)
 
         ptbatch_recs, ptbatch_demogs = self.get_embs(ptbatch_recs, ptbatch_demogs, x)
         ptbatch_recs = self.input_dp(ptbatch_recs)                                    #apply input dropout

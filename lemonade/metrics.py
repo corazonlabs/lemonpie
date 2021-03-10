@@ -4,8 +4,7 @@ __all__ = ['accuracy', 'null_accuracy', 'ROC', 'MultiLabelROC', 'plot_rocs', 'pl
            'auroc_ci']
 
 # Cell
-from .preprocessing.clean import * #for GVs
-# from lemonade.preprocessing.transform import *
+from .setup import *
 from fastai.imports import *
 from sklearn import metrics as skl_metrics, preprocessing as skl_preproc
 

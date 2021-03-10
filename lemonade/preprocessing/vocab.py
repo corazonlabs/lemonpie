@@ -3,9 +3,9 @@
 __all__ = ['EhrVocab', 'ObsVocab', 'EhrVocabList', 'get_all_emb_dims']
 
 # Cell
+from ..setup import *
 from .clean import *
 from fastai.imports import *
-from fastai import *
 from datetime import date
 
 # Cell
@@ -42,10 +42,13 @@ class EhrVocab():
         '''Get embedding dimensions'''
         return self.vocab_size, round(6* αd * (self.vocab_size**0.25))
 
-    def numericalize(self, codes, verbose=True):
+    def numericalize(self, codes, log_excep=LOG_NUMERICALIZE_EXCEP, log_dir=LOG_STORE):
         '''Lookup and return indices for codes'''
-        today = date.today().strftime("%Y-%m-%d")
-        logfile = f'./log/{today}_numericalize_exceptions.log'
+
+        if log_excep:
+            today = date.today().strftime("%Y-%m-%d")
+            if not os.path.isdir(log_dir): os.mkdir(log_dir)
+            logfile = f'{log_dir}/{today}_numericalize_exceptions.log'
 
         res = []
         try:
@@ -56,7 +59,7 @@ class EhrVocab():
                     res.append(self.ctoi[str(code)])
                 except KeyError:
                     res.append(self.ctoi['xxunk'])
-                    if verbose:
+                    if log_excep:
                         with open(logfile, 'a') as log:
                             log.write(f'\ncode: {code}')
 
@@ -77,12 +80,13 @@ class ObsVocab (EhrVocab):
         self.vocab_df = vocab_df
         self.vocab_size = len(vocab_df)
 
-    def numericalize(self, codes, verbose=True, log_dir='./log'):
+    def numericalize(self, codes, log_excep=LOG_NUMERICALIZE_EXCEP, log_dir=LOG_STORE):
         '''Numericalize observation codes (return indices for codes)'''
-        today = date.today().strftime("%Y-%m-%d")
-        if verbose:
+
+        if log_excep:
+            today = date.today().strftime("%Y-%m-%d")
             if not os.path.isdir(log_dir): os.mkdir(log_dir)
-            logfile = f'./log/{today}_numericalize_exceptions.log'
+            logfile = f'{log_dir}/{today}_numericalize_exceptions.log'
 
         indxs = []
         for code in codes:
@@ -97,10 +101,11 @@ class ObsVocab (EhrVocab):
                                                (self.vocab_df['units'] == u) & (self.vocab_df['type'] == t)].index.tolist()
                 if len(res) == 0:
                     indxs.extend(self.vocab_df[(self.vocab_df['code'] == 'xxunk')].index.tolist())
-                    if verbose:
+                    if log_excep:
                         with open(logfile, 'a') as log:
                             log.write(f'\ncode in ObsVocab: {code}')
                 else            : indxs.extend(res)
+
         assert len(codes) == len(indxs), "Possible bug, not all codes being numericalized"
         return indxs
 
