@@ -1,19 +1,22 @@
 {
-  "lemonade": {
+  "Quick Starts": {
     "Overview": "/",
-    "Quick Starts":{
-      "Quick Walkthrough": "quick_walkthru.html",
-      "Running Experiments": "running_exps.html",
+    "Quick Walkthrough": "/quick_walkthru",
+    "Running Experiments": "/running_exps"
+  },
+  "Detailed Docs":{
+    "Setup": "/setup",
+    "":{
+      "Preprocessing":{
+        "Clean": "/preprocessing_clean",
+        "Vocab": "/preprocessing_vocab",
+        "Transform": "/preprocessing_transform"
+      }
     },
-    "Preprocessing":{
-      "clean": "preprocessing_clean.html",
-      "vocab": "preprocessing_vocab.html",
-      "transform": "preprocessing_transform.html",
-    },
-    "data": "data.html",
-    "metrics": "metrics.html",
-    "learn": "learn.html",
-    "models": "models.html",
-    "experiment": "experiment.html"
+    "Data": "/data",
+    "Metrics": "/metrics",
+    "Learn": "/learn",
+    "Models": "/models",
+    "Experiment": "/experiment"
   }
 }

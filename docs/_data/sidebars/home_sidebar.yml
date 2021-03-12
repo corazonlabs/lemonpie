@@ -10,27 +10,46 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: preprocessing.clean
-      url: preprocessing_clean.html
+      title: Quick Walkthrough
+      url: /quick_walkthru
     - output: web,pdf
-      title: preprocessing.vocab
-      url: preprocessing_vocab.html
-    - output: web,pdf
-      title: preprocessing.transform
-      url: preprocessing_transform.html
-    - output: web,pdf
-      title: data
-      url: data.html
-    - output: web,pdf
-      title: metrics
-      url: metrics.html
-    - output: web,pdf
-      title: learn
-      url: learn.html
-    - output: web,pdf
-      title: models
-      url: models.html
+      title: Running Experiments
+      url: /running_exps
     output: web
-    title: lemonade
+    title: Quick Starts
+  - folderitems:
+    - output: web,pdf
+      title: Setup
+      url: /setup
+      subfolders:
+      - output: web
+        subfolderitems:
+        - output: web,pdf
+          title: Clean
+          url: /preprocessing_clean
+        - output: web,pdf
+          title: Vocab
+          url: /preprocessing_vocab
+        - output: web,pdf
+          title: Transform
+          url: /preprocessing_transform
+        title: Preprocessing
+    - output: web,pdf
+      title: Data
+      url: /data
+    - output: web,pdf
+      title: Metrics
+      url: /metrics
+    - output: web,pdf
+      title: Learn
+      url: /learn
+    - output: web,pdf
+      title: Models
+      url: /models
+    - output: web,pdf
+      title: Experiment
+      url: /experiment
+    output: web
+    title: Detailed Docs
   output: web
   title: Sidebar

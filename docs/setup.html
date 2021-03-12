@@ -1,13 +1,12 @@
 ---
 
-title: setup
-
+title: Setup
 
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Setup, global vars, etc."
-description: "Setup, global vars, etc."
+summary: "Setup GPU, default paths & global variables."
+description: "Setup GPU, default paths & global variables."
 nb_path: "00_setup.ipynb"
 ---
 <!--
@@ -38,35 +37,22 @@ nb_path: "00_setup.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Global Vars</strong></p>
+<p>Every file in the library imports this, so all global set up required everywhere can be added here.</p>
+<ol>
+<li>Sets up device to GPU if available.</li>
+<li>Defines default paths for different stores - so that they are out of version control by default.</li>
+<li>Global scope variables - for convenience in other modules.</li>
+</ol>
 
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
-</blockquote>
-
-</div>
-
-</div>
-
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GPU">GPU<a class="anchor-link" href="#GPU"> </a></h2>
 </div>
 </div>
-
 </div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -95,6 +81,36 @@ nb_path: "00_setup.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Stores---Default-Paths-(Change-These)">Stores - Default Paths (Change These)<a class="anchor-link" href="#Stores---Default-Paths-(Change-These)"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -112,13 +128,82 @@ nb_path: "00_setup.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Please change these paths to defaults in your specific configuration</strong></p>
+<ul>
+<li>All of these artifacts need to be in some form of failsafe storage, but not all need to be in version control.</li>
+<li>Also, some of them are likely to get big and version control might not be the ideal location (e.g. data, logs and models).<ul>
+<li>Experiments on the other hand, as designed here, tend to be small-sized enough and can be stored in github or some other version control system (VCS).</li>
+<li>Each Experiment will keep track of the model it runs and saves it separately in the model store.</li>
+<li>Given the nature of the dataset in this release of the library (synthetic / Synthea), it can be easily re-generated in case of a loss.</li>
+</ul>
+</li>
+</ul>
+<p>So, its left to the user to decide which store needs to be where, depending upon your decision, change the default paths here.<br>
+<strong>Recommendation</strong> is to store experiments in some VCS and data &amp; models in some type of failsafe storage; logs are used minimally and not that important (atleast in this release).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Global-Scope-Variables-(Change-Data-Gen-Dates)">Global Scope Variables (Change Data Gen Dates)<a class="anchor-link" href="#Global-Scope-Variables-(Change-Data-Gen-Dates)"> </a></h2>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DEVICE</span> <span class="o">=</span> <span class="n">get_device</span><span class="p">()</span>
+
+<span class="n">PATH_1K</span>   <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/1K&#39;</span>
+<span class="n">PATH_10K</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/10K&#39;</span>
+<span class="n">PATH_20K</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/20K&#39;</span>
+<span class="n">PATH_100K</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/100K&#39;</span>
+
+<span class="n">FILENAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;patients&#39;</span><span class="p">,</span> <span class="s1">&#39;observations&#39;</span><span class="p">,</span> <span class="s1">&#39;allergies&#39;</span><span class="p">,</span> <span class="s1">&#39;careplans&#39;</span><span class="p">,</span> <span class="s1">&#39;medications&#39;</span><span class="p">,</span> <span class="s1">&#39;imaging_studies&#39;</span><span class="p">,</span> <span class="s1">&#39;procedures&#39;</span><span class="p">,</span> <span class="s1">&#39;conditions&#39;</span><span class="p">,</span> <span class="s1">&#39;immunizations&#39;</span><span class="p">]</span>
+
+<span class="n">SYNTHEA_DATAGEN_DATES</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;1K&#39;</span><span class="p">:</span><span class="s1">&#39;11-16-2018&#39;</span><span class="p">,</span> <span class="s1">&#39;10K&#39;</span><span class="p">:</span><span class="s1">&#39;12-19-2019&#39;</span><span class="p">,</span> <span class="s1">&#39;20K&#39;</span><span class="p">:</span><span class="s1">&#39;11-5-2020&#39;</span><span class="p">,</span> <span class="s1">&#39;100K&#39;</span><span class="p">:</span><span class="s1">&#39;4-4-2020&#39;</span><span class="p">,</span> <span class="s1">&#39;250K&#39;</span><span class="p">:</span><span class="s1">&#39;11-16-2018&#39;</span><span class="p">})</span>
+
+<span class="n">CONDITIONS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;diabetes&#39;</span><span class="p">:</span><span class="s1">&#39;44054006||START&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke&#39;</span><span class="p">:</span><span class="s1">&#39;230690007||START&#39;</span><span class="p">,</span> <span class="s1">&#39;alzheimers&#39;</span><span class="p">:</span><span class="s1">&#39;26929004||START&#39;</span><span class="p">,</span> <span class="s1">&#39;coronary_heart&#39;</span><span class="p">:</span><span class="s1">&#39;53741008||START&#39;</span><span class="p">})</span>
+
+<span class="n">LABELS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;diabetes&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;alzheimers&#39;</span><span class="p">,</span> <span class="s1">&#39;coronaryheart&#39;</span><span class="p">]</span>
+
+<span class="n">LOG_NUMERICALIZE_EXCEP</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>These are global variables used (in this initial release of the library) for convenience in other places; this will be cleaned up in future releases.</li>
+<li>The only things that need changing here are the <a href="/lemonade/setup#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a>.<ul>
+<li>Please update them based on when you generate a particular dataset.</li>
+<li>These dates are important to calculate patient age.</li>
+</ul>
+</li>
+<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> and <a href="/lemonade/setup#LABELS"><code>LABELS</code></a> go hand-in-hand<ul>
+<li>These are the labels we are trying to predict with the deep learning models.</li>
+<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> is how they appear in the preprocessed dataset.</li>
+<li><a href="/lemonade/setup#LABELS"><code>LABELS</code></a> is a convenient list used everywhere for display &amp; ploting purposes (again will be cleaned up in future).</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
 </div>
  
 
