@@ -1,13 +1,12 @@
 ---
 
-title: preprocessing.transform
-
+title: Transform
 
 keywords: fastai
 sidebar: home_sidebar
 
-
-
+summary: "Classes and functions to transform cleaned EHR dataset into `Patient` & `PatientList` objects that can be used for neural net training."
+description: "Classes and functions to transform cleaned EHR dataset into `Patient` & `PatientList` objects that can be used for neural net training."
 nb_path: "03_preprocessing_transform.ipynb"
 ---
 <!--
@@ -65,7 +64,8 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&#39;./datasets/synthea/1K&#39;, &#39;./datasets/synthea/10K&#39;)</pre>
+<pre>(&#39;/home/vinod/.lemonade/datasets/synthea/1K&#39;,
+ &#39;/home/vinod/.lemonade/datasets/synthea/10K&#39;)</pre>
 </div>
 
 </div>
@@ -98,10 +98,10 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;diabetes&#39;: &#39;44054006||START&#39;,
- &#39;stroke&#39;: &#39;230690007||START&#39;,
- &#39;alzheimers&#39;: &#39;26929004||START&#39;,
- &#39;coronary_heart&#39;: &#39;53741008||START&#39;}</pre>
+<pre>{&#39;alzheimers&#39;: &#39;26929004||START&#39;,
+ &#39;coronary_heart&#39;: &#39;53741008||START&#39;,
+ &#39;diabetes&#39;: &#39;44054006||START&#39;,
+ &#39;stroke&#39;: &#39;230690007||START&#39;}</pre>
 </div>
 
 </div>
@@ -205,14 +205,14 @@ nb_path: "03_preprocessing_transform.ipynb"
       <th></th>
       <th>patient</th>
       <th>birthdate</th>
-      <th>diabetes_y</th>
-      <th>diabetes_age</th>
-      <th>stroke_y</th>
-      <th>stroke_age</th>
       <th>alzheimers_y</th>
       <th>alzheimers_age</th>
       <th>coronary_heart_y</th>
       <th>coronary_heart_age</th>
+      <th>diabetes_y</th>
+      <th>diabetes_age</th>
+      <th>stroke_y</th>
+      <th>stroke_age</th>
     </tr>
     <tr>
       <th>indx</th>
@@ -231,8 +231,8 @@ nb_path: "03_preprocessing_transform.ipynb"
   <tbody>
     <tr>
       <th>0</th>
-      <td>e4361ed5-5ef7-407d-b5d3-576155ed66cd</td>
-      <td>1988-05-16</td>
+      <td>b1d50391-79c5-403c-919f-3ded66c9d77a</td>
+      <td>1959-09-01</td>
       <td>False</td>
       <td>NaN</td>
       <td>False</td>
@@ -244,8 +244,8 @@ nb_path: "03_preprocessing_transform.ipynb"
     </tr>
     <tr>
       <th>1</th>
-      <td>b28ca05e-a076-4868-a1af-168ae06b59ce</td>
-      <td>1990-06-12</td>
+      <td>e52a1bbc-7b12-4d01-82cc-1196da05e399</td>
+      <td>2016-12-29</td>
       <td>False</td>
       <td>NaN</td>
       <td>False</td>
@@ -257,8 +257,8 @@ nb_path: "03_preprocessing_transform.ipynb"
     </tr>
     <tr>
       <th>2</th>
-      <td>7c2b8c3b-fa87-44e9-b868-01db98dad56c</td>
-      <td>1988-09-05</td>
+      <td>88587157-4de8-4459-b6d4-fd571b847575</td>
+      <td>1980-05-31</td>
       <td>False</td>
       <td>NaN</td>
       <td>False</td>
@@ -270,21 +270,21 @@ nb_path: "03_preprocessing_transform.ipynb"
     </tr>
     <tr>
       <th>3</th>
-      <td>0731de61-1a8b-4135-83c0-2ace696bcac8</td>
-      <td>1934-11-27</td>
+      <td>18794a7c-c7fa-47d6-8387-9fc133c4e1e3</td>
+      <td>1982-06-21</td>
       <td>False</td>
       <td>NaN</td>
       <td>False</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>NaN</td>
+      <td>True</td>
+      <td>25.0</td>
       <td>False</td>
       <td>NaN</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>a119d309-9cac-415a-b9bd-c0cf10f15beb</td>
-      <td>1980-12-23</td>
+      <td>92c8d9dc-2430-4b35-8fa8-63bf6913737b</td>
+      <td>1985-11-07</td>
       <td>False</td>
       <td>NaN</td>
       <td>False</td>
@@ -330,7 +330,7 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;b28ca05e-a076-4868-a1af-168ae06b59ce&#39;, &#39;1990-06-12&#39;, False, nan,
+<pre>array([&#39;e52a1bbc-7b12-4d01-82cc-1196da05e399&#39;, &#39;2016-12-29&#39;, False, nan,
        False, nan, False, nan, False, nan], dtype=object)</pre>
 </div>
 
@@ -364,8 +364,8 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&#39;b28ca05e-a076-4868-a1af-168ae06b59ce&#39;,
- &#39;1990-06-12&#39;,
+<pre>(&#39;e52a1bbc-7b12-4d01-82cc-1196da05e399&#39;,
+ &#39;2016-12-29&#39;,
  False,
  False,
  False,
@@ -451,12 +451,12 @@ nb_path: "03_preprocessing_transform.ipynb"
  (124, 11),
  (5, 5),
  (7, 6),
- (25, 8),
  (4, 5),
- (205, 13),
- (211, 13),
+ (4, 5),
+ (243, 14),
+ (208, 13),
  (3, 5),
- (200, 13)]</pre>
+ (181, 13)]</pre>
 </div>
 
 </div>
@@ -489,13 +489,13 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(550, 17),
- (27, 8),
- (54, 9),
- (224, 13),
+<pre>[(536, 17),
+ (26, 8),
+ (50, 9),
+ (226, 13),
  (11, 6),
- (128, 12),
- (201, 13),
+ (137, 12),
+ (184, 13),
  (20, 7)]</pre>
 </div>
 
@@ -529,7 +529,7 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(94, 85)</pre>
+<pre>(92, 85)</pre>
 </div>
 
 </div>
@@ -553,7 +553,7 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tst_ptid</span><span class="o">=</span><span class="s1">&#39;0731de61-1a8b-4135-83c0-2ace696bcac8&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tst_ptid</span><span class="o">=</span><span class="s1">&#39;18794a7c-c7fa-47d6-8387-9fc133c4e1e3&#39;</span>
 </pre></div>
 
     </div>
@@ -605,14 +605,14 @@ nb_path: "03_preprocessing_transform.ipynb"
       <th></th>
       <th>patient</th>
       <th>birthdate</th>
-      <th>diabetes_y</th>
-      <th>diabetes_age</th>
-      <th>stroke_y</th>
-      <th>stroke_age</th>
       <th>alzheimers_y</th>
       <th>alzheimers_age</th>
       <th>coronary_heart_y</th>
       <th>coronary_heart_age</th>
+      <th>diabetes_y</th>
+      <th>diabetes_age</th>
+      <th>stroke_y</th>
+      <th>stroke_age</th>
     </tr>
     <tr>
       <th>indx</th>
@@ -631,14 +631,14 @@ nb_path: "03_preprocessing_transform.ipynb"
   <tbody>
     <tr>
       <th>3</th>
-      <td>0731de61-1a8b-4135-83c0-2ace696bcac8</td>
-      <td>1934-11-27</td>
+      <td>18794a7c-c7fa-47d6-8387-9fc133c4e1e3</td>
+      <td>1982-06-21</td>
       <td>False</td>
       <td>NaN</td>
       <td>False</td>
       <td>NaN</td>
-      <td>False</td>
-      <td>NaN</td>
+      <td>True</td>
+      <td>25.0</td>
       <td>False</td>
       <td>NaN</td>
     </tr>
@@ -678,17 +678,17 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>birthdate          1934-11-27
-marital                     M
-race                    white
-ethnicity          portuguese
-gender                      F
-birthplace             Boston
-city               Foxborough
-state           Massachusetts
-zip                      2035
-age_now_days            30670
-Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
+<pre>birthdate                    1982-06-21
+marital                               M
+race                              white
+ethnicity                      hispanic
+gender                                F
+birthplace      Panama City  Panama  PA
+city                            Waltham
+state                     Massachusetts
+zip                                2472
+age_now_days                      14147
+Name: 18794a7c-c7fa-47d6-8387-9fc133c4e1e3, dtype: object</pre>
 </div>
 
 </div>
@@ -722,7 +722,7 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;1934-11-27&#39;</pre>
+<pre>&#39;1982-06-21&#39;</pre>
 </div>
 
 </div>
@@ -773,7 +773,7 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(False, False, False, False)</pre>
+<pre>(True, False, False, False)</pre>
 </div>
 
 </div>
@@ -796,7 +796,7 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 <li><strong>Filter out for this patient</strong> <ul>
 <li><code>rec_dfs[[ptid]]</code> + <code>demographics[[ptid]]</code></li>
 <li><del>df already filtered by cutoff age</del></li>
-<li>This is being done in <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
+<li>This is being done in <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
 </ul>
 </li>
 <li>Use double <code>[[ptid]]</code> so that - even when single values are returned, we get a df</li>
@@ -850,8 +850,8 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 28.6 ms, sys: 4.08 ms, total: 32.7 ms
-Wall time: 32.4 ms
+<pre>CPU times: user 14.2 ms, sys: 3.73 ms, total: 17.9 ms
+Wall time: 17.8 ms
 </pre>
 </div>
 </div>
@@ -868,7 +868,7 @@ Wall time: 32.4 ms
 <p>The following are empty for this ptid (to check and confirm, uncomment following code snippet and run)</p>
 <ul>
 <li>allergies - 1</li>
-<li><del>imaging_studies - 4</del></li>
+<li>imaging_studies - 4</li>
 </ul>
 
 </div>
@@ -937,31 +937,6 @@ Wall time: 32.4 ms
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="collate_codes_offsts" class="doc_header"><code>collate_codes_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>collate_codes_offsts</code>(<strong><code>rec_df</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>)</p>
-</blockquote>
-<p>Return a single patient's EmbeddingBag lookup codes and offsets for the given age span and age units</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -996,9 +971,41 @@ Wall time: 32.4 ms
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="collate_codes_offsts" class="doc_header"><code>collate_codes_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>collate_codes_offsts</code>(<strong><code>rec_df</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Return a single patient's EmbeddingBag lookup codes and offsets for the given age span and age units</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Collate EHR codes for our test patient, from month 95 to month 105</p>
+<p><strong>Tests</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Collate EHR codes for our test patient, from age 410 months to 420 months</p>
 
 </div>
 </div>
@@ -1010,7 +1017,7 @@ Wall time: 32.4 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts = [collate_codes_offsts(df, age_start=95, age_stop=105, age_in_months=True) for df in rec_dfs]
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts = [collate_codes_offsts(df, age_start=410, age_stop=420, age_in_months=True) for df in rec_dfs]
 </pre></div>
 
     </div>
@@ -1023,8 +1030,8 @@ Wall time: 32.4 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 20.9 ms, sys: 141 µs, total: 21.1 ms
-Wall time: 20.2 ms
+<pre>CPU times: user 19.3 ms, sys: 0 ns, total: 19.3 ms
+Wall time: 17.4 ms
 </pre>
 </div>
 </div>
@@ -1065,23 +1072,45 @@ Wall time: 20.2 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;8302-2||136.6||cm||numeric&#39;,
- &#39;72514-3||0.6||{score}||numeric&#39;,
- &#39;29463-7||23.3||kg||numeric&#39;,
- &#39;39156-5||12.5||kg/m2||numeric&#39;,
- &#39;8462-4||82.4||mmHg||numeric&#39;,
- &#39;8480-6||138.1||mmHg||numeric&#39;,
+<pre>[&#39;8302-2||168.8||cm||numeric&#39;,
+ &#39;72514-3||2.0||{score}||numeric&#39;,
+ &#39;29463-7||79.8||kg||numeric&#39;,
+ &#39;39156-5||28.0||kg/m2||numeric&#39;,
+ &#39;8462-4||71.0||mm[Hg]||numeric&#39;,
+ &#39;8480-6||113.0||mm[Hg]||numeric&#39;,
+ &#39;8867-4||93.0||/min||numeric&#39;,
+ &#39;9279-1||15.0||/min||numeric&#39;,
+ &#39;2339-0||107.5||mg/dL||numeric&#39;,
+ &#39;6299-2||12.2||mg/dL||numeric&#39;,
+ &#39;38483-4||1.5||mg/dL||numeric&#39;,
+ &#39;49765-1||9.6||mg/dL||numeric&#39;,
+ &#39;2947-0||142.2||mmol/L||numeric&#39;,
+ &#39;6298-4||5.1||mmol/L||numeric&#39;,
+ &#39;2069-3||109.8||mmol/L||numeric&#39;,
+ &#39;20565-8||22.3||mmol/L||numeric&#39;,
+ &#39;2093-3||207.3||mg/dL||numeric&#39;,
+ &#39;2571-8||197.2||mg/dL||numeric&#39;,
+ &#39;18262-6||115.3||mg/dL||numeric&#39;,
+ &#39;2085-9||52.5||mg/dL||numeric&#39;,
+ &#39;14959-1||15.8||mg/g||numeric&#39;,
+ &#39;6690-2||5.3||10*3/uL||numeric&#39;,
+ &#39;789-8||4.6||10*6/uL||numeric&#39;,
+ &#39;718-7||13.5||g/dL||numeric&#39;,
+ &#39;4544-3||38.0||%||numeric&#39;,
+ &#39;787-2||80.7||fL||numeric&#39;,
+ &#39;785-6||28.4||pg||numeric&#39;,
+ &#39;786-4||33.1||g/dL||numeric&#39;,
+ &#39;21000-5||44.9||fL||numeric&#39;,
+ &#39;777-3||175.2||10*3/uL||numeric&#39;,
+ &#39;32207-3||449.8||fL||numeric&#39;,
+ &#39;32623-1||12.2||fL||numeric&#39;,
+ &#39;33914-3||67.9||mL/min/{1.73_m2}||numeric&#39;,
  &#39;72166-2||Never smoker||xxxnan||text&#39;,
+ &#39;4548-4||7.0||%||numeric&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
- &#39;8302-2||138.6||cm||numeric&#39;,
- &#39;72514-3||3.1||{score}||numeric&#39;,
- &#39;29463-7||24.2||kg||numeric&#39;,
- &#39;39156-5||12.6||kg/m2||numeric&#39;,
- &#39;8462-4||70.2||mmHg||numeric&#39;,
- &#39;8480-6||131.5||mmHg||numeric&#39;,
- &#39;72166-2||Never smoker||xxxnan||text&#39;,
+ &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
@@ -1127,7 +1156,7 @@ Wall time: 20.2 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 7, 8, 9, 10, 17, 18, 19, 20, 21]</pre>
+<pre>[0, 35, 36, 37, 38, 39, 40, 41, 42, 43]</pre>
 </div>
 
 </div>
@@ -1160,7 +1189,7 @@ Wall time: 20.2 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(22, 10)</pre>
+<pre>(44, 10)</pre>
 </div>
 
 </div>
@@ -1180,7 +1209,7 @@ Wall time: 20.2 ms
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Collate EHR codes for our test patient, from 10 to 25 years</p>
+<p>Collate EHR codes for our test patient, from 10 to 30 years</p>
 
 </div>
 </div>
@@ -1192,7 +1221,7 @@ Wall time: 20.2 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts = [collate_codes_offsts(df, age_start=10, age_stop=25) for df in rec_dfs]
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> all_codes_offsts = [collate_codes_offsts(df, age_start=10, age_stop=30) for df in rec_dfs]
 </pre></div>
 
     </div>
@@ -1205,8 +1234,8 @@ Wall time: 20.2 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 24.2 ms, sys: 35 µs, total: 24.2 ms
-Wall time: 23.5 ms
+<pre>CPU times: user 27.1 ms, sys: 0 ns, total: 27.1 ms
+Wall time: 26.8 ms
 </pre>
 </div>
 </div>
@@ -1270,7 +1299,7 @@ Wall time: 23.5 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -1285,16 +1314,16 @@ Wall time: 23.5 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;8302-2||150.8||cm||numeric&#39;,
- &#39;72514-3||3.9||{score}||numeric&#39;,
- &#39;29463-7||31.1||kg||numeric&#39;,
- &#39;39156-5||13.7||kg/m2||numeric&#39;,
- &#39;8462-4||70.1||mmHg||numeric&#39;,
- &#39;8480-6||110.2||mmHg||numeric&#39;,
- &#39;72166-2||Never smoker||xxxnan||text&#39;,
- &#39;8302-2||157.9||cm||numeric&#39;,
- &#39;72514-3||1.9||{score}||numeric&#39;,
- &#39;29463-7||34.9||kg||numeric&#39;]</pre>
+<pre>[&#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;8302-2||168.8||cm||numeric&#39;,
+ &#39;72514-3||1.0||{score}||numeric&#39;]</pre>
 </div>
 
 </div>
@@ -1312,7 +1341,7 @@ Wall time: 23.5 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes_num</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes_num</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -1327,7 +1356,7 @@ Wall time: 23.5 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[5, 9, 13, 87, 72, 77, 497, 5, 8, 13]</pre>
+<pre>[0, 0, 0, 0, 0, 0, 0, 0, 5, 7]</pre>
 </div>
 
 </div>
@@ -1360,7 +1389,7 @@ Wall time: 23.5 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(115, 115, 15)</pre>
+<pre>(59, 59, 20)</pre>
 </div>
 
 </div>
@@ -1395,7 +1424,7 @@ Wall time: 23.5 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">(</span><span class="n">obs_codes_num</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">(</span><span class="n">obs_codes_num</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1410,18 +1439,17 @@ Wall time: 23.5 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;8302-2||158.45000000000002||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;72514-3||4.95||{score}||numeric&#39;,
-  &#39;Pain severity - 0-10 verbal numeric rating [Score] - Reported&#39;),
- (&#39;29463-7||42.15||kg||numeric&#39;, &#39;Body Weight&#39;),
- (&#39;39156-5||9.1||kg/m2||numeric&#39;, &#39;Body Mass Index&#39;),
- (&#39;8462-4||70.0||mmHg||numeric&#39;, &#39;Diastolic Blood Pressure&#39;),
- (&#39;8480-6||100.0||mmHg||numeric&#39;, &#39;Systolic Blood Pressure&#39;),
- (&#39;72166-2||Never smoker||xxxnan||text&#39;, &#39;Tobacco smoking status NHIS&#39;),
- (&#39;8302-2||158.45000000000002||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;72514-3||2.475||{score}||numeric&#39;,
-  &#39;Pain severity - 0-10 verbal numeric rating [Score] - Reported&#39;),
- (&#39;29463-7||42.15||kg||numeric&#39;, &#39;Body Weight&#39;)]</pre>
+<pre>[(&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
+ (&#39;8302-2||160.29999999999998||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;72514-3||0.0||{score}||numeric&#39;,
+  &#39;Pain severity - 0-10 verbal numeric rating [Score] - Reported&#39;)]</pre>
 </div>
 
 </div>
@@ -1505,7 +1533,7 @@ Wall time: 23.5 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(105, 105, 15)</pre>
+<pre>(21, 21, 20)</pre>
 </div>
 
 </div>
@@ -1523,6 +1551,13 @@ Wall time: 23.5 ms
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1580,13 +1615,6 @@ Wall time: 23.5 ms
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Test - Codes &amp; Offsets</strong></p>
@@ -1601,7 +1629,7 @@ Wall time: 23.5 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> codenums, offsts = get_codenums_offsts(rec_dfs, vocab_list_1K.records_vocabs, age_start=0, age_stop=20, age_in_months=False)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> codenums, offsts = get_codenums_offsts(rec_dfs, vocab_list_1K.records_vocabs, age_start=10, age_stop=30, age_in_months=False)
 </pre></div>
 
     </div>
@@ -1614,8 +1642,8 @@ Wall time: 23.5 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 368 ms, sys: 3.63 ms, total: 371 ms
-Wall time: 369 ms
+<pre>CPU times: user 93.3 ms, sys: 0 ns, total: 93.3 ms
+Wall time: 92.1 ms
 </pre>
 </div>
 </div>
@@ -1650,7 +1678,7 @@ Wall time: 369 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_codes</span><span class="p">,</span> <span class="n">med_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_med</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_codes</span><span class="p">,</span> <span class="n">med_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_med</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1668,7 +1696,7 @@ Wall time: 369 ms
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">med_num</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">med_codes</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">med_o</span> <span class="o">==</span> <span class="n">p_med_offsts</span>
+<span class="k">assert</span> <span class="n">med_o</span> <span class="o">==</span> <span class="n">med_offsts</span>
 </pre></div>
 
     </div>
@@ -1700,7 +1728,7 @@ Wall time: 369 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&#39;562251||START&#39;, {&#39;Amoxicillin 250 MG / Clavulanate 125 MG Oral Tablet&#39;})</pre>
+<pre>(&#39;xxnone&#39;, &#39;Nothing recorded&#39;)</pre>
 </div>
 
 </div>
@@ -1735,28 +1763,25 @@ Wall time: 369 ms
 <div class="output_text output_subarea output_execute_result">
 <pre>[&#39;xxnone&#39;,
  &#39;xxnone&#39;,
- &#39;562251||START&#39;,
- &#39;562251||STOP&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
- &#39;313782||START&#39;,
- &#39;313782||STOP&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
- &#39;313782||START&#39;,
- &#39;313782||STOP&#39;,
- &#39;xxnone&#39;,
- &#39;562251||START&#39;,
- &#39;562251||STOP&#39;,
  &#39;xxnone&#39;,
  &#39;xxnone&#39;,
- &#39;xxnone&#39;]</pre>
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;xxnone&#39;,
+ &#39;749762||START&#39;,
+ &#39;807283||START&#39;,
+ &#39;749762||STOP&#39;,
+ &#39;807283||STOP&#39;]</pre>
 </div>
 
 </div>
@@ -1789,8 +1814,8 @@ Wall time: 369 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([0, 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 21, 22, 23],
- [0, 1, 2, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 19, 21, 22, 23])</pre>
+<pre>([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20],
+ [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20])</pre>
 </div>
 
 </div>
@@ -1823,7 +1848,7 @@ Wall time: 369 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(24, 20)</pre>
+<pre>(21, 20)</pre>
 </div>
 
 </div>
@@ -1841,7 +1866,7 @@ Wall time: 369 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alg_codes</span><span class="p">,</span> <span class="n">alg_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_alg</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">alg_codes</span><span class="p">,</span> <span class="n">alg_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_alg</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1960,7 +1985,7 @@ Wall time: 369 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span><span class="p">,</span> <span class="n">obs_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_obs</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_codes</span><span class="p">,</span> <span class="n">obs_offsts</span> <span class="o">=</span> <span class="n">collate_codes_offsts</span><span class="p">(</span><span class="n">p_obs</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1992,7 +2017,7 @@ Wall time: 369 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(236, 20, 236, 20)</pre>
+<pre>(59, 20, 59, 20)</pre>
 </div>
 
 </div>
@@ -2028,7 +2053,7 @@ Wall time: 369 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> codenums1, offsts1 = get_codenums_offsts(rec_dfs, vocab_list_1K.records_vocabs, age_start=20, age_stop=220, age_in_months=True)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> codenums1, offsts1 = get_codenums_offsts(rec_dfs, vocab_list_1K.records_vocabs, age_start=220, age_stop=420, age_in_months=True)
 </pre></div>
 
     </div>
@@ -2041,8 +2066,8 @@ Wall time: 369 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 560 ms, sys: 6.92 ms, total: 567 ms
-Wall time: 564 ms
+<pre>CPU times: user 458 ms, sys: 0 ns, total: 458 ms
+Wall time: 458 ms
 </pre>
 </div>
 </div>
@@ -2075,14 +2100,14 @@ Wall time: 564 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>346
+<pre>305
+200
 200
 201
+200
+275
 202
-200
-200
-203
-200
+201
 </pre>
 </div>
 </div>
@@ -2122,17 +2147,17 @@ Wall time: 564 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>birthdate          1934-11-27
-marital                     M
-race                    white
-ethnicity          portuguese
-gender                      F
-birthplace             Boston
-city               Foxborough
-state           Massachusetts
-zip                      2035
-age_now_days            30670
-Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
+<pre>birthdate                    1982-06-21
+marital                               M
+race                              white
+ethnicity                      hispanic
+gender                                F
+birthplace      Panama City  Panama  PA
+city                            Waltham
+state                     Massachusetts
+zip                                2472
+age_now_days                      14147
+Name: 18794a7c-c7fa-47d6-8387-9fc133c4e1e3, dtype: object</pre>
 </div>
 
 </div>
@@ -2165,7 +2190,7 @@ Name: 0731de61-1a8b-4135-83c0-2ace696bcac8, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([28, 12, 36, 2, 2, 4, 3, 5, 4, 2, 4], 1.574773090930408)</pre>
+<pre>([22, 7, 84, 2, 3, 2, 2, 5, 5, 2, 4], -0.22388270869843924)</pre>
 </div>
 
 </div>
@@ -2259,7 +2284,7 @@ dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([17, 6, 90, 3, 0, 0, 3, 90, 8, 2, 48], -0.5053754917098182)</pre>
+<pre>([17, 6, 90, 4, 0, 0, 2, 1, 31, 2, 1], -0.536998027641407)</pre>
 </div>
 
 </div>
@@ -2277,7 +2302,7 @@ dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_demographics</span><span class="p">(</span><span class="n">patient_demographics_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;e8b8ebb1-a7b9-4ce8-8c6d-cfd74a284ebf&#39;</span><span class="p">],</span> <span class="n">vocab_list_1K</span><span class="o">.</span><span class="n">demographics_vocabs</span><span class="p">,</span> \
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_demographics</span><span class="p">(</span><span class="n">patient_demographics_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;f5dcd418-09fe-4a2f-baa0-3da800bd8c3a&#39;</span><span class="p">],</span> <span class="n">vocab_list_1K</span><span class="o">.</span><span class="n">demographics_vocabs</span><span class="p">,</span> \
                  <span class="n">vocab_list_1K</span><span class="o">.</span><span class="n">age_mean</span><span class="p">,</span> <span class="n">vocab_list_1K</span><span class="o">.</span><span class="n">age_std</span><span class="p">)</span> <span class="c1">#has null</span>
 </pre></div>
 
@@ -2293,7 +2318,7 @@ dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([20, 6, 112, 0, 2, 4, 3, 10, 9, 2, 9], -1.361550119558768)</pre>
+<pre>([19, 11, 98, 3, 3, 3, 3, 151, 3, 2, 113], -0.7689700220811906)</pre>
 </div>
 
 </div>
@@ -2340,6 +2365,13 @@ dtype: object</pre>
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -2347,7 +2379,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Patient" class="doc_header"><code>class</code> <code>Patient</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L81" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Patient</code>(<strong><code>nums</code></strong>, <strong><code>offsts</code></strong>, <strong><code>demographics</code></strong>, <strong><code>age_now</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>ptid</code></strong>)</p>
+<h3 id="Patient" class="doc_header"><code>class</code> <code>Patient</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L81" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Patient</code>(<strong><code>nums</code></strong>, <strong><code>offsts</code></strong>, <strong><code>demographics</code></strong>, <strong><code>age_now</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>ptid</code></strong>)</p>
 </blockquote>
 <p>Class defining a patient object that holds all numericalized / transformed data for a single patient</p>
 
@@ -2357,13 +2389,6 @@ dtype: object</pre>
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -2404,9 +2429,34 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Patient.to_gpu" class="doc_header"><code>Patient.to_gpu</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.to_gpu</code>()</p>
+<h4 id="Patient.pin_memory" class="doc_header"><code>Patient.pin_memory</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.pin_memory</code>()</p>
 </blockquote>
-<p>Put this patient object on GPU</p>
+<p>Call <code>torch.Tensor.pin_memory</code> for (all tensors of) this patient object</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="Patient.to_gpu" class="doc_header"><code>Patient.to_gpu</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.to_gpu</code>(<strong><code>non_block</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Puts (all tensors of) this patient object on GPU</p>
 
 </div>
 
@@ -2433,7 +2483,7 @@ dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> p1 = Patient.create(rec_dfs, demograph_vector, vocab_list_1K, tst_ptid, tst_pt_birthdate, tst_pt_diabetes, \
-                                  <span class="n">tst_pt_stroke</span><span class="p">,</span> <span class="n">tst_pt_alzheimers</span><span class="p">,</span> <span class="n">tst_pt_coronaryheart</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+                                  <span class="n">tst_pt_stroke</span><span class="p">,</span> <span class="n">tst_pt_alzheimers</span><span class="p">,</span> <span class="n">tst_pt_coronaryheart</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -2446,8 +2496,8 @@ dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 368 ms, sys: 0 ns, total: 368 ms
-Wall time: 372 ms
+<pre>CPU times: user 86.9 ms, sys: 159 µs, total: 87.1 ms
+Wall time: 86.3 ms
 </pre>
 </div>
 </div>
@@ -2480,7 +2530,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>236</pre>
+<pre>59</pre>
 </div>
 
 </div>
@@ -2530,8 +2580,8 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([  0,  45,  63,  77,  91,  98, 116, 123, 130, 137, 144, 151, 169, 176,
-        183, 190, 197, 215, 222, 229])</pre>
+<pre>tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+        18, 56])</pre>
 </div>
 
 </div>
@@ -2564,7 +2614,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(False, &#39;0731de61-1a8b-4135-83c0-2ace696bcac8&#39;, &#39;1934-11-27&#39;)</pre>
+<pre>(True, &#39;18794a7c-c7fa-47d6-8387-9fc133c4e1e3&#39;, &#39;1982-06-21&#39;)</pre>
 </div>
 
 </div>
@@ -2597,7 +2647,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>ptid:0731de61-1a8b-4135-83c0-2ace696bcac8, birthdate:1934-11-27, diabetes:False, device:cpu</pre>
+<pre>ptid:18794a7c-c7fa-47d6-8387-9fc133c4e1e3, birthdate:1982-06-21, diabetes:True, device:cpu</pre>
 </div>
 
 </div>
@@ -2630,7 +2680,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([28, 12, 36,  2,  2,  4,  3,  5,  4,  2,  4])</pre>
+<pre>tensor([22,  7, 84,  2,  3,  2,  2,  5,  5,  2,  4])</pre>
 </div>
 
 </div>
@@ -2663,7 +2713,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([1.5748], dtype=torch.float64)</pre>
+<pre>tensor([-0.2239], dtype=torch.float64)</pre>
 </div>
 
 </div>
@@ -2729,7 +2779,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([28, 12, 36,  2,  2,  4,  3,  5,  4,  2,  4,  1])</pre>
+<pre>tensor([22,  7, 84,  2,  3,  2,  2,  5,  5,  2,  4,  0])</pre>
 </div>
 
 </div>
@@ -2762,7 +2812,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>ptid:0731de61-1a8b-4135-83c0-2ace696bcac8, birthdate:1934-11-27, diabetes:False, device:cuda:0</pre>
+<pre>ptid:18794a7c-c7fa-47d6-8387-9fc133c4e1e3, birthdate:1982-06-21, diabetes:True, device:cuda:0</pre>
 </div>
 
 </div>
@@ -2795,10 +2845,10 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(False,
- &#39;0731de61-1a8b-4135-83c0-2ace696bcac8&#39;,
- tensor([  0,  45,  63,  77,  91,  98, 116, 123, 130, 137, 144, 151, 169, 176,
-         183, 190, 197, 215, 222, 229], device=&#39;cuda:0&#39;),
+<pre>(True,
+ &#39;18794a7c-c7fa-47d6-8387-9fc133c4e1e3&#39;,
+ tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16, 17,
+         18, 56], device=&#39;cuda:0&#39;),
  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         device=&#39;cuda:0&#39;))</pre>
 </div>
@@ -2833,8 +2883,8 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(tensor([28, 12, 36,  2,  2,  4,  3,  5,  4,  2,  4], device=&#39;cuda:0&#39;),
- tensor([1.5748], device=&#39;cuda:0&#39;, dtype=torch.float64))</pre>
+<pre>(tensor([22,  7, 84,  2,  3,  2,  2,  5,  5,  2,  4], device=&#39;cuda:0&#39;),
+ tensor([-0.2239], device=&#39;cuda:0&#39;, dtype=torch.float64))</pre>
 </div>
 
 </div>
@@ -2855,7 +2905,7 @@ Wall time: 372 ms
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Based on the concept of <code>ItemList</code> as used in fastai v1.x, which is a list of <code>ItemBase</code> objects</li>
-<li>In our case <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</li>
+<li>In our case <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> objects</li>
 </ul>
 
 </div>
@@ -2885,37 +2935,12 @@ Wall time: 372 ms
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L148" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
-</blockquote>
-<p>Util function to construct pickle dir name - for persisting transformed patient lists</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_pckl_dir</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">split</span><span class="p">,</span> <span class="n">age_start</span><span class="p">,</span> <span class="n">age_stop</span><span class="p">,</span> <span class="n">age_in_months</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Util function to construct pickle dir name - for persisting transformed patient lists&#39;&#39;&#39;</span>
+    <span class="sd">&#39;&#39;&#39;Util function to construct pickle dir name - for persisting transformed `PatientList`s&#39;&#39;&#39;</span>
     <span class="n">dir_name</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
     <span class="n">dir_name</span> <span class="o">+=</span> <span class="s1">&#39;months&#39;</span> <span class="k">if</span> <span class="n">age_in_months</span> <span class="k">else</span> <span class="s1">&#39;years&#39;</span>
     <span class="n">dir_name</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">age_start</span><span class="si">}</span><span class="s1">_to_</span><span class="si">{</span><span class="n">age_stop</span><span class="si">}</span><span class="s1">&#39;</span>
@@ -2941,9 +2966,9 @@ Wall time: 372 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L161" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>A class to hold a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</p>
+<p>Util function to construct pickle dir name - for persisting transformed <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>s</p>
 
 </div>
 
@@ -2973,9 +2998,9 @@ Wall time: 372 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="PatientList.create_save" class="doc_header"><code>PatientList.create_save</code><a href="__main__.py#L58" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.create_save</code>(<strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>=<em><code>False</code></em>)</p>
+<h3 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L187" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
+<p>A class to hold a list of <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> objects</p>
 
 </div>
 
@@ -2998,7 +3023,32 @@ Wall time: 372 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="PatientList._create_pts_chunk" class="doc_header"><code>PatientList._create_pts_chunk</code><a href="__main__.py#L33" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList._create_pts_chunk</code>(<strong><code>indx_chnk</code></strong>, <strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>)</p>
+<h4 id="PatientList.create_save" class="doc_header"><code>PatientList.create_save</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L239" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.create_save</code>(<strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a> object</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="PatientList._create_pts_chunk" class="doc_header"><code>PatientList._create_pts_chunk</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L214" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList._create_pts_chunk</code>(<strong><code>indx_chnk</code></strong>, <strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>)</p>
 </blockquote>
 <p>Parallelized function to run on one core and transform a single chunk of patients and save</p>
 
@@ -3023,9 +3073,9 @@ Wall time: 372 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="PatientList.load" class="doc_header"><code>PatientList.load</code><a href="__main__.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.load</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="PatientList.load" class="doc_header"><code>PatientList.load</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L258" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.load</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>Load previously created <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
+<p>Load previously created <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a> object</p>
 
 </div>
 
@@ -3051,7 +3101,7 @@ Wall time: 372 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tst_pckl_dir</span> <span class="o">=</span> <span class="n">get_pckl_dir</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tst_pckl_dir</span> <span class="o">=</span> <span class="n">get_pckl_dir</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3083,7 +3133,7 @@ Wall time: 372 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Path(&#39;datasets/synthea/1K/processed/years_0_to_20/train&#39;)</pre>
+<pre>Path(&#39;/home/vinod/.lemonade/datasets/synthea/1K/processed/years_10_to_30/train&#39;)</pre>
 </div>
 
 </div>
@@ -3101,7 +3151,7 @@ Wall time: 372 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> PatientList.create_save(all_dfs, vocab_list_1K, tst_pckl_dir, age_start=0, age_stop=20, age_in_months=False)
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> PatientList.create_save(all_dfs, vocab_list_1K, tst_pckl_dir, age_start=10, age_stop=30, age_in_months=False)
 </pre></div>
 
     </div>
@@ -3114,15 +3164,22 @@ Wall time: 372 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/years_0_to_20/train
-CPU times: user 1.89 s, sys: 633 ms, total: 2.52 s
-Wall time: 19.7 s
+<pre>702 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/years_10_to_30/train
+CPU times: user 933 ms, sys: 433 ms, total: 1.37 s
+Wall time: 6.24 s
 </pre>
 </div>
 </div>
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -3138,9 +3195,9 @@ Wall time: 19.7 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L244" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L271" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Create and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
+<p>Create and save <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
 
 </div>
 
@@ -3148,13 +3205,6 @@ Wall time: 19.7 s
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -3186,11 +3236,11 @@ Wall time: 19.7 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>664 total patients completed, saved patient list to datasets/synthea/1K/processed/months_240_to_360/train
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_240_to_360/valid
-222 total patients completed, saved patient list to datasets/synthea/1K/processed/months_240_to_360/test
-CPU times: user 3.51 s, sys: 1.66 s, total: 5.17 s
-Wall time: 24.4 s
+<pre>702 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/months_240_to_360/train
+234 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/months_240_to_360/valid
+235 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/months_240_to_360/test
+CPU times: user 2.22 s, sys: 1.39 s, total: 3.61 s
+Wall time: 21.8 s
 </pre>
 </div>
 </div>
@@ -3239,7 +3289,7 @@ Wall time: 46.8 s</code></pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span> <span class="o">=</span> <span class="n">PatientList</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ptlist_1K</span> <span class="o">=</span> <span class="n">PatientList</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="s1">&#39;train&#39;</span><span class="p">,</span> <span class="n">age_start</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span> <span class="n">age_stop</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">age_in_months</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -3271,7 +3321,7 @@ Wall time: 46.8 s</code></pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>664</pre>
+<pre>702</pre>
 </div>
 
 </div>
@@ -3304,19 +3354,19 @@ Wall time: 46.8 s</code></pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>PatientList (664 items)
-base path:./datasets/synthea/1K; split:train; age span:120 months
+<pre>PatientList (702 items)
+base path:/home/vinod/.lemonade/datasets/synthea/1K; split:train; age span:120 months
 age_start:240; age_stop:360; age_type:months
-ptid:12b42348-29bb-4cf4-b878-d419a4c8f067, birthdate:1951-09-04, diabetes:False, device:cpu
-ptid:4c59df3b-042b-42c2-901a-3783d6d77919, birthdate:1979-09-18, diabetes:False, device:cpu
-ptid:8f07e577-7ab4-4e89-ae98-6d394b3929a9, birthdate:1967-01-13, diabetes:False, device:cpu
-ptid:653753d9-a52f-4ef3-b285-bdc3c671293c, birthdate:1971-12-26, diabetes:False, device:cpu
-ptid:1b801001-0bf9-4ad9-b175-9de9bc2d905f, birthdate:1979-11-26, diabetes:False, device:cpu
-ptid:da6203bc-bb24-4628-9aed-2b851571ee36, birthdate:1999-03-14, diabetes:False, device:cpu
-ptid:b02cd0ff-e891-4caa-b69b-2da7cb267578, birthdate:1957-09-12, diabetes:True, device:cpu
-ptid:49a859d3-318a-4212-864e-cf7d17f5032c, birthdate:2006-04-24, diabetes:False, device:cpu
-ptid:cb9293c4-243f-427e-ba70-6834c5872be6, birthdate:1952-10-21, diabetes:True, device:cpu
-ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False, device:cpu...]</pre>
+ptid:0ace3e15-8aa4-41c5-8b90-2408285ebcfe, birthdate:1986-04-02, diabetes:False, device:cpu
+ptid:af1495be-5077-4087-98b1-9ff624c7582c, birthdate:2008-07-17, diabetes:False, device:cpu
+ptid:f23e12d9-2ec6-4006-b041-ea78d374e9c9, birthdate:2014-09-06, diabetes:False, device:cpu
+ptid:1968aa31-5fce-461a-9486-6e385a7b75e7, birthdate:1986-04-11, diabetes:False, device:cpu
+ptid:1211c8ff-ab73-49f3-b2ab-87b7a03f6167, birthdate:1972-03-24, diabetes:False, device:cpu
+ptid:27a8b7b6-007d-4036-82a7-80a9ab670dcb, birthdate:2005-04-13, diabetes:False, device:cpu
+ptid:532696f2-0b76-4eb0-9aea-a74e2fb1bed2, birthdate:1967-05-18, diabetes:False, device:cpu
+ptid:8641e13a-c832-4d97-811a-b735d0abb45e, birthdate:1982-10-06, diabetes:False, device:cpu
+ptid:7f874045-4062-405d-8c23-abb12d0af23e, birthdate:1972-05-20, diabetes:False, device:cpu
+ptid:0b6a83ae-fcb1-4b75-9ffa-d52898167d66, birthdate:1989-08-05, diabetes:False, device:cpu...]</pre>
 </div>
 
 </div>
@@ -3349,7 +3399,7 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(170, 120)</pre>
+<pre>(145, 120)</pre>
 </div>
 
 </div>
@@ -3382,19 +3432,17 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([  0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   5,   8,  14,  88,
-         75,  79,  18,  25,  30,  36,  40,  42,  50,  55,  61,  65,  69,  95,
-        497,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+<pre>tensor([108, 112, 121,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+        108, 112, 121,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+        108, 112, 121,   0,   5,   7,  15,  19,  27,  33,  39,  43,  54,  60,
+         64,  71,  73,  79,  84,  87,  95,  97, 102, 468,   0,   0,   0,   0,
           0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-          0,   0,   0,   0,   0,   0,   0,   0,   5,   8,  14,  88,  75,  79,
-         96, 497,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
           0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-          0,   0,   0,   0,   0,   0,   0,   0,   0,   5,   7,  14,  88,  74,
-         80,  20,  24,  30,  35,  39,  46,  48,  53,  58,  65,  67,  94, 497,
-          5,   8,  14,  88,  75,  81,  95, 497,   0,   0,   0,   0,   0,   0,
           0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
-          0,   0])</pre>
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
+          0,   0,   0,   0,   0])</pre>
 </div>
 
 </div>
@@ -3428,10 +3476,10 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 <div class="output_text output_subarea output_execute_result">
 <pre>tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</pre>
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])</pre>
 </div>
 
 </div>
@@ -3452,6 +3500,13 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
     
 <div class="cell border-box-sizing code_cell rendered">
 
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
 <div class="output_wrapper">
 <div class="output">
 
@@ -3459,7 +3514,7 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="preprocess_ehr_dataset" class="doc_header"><code>preprocess_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L259" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>today</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>obs_vocab_buckets</code></strong>=<em><code>5</code></em>, <strong><code>age_start</code></strong>=<em><code>0</code></em>, <strong><code>age_stop</code></strong>=<em><code>20</code></em>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>, <strong><code>vocab_path</code></strong>=<em><code>None</code></em>, <strong><code>from_raw_data</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="preprocess_ehr_dataset" class="doc_header"><code>preprocess_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L286" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>today</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>obs_vocab_buckets</code></strong>=<em><code>5</code></em>, <strong><code>age_start</code></strong>=<em><code>0</code></em>, <strong><code>age_stop</code></strong>=<em><code>20</code></em>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>, <strong><code>vocab_path</code></strong>=<em><code>None</code></em>, <strong><code>from_raw_data</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Util function to do all preprocessing - split &amp; clean raw dataset, create vocab lists and create patient lists</p>
 
@@ -3473,19 +3528,6 @@ ptid:cf82e51b-5c34-4010-b904-1583b009ebc2, birthdate:2010-08-22, diabetes:False,
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Export">Export<a class="anchor-link" href="#Export"> </a></h1>
-</div>
-</div>
-</div>
 </div>
  
 

@@ -1,0 +1,25 @@
+
+STORES: # change these to your specific store locations, MAKE CHANGES IN THE '~/.lemonade/settings.yaml' FILE, not here
+  DATA_STORE: # will be set to '~/.lemonade/datasets' by default
+  LOG_STORE: # will be set to '~/.lemonade/logs' by default
+  MODEL_STORE: # will be set to '~/.lemonade/models' by default
+  EXPERIMENT_STORE: # will be set to '~/.lemonade/experiments' by default
+
+FILENAMES: ['patients', 'observations', 'allergies', 'careplans', 'medications', 'imaging_studies', 'procedures', 'conditions', 'immunizations']
+
+SYNTHEA_DATAGEN_DATES: #change these to your data-generation dates
+  1K: '03-15-2021'
+  10K: '03-16-2021'
+  20K: '11-5-2020'
+  100K: '4-4-2020'
+  250K: '11-16-2018'
+
+CONDITIONS:
+  diabetes: '44054006||START'
+  stroke: '230690007||START'
+  alzheimers: '26929004||START'
+  coronary_heart: '53741008||START'
+
+LABELS: ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
+
+LOG_NUMERICALIZE_EXCEP: True
