@@ -1,13 +1,13 @@
 # infrastructure items in config
 config:
-  name: lstm_base
-  path: ./experiments
-  desc: Baseline settings for EHR_LSTM experiments
-  checkpoint_path: ./models
+  name: cnn_base
+  path: #update this to absolute path of EXPERIMENT_STORE (e.g. '/home/vinod/.lemonade/experiments')
+  desc: Baseline settings for EHR_CNN experiments
+  checkpoint_path: #update this to absolute path of MODEL_STORE (e.g. '/home/vinod/.lemonade/models')
 
 params:
   data_params:
-    dataset_path: ./datasets/synthea/1K
+    dataset_path: #update this to absolute path of dataset (e.g. '/home/vinod/.lemonade/datasets/synthea/1K')
     labels: ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
     age_start: 0
     age_stop: 20
@@ -20,16 +20,14 @@ params:
     optim: Adagrad
     lr: 0.01
     lr_decay: 0
-    weight_decay: 0.
+    weight_decay: 0
 
   model_params:
-    model: LSTM
+    model: CNN
     αd: 0.5736
-    lstm_layers: 4
     linear_layers: 4
     initrange: 0.3
-    bn: False
+    bn: True
     input_drp: 0.3
-    lstm_drp: 0.3
     linear_drp: 0.3
     zero_bn: False

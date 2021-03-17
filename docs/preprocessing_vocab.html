@@ -87,11 +87,11 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[ 0.7825,  1.2690, -0.8806],
-         [-0.0507,  0.8550,  1.2069],
-         [ 0.2229,  1.1121,  0.8509],
-         [ 0.2638,  1.2546,  0.7619],
-         [-0.2777, -0.1534,  3.0132]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+<pre>tensor([[[-0.1150,  0.8952,  0.8283],
+         [-0.2785,  0.4390,  1.0322],
+         [-0.4187,  0.0508,  0.5634],
+         [-0.8872, -2.2729,  0.2599],
+         [ 0.6671, -0.1166,  0.1421]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -153,9 +153,9 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[-0.0507,  0.8550,  1.2069],
-         [ 0.2229,  1.1121,  0.8509],
-         [-0.2777, -0.1534,  3.0132]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+<pre>tensor([[[-0.2785,  0.4390,  1.0322],
+         [-0.4187,  0.0508,  0.5634],
+         [ 0.6671, -0.1166,  0.1421]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -216,13 +216,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[[-0.0507,  0.8550,  1.2069],
-         [ 0.2229,  1.1121,  0.8509],
-         [-0.2777, -0.1534,  3.0132]],
+<pre>tensor([[[-0.2785,  0.4390,  1.0322],
+         [-0.4187,  0.0508,  0.5634],
+         [ 0.6671, -0.1166,  0.1421]],
 
-        [[ 0.7825,  1.2690, -0.8806],
-         [ 0.2638,  1.2546,  0.7619],
-         [ 0.2229,  1.1121,  0.8509]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
+        [[-0.1150,  0.8952,  0.8283],
+         [-0.8872, -2.2729,  0.2599],
+         [-0.4187,  0.0508,  0.5634]]], grad_fn=&lt;EmbeddingBackward&gt;)</pre>
 </div>
 
 </div>
@@ -307,8 +307,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-0.4276,  0.0030,  1.0892],
-        [-0.5256,  0.3744,  0.9153]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.1109,  0.2188,  0.3904],
+        [-0.6386,  0.8285, -0.1732]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -366,8 +366,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-0.4276,  0.0030,  1.0892],
-        [-0.5256,  0.3744,  0.9153]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.1109,  0.2188,  0.3904],
+        [-0.6386,  0.8285, -0.1732]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -418,8 +418,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-0.6892, -0.2615,  0.9884],
-        [-0.0968,  0.4393,  1.0331]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.2494,  0.7171,  0.3100],
+        [-0.8322,  0.4494, -0.3896]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -478,9 +478,9 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[-0.4276,  0.0030,  1.0892],
-        [-1.3834,  0.2445,  0.6796],
-        [ 0.3019,  0.0710,  1.1530]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
+<pre>tensor([[ 0.1109,  0.2188,  0.3904],
+        [-0.2514,  1.5868,  0.2597],
+        [-0.7204,  0.2787, -0.6696]], grad_fn=&lt;EmbeddingBagBackward&gt;)</pre>
 </div>
 
 </div>
@@ -524,6 +524,45 @@ nb_path: "02_preprocessing_vocab.ipynb"
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Splits:: train: 0.6, valid: 0.2, test: 0.2
+Split patients into:: Train: 702, Valid: 234, Test: 235 -- Total before split: 1171
+Saved train data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/train
+Saved valid data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/valid
+Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
+Saved cleaned &#34;train&#34; data to /home/vinod/.lemonade/datasets/synthea/1K/cleaned/train
+Saved vocab code tables to /home/vinod/.lemonade/datasets/synthea/1K/cleaned/train/codes
+Saved cleaned &#34;valid&#34; data to /home/vinod/.lemonade/datasets/synthea/1K/cleaned/valid
+Saved cleaned &#34;test&#34; data to /home/vinod/.lemonade/datasets/synthea/1K/cleaned/test
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -626,7 +665,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.numericalize" class="doc_header"><code>EhrVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/code/logs/lemonade'</code></em>)</p>
+<h4 id="EhrVocab.numericalize" class="doc_header"><code>EhrVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/.lemonade/logs'</code></em>)</p>
 </blockquote>
 <p>Lookup and return indices for codes</p>
 
@@ -758,7 +797,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.numericalize" class="doc_header"><code>ObsVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/code/logs/lemonade'</code></em>)</p>
+<h4 id="ObsVocab.numericalize" class="doc_header"><code>ObsVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/vocab.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/.lemonade/logs'</code></em>)</p>
 </blockquote>
 <p>Numericalize observation codes (return indices for codes)</p>
 
@@ -883,7 +922,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
       <th>0</th>
       <td>8302-2</td>
       <td>Body Height</td>
-      <td>48.8</td>
+      <td>169.6</td>
       <td>cm</td>
       <td>numeric</td>
     </tr>
@@ -891,7 +930,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
       <th>1</th>
       <td>72514-3</td>
       <td>Pain severity - 0-10 verbal numeric rating [Sc...</td>
-      <td>1.3</td>
+      <td>4.0</td>
       <td>{score}</td>
       <td>numeric</td>
     </tr>
@@ -899,24 +938,24 @@ nb_path: "02_preprocessing_vocab.ipynb"
       <th>2</th>
       <td>29463-7</td>
       <td>Body Weight</td>
-      <td>3.4</td>
+      <td>63.8</td>
       <td>kg</td>
       <td>numeric</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>6690-2</td>
-      <td>Leukocytes [#/volume] in Blood by Automated count</td>
-      <td>5.2</td>
-      <td>10*3/uL</td>
+      <td>39156-5</td>
+      <td>Body Mass Index</td>
+      <td>22.2</td>
+      <td>kg/m2</td>
       <td>numeric</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>789-8</td>
-      <td>Erythrocytes [#/volume] in Blood by Automated ...</td>
-      <td>5.2</td>
-      <td>10*6/uL</td>
+      <td>59576-9</td>
+      <td>Body mass index (BMI) [Percentile] Per age and...</td>
+      <td>81.9</td>
+      <td>%</td>
       <td>numeric</td>
     </tr>
   </tbody>
@@ -972,7 +1011,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[6, 9, 176, 16]</pre>
+<pre>[6, 9, 341, 16]</pre>
 </div>
 
 </div>
@@ -1006,7 +1045,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[1, 9, 176, 16]</pre>
+<pre>[1, 9, 341, 16]</pre>
 </div>
 
 </div>
@@ -1039,11 +1078,11 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;8302-2||158.45000000000002||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;72514-3||2.475||{score}||numeric&#39;,
+<pre>[(&#39;8302-2||160.29999999999998||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;72514-3||2.5||{score}||numeric&#39;,
   &#39;Pain severity - 0-10 verbal numeric rating [Score] - Reported&#39;),
- (&#39;10834-0||3.35||g/dL||numeric&#39;, &#39;Globulin&#39;),
- (&#39;29463-7||122.44999999999999||kg||numeric&#39;, &#39;Body Weight&#39;)]</pre>
+ (&#39;20565-8||26.75||mmol/L||numeric&#39;, &#39;Carbon Dioxide&#39;),
+ (&#39;29463-7||98.09999999999998||kg||numeric&#39;, &#39;Body Weight&#39;)]</pre>
 </div>
 
 </div>
@@ -1077,7 +1116,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[545, 549, 0]</pre>
+<pre>[522, 1, 0]</pre>
 </div>
 
 </div>
@@ -1095,7 +1134,40 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab_obj</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">545</span><span class="p">,</span> <span class="mi">549</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab_obj</span><span class="o">.</span><span class="n">vocab_size</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>536</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab_obj</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">522</span><span class="p">,</span> <span class="mi">523</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1112,8 +1184,8 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_text output_subarea output_execute_result">
 <pre>[(&#39;32465-7||Normal size prostate||{nominal}||text&#39;,
   &#39;Physical findings of Prostate&#39;),
- (&#34;80271-0||Positive Murphy&#39;s Sign||xxxnan||text&#34;,
-  &#39;Physical findings of Abdomen by Palpation&#39;),
+ (&#39;32465-7||Prostate enlarged on PR||{nominal}||text&#39;,
+  &#39;Physical findings of Prostate&#39;),
  (&#39;xxnone&#39;, &#39;Nothing recorded&#39;)]</pre>
 </div>
 
@@ -1147,7 +1219,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 1, 497]</pre>
+<pre>[0, 1, 467]</pre>
 </div>
 
 </div>
@@ -1165,7 +1237,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab_obj</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">497</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab_obj</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">467</span><span class="p">,</span> <span class="mi">497</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1182,9 +1254,11 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_text output_subarea output_execute_result">
 <pre>[(&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
  (&#39;xxunk||xxunk||xxunk||xxunk&#39;, &#39;Unknown&#39;),
- (&#39;8302-2||44.6||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;8302-2||82.55000000000001||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;72166-2||Never smoker||xxxnan||text&#39;, &#39;Tobacco smoking status NHIS&#39;)]</pre>
+ (&#39;8302-2||45.1||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;8302-2||83.5||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;72166-2||Never smoker||xxxnan||text&#39;, &#39;Tobacco smoking status NHIS&#39;),
+ (&#39;88040-1||Improving (qualifier value)||xxxnan||text&#39;,
+  &#39;Response to cancer treatment&#39;)]</pre>
 </div>
 
 </div>
@@ -1345,7 +1419,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Saved vocab lists to /home/vinod/code/datasets/synthea/1K/processed
+<pre>Saved vocab lists to /home/vinod/.lemonade/datasets/synthea/1K/processed
 </pre>
 </div>
 </div>
@@ -1411,7 +1485,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>550</pre>
+<pre>536</pre>
 </div>
 
 </div>
@@ -1444,7 +1518,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 36, 2]</pre>
+<pre>[0, 67, 1]</pre>
 </div>
 
 </div>
@@ -1477,7 +1551,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 7]</pre>
+<pre>[0, 8]</pre>
 </div>
 
 </div>
@@ -1510,7 +1584,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([36], [36])</pre>
+<pre>([67], [67])</pre>
 </div>
 
 </div>
@@ -1545,10 +1619,10 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_text output_subarea output_execute_result">
 <pre>[(&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
  (&#39;xxunk&#39;, &#39;Unknown&#39;),
- (&#39;51185008&#39;, {&#39;Chest&#39;, &#39;Thoracic structure (body structure)&#39;}),
- (&#39;12921003&#39;, {&#39;Pelvis&#39;}),
  (&#39;40983000&#39;, {&#39;Arm&#39;}),
- (&#39;8205005&#39;, {&#39;Wrist&#39;})]</pre>
+ (&#39;51299004&#39;, {&#39;Clavicle&#39;}),
+ (&#39;8205005&#39;, {&#39;Wrist&#39;}),
+ (&#39;72696002&#39;, {&#39;Knee&#39;})]</pre>
 </div>
 
 </div>
@@ -1566,7 +1640,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">img_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">([</span><span class="s1">&#39;xxnone&#39;</span><span class="p">,</span><span class="s1">&#39;xxunk&#39;</span><span class="p">,</span> <span class="mi">51299004</span><span class="p">,</span><span class="mi">51185008</span><span class="p">,</span><span class="mi">12921003</span><span class="p">])</span> <span class="c1">#0,1,6,2,3</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">img_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">([</span><span class="s1">&#39;xxnone&#39;</span><span class="p">,</span><span class="s1">&#39;xxunk&#39;</span><span class="p">,</span> <span class="mi">51299004</span><span class="p">,</span><span class="mi">51185008</span><span class="p">,</span><span class="mi">12921003</span><span class="p">])</span> 
 </pre></div>
 
     </div>
@@ -1581,7 +1655,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 1, 6, 2, 3]</pre>
+<pre>[0, 1, 3, 7, 9]</pre>
 </div>
 
 </div>
@@ -1616,10 +1690,10 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_text output_subarea output_execute_result">
 <pre>[(&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
  (&#39;xxunk||xxunk||xxunk||xxunk&#39;, &#39;Unknown&#39;),
- (&#39;8302-2||44.6||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;8302-2||82.55000000000001||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;8302-2||120.5||cm||numeric&#39;, &#39;Body Height&#39;),
- (&#39;8302-2||158.45000000000002||cm||numeric&#39;, &#39;Body Height&#39;)]</pre>
+ (&#39;8302-2||45.1||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;8302-2||83.5||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;8302-2||121.9||cm||numeric&#39;, &#39;Body Height&#39;),
+ (&#39;8302-2||160.29999999999998||cm||numeric&#39;, &#39;Body Height&#39;)]</pre>
 </div>
 
 </div>
@@ -1652,7 +1726,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;10834-0||3.35||g/dL||numeric&#39;, &#39;Globulin&#39;)]</pre>
+<pre>[(&#39;20565-8||26.75||mmol/L||numeric&#39;, &#39;Carbon Dioxide&#39;)]</pre>
 </div>
 
 </div>
@@ -1686,7 +1760,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[6, 9, 201, 16]</pre>
+<pre>[6, 9, 1, 16]</pre>
 </div>
 
 </div>
@@ -1704,7 +1778,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">350</span><span class="p">,</span><span class="mi">450</span><span class="p">,</span><span class="mi">548</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">obs_vocab</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">250</span><span class="p">,</span><span class="mi">300</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1719,14 +1793,11 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;786-4||35.25||g/dL||numeric&#39;, &#39;MCHC [Mass/volume] by Automated count&#39;),
- (&#39;2093-3||266.275||mg/dL||numeric&#39;, &#39;Total Cholesterol&#39;),
- (&#39;6206-7||71.1||kU/L||numeric&#39;, &#39;Peanut IgE Ab in Serum&#39;),
- (&#39;20505-4||1.175||mg/dL||numeric&#39;,
-  &#39;Bilirubin.total [Mass/volume] in Urine by Test strip&#39;),
- (&#39;2075-0||107.6||mmol/L||numeric&#39;, &#39;Chloride&#39;),
- (&#39;46288-7||Surgical biopsy result abnormal||{nominal}||text&#39;,
-  &#39;US Guidance for biopsy of Prostate&#39;)]</pre>
+<pre>[(&#39;8310-5||38.724999999999994||Cel||numeric&#39;, &#39;Body temperature&#39;),
+ (&#39;2085-9||65.05||mg/dL||numeric&#39;, &#39;High Density Lipoprotein Cholesterol&#39;),
+ (&#39;6248-9||56.175000000000004||kU/L||numeric&#39;, &#39;Soybean IgE Ab in Serum&#39;),
+ (&#39;33914-3||120.875||mL/min/{1.73_m2}||numeric&#39;,
+  &#39;Estimated Glomerular Filtration Rate&#39;)]</pre>
 </div>
 
 </div>
@@ -1761,9 +1832,10 @@ nb_path: "02_preprocessing_vocab.ipynb"
 <div class="output_text output_subarea output_execute_result">
 <pre>[(&#39;xxnone&#39;, &#39;Nothing recorded&#39;),
  (&#39;xxunk&#39;, &#39;Unknown&#39;),
- (&#39;834061||START&#39;, {&#39;Penicillin V Potassium 250 MG Oral Tablet&#39;}),
- (&#39;282464||START&#39;, {&#39;Acetaminophen 160 MG Oral Tablet&#39;}),
- (&#39;313782||START&#39;, {&#39;Acetaminophen 325 MG Oral Tablet&#39;})]</pre>
+ (&#39;313782||START&#39;, {&#39;Acetaminophen 325 MG Oral Tablet&#39;}),
+ (&#39;748856||START&#39;, {&#39;Yaz 28 Day Pack&#39;}),
+ (&#39;1534809||START&#39;,
+  {&#39;168 HR Ethinyl Estradiol 0.00146 MG/HR / norelgestromin 0.00625 MG/HR Transdermal System&#39;})]</pre>
 </div>
 
 </div>
@@ -1796,7 +1868,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;xxnone&#39;, &#39;xxunk&#39;, &#39;834061||START&#39;, &#39;282464||START&#39;, &#39;313782||START&#39;]</pre>
+<pre>[&#39;xxnone&#39;, &#39;xxunk&#39;, &#39;313782||START&#39;, &#39;748856||START&#39;, &#39;1534809||START&#39;]</pre>
 </div>
 
 </div>
@@ -1814,7 +1886,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">([</span><span class="s1">&#39;xxnone&#39;</span><span class="p">,</span> <span class="s1">&#39;xxunk&#39;</span><span class="p">,</span> <span class="s1">&#39;834061||START&#39;</span><span class="p">,</span><span class="s1">&#39;282464||START&#39;</span><span class="p">,</span> <span class="s1">&#39;313782||START&#39;</span><span class="p">,</span> <span class="s1">&#39;749882||START&#39;</span><span class="p">])</span> <span class="c1">#0,1,2,3,4,5</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">med_vocab</span><span class="o">.</span><span class="n">numericalize</span><span class="p">([</span><span class="s1">&#39;xxnone&#39;</span><span class="p">,</span> <span class="s1">&#39;xxunk&#39;</span><span class="p">,</span> <span class="s1">&#39;834061||START&#39;</span><span class="p">,</span><span class="s1">&#39;282464||START&#39;</span><span class="p">,</span> <span class="s1">&#39;313782||START&#39;</span><span class="p">,</span> <span class="s1">&#39;749882||START&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -1829,7 +1901,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[0, 1, 2, 3, 4, 5]</pre>
+<pre>[0, 1, 24, 1, 2, 66]</pre>
 </div>
 
 </div>
@@ -1862,7 +1934,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[2]</pre>
+<pre>[24]</pre>
 </div>
 
 </div>
@@ -1906,12 +1978,12 @@ nb_path: "02_preprocessing_vocab.ipynb"
 (124, 11)
 (5, 5)
 (7, 6)
-(25, 8)
 (4, 5)
-(205, 13)
-(211, 13)
+(4, 5)
+(243, 14)
+(208, 13)
 (3, 5)
-(200, 13)
+(181, 13)
 </pre>
 </div>
 </div>
@@ -2094,7 +2166,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">marital</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">marital</span><span class="o">.</span><span class="n">vocab_size</span>
 </pre></div>
 
     </div>
@@ -2109,7 +2181,106 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;xxnone&#39;, &#39;xxunk&#39;, &#39;M&#39;, &#39;S&#39;]</pre>
+<pre>5</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">marital</span><span class="o">.</span><span class="n">ctoi</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;xxnone&#39;: 0, &#39;xxunk&#39;: 1, &#39;M&#39;: 2, &#39;xxxnan&#39;: 3, &#39;S&#39;: 4}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">marital</span><span class="o">.</span><span class="n">textify</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;xxnone&#39;, &#39;xxunk&#39;, &#39;M&#39;, &#39;xxxnan&#39;, &#39;S&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">race</span><span class="o">.</span><span class="n">vocab_size</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>7</pre>
 </div>
 
 </div>
@@ -2142,7 +2313,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[&#39;xxnone&#39;, &#39;xxunk&#39;, &#39;white&#39;, &#39;asian&#39;, &#39;black&#39;]</pre>
+<pre>[&#39;xxnone&#39;, &#39;xxunk&#39;, &#39;black&#39;, &#39;white&#39;, &#39;asian&#39;]</pre>
 </div>
 
 </div>
@@ -2175,7 +2346,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(15885.602409638554, 9388.271666254166)</pre>
+<pre>(16296.340455840456, 9600.296817631992)</pre>
 </div>
 
 </div>
@@ -2268,12 +2439,12 @@ nb_path: "02_preprocessing_vocab.ipynb"
  (124, 11),
  (5, 5),
  (7, 6),
- (25, 8),
  (4, 5),
- (205, 13),
- (211, 13),
+ (4, 5),
+ (243, 14),
+ (208, 13),
  (3, 5),
- (200, 13)]</pre>
+ (181, 13)]</pre>
 </div>
 
 </div>
@@ -2306,13 +2477,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(550, 17),
- (27, 8),
- (54, 9),
- (224, 13),
+<pre>[(536, 17),
+ (26, 8),
+ (50, 9),
+ (226, 13),
  (11, 6),
- (128, 12),
- (201, 13),
+ (137, 12),
+ (184, 13),
  (20, 7)]</pre>
 </div>
 
@@ -2346,7 +2517,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(94, 85)</pre>
+<pre>(92, 85)</pre>
 </div>
 
 </div>
@@ -2401,12 +2572,12 @@ nb_path: "02_preprocessing_vocab.ipynb"
  (124, 200),
  (5, 90),
  (7, 98),
- (25, 134),
  (4, 85),
- (205, 227),
- (211, 229),
+ (4, 85),
+ (243, 237),
+ (208, 228),
  (3, 79),
- (200, 226)]</pre>
+ (181, 220)]</pre>
 </div>
 
 </div>
@@ -2439,13 +2610,13 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[(550, 291),
- (27, 137),
- (54, 163),
- (224, 232),
+<pre>[(536, 289),
+ (26, 135),
+ (50, 160),
+ (226, 233),
  (11, 109),
- (128, 202),
- (201, 226),
+ (137, 205),
+ (184, 221),
  (20, 127)]</pre>
 </div>
 
@@ -2479,7 +2650,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(1628, 1487)</pre>
+<pre>(1582, 1479)</pre>
 </div>
 
 </div>

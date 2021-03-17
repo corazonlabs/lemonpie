@@ -30,6 +30,8 @@ def split_ehr_dataset(path, valid_pct=0.2, test_pct=0.2, random_state=1234):
     train_dfs, valid_dfs, test_dfs = [],[],[]
 
     dfs = read_raw_ehrdata(f'{path}/raw_original')
+    all_pts = dfs[0]
+    all_pts.rename(str.lower, axis='columns', inplace=True)
     train_pt, valid_pt, test_pt = split_patients(dfs[0], valid_pct, test_pct, random_state)
     train_dfs.append(train_pt)
     valid_dfs.append(valid_pt)
@@ -38,9 +40,9 @@ def split_ehr_dataset(path, valid_pct=0.2, test_pct=0.2, random_state=1234):
 
     for df, name in zip(dfs[1:], FILENAMES[1:]):
         df = df.set_index('PATIENT')
-        df_train = df.loc[df.index.intersection(train_pt['ID']).unique()]
-        df_valid = df.loc[df.index.intersection(valid_pt['ID']).unique()]
-        df_test = df.loc[df.index.intersection(test_pt['ID']).unique()]
+        df_train = df.loc[df.index.intersection(train_pt['id']).unique()]
+        df_valid = df.loc[df.index.intersection(valid_pt['id']).unique()]
+        df_test = df.loc[df.index.intersection(test_pt['id']).unique()]
         assert len(df) == len(df_train)+len(df_valid)+len(df_test),f'Split failed {name}: {len(df)} != {len(df_train)}+{len(df_valid)}+{len(df_test)}'
         train_dfs.append(df_train.reset_index())
         valid_dfs.append(df_valid.reset_index())
@@ -69,8 +71,9 @@ def split_ehr_dataset(path, valid_pct=0.2, test_pct=0.2, random_state=1234):
 # Cell
 def cleanup_pts(pts, is_train, today=None):
     '''Clean patients df'''
-    pts.drop(columns=['SSN','DRIVERS','PASSPORT','PREFIX','FIRST','LAST','SUFFIX','MAIDEN','ADDRESS'], inplace=True)
+
     pts.rename(str.lower, axis='columns', inplace=True)
+    pts = pts.loc[:, ['id', 'birthdate', 'marital', 'race', 'ethnicity', 'gender', 'birthplace', 'city', 'state', 'zip']]
     pts.rename(columns={"id":"patient"}, inplace=True)
     pts = pts.astype({'birthdate':'datetime64'})
     pts['zip'] = pts['zip'].fillna(0.0).astype(int)
@@ -78,20 +81,23 @@ def cleanup_pts(pts, is_train, today=None):
     else            : today = pd.to_datetime(today)
     pts['age_now_days'] = pts['birthdate'].apply(lambda bday: (today-bday).days)
 
+    pts.fillna('xxxnan', inplace=True)
+    if is_train: pt_codes = pts.drop(columns=['patient'], inplace=False)
     pts.set_index('patient', inplace=True)
-    pt_demographics = pts.loc[:,['birthdate', 'marital', 'race', 'ethnicity', 'gender', 'birthplace', 'city', 'state', 'zip', 'age_now_days']]
+    pt_demographics = pts
     patients = pts.loc[:,['birthdate']]
-    if is_train: pt_codes = pt_demographics.reset_index(drop=True)
 
     return [patients, pt_demographics, pt_codes] if is_train else [patients, pt_demographics]
 
 # Cell
 def cleanup_obs(obs, is_train):
     '''Clean observations df'''
-    obs.UNITS.fillna('xxxnan', inplace=True)
-    obs.dropna(subset=['VALUE'], inplace=True)
-    obs.rename(columns={"DATE":"date", "PATIENT":"patient", "CODE":"orig_code", \
-                                 "DESCRIPTION":"desc", "VALUE":"value", "UNITS":"units", "TYPE":"type"}, inplace=True)
+
+    obs.rename(str.lower, axis='columns', inplace=True)
+    obs.units.fillna('xxxnan', inplace=True)
+    obs.dropna(subset=['value'], inplace=True)
+
+    obs.rename(columns={"code":"orig_code", "description":"desc"}, inplace=True)
     obs['code'] = obs['orig_code'].str.cat(obs[['value', 'units', 'type']].astype(str), sep='||')
 
     if is_train: obs_codes = obs.loc[:, ['orig_code', 'desc', 'value', 'units', 'type']]
@@ -105,15 +111,17 @@ def cleanup_obs(obs, is_train):
 # Cell
 def cleanup_algs(allergies, is_train):
     '''Clean allergies df'''
-    allergies.drop(columns=['ENCOUNTER'], inplace=True)
 
-    stops = pd.DataFrame(allergies.loc[allergies['STOP'].notnull(),:])
-    allergies['CODE'] = allergies['CODE'].apply(lambda x: f'{str(x)}||START')
-    stops['CODE'] = stops['CODE'].apply(lambda x: f'{str(x)}||STOP')
-    allergies.drop(columns=['STOP'], inplace=True)
-    stops.drop(columns=['START'], inplace=True)
-    allergies.rename(columns={"START":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
-    stops.rename(columns={"STOP":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
+    allergies.rename(str.lower, axis='columns', inplace=True)
+    allergies.drop(columns=['encounter'], inplace=True)
+
+    stops = pd.DataFrame(allergies.loc[allergies['stop'].notnull(),:])
+    allergies['code'] = allergies['code'].apply(lambda x: f'{str(x)}||START')
+    stops['code'] = stops['code'].apply(lambda x: f'{str(x)}||STOP')
+    allergies.drop(columns=['stop'], inplace=True)
+    stops.drop(columns=['start'], inplace=True)
+    allergies.rename(columns={"start":"date", "description":"desc"}, inplace=True)
+    stops.rename(columns={"stop":"date", "description":"desc"}, inplace=True)
     allergies = allergies.append(stops, ignore_index=True)
 
     if is_train: alg_codes = allergies.loc[:, ['code', 'desc']]
@@ -126,15 +134,17 @@ def cleanup_algs(allergies, is_train):
 # Cell
 def cleanup_crpls(careplans, is_train):
     '''Clean careplans df'''
-    careplans.drop(columns=['ID', 'ENCOUNTER', 'REASONCODE', 'REASONDESCRIPTION'], inplace=True)
 
-    stops = pd.DataFrame(careplans.loc[careplans['STOP'].notnull(),:])
-    careplans['CODE'] = careplans['CODE'].apply(lambda x: f'{str(x)}||START')
-    stops['CODE'] = stops['CODE'].apply(lambda x: f'{str(x)}||STOP')
-    careplans.drop(columns=['STOP'], inplace=True)
-    stops.drop(columns=['START'], inplace=True)
-    careplans.rename(columns={"START":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
-    stops.rename(columns={"STOP":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
+    careplans.rename(str.lower, axis='columns', inplace=True)
+    careplans = careplans.loc[:, ['start', 'stop', 'patient', 'code', 'description']]
+
+    stops = pd.DataFrame(careplans.loc[careplans['stop'].notnull(),:])
+    careplans['code'] = careplans['code'].apply(lambda x: f'{str(x)}||START')
+    stops['code'] = stops['code'].apply(lambda x: f'{str(x)}||STOP')
+    careplans.drop(columns=['stop'], inplace=True)
+    stops.drop(columns=['start'], inplace=True)
+    careplans.rename(columns={"start":"date", "description":"desc"}, inplace=True)
+    stops.rename(columns={"stop":"date", "description":"desc"}, inplace=True)
     careplans = careplans.append(stops, ignore_index=True)
 
     if is_train: crpl_codes = careplans.loc[:, ['code', 'desc']]
@@ -147,14 +157,17 @@ def cleanup_crpls(careplans, is_train):
 # Cell
 def cleanup_meds(medications, is_train):
     '''Clean `medications` df'''
-    medications.drop(columns=['ENCOUNTER', 'COST', 'DISPENSES', 'TOTALCOST', 'REASONCODE', 'REASONDESCRIPTION'], inplace=True)
-    stops = pd.DataFrame(medications.loc[medications['STOP'].notnull(),:])
-    medications['CODE'] = medications['CODE'].apply(lambda x: f'{str(x)}||START')
-    stops['CODE'] = stops['CODE'].apply(lambda x: f'{str(x)}||STOP')
-    medications.drop(columns=['STOP'], inplace=True)
-    stops.drop(columns=['START'], inplace=True)
-    medications.rename(columns={"START":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
-    stops.rename(columns={"STOP":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
+
+    medications.rename(str.lower, axis='columns', inplace=True)
+    medications = medications.loc[:, ['start', 'stop', 'patient', 'code', 'description']]
+
+    stops = pd.DataFrame(medications.loc[medications['stop'].notnull(),:])
+    medications['code'] = medications['code'].apply(lambda x: f'{str(x)}||START')
+    stops['code'] = stops['code'].apply(lambda x: f'{str(x)}||STOP')
+    medications.drop(columns=['stop'], inplace=True)
+    stops.drop(columns=['start'], inplace=True)
+    medications.rename(columns={"start":"date", "description":"desc"}, inplace=True)
+    stops.rename(columns={"stop":"date", "description":"desc"}, inplace=True)
     medications = medications.append(stops, ignore_index=True)
 
     if is_train: med_codes = medications.loc[:, ['code', 'desc']]
@@ -167,8 +180,9 @@ def cleanup_meds(medications, is_train):
 # Cell
 def cleanup_img(imaging_studies, is_train):
     '''Clean `imaging` df'''
-    imaging_studies.rename(columns={"DATE":"date", "PATIENT":"patient", "BODYSITE_CODE":"code", "BODYSITE_DESCRIPTION":"desc"}, inplace=True)
 
+    imaging_studies.rename(str.lower, axis='columns', inplace=True)
+    imaging_studies.rename(columns={"bodysite_code":"code", "bodysite_description":"desc"}, inplace=True)
     if is_train: img_codes = imaging_studies.loc[:, ['code', 'desc']]
 
     imaging_studies = imaging_studies.loc[:, ['patient', 'date', 'code']]
@@ -179,8 +193,9 @@ def cleanup_img(imaging_studies, is_train):
 # Cell
 def cleanup_procs(procedures, is_train):
     '''Clean `procedures` df'''
-    procedures.rename(columns={"DATE":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
 
+    procedures.rename(str.lower, axis='columns', inplace=True)
+    procedures.rename(columns={"description":"desc"}, inplace=True)
     if is_train: proc_codes = procedures.loc[:, ['code', 'desc']]
 
     procedures = procedures.loc[:, ['patient', 'date', 'code']]
@@ -191,14 +206,16 @@ def cleanup_procs(procedures, is_train):
 # Cell
 def cleanup_cnds(conditions, is_train):
     '''Clean `conditions` df'''
-    conditions.drop(columns=['ENCOUNTER'], inplace=True)
-    stops = pd.DataFrame(conditions.loc[conditions['STOP'].notnull(),:])
-    conditions['CODE'] = conditions['CODE'].apply(lambda x: f'{str(x)}||START')
-    stops['CODE'] = stops['CODE'].apply(lambda x: f'{str(x)}||STOP')
-    conditions.drop(columns=['STOP'], inplace=True)
-    stops.drop(columns=['START'], inplace=True)
-    conditions.rename(columns={"START":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
-    stops.rename(columns={"STOP":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
+
+    conditions.rename(str.lower, axis='columns', inplace=True)
+    conditions.drop(columns=['encounter'], inplace=True)
+    stops = pd.DataFrame(conditions.loc[conditions['stop'].notnull(),:])
+    conditions['code'] = conditions['code'].apply(lambda x: f'{str(x)}||START')
+    stops['code'] = stops['code'].apply(lambda x: f'{str(x)}||STOP')
+    conditions.drop(columns=['stop'], inplace=True)
+    stops.drop(columns=['start'], inplace=True)
+    conditions.rename(columns={"start":"date", "description":"desc"}, inplace=True)
+    stops.rename(columns={"stop":"date","description":"desc"}, inplace=True)
     conditions = conditions.append(stops, ignore_index=True)
 
     if is_train: cnd_codes = conditions.loc[:, ['code', 'desc']]
@@ -210,8 +227,10 @@ def cleanup_cnds(conditions, is_train):
 
 # Cell
 def cleanup_immns(immunizations, is_train):
-    immunizations.rename(columns={"DATE":"date", "PATIENT":"patient", "CODE":"code", "DESCRIPTION":"desc"}, inplace=True)
+    '''Clean `immunizations` df'''
 
+    immunizations.rename(str.lower, axis='columns', inplace=True)
+    immunizations.rename(columns={"description":"desc"}, inplace=True)
     if is_train: imm_codes = immunizations.loc[:, ['code', 'desc']]
 
     immunizations = immunizations.loc[:, ['patient', 'date', 'code']]

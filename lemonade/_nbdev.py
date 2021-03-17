@@ -3,11 +3,13 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"get_device": "00_setup.ipynb",
+         "read_settings": "00_setup.ipynb",
+         "DEVICE": "00_setup.ipynb",
+         "settings": "00_setup.ipynb",
          "DATA_STORE": "00_setup.ipynb",
          "LOG_STORE": "00_setup.ipynb",
          "MODEL_STORE": "00_setup.ipynb",
-         "EXP_STORE": "00_setup.ipynb",
-         "DEVICE": "00_setup.ipynb",
+         "EXPERIMENT_STORE": "00_setup.ipynb",
          "PATH_1K": "00_setup.ipynb",
          "PATH_10K": "00_setup.ipynb",
          "PATH_20K": "00_setup.ipynb",

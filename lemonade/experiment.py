@@ -80,7 +80,7 @@ class Experiment:
     @classmethod
     def load(cls, name, path=None):
         '''Load an existing Experiment'''
-        exp_dir = Path(f'{EXP_STORE}/{name}') if path == None else Path(f'{path}/{name}')
+        exp_dir = Path(f'{EXPERIMENT_STORE}/{name}') if path == None else Path(f'{path}/{name}')
         with open(f'{exp_dir}/{name}.experiment','rb') as infile:
             exp = pickle.load(infile)
         print(f'Loaded experiment from {exp_dir}/{name}.experiment')

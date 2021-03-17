@@ -237,7 +237,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&#39;/home/vinod/code/datasets/synthea/1K&#39;,
+<pre>(&#39;/home/vinod/.lemonade/datasets/synthea/1K&#39;,
  [&#39;diabetes&#39;, &#39;stroke&#39;, &#39;alzheimers&#39;, &#39;coronaryheart&#39;])</pre>
 </div>
 
@@ -328,19 +328,19 @@ nb_path: "04_data.ipynb"
   <tbody>
     <tr>
       <th>train</th>
-      <td>664</td>
+      <td>702</td>
     </tr>
     <tr>
       <th>valid</th>
-      <td>222</td>
+      <td>234</td>
     </tr>
     <tr>
       <th>test</th>
-      <td>222</td>
+      <td>235</td>
     </tr>
     <tr>
       <th>total</th>
-      <td>1108</td>
+      <td>1171</td>
     </tr>
   </tbody>
 </table>
@@ -404,31 +404,31 @@ nb_path: "04_data.ipynb"
   <tbody>
     <tr>
       <th>diabetes</th>
-      <td>37</td>
-      <td>10</td>
+      <td>43</td>
       <td>14</td>
-      <td>61</td>
+      <td>19</td>
+      <td>76</td>
     </tr>
     <tr>
       <th>stroke</th>
-      <td>42</td>
-      <td>14</td>
-      <td>14</td>
-      <td>70</td>
+      <td>30</td>
+      <td>7</td>
+      <td>11</td>
+      <td>48</td>
     </tr>
     <tr>
       <th>alzheimers</th>
-      <td>18</td>
-      <td>3</td>
-      <td>5</td>
-      <td>26</td>
+      <td>12</td>
+      <td>7</td>
+      <td>6</td>
+      <td>25</td>
     </tr>
     <tr>
       <th>coronaryheart</th>
-      <td>34</td>
-      <td>12</td>
-      <td>9</td>
-      <td>55</td>
+      <td>39</td>
+      <td>11</td>
+      <td>11</td>
+      <td>61</td>
     </tr>
   </tbody>
 </table>
@@ -511,10 +511,10 @@ nb_path: "04_data.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>61
-70
-26
-55
+<pre>76
+48
+25
+61
 </pre>
 </div>
 </div>
@@ -566,9 +566,9 @@ nb_path: "04_data.ipynb"
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>37
-10
+<pre>43
 14
+19
 </pre>
 </div>
 </div>
@@ -601,7 +601,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>61</pre>
+<pre>76</pre>
 </div>
 
 </div>
@@ -856,7 +856,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>torch.Size([664, 4])</pre>
+<pre>torch.Size([702, 4])</pre>
 </div>
 
 </div>
@@ -895,7 +895,7 @@ nb_path: "04_data.ipynb"
         ...,
         [0., 0., 0., 0.],
         [0., 0., 0., 0.],
-        [0., 0., 0., 1.]])</pre>
+        [0., 0., 0., 0.]])</pre>
 </div>
 
 </div>
@@ -980,7 +980,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(torch.Size([664, 4]), torch.Size([222, 4]), torch.Size([222, 4]))</pre>
+<pre>(torch.Size([702, 4]), torch.Size([234, 4]), torch.Size([235, 4]))</pre>
 </div>
 
 </div>
@@ -1278,7 +1278,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(664, 222)</pre>
+<pre>(702, 234)</pre>
 </div>
 
 </div>
@@ -1311,7 +1311,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(2, 664)</pre>
+<pre>(2, 702)</pre>
 </div>
 
 </div>
@@ -1363,16 +1363,16 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([ptid:12b42348-29bb-4cf4-b878-d419a4c8f067, birthdate:1951-09-04, diabetes:False, device:cpu,
-  ptid:4c59df3b-042b-42c2-901a-3783d6d77919, birthdate:1979-09-18, diabetes:False, device:cpu,
-  ptid:8f07e577-7ab4-4e89-ae98-6d394b3929a9, birthdate:1967-01-13, diabetes:False, device:cpu,
-  ptid:653753d9-a52f-4ef3-b285-bdc3c671293c, birthdate:1971-12-26, diabetes:False, device:cpu,
-  ptid:1b801001-0bf9-4ad9-b175-9de9bc2d905f, birthdate:1979-11-26, diabetes:False, device:cpu],
+<pre>([ptid:0ace3e15-8aa4-41c5-8b90-2408285ebcfe, birthdate:1986-04-02, diabetes:False, device:cpu,
+  ptid:af1495be-5077-4087-98b1-9ff624c7582c, birthdate:2008-07-17, diabetes:False, device:cpu,
+  ptid:f23e12d9-2ec6-4006-b041-ea78d374e9c9, birthdate:2014-09-06, diabetes:False, device:cpu,
+  ptid:1968aa31-5fce-461a-9486-6e385a7b75e7, birthdate:1986-04-11, diabetes:False, device:cpu,
+  ptid:1211c8ff-ab73-49f3-b2ab-87b7a03f6167, birthdate:1972-03-24, diabetes:False, device:cpu],
  tensor([[0., 0., 0., 0.],
          [0., 0., 0., 0.],
          [0., 0., 0., 0.],
          [0., 0., 0., 0.],
-         [0., 0., 0., 1.]]))</pre>
+         [0., 0., 0., 0.]]))</pre>
 </div>
 
 </div>
@@ -1471,7 +1471,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(ptid:12b42348-29bb-4cf4-b878-d419a4c8f067, birthdate:1951-09-04, diabetes:False, device:cpu,
+<pre>(ptid:0ace3e15-8aa4-41c5-8b90-2408285ebcfe, birthdate:1986-04-02, diabetes:False, device:cpu,
  tensor([0., 0., 0., 0.]))</pre>
 </div>
 
@@ -1520,13 +1520,13 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([ptid:cb64a8e7-c65c-464c-bb27-270dc00d7ec5, birthdate:1960-05-11, diabetes:False, device:cpu,
-  ptid:8349dd1f-b916-4e4d-b132-837c1e021c58, birthdate:1963-11-22, diabetes:False, device:cpu,
-  ptid:bd44cef1-d656-480a-9c10-21d2e26e261f, birthdate:2008-11-10, diabetes:False, device:cpu,
-  ptid:ace46042-749e-44ba-9c7c-92cf42c00eb1, birthdate:1995-09-21, diabetes:False, device:cpu],
- tensor([[0., 0., 0., 0.],
+<pre>([ptid:8d1ba4bb-7250-4295-be1c-5d0d423e55f7, birthdate:1957-02-13, diabetes:True, device:cpu,
+  ptid:f1921fc3-fdfc-441d-a928-27c18002fedf, birthdate:1909-12-22, diabetes:False, device:cpu,
+  ptid:fc4aa89c-e441-4c0b-841f-3d16ffe1b235, birthdate:1981-04-24, diabetes:False, device:cpu,
+  ptid:4e0be087-7a33-4655-a9c0-f00f23178ac1, birthdate:1977-02-03, diabetes:False, device:cpu],
+ tensor([[1., 0., 0., 0.],
          [0., 0., 0., 0.],
-         [0., 0., 0., 1.],
+         [0., 0., 0., 0.],
          [0., 0., 0., 0.]]))</pre>
 </div>
 
@@ -1577,10 +1577,10 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[ptid:cb64a8e7-c65c-464c-bb27-270dc00d7ec5, birthdate:1960-05-11, diabetes:False, device:cpu,
- ptid:8349dd1f-b916-4e4d-b132-837c1e021c58, birthdate:1963-11-22, diabetes:False, device:cpu,
- ptid:bd44cef1-d656-480a-9c10-21d2e26e261f, birthdate:2008-11-10, diabetes:False, device:cpu,
- ptid:ace46042-749e-44ba-9c7c-92cf42c00eb1, birthdate:1995-09-21, diabetes:False, device:cpu]</pre>
+<pre>[ptid:8d1ba4bb-7250-4295-be1c-5d0d423e55f7, birthdate:1957-02-13, diabetes:True, device:cpu,
+ ptid:f1921fc3-fdfc-441d-a928-27c18002fedf, birthdate:1909-12-22, diabetes:False, device:cpu,
+ ptid:fc4aa89c-e441-4c0b-841f-3d16ffe1b235, birthdate:1981-04-24, diabetes:False, device:cpu,
+ ptid:4e0be087-7a33-4655-a9c0-f00f23178ac1, birthdate:1977-02-03, diabetes:False, device:cpu]</pre>
 </div>
 
 </div>
@@ -1613,9 +1613,9 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([[0., 0., 0., 0.],
+<pre>tensor([[1., 0., 0., 0.],
         [0., 0., 0., 0.],
-        [0., 0., 0., 1.],
+        [0., 0., 0., 0.],
         [0., 0., 0., 0.]])</pre>
 </div>
 
@@ -1765,13 +1765,13 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([ptid:cb64a8e7-c65c-464c-bb27-270dc00d7ec5, birthdate:1960-05-11, diabetes:False, device:cpu,
-  ptid:8349dd1f-b916-4e4d-b132-837c1e021c58, birthdate:1963-11-22, diabetes:False, device:cpu,
-  ptid:bd44cef1-d656-480a-9c10-21d2e26e261f, birthdate:2008-11-10, diabetes:False, device:cpu,
-  ptid:ace46042-749e-44ba-9c7c-92cf42c00eb1, birthdate:1995-09-21, diabetes:False, device:cpu],
- tensor([[0., 0., 0., 0.],
+<pre>([ptid:8d1ba4bb-7250-4295-be1c-5d0d423e55f7, birthdate:1957-02-13, diabetes:True, device:cpu,
+  ptid:f1921fc3-fdfc-441d-a928-27c18002fedf, birthdate:1909-12-22, diabetes:False, device:cpu,
+  ptid:fc4aa89c-e441-4c0b-841f-3d16ffe1b235, birthdate:1981-04-24, diabetes:False, device:cpu,
+  ptid:4e0be087-7a33-4655-a9c0-f00f23178ac1, birthdate:1977-02-03, diabetes:False, device:cpu],
+ tensor([[1., 0., 0., 0.],
          [0., 0., 0., 0.],
-         [0., 0., 0., 1.],
+         [0., 0., 0., 0.],
          [0., 0., 0., 0.]]))</pre>
 </div>
 
@@ -1838,11 +1838,11 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([ptid:4cc576ef-e1d9-45b0-9d83-7eb7d091cc6f, birthdate:1943-09-25, diabetes:False, device:cpu,
-  ptid:ee09a493-5684-498f-b46c-851eb1e7a3db, birthdate:1955-06-05, diabetes:False, device:cpu,
-  ptid:26b6efd5-7bf6-47b5-9d6a-f3f7338afcba, birthdate:1989-11-22, diabetes:False, device:cpu,
-  ptid:c118629a-db21-4c34-803e-8249ad79ae51, birthdate:1952-02-18, diabetes:False, device:cpu],
- tensor([[0., 0., 0., 0.],
+<pre>([ptid:6d048a56-edb8-4f29-891d-7a84d75a8e78, birthdate:1914-09-05, diabetes:False, device:cpu,
+  ptid:4fc76a3b-e39e-4091-a6af-3595e0cb607e, birthdate:1948-06-01, diabetes:False, device:cpu,
+  ptid:26ca976d-0b5b-4662-af41-535ff670dd5a, birthdate:2014-09-22, diabetes:False, device:cpu,
+  ptid:59486a8b-389b-4355-9df4-edc62bbd1a11, birthdate:1951-10-11, diabetes:False, device:cpu],
+ tensor([[0., 0., 1., 0.],
          [0., 0., 0., 0.],
          [0., 0., 0., 0.],
          [0., 0., 0., 0.]]))</pre>
@@ -1969,16 +1969,16 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>([ptid:12b42348-29bb-4cf4-b878-d419a4c8f067, birthdate:1951-09-04, diabetes:False, device:cuda:0,
-  ptid:4c59df3b-042b-42c2-901a-3783d6d77919, birthdate:1979-09-18, diabetes:False, device:cuda:0,
-  ptid:8f07e577-7ab4-4e89-ae98-6d394b3929a9, birthdate:1967-01-13, diabetes:False, device:cuda:0,
-  ptid:653753d9-a52f-4ef3-b285-bdc3c671293c, birthdate:1971-12-26, diabetes:False, device:cuda:0,
-  ptid:1b801001-0bf9-4ad9-b175-9de9bc2d905f, birthdate:1979-11-26, diabetes:False, device:cuda:0],
+<pre>([ptid:0ace3e15-8aa4-41c5-8b90-2408285ebcfe, birthdate:1986-04-02, diabetes:False, device:cuda:0,
+  ptid:af1495be-5077-4087-98b1-9ff624c7582c, birthdate:2008-07-17, diabetes:False, device:cuda:0,
+  ptid:f23e12d9-2ec6-4006-b041-ea78d374e9c9, birthdate:2014-09-06, diabetes:False, device:cuda:0,
+  ptid:1968aa31-5fce-461a-9486-6e385a7b75e7, birthdate:1986-04-11, diabetes:False, device:cuda:0,
+  ptid:1211c8ff-ab73-49f3-b2ab-87b7a03f6167, birthdate:1972-03-24, diabetes:False, device:cuda:0],
  tensor([[0., 0., 0., 0.],
          [0., 0., 0., 0.],
          [0., 0., 0., 0.],
          [0., 0., 0., 0.],
-         [0., 0., 0., 1.]], device=&#39;cuda:0&#39;))</pre>
+         [0., 0., 0., 0.]], device=&#39;cuda:0&#39;))</pre>
 </div>
 
 </div>
@@ -2111,7 +2111,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>ptid:cb64a8e7-c65c-464c-bb27-270dc00d7ec5, birthdate:1960-05-11, diabetes:False, device:cuda:0</pre>
+<pre>ptid:8d1ba4bb-7250-4295-be1c-5d0d423e55f7, birthdate:1957-02-13, diabetes:True, device:cuda:0</pre>
 </div>
 
 </div>

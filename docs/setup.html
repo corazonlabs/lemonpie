@@ -61,6 +61,7 @@ nb_path: "00_setup.ipynb"
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_device</span><span class="p">():</span>
+    <span class="sd">&#39;&#39;&#39;Checks to see if GPU is available and sets device to GPU or CPU&#39;&#39;&#39;</span>
     <span class="n">use_cuda</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">use_cuda</span><span class="p">:</span>
         <span class="k">assert</span> <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">enabled</span> <span class="o">==</span> <span class="kc">True</span>
@@ -89,8 +90,9 @@ nb_path: "00_setup.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
+<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
 </blockquote>
+<p>Checks to see if GPU is available and sets device to GPU or CPU</p>
 
 </div>
 
@@ -104,7 +106,52 @@ nb_path: "00_setup.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stores---Default-Paths-(Change-These)">Stores - Default Paths (Change These)<a class="anchor-link" href="#Stores---Default-Paths-(Change-These)"> </a></h2>
+<h2 id="Settings-File">Settings File<a class="anchor-link" href="#Settings-File"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A YAML file called <a href="/lemonade/setup#settings.yaml"><code>settings.yaml</code></a> is created (from a template) the first time the library is used.</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="read_settings" class="doc_header"><code>read_settings</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_settings</code>()</p>
+</blockquote>
+<p>Read settings file at "~/.lemonade/settings.yaml", if doesnt exist, create it from template</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Global-Scope-Variables">Global Scope Variables<a class="anchor-link" href="#Global-Scope-Variables"> </a></h2>
 </div>
 </div>
 </div>
@@ -115,13 +162,157 @@ nb_path: "00_setup.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATA_STORE</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span><span class="si">}</span><span class="s1">/code/datasets&#39;</span>
-<span class="n">LOG_STORE</span>   <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span><span class="si">}</span><span class="s1">/code/logs/lemonade&#39;</span>
-<span class="n">MODEL_STORE</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span><span class="si">}</span><span class="s1">/code/models/lemonade&#39;</span>
-<span class="n">EXP_STORE</span>   <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">Path</span><span class="o">.</span><span class="n">home</span><span class="p">()</span><span class="si">}</span><span class="s1">/code/experiments/lemonade&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DEVICE</span> <span class="o">=</span> <span class="n">get_device</span><span class="p">()</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="n">read_settings</span><span class="p">()</span>
+
+<span class="n">DATA_STORE</span>         <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">STORES</span><span class="o">.</span><span class="n">DATA_STORE</span>
+<span class="n">LOG_STORE</span>          <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">STORES</span><span class="o">.</span><span class="n">LOG_STORE</span>
+<span class="n">MODEL_STORE</span>        <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">STORES</span><span class="o">.</span><span class="n">MODEL_STORE</span>
+<span class="n">EXPERIMENT_STORE</span>   <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">STORES</span><span class="o">.</span><span class="n">EXPERIMENT_STORE</span>
+
+<span class="n">PATH_1K</span>   <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/1K&#39;</span>
+<span class="n">PATH_10K</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/10K&#39;</span>
+<span class="n">PATH_20K</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/20K&#39;</span>
+<span class="n">PATH_100K</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/100K&#39;</span>
+
+<span class="n">FILENAMES</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">FILENAMES</span>
+
+<span class="n">SYNTHEA_DATAGEN_DATES</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">SYNTHEA_DATAGEN_DATES</span>
+
+<span class="n">CONDITIONS</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">CONDITIONS</span>
+
+<span class="n">LABELS</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">LABELS</span>
+
+<span class="n">LOG_NUMERICALIZE_EXCEP</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOG_NUMERICALIZE_EXCEP</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>No settings file found, so creating from template ..
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>These are global variables used (in this initial release of the library) for convenience in other places; this will be cleaned up in future releases.</li>
+<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> and <a href="/lemonade/setup#LABELS"><code>LABELS</code></a> go hand-in-hand<ul>
+<li>These are the labels we are trying to predict with the deep learning models.</li>
+<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> is how they appear in the preprocessed dataset.</li>
+<li><a href="/lemonade/setup#LABELS"><code>LABELS</code></a> is a convenient list used everywhere for display &amp; plotting purposes (again will be cleaned up in future).</li>
+</ul>
+</li>
+</ul>
+<p><strong>The following 2 things need to be changed in the <code>~/.lemonade/settings.yaml</code> file based on your specific needs</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Change-SYNTHEA_DATAGEN_DATES">Change <a href="/lemonade/setup#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a><a class="anchor-link" href="#Change-SYNTHEA_DATAGEN_DATES"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">SYNTHEA_DATAGEN_DATES</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;1K&#39;: &#39;03-15-2021&#39;,
+ &#39;10K&#39;: &#39;03-16-2021&#39;,
+ &#39;20K&#39;: &#39;11-5-2020&#39;,
+ &#39;100K&#39;: &#39;4-4-2020&#39;,
+ &#39;250K&#39;: &#39;11-16-2018&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Sample dates are copied over from the settings template file and serve as examples.</li>
+<li>Please update these based on when you generate a particular dataset.</li>
+<li>These dates are important to calculate patient age.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Change---Default-STORE-Paths">Change - Default STORE Paths<a class="anchor-link" href="#Change---Default-STORE-Paths"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATA_STORE</span><span class="p">,</span> <span class="n">MODEL_STORE</span><span class="p">,</span> <span class="n">EXPERIMENT_STORE</span><span class="p">,</span> <span class="n">LOG_STORE</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;/home/vinod/.lemonade/datasets&#39;,
+ &#39;/home/vinod/.lemonade/models&#39;,
+ &#39;/home/vinod/.lemonade/experiments&#39;,
+ &#39;/home/vinod/.lemonade/logs&#39;)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -148,55 +339,85 @@ nb_path: "00_setup.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Global-Scope-Variables-(Change-Data-Gen-Dates)">Global Scope Variables (Change Data Gen Dates)<a class="anchor-link" href="#Global-Scope-Variables-(Change-Data-Gen-Dates)"> </a></h2>
+<h2 id="Setup-Synthea">Setup Synthea<a class="anchor-link" href="#Setup-Synthea"> </a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DEVICE</span> <span class="o">=</span> <span class="n">get_device</span><span class="p">()</span>
-
-<span class="n">PATH_1K</span>   <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/1K&#39;</span>
-<span class="n">PATH_10K</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/10K&#39;</span>
-<span class="n">PATH_20K</span>  <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/20K&#39;</span>
-<span class="n">PATH_100K</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">DATA_STORE</span><span class="si">}</span><span class="s1">/synthea/100K&#39;</span>
-
-<span class="n">FILENAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;patients&#39;</span><span class="p">,</span> <span class="s1">&#39;observations&#39;</span><span class="p">,</span> <span class="s1">&#39;allergies&#39;</span><span class="p">,</span> <span class="s1">&#39;careplans&#39;</span><span class="p">,</span> <span class="s1">&#39;medications&#39;</span><span class="p">,</span> <span class="s1">&#39;imaging_studies&#39;</span><span class="p">,</span> <span class="s1">&#39;procedures&#39;</span><span class="p">,</span> <span class="s1">&#39;conditions&#39;</span><span class="p">,</span> <span class="s1">&#39;immunizations&#39;</span><span class="p">]</span>
-
-<span class="n">SYNTHEA_DATAGEN_DATES</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;1K&#39;</span><span class="p">:</span><span class="s1">&#39;11-16-2018&#39;</span><span class="p">,</span> <span class="s1">&#39;10K&#39;</span><span class="p">:</span><span class="s1">&#39;12-19-2019&#39;</span><span class="p">,</span> <span class="s1">&#39;20K&#39;</span><span class="p">:</span><span class="s1">&#39;11-5-2020&#39;</span><span class="p">,</span> <span class="s1">&#39;100K&#39;</span><span class="p">:</span><span class="s1">&#39;4-4-2020&#39;</span><span class="p">,</span> <span class="s1">&#39;250K&#39;</span><span class="p">:</span><span class="s1">&#39;11-16-2018&#39;</span><span class="p">})</span>
-
-<span class="n">CONDITIONS</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;diabetes&#39;</span><span class="p">:</span><span class="s1">&#39;44054006||START&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke&#39;</span><span class="p">:</span><span class="s1">&#39;230690007||START&#39;</span><span class="p">,</span> <span class="s1">&#39;alzheimers&#39;</span><span class="p">:</span><span class="s1">&#39;26929004||START&#39;</span><span class="p">,</span> <span class="s1">&#39;coronary_heart&#39;</span><span class="p">:</span><span class="s1">&#39;53741008||START&#39;</span><span class="p">})</span>
-
-<span class="n">LABELS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;diabetes&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;alzheimers&#39;</span><span class="p">,</span> <span class="s1">&#39;coronaryheart&#39;</span><span class="p">]</span>
-
-<span class="n">LOG_NUMERICALIZE_EXCEP</span> <span class="o">=</span> <span class="kc">True</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>These are global variables used (in this initial release of the library) for convenience in other places; this will be cleaned up in future releases.</li>
-<li>The only things that need changing here are the <a href="/lemonade/setup#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a>.<ul>
-<li>Please update them based on when you generate a particular dataset.</li>
-<li>These dates are important to calculate patient age.</li>
+<p>Set up Synthea so you can generate different types of synthetic EHR data per your need.<br>
+<a href="https://github.com/synthetichealth/synthea/wiki">Synthea - Wiki</a> has details about the project and how to get started and generate the data.<br></p>
+<p>Here are condensed instructions for <a href="https://github.com/synthetichealth/synthea/wiki/Basic-Setup-and-Running">basic setup of Synthea</a> for getting you up and running quickly. They also have an option for a developer setup, instructions for which are on the same webpage.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Download-Synthea">Download Synthea<a class="anchor-link" href="#Download-Synthea"> </a></h3><ul>
+<li>Download the binary to a local directory<ul>
+<li>Don't run it yet</li>
 </ul>
 </li>
-<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> and <a href="/lemonade/setup#LABELS"><code>LABELS</code></a> go hand-in-hand<ul>
-<li>These are the labels we are trying to predict with the deep learning models.</li>
-<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> is how they appear in the preprocessed dataset.</li>
-<li><a href="/lemonade/setup#LABELS"><code>LABELS</code></a> is a convenient list used everywhere for display &amp; ploting purposes (again will be cleaned up in future).</li>
+<li>Create a file in the same directory called <code>synthea.properties</code> and add the following lines into it and save it
+<pre><code>exporter.years_of_history = 0
+exporter.fhir.export = false
+exporter.fhir.transaction_bundle = false
+exporter.hospital.fhir.export = false
+exporter.practitioner.fhir.export = false
+exporter.csv.export = true</code></pre>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Generate-Data">Generate Data<a class="anchor-link" href="#Generate-Data"> </a></h3><ul>
+<li>Once Synthea is set up, the following script will generate the data. </li>
+<li>Its important to record the run dates (data generation dates each time you generate a new dataset with Synthea) as mentioned above, we will need this during preprocessing.<ul>
+<li>Basic setup run command is: <code>java -jar synthea-with-dependencies.jar</code> </li>
+<li>Developer setup run command is: <code>./run_synthea</code> </li>
+</ul>
+</li>
+<li>Run with the <code>-p</code> switch to control population of patients generated as shown in examples below. </li>
+</ul>
+<p><strong>For example to generate 10,000 patients ..</strong></p>
+<p><code>java -jar synthea-with-dependencies.jar -c synthea.properties -s 12345 -p 10000</code></p>
+<ul>
+<li>run date: 03/16/2021</li>
+<li>Records: total=11833, alive=10000, dead=1833</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Copy-Into-DataStore">Copy Into DataStore<a class="anchor-link" href="#Copy-Into-DataStore"> </a></h3><ul>
+<li>Synthea will save the generated dataset into the <code>output</code> directory in the same location (for basic setup).</li>
+<li>Copy the <code>csv</code> directory to the location pointed to by the <code>DATASTORE</code> global variable<ul>
+<li>for example <code>~/.lemonade/datasets</code></li>
+</ul>
+</li>
+<li>Rename the <code>csv</code> directory to <code>raw_original</code>, make sure the directory structure looks like this ..<ul>
+<li>for 10K data - <code>~/.lemonade/dataset/synthea/10K/raw_original</code></li>
+<li><strong>Note</strong> - Synthea outputs all csv files in a folder called <code>csv</code>; after copying into the datastore, the csv files must be in the <code>raw_original</code> folder, where this library expects it for preprocessing.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Update-settings.yaml">Update <a href="/lemonade/setup#settings.yaml"><code>settings.yaml</code></a><a class="anchor-link" href="#Update-settings.yaml"> </a></h3><ul>
+<li>Go to your lemonade settings file and add an entry (or update the entry) for the dataset you just generated</li>
+<li>For example for 10K data<ul>
+<li>Under <a href="/lemonade/setup#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a> create the following</li>
+<li><code>'10K': '12-19-2019'</code></li>
 </ul>
 </li>
 </ul>
