@@ -2,6 +2,7 @@
 
 title: Transform
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -796,7 +797,7 @@ Name: 18794a7c-c7fa-47d6-8387-9fc133c4e1e3, dtype: object</pre>
 <li><strong>Filter out for this patient</strong> <ul>
 <li><code>rec_dfs[[ptid]]</code> + <code>demographics[[ptid]]</code></li>
 <li><del>df already filtered by cutoff age</del></li>
-<li>This is being done in <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
+<li>This is being done in <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
 </ul>
 </li>
 <li>Use double <code>[[ptid]]</code> so that - even when single values are returned, we get a df</li>
@@ -937,6 +938,31 @@ Wall time: 17.8 ms
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="collate_codes_offsts" class="doc_header"><code>collate_codes_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>collate_codes_offsts</code>(<strong><code>rec_df</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>)</p>
+</blockquote>
+<p>Return a single patient's EmbeddingBag lookup codes and offsets for the given age span and age units</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -965,31 +991,6 @@ Wall time: 17.8 ms
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="collate_codes_offsts" class="doc_header"><code>collate_codes_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>collate_codes_offsts</code>(<strong><code>rec_df</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>)</p>
-</blockquote>
-<p>Return a single patient's EmbeddingBag lookup codes and offsets for the given age span and age units</p>
-
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -1555,13 +1556,6 @@ Wall time: 26.8 ms
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -1611,6 +1605,13 @@ Wall time: 26.8 ms
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -2905,7 +2906,7 @@ Wall time: 86.3 ms
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Based on the concept of <code>ItemList</code> as used in fastai v1.x, which is a list of <code>ItemBase</code> objects</li>
-<li>In our case <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> objects</li>
+<li>In our case <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</li>
 </ul>
 
 </div>
@@ -2935,6 +2936,31 @@ Wall time: 86.3 ms
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+</blockquote>
+<p>Util function to construct pickle dir name - for persisting transformed <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -2949,31 +2975,6 @@ Wall time: 86.3 ms
 </pre></div>
 
     </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
-</blockquote>
-<p>Util function to construct pickle dir name - for persisting transformed <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>s</p>
-
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -3000,7 +3001,7 @@ Wall time: 86.3 ms
 <div class="output_markdown rendered_html output_subarea ">
 <h3 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L187" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>A class to hold a list of <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> objects</p>
+<p>A class to hold a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</p>
 
 </div>
 
@@ -3025,7 +3026,7 @@ Wall time: 86.3 ms
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="PatientList.create_save" class="doc_header"><code>PatientList.create_save</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L239" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.create_save</code>(<strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
-<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a> object</p>
+<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
 
 </div>
 
@@ -3075,7 +3076,7 @@ Wall time: 86.3 ms
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="PatientList.load" class="doc_header"><code>PatientList.load</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L258" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.load</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>Load previously created <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a> object</p>
+<p>Load previously created <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
 
 </div>
 
@@ -3181,13 +3182,6 @@ Wall time: 6.24 s
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -3197,7 +3191,7 @@ Wall time: 6.24 s
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L271" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Create and save <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
+<p>Create and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
 
 </div>
 
@@ -3205,6 +3199,13 @@ Wall time: 6.24 s
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -3500,13 +3501,6 @@ ptid:0b6a83ae-fcb1-4b75-9ffa-d52898167d66, birthdate:1989-08-05, diabetes:False,
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -3524,6 +3518,13 @@ ptid:0b6a83ae-fcb1-4b75-9ffa-d52898167d66, birthdate:1989-08-05, diabetes:False,
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
