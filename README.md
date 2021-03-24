@@ -13,24 +13,31 @@ The end goal is to
 - and have a leaderboard to track which models and configurations work best on these datasets
 
 ## Install
-An installable library coming soon, for now refer to next section on how to use.
 
-## How to use
+With pip
+- `pip install lemonade`
 
-For now, git clone the repo and run the notebooks .. 
+With conda
+- `conda install lemonade`
 
+Or
 1. Git clone the repo
     - `https://github.com/corazonlabs/lemonade.git`
 2. Create a new conda env using the `environment.yml` file
     - `cd lemonade`
     - `conda env create --name lemonade --file environment.yml`
-3. Read through and then run the following **Quick Start** guides to get a general idea
-    - [Quick Walkthrough](https://corazonlabs.github.io/lemonade/quick_walkthru) - notebook to run - `99_running_exps.ipynb`
-    - [Running Experiments](https://corazonlabs.github.io/lemonade/running_exps) - notebook - `99_quick_walkthru.ipynb`
-4. Setup Synthea
-    - Refer to [condensed instructions](https://corazonlabs.github.io/lemonade/setup#Setup-Synthea)
+
+## How to use
+
+1. Read through and then run the following **Quick Start** guides to get a general idea. 
+    - if using the cloned repo, run the noteboooks listed
+    - if using installed lib, just open a jupyter notebook and copy, paste & run cell by cell from the guides
+    - [Quick Walkthrough](./quick_walkthru.html) - notebook - `99_running_exps.ipynb`
+    - [Running Experiments](./running_exps.html) - notebook - `99_quick_walkthru.ipynb`
+2. Setup Synthea
+    - Refer to [condensed instructions](./setup.html#Setup-Synthea)
     - Generate different datasets you like - e.g. 1K, 5K, 10K
-5. Run experiments
+3. Run experiments
     - Refer to **Detailed Docs** for customizations
 
 ## Roadmap
@@ -59,6 +66,8 @@ For now, git clone the repo and run the notebooks ..
     - Workaround - depending upon your GPU capacity, you can load the entire dataset on GPU pre-training with a single switch
         - If running manually set `lazy_load_gpu=False` when creating the data object with `EHRData(.... )`
         - If running through an Experiment config file, set it in the `experiment.yaml` file
+2. Test coverage
+    - Need to write more tests for more comprehensive coverage
 
 ## References
 

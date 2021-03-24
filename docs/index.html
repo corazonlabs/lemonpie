@@ -55,7 +55,32 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install">Install<a class="anchor-link" href="#Install"> </a></h2><p>An installable library coming soon, for now refer to next section on how to use.</p>
+<h2 id="Install">Install<a class="anchor-link" href="#Install"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With pip</p>
+<ul>
+<li><code>pip install lemonade</code></li>
+</ul>
+<p>With conda</p>
+<ul>
+<li><code>conda install lemonade</code></li>
+</ul>
+<p>Or</p>
+<ol>
+<li>Git clone the repo<ul>
+<li><code>https://github.com/corazonlabs/lemonade.git</code></li>
+</ul>
+</li>
+<li>Create a new conda env using the <code>environment.yml</code> file<ul>
+<li><code>cd lemonade</code></li>
+<li><code>conda env create --name lemonade --file environment.yml</code></li>
+</ul>
+</li>
+</ol>
 
 </div>
 </div>
@@ -68,24 +93,16 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For now, git clone the repo and run the notebooks ..</p>
 <ol>
-<li>Git clone the repo<ul>
-<li><code>https://github.com/corazonlabs/lemonade.git</code></li>
-</ul>
-</li>
-<li>Create a new conda env using the <code>environment.yml</code> file<ul>
-<li><code>cd lemonade</code></li>
-<li><code>conda env create --name lemonade --file environment.yml</code></li>
-</ul>
-</li>
-<li>Read through and then run the following <strong>Quick Start</strong> guides to get a general idea<ul>
-<li><a href="https://corazonlabs.github.io/lemonade/quick_walkthru">Quick Walkthrough</a> - notebook to run - <code>99_running_exps.ipynb</code></li>
-<li><a href="https://corazonlabs.github.io/lemonade/running_exps">Running Experiments</a> - notebook - <code>99_quick_walkthru.ipynb</code></li>
+<li>Read through and then run the following <strong>Quick Start</strong> guides to get a general idea. <ul>
+<li>if using the cloned repo, run the noteboooks listed</li>
+<li>if using installed lib, just open a jupyter notebook and copy, paste &amp; run cell by cell from the guides</li>
+<li><a href="./quick_walkthru.html">Quick Walkthrough</a> - notebook - <code>99_running_exps.ipynb</code></li>
+<li><a href="./running_exps.html">Running Experiments</a> - notebook - <code>99_quick_walkthru.ipynb</code></li>
 </ul>
 </li>
 <li>Setup Synthea<ul>
-<li>Refer to <a href="https://corazonlabs.github.io/lemonade/setup#Setup-Synthea">condensed instructions</a></li>
+<li>Refer to <a href="./setup.html#Setup-Synthea">condensed instructions</a></li>
 <li>Generate different datasets you like - e.g. 1K, 5K, 10K</li>
 </ul>
 </li>
@@ -150,6 +167,10 @@ nb_path: "index.ipynb"
 <li>If running through an Experiment config file, set it in the <code>experiment.yaml</code> file</li>
 </ul>
 </li>
+</ul>
+</li>
+<li>Test coverage<ul>
+<li>Need to write more tests for more comprehensive coverage</li>
 </ul>
 </li>
 </ol>

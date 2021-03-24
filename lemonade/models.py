@@ -121,10 +121,10 @@ class EHR_LSTM(nn.Module):
 
         bs   = len(x)
         bptt = len(x[0].obs_offsts)
-        h    = torch.zeros(self.lstm_layers,bs,self.nh).cuda()
+        h    = torch.zeros(self.lstm_layers,bs,self.nh, device=DEVICE)
 
-        ptbatch_recs   = torch.empty(bs,bptt,self.rec_wd).cuda()
-        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1).cuda()
+        ptbatch_recs   = torch.empty(bs,bptt,self.rec_wd, device=DEVICE)
+        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1, device=DEVICE)
         ptbatch_recs, ptbatch_demogs = self.get_embs(ptbatch_recs, ptbatch_demogs, x)
 
         ptbatch_recs = self.input_dp(ptbatch_recs)                                     #apply input dropout
