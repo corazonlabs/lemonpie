@@ -14,13 +14,7 @@ The end goal is to
 
 ## Install
 
-With pip
-- `pip install lemonade`
-
-With conda
-- `conda install lemonade`
-
-Or
+Installable lib coming soon, for now ..
 1. Git clone the repo
     - `https://github.com/corazonlabs/lemonade.git`
 2. Create a new conda env using the `environment.yml` file
