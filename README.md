@@ -13,18 +13,26 @@ The end goal is to
 - and have a leaderboard to track which models and configurations work best on these datasets
 
 ## Install
-Installable lib coming soon
+
+Installable lib coming soon, for now ..
+1. Git clone the repo
+    - `https://github.com/corazonlabs/lemonade.git`
+2. Create a new conda env using the `environment.yml` file
+    - `cd lemonade`
+    - `conda env create --name lemonade --file environment.yml`
 
 ## How to use
 
-For now, git clone the repo and run the notebooks .. 
-
-1. Run through the following `Quick Start guides` to get a general idea
-    - `Quick Walkthrough`
-    - `Running Experiments`
+1. Read through and then run the following **Quick Start** guides to get a general idea. 
+    - if using the cloned repo, run the noteboooks listed
+    - if using installed lib, just open a jupyter notebook and copy, paste & run cell by cell from the guides
+    - [Quick Walkthrough](./quick_walkthru.html) - notebook - `99_running_exps.ipynb`
+    - [Running Experiments](./running_exps.html) - notebook - `99_quick_walkthru.ipynb`
 2. Setup Synthea
-    - And generate the dataset you like
+    - Refer to [condensed instructions](./setup.html#Setup-Synthea)
+    - Generate different datasets you like - e.g. 1K, 5K, 10K
 3. Run experiments
+    - Refer to **Detailed Docs** for customizations
 
 ## Roadmap
 - **A leader-board to track which models and configurations work best on different publicly available datasets**.
@@ -48,6 +56,13 @@ For now, git clone the repo and run the notebooks ..
 
 ## Known Issues & Limitations
 
+1. `num_workers > 0` not working yet, under investigation
+    - Workaround - depending upon your GPU capacity, you can load the entire dataset on GPU pre-training with a single switch
+        - If running manually set `lazy_load_gpu=False` when creating the data object with `EHRData(.... )`
+        - If running through an Experiment config file, set it in the `experiment.yaml` file
+2. Test coverage
+    - Need to write more tests for more comprehensive coverage
+
 ## References
 
 Synthea [Synthetic Patient Population Simulator](https://github.com/synthetichealth/synthea)
@@ -58,6 +73,6 @@ LSTM Model *based on* this paper - [Scalable and accurate deep learning for elec
 
 > Rajkomar, A., Oren, E., Chen, K. et al. Scalable and accurate deep learning with electronic health records. npj Digital Med 1, 18 (2018). https://doi.org/10.1038/s41746-018-0029-1
 
-CNN Model based on this paper - [Deepr: A Convolutional Net for Medical Records](http://arxiv.org/abs/1607.07519)
+CNN Model *based* on this paper - [Deepr: A Convolutional Net for Medical Records](http://arxiv.org/abs/1607.07519)
 
 > Nguyen, P., Tran, T., Wickramasinghe, N., & Venkatesh, S. (2017). $\mathtt {Deepr}$:A Convolutional Net for Medical Records. IEEE Journal of Biomedical and Health Informatics, 21, 22-30.

@@ -2,6 +2,7 @@
 
 title: lemonade
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -54,7 +55,24 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install">Install<a class="anchor-link" href="#Install"> </a></h2><p>Installable lib coming soon</p>
+<h2 id="Install">Install<a class="anchor-link" href="#Install"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Installable lib coming soon, for now ..</p>
+<ol>
+<li>Git clone the repo<ul>
+<li><code>https://github.com/corazonlabs/lemonade.git</code></li>
+</ul>
+</li>
+<li>Create a new conda env using the <code>environment.yml</code> file<ul>
+<li><code>cd lemonade</code></li>
+<li><code>conda env create --name lemonade --file environment.yml</code></li>
+</ul>
+</li>
+</ol>
 
 </div>
 </div>
@@ -67,18 +85,23 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For now, git clone the repo and run the notebooks ..</p>
 <ol>
-<li>Run through the following <code>Quick Start guides</code> to get a general idea<ul>
-<li><code>Quick Walkthrough</code></li>
-<li><code>Running Experiments</code></li>
+<li>Read through and then run the following <strong>Quick Start</strong> guides to get a general idea. <ul>
+<li>if using the cloned repo, run the noteboooks listed</li>
+<li>if using installed lib, just open a jupyter notebook and copy, paste &amp; run cell by cell from the guides</li>
+<li><a href="./quick_walkthru.html">Quick Walkthrough</a> - notebook - <code>99_running_exps.ipynb</code></li>
+<li><a href="./running_exps.html">Running Experiments</a> - notebook - <code>99_quick_walkthru.ipynb</code></li>
 </ul>
 </li>
 <li>Setup Synthea<ul>
-<li>And generate the dataset you like</li>
+<li>Refer to <a href="./setup.html#Setup-Synthea">condensed instructions</a></li>
+<li>Generate different datasets you like - e.g. 1K, 5K, 10K</li>
 </ul>
 </li>
-<li>Run experiments</li>
+<li>Run experiments<ul>
+<li>Refer to <strong>Detailed Docs</strong> for customizations</li>
+</ul>
+</li>
 </ol>
 
 </div>
@@ -129,6 +152,26 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li><code>num_workers &gt; 0</code> not working yet, under investigation<ul>
+<li>Workaround - depending upon your GPU capacity, you can load the entire dataset on GPU pre-training with a single switch<ul>
+<li>If running manually set <code>lazy_load_gpu=False</code> when creating the data object with <code>EHRData(.... )</code></li>
+<li>If running through an Experiment config file, set it in the <code>experiment.yaml</code> file</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Test coverage<ul>
+<li>Need to write more tests for more comprehensive coverage</li>
+</ul>
+</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="References">References<a class="anchor-link" href="#References"> </a></h2>
 </div>
 </div>
@@ -165,7 +208,7 @@ nb_path: "index.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>CNN Model based on this paper - <a href="http://arxiv.org/abs/1607.07519">Deepr: A Convolutional Net for Medical Records</a></p>
+<p>CNN Model <em>based</em> on this paper - <a href="http://arxiv.org/abs/1607.07519">Deepr: A Convolutional Net for Medical Records</a></p>
 
 </div>
 </div>

@@ -2,6 +2,7 @@
 
 title: Setup
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -56,6 +57,31 @@ nb_path: "00_setup.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
+</blockquote>
+<p>Checks to see if GPU is available and sets device to GPU or CPU</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
@@ -79,31 +105,6 @@ nb_path: "00_setup.ipynb"
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/setup.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
-</blockquote>
-<p>Checks to see if GPU is available and sets device to GPU or CPU</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Settings-File">Settings File<a class="anchor-link" href="#Settings-File"> </a></h2>
@@ -112,18 +113,11 @@ nb_path: "00_setup.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A YAML file called <a href="/lemonade/setup#settings.yaml"><code>settings.yaml</code></a> is created (from a template) the first time the library is used.</p>
+<p>A YAML file called <a href="/lemonade/setup.html#settings.yaml"><code>settings.yaml</code></a> is created (from a template) the first time the library is used.</p>
 
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -145,6 +139,13 @@ nb_path: "00_setup.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -190,20 +191,6 @@ nb_path: "00_setup.ipynb"
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>No settings file found, so creating from template ..
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -211,10 +198,10 @@ nb_path: "00_setup.ipynb"
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>These are global variables used (in this initial release of the library) for convenience in other places; this will be cleaned up in future releases.</li>
-<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> and <a href="/lemonade/setup#LABELS"><code>LABELS</code></a> go hand-in-hand<ul>
+<li><a href="/lemonade/setup.html#CONDITIONS"><code>CONDITIONS</code></a> and <a href="/lemonade/setup.html#LABELS"><code>LABELS</code></a> go hand-in-hand<ul>
 <li>These are the labels we are trying to predict with the deep learning models.</li>
-<li><a href="/lemonade/setup#CONDITIONS"><code>CONDITIONS</code></a> is how they appear in the preprocessed dataset.</li>
-<li><a href="/lemonade/setup#LABELS"><code>LABELS</code></a> is a convenient list used everywhere for display &amp; plotting purposes (again will be cleaned up in future).</li>
+<li><a href="/lemonade/setup.html#CONDITIONS"><code>CONDITIONS</code></a> is how they appear in the preprocessed dataset.</li>
+<li><a href="/lemonade/setup.html#LABELS"><code>LABELS</code></a> is a convenient list used everywhere for display &amp; plotting purposes (again will be cleaned up in future).</li>
 </ul>
 </li>
 </ul>
@@ -225,7 +212,7 @@ nb_path: "00_setup.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Change-SYNTHEA_DATAGEN_DATES">Change <a href="/lemonade/setup#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a><a class="anchor-link" href="#Change-SYNTHEA_DATAGEN_DATES"> </a></h3>
+<h3 id="Change-SYNTHEA_DATAGEN_DATES">Change <a href="/lemonade/setup.html#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a><a class="anchor-link" href="#Change-SYNTHEA_DATAGEN_DATES"> </a></h3>
 </div>
 </div>
 </div>
@@ -251,10 +238,10 @@ nb_path: "00_setup.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;1K&#39;: &#39;03-15-2021&#39;,
+<pre>{&#39;100K&#39;: &#39;4-4-2020&#39;,
  &#39;10K&#39;: &#39;03-16-2021&#39;,
+ &#39;1K&#39;: &#39;03-15-2021&#39;,
  &#39;20K&#39;: &#39;11-5-2020&#39;,
- &#39;100K&#39;: &#39;4-4-2020&#39;,
  &#39;250K&#39;: &#39;11-16-2018&#39;}</pre>
 </div>
 
@@ -355,7 +342,7 @@ nb_path: "00_setup.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Download-Synthea">Download Synthea<a class="anchor-link" href="#Download-Synthea"> </a></h3><ul>
-<li>Download the binary to a local directory<ul>
+<li>Download the binary (from the basic setup link above) to a local directory<ul>
 <li>Don't run it yet</li>
 </ul>
 </li>
@@ -413,10 +400,10 @@ exporter.csv.export = true</code></pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Update-settings.yaml">Update <a href="/lemonade/setup#settings.yaml"><code>settings.yaml</code></a><a class="anchor-link" href="#Update-settings.yaml"> </a></h3><ul>
-<li>Go to your lemonade settings file and add an entry (or update the entry) for the dataset you just generated</li>
+<h3 id="Update-settings.yaml">Update <a href="/lemonade/setup.html#settings.yaml"><code>settings.yaml</code></a><a class="anchor-link" href="#Update-settings.yaml"> </a></h3><ul>
+<li>Go to your lemonade settings file (~/.lemonade/settings.yaml) and add an entry (or update the entry) for the dataset you just generated</li>
 <li>For example for 10K data<ul>
-<li>Under <a href="/lemonade/setup#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a> create the following</li>
+<li>Under <a href="/lemonade/setup.html#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a> create the following</li>
 <li><code>'10K': '12-19-2019'</code></li>
 </ul>
 </li>
