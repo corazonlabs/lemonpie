@@ -2,6 +2,7 @@
 
 title: Models
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -31,6 +32,23 @@ nb_path: "07_models.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -43,7 +61,7 @@ nb_path: "07_models.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is the <code>RNNDropout</code> from fast.ai renamed as <a href="/lemonade/models#InputDropout"><code>InputDropout</code></a></p>
+<p>This is the <code>RNNDropout</code> from fast.ai renamed as <a href="/lemonade/models.html#InputDropout"><code>InputDropout</code></a></p>
 <ul>
 <li><a href="https://docs.fast.ai/text.models.awdlstm.html">docs</a> </li>
 <li><a href="https://github.com/fastai/fastai/blob/master/fastai/text/models/awdlstm.py">source</a></li>
@@ -52,13 +70,6 @@ nb_path: "07_models.ipynb"
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -105,6 +116,13 @@ nb_path: "07_models.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -317,13 +335,6 @@ nb_path: "07_models.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -366,6 +377,13 @@ nb_path: "07_models.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -440,7 +458,7 @@ nb_path: "07_models.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="EHR_LSTM"><a href="/lemonade/models#EHR_LSTM"><code>EHR_LSTM</code></a><a class="anchor-link" href="#EHR_LSTM"> </a></h2>
+<h2 id="EHR_LSTM"><a href="/lemonade/models.html#EHR_LSTM"><code>EHR_LSTM</code></a><a class="anchor-link" href="#EHR_LSTM"> </a></h2>
 </div>
 </div>
 </div>
@@ -452,13 +470,6 @@ nb_path: "07_models.ipynb"
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -502,7 +513,7 @@ nb_path: "07_models.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EHR_LSTM" class="doc_header"><code>class</code> <code>EHR_LSTM</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EHR_LSTM</code>(<strong><code>demograph_dims</code></strong>, <strong><code>rec_dims</code></strong>, <strong><code>demograph_wd</code></strong>, <strong><code>rec_wd</code></strong>, <strong><code>lstm_layers</code></strong>=<em><code>4</code></em>, <strong><code>linear_layers</code></strong>=<em><code>4</code></em>, <strong><code>initrange</code></strong>=<em><code>0.3</code></em>, <strong><code>bn</code></strong>=<em><code>False</code></em>, <strong><code>input_drp</code></strong>=<em><code>0.3</code></em>, <strong><code>lstm_drp</code></strong>=<em><code>0.3</code></em>, <strong><code>linear_drp</code></strong>=<em><code>0.3</code></em>, <strong><code>zero_bn</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
+<h2 id="EHR_LSTM" class="doc_header"><code>class</code> <code>EHR_LSTM</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/models.py#L66" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EHR_LSTM</code>(<strong><code>demograph_dims</code></strong>, <strong><code>rec_dims</code></strong>, <strong><code>demograph_wd</code></strong>, <strong><code>rec_wd</code></strong>, <strong><code>lstm_layers</code></strong>=<em><code>4</code></em>, <strong><code>linear_layers</code></strong>=<em><code>4</code></em>, <strong><code>initrange</code></strong>=<em><code>0.3</code></em>, <strong><code>bn</code></strong>=<em><code>False</code></em>, <strong><code>input_drp</code></strong>=<em><code>0.3</code></em>, <strong><code>lstm_drp</code></strong>=<em><code>0.3</code></em>, <strong><code>linear_drp</code></strong>=<em><code>0.3</code></em>, <strong><code>zero_bn</code></strong>=<em><code>False</code></em>) :: <code>Module</code></p>
 </blockquote>
 <p>Based on LSTM described in this paper - <a href="https://arxiv.org/abs/1801.07860">https://arxiv.org/abs/1801.07860</a></p>
 
@@ -512,6 +523,13 @@ nb_path: "07_models.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -1595,7 +1613,7 @@ coronaryheart     0.807224           0.599448  (0.674, 0.916)
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="EHR_CNN"><a href="/lemonade/models#EHR_CNN"><code>EHR_CNN</code></a><a class="anchor-link" href="#EHR_CNN"> </a></h2>
+<h2 id="EHR_CNN"><a href="/lemonade/models.html#EHR_CNN"><code>EHR_CNN</code></a><a class="anchor-link" href="#EHR_CNN"> </a></h2>
 </div>
 </div>
 </div>
@@ -1881,13 +1899,6 @@ coronaryheart     0.807224           0.599448  (0.674, 0.916)
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -1934,6 +1945,13 @@ coronaryheart     0.807224           0.599448  (0.674, 0.916)
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Based on perf tuning recommendation..</p>
@@ -1944,13 +1962,6 @@ coronaryheart     0.807224           0.599448  (0.674, 0.916)
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -1972,6 +1983,13 @@ coronaryheart     0.807224           0.599448  (0.674, 0.916)
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}

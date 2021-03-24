@@ -2,6 +2,7 @@
 
 title: Data
 
+
 keywords: fastai
 sidebar: home_sidebar
 
@@ -24,6 +25,23 @@ nb_path: "04_data.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -96,7 +114,7 @@ nb_path: "04_data.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="EHRDataSplits._load_splits" class="doc_header"><code>EHRDataSplits._load_splits</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/data.py#L17" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EHRDataSplits._load_splits</code>(<strong><code>path</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>Load splits of preprocessed <a href="/lemonade/preprocessing_transform#PatientList"><code>PatientList</code></a>s from persistent store using path</p>
+<p>Load splits of preprocessed <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s from persistent store using path</p>
 
 </div>
 
@@ -693,7 +711,7 @@ nb_path: "04_data.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Labeling</strong> definition in fastai -- some processes need to be run on <a href="/lemonade/learn#train"><code>train</code></a> and <strong>applied</strong> to <code>valid</code></p>
+<p><strong>Labeling</strong> definition in fastai -- some processes need to be run on <a href="/lemonade/learn.html#train"><code>train</code></a> and <strong>applied</strong> to <code>valid</code></p>
 <p>This is completed in preprocessing (vocab &amp; transform) as follows</p>
 <ol>
 <li>Vocabs created from train data<ul>
@@ -732,7 +750,7 @@ nb_path: "04_data.ipynb"
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>So <strong>creating the <code>y</code> tensor</strong> is simply a matter of ..</p>
 <ol>
-<li>extracting the values of each of the 4 labels from each <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> object </li>
+<li>extracting the values of each of the 4 labels from each <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> object </li>
 <li>turning it into a <code>torch.FloatTensor</code></li>
 <li>and stacking them up using <code>torch.stack</code></li>
 </ol>
@@ -1124,7 +1142,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="EHRDataset" class="doc_header"><code>class</code> <code>EHRDataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/data.py#L71" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EHRDataset</code>(<strong>*<code>args</code></strong>, <strong>**<code>kwds</code></strong>) :: <code>Dataset</code></p>
+<h3 id="EHRDataset" class="doc_header"><code>class</code> <code>EHRDataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/data.py#L71" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EHRDataset</code>(<strong><code>x_labeled</code></strong>, <strong><code>y_labeled</code></strong>, <strong><code>lazy_load_gpu</code></strong>=<em><code>True</code></em>) :: <code>Dataset</code></p>
 </blockquote>
 <p>Class to hold a single EHR dataset (holds a tuple of x and y) -- handles lazy vs full loading of dataset on GPU</p>
 
@@ -1190,7 +1208,7 @@ nb_path: "04_data.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> is a custom object and not a typical tensor, we need to handle the behavior for <code>Dataset</code>, <code>DataLoader</code>, etc to function correctly.</p>
+<p>Since <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> is a custom object and not a typical tensor, we need to handle the behavior for <code>Dataset</code>, <code>DataLoader</code>, etc to function correctly.</p>
 <ul>
 <li>Memory pinning is a good idea for better performance if lazy loading to GPU<ul>
 <li><a href="https://discuss.pytorch.org/t/pin-memory-vs-sending-direct-to-gpu-from-dataset/33891">A discussion - pin memory vs full load to GPU</a></li>
@@ -1200,11 +1218,11 @@ nb_path: "04_data.ipynb"
 <li><a href="https://stackoverflow.com/questions/5736968/why-is-cuda-pinned-memory-so-fast">A good explanation</a></li>
 </ul>
 </li>
-<li>But on custom data type like our <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a> object, we need to define the behavior<ul>
+<li>But on custom data type like our <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> object, we need to define the behavior<ul>
 <li><a href="https://pytorch.org/docs/stable/data.html#memory-pinning">Pytorch docs</a></li>
 </ul>
 </li>
-<li>Making a <a href="https://docs.python.org/3/library/copy.html">deep copy</a> of the <a href="/lemonade/preprocessing_transform#Patient"><code>Patient</code></a>object to mimick tensor behavior<ul>
+<li>Making a <a href="https://docs.python.org/3/library/copy.html">deep copy</a> of the <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a>object to mimick tensor behavior<ul>
 <li>Otherwise, given the Patient holds it's changed tensors, all tensors are CUDA tensors after the first epoch and DL tries to pin memory again and this causes an error (TODO: Need to elaborate)</li>
 </ul>
 </li>
@@ -2126,13 +2144,6 @@ nb_path: "04_data.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -2150,6 +2161,13 @@ nb_path: "04_data.ipynb"
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -2217,7 +2235,7 @@ nb_path: "04_data.ipynb"
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="EHRData.create_datasets" class="doc_header"><code>EHRData.create_datasets</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/data.py#L109" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EHRData.create_datasets</code>()</p>
 </blockquote>
-<p>Create <a href="/lemonade/data#EHRDataset"><code>EHRDataset</code></a>s</p>
+<p>Create <a href="/lemonade/data.html#EHRDataset"><code>EHRDataset</code></a>s</p>
 
 </div>
 
@@ -2265,7 +2283,7 @@ nb_path: "04_data.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EHRData.create_dls" class="doc_header"><code>EHRData.create_dls</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/data.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EHRData.create_dls</code>(<strong><code>bs</code></strong>, <strong><code>lazy</code></strong>, <strong><code>c_fn</code></strong>=<em><code>'ehr_collate'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="EHRData.create_dls" class="doc_header"><code>EHRData.create_dls</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/data.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EHRData.create_dls</code>(<strong><code>bs</code></strong>, <strong><code>lazy</code></strong>, <strong><code>c_fn</code></strong>=<em><code>ehr_collate</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>Create <code>DataLoader</code>s</p>
 
