@@ -73,6 +73,72 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">DATA_STORE</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;/home/vinod/.lemonpie/datasets&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">PATH_1K</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;/home/vinod/.lemonpie/datasets/synthea/1K&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">PATH_1K</span><span class="si">}</span><span class="s1">/raw_original&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -97,6 +163,7 @@ nb_path: "01_preprocessing_clean.ipynb"
  &#39;devices.csv&#39;,
  &#39;organizations.csv&#39;,
  &#39;imaging_studies.csv&#39;,
+ &#39;.~lock.conditions.csv#&#39;,
  &#39;procedures.csv&#39;,
  &#39;payer_transitions.csv&#39;,
  &#39;supplies.csv&#39;,
@@ -125,7 +192,7 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="read_raw_ehrdata" class="doc_header"><code>read_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>csv_names</code></strong>=<em><code>['patients', 'observations', 'allergies', 'careplans', 'medications', 'imaging_studies', 'procedures', 'conditions', 'immunizations']</code></em>)</p>
+<h4 id="read_raw_ehrdata" class="doc_header"><code>read_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>csv_names</code></strong>=<em><code>['patients', 'observations', 'allergies', 'careplans', 'medications', 'imaging_studies', 'procedures', 'conditions', 'immunizations']</code></em>)</p>
 </blockquote>
 <p>Read raw EHR data</p>
 
@@ -191,7 +258,7 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="split_patients" class="doc_header"><code>split_patients</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_patients</code>(<strong><code>patients</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
+<h4 id="split_patients" class="doc_header"><code>split_patients</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L19" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_patients</code>(<strong><code>patients</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
 </blockquote>
 <p>Split the patients dataframe</p>
 
@@ -304,7 +371,7 @@ nb_path: "01_preprocessing_clean.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="split_ehr_dataset" class="doc_header"><code>split_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L27" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
+<h4 id="split_ehr_dataset" class="doc_header"><code>split_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L27" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>split_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>random_state</code></strong>=<em><code>1234</code></em>)</p>
 </blockquote>
 <p>Split EHR dataset into train, valid, test and save</p>
 
@@ -347,9 +414,9 @@ nb_path: "01_preprocessing_clean.ipynb"
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Splits:: train: 0.6, valid: 0.2, test: 0.2
 Split patients into:: Train: 702, Valid: 234, Test: 235 -- Total before split: 1171
-Saved train data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/train
-Saved valid data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/valid
-Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
+Saved train data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/train
+Saved valid data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/valid
+Saved test data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/test
 </pre>
 </div>
 </div>
@@ -377,7 +444,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_pts" class="doc_header"><code>cleanup_pts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_pts</code>(<strong><code>pts</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="cleanup_pts" class="doc_header"><code>cleanup_pts</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L72" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_pts</code>(<strong><code>pts</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Clean patients df</p>
 
@@ -761,7 +828,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Chicopee</td>
       <td>Massachusetts</td>
       <td>1013</td>
-      <td>10767</td>
+      <td>11617</td>
     </tr>
     <tr>
       <th>034e9e3b-2def-4559-bb2a-7850888ae060</th>
@@ -774,7 +841,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Somerville</td>
       <td>Massachusetts</td>
       <td>2143</td>
-      <td>12786</td>
+      <td>13636</td>
     </tr>
     <tr>
       <th>10339b10-3cd1-4ac3-ac13-ec26728cb592</th>
@@ -787,7 +854,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Chicopee</td>
       <td>Massachusetts</td>
       <td>1020</td>
-      <td>9663</td>
+      <td>10513</td>
     </tr>
     <tr>
       <th>8d4c4326-e9de-4f45-9a4c-f8c36bff89ae</th>
@@ -800,7 +867,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Lowell</td>
       <td>Massachusetts</td>
       <td>1851</td>
-      <td>14783</td>
+      <td>15633</td>
     </tr>
     <tr>
       <th>f5dcd418-09fe-4a2f-baa0-3da800bd8c3a</th>
@@ -813,7 +880,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Boston</td>
       <td>Massachusetts</td>
       <td>2135</td>
-      <td>8064</td>
+      <td>8914</td>
     </tr>
   </tbody>
 </table>
@@ -868,7 +935,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Chicopee</td>
       <td>Massachusetts</td>
       <td>1013</td>
-      <td>10767</td>
+      <td>11617</td>
     </tr>
     <tr>
       <th>1</th>
@@ -881,7 +948,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Somerville</td>
       <td>Massachusetts</td>
       <td>2143</td>
-      <td>12786</td>
+      <td>13636</td>
     </tr>
     <tr>
       <th>2</th>
@@ -894,7 +961,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Chicopee</td>
       <td>Massachusetts</td>
       <td>1020</td>
-      <td>9663</td>
+      <td>10513</td>
     </tr>
     <tr>
       <th>3</th>
@@ -907,7 +974,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Lowell</td>
       <td>Massachusetts</td>
       <td>1851</td>
-      <td>14783</td>
+      <td>15633</td>
     </tr>
     <tr>
       <th>4</th>
@@ -920,7 +987,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
       <td>Boston</td>
       <td>Massachusetts</td>
       <td>2135</td>
-      <td>8064</td>
+      <td>8914</td>
     </tr>
   </tbody>
 </table>
@@ -965,7 +1032,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(10514, 9663)</pre>
+<pre>(10522, 10513)</pre>
 </div>
 
 </div>
@@ -998,7 +1065,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;M&#39;, nan, &#39;S&#39;], dtype=object)</pre>
+<pre>array([&#39;M&#39;, &#39;xxxnan&#39;, &#39;S&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -1020,7 +1087,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_obs" class="doc_header"><code>cleanup_obs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_obs</code>(<strong><code>obs</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_obs" class="doc_header"><code>cleanup_obs</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_obs</code>(<strong><code>obs</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean observations df</p>
 
@@ -1124,14 +1191,14 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>date</th>
-      <th>patient</th>
-      <th>encounter</th>
-      <th>code</th>
-      <th>description</th>
-      <th>value</th>
-      <th>units</th>
-      <th>type</th>
+      <th>DATE</th>
+      <th>PATIENT</th>
+      <th>ENCOUNTER</th>
+      <th>CODE</th>
+      <th>DESCRIPTION</th>
+      <th>VALUE</th>
+      <th>UNITS</th>
+      <th>TYPE</th>
     </tr>
   </thead>
   <tbody>
@@ -1403,7 +1470,7 @@ Saved test data to /home/vinod/.lemonade/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_algs" class="doc_header"><code>cleanup_algs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L112" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_algs</code>(<strong><code>allergies</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_algs" class="doc_header"><code>cleanup_algs</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L112" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_algs</code>(<strong><code>allergies</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean allergies df</p>
 
@@ -1805,7 +1872,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_crpls" class="doc_header"><code>cleanup_crpls</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L135" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_crpls</code>(<strong><code>careplans</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_crpls" class="doc_header"><code>cleanup_crpls</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L135" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_crpls</code>(<strong><code>careplans</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean careplans df</p>
 
@@ -2209,7 +2276,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_meds" class="doc_header"><code>cleanup_meds</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_meds</code>(<strong><code>medications</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_meds" class="doc_header"><code>cleanup_meds</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_meds</code>(<strong><code>medications</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>medications</code> df</p>
 
@@ -2637,7 +2704,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_img" class="doc_header"><code>cleanup_img</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_img</code>(<strong><code>imaging_studies</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_img" class="doc_header"><code>cleanup_img</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_img</code>(<strong><code>imaging_studies</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>imaging</code> df</p>
 
@@ -2697,16 +2764,16 @@ The dataframe looks as follows before cleanup..</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>id</th>
-      <th>date</th>
-      <th>patient</th>
-      <th>encounter</th>
-      <th>bodysite_code</th>
-      <th>bodysite_description</th>
-      <th>modality_code</th>
-      <th>modality_description</th>
-      <th>sop_code</th>
-      <th>sop_description</th>
+      <th>Id</th>
+      <th>DATE</th>
+      <th>PATIENT</th>
+      <th>ENCOUNTER</th>
+      <th>BODYSITE_CODE</th>
+      <th>BODYSITE_DESCRIPTION</th>
+      <th>MODALITY_CODE</th>
+      <th>MODALITY_DESCRIPTION</th>
+      <th>SOP_CODE</th>
+      <th>SOP_DESCRIPTION</th>
     </tr>
   </thead>
   <tbody>
@@ -2943,7 +3010,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_procs" class="doc_header"><code>cleanup_procs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_procs</code>(<strong><code>procedures</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_procs" class="doc_header"><code>cleanup_procs</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_procs</code>(<strong><code>procedures</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>procedures</code> df</p>
 
@@ -3237,7 +3304,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_cnds" class="doc_header"><code>cleanup_cnds</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L207" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_cnds</code>(<strong><code>conditions</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_cnds" class="doc_header"><code>cleanup_cnds</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L207" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_cnds</code>(<strong><code>conditions</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>conditions</code> df</p>
 
@@ -3623,7 +3690,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_immns" class="doc_header"><code>cleanup_immns</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L229" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_immns</code>(<strong><code>immunizations</code></strong>, <strong><code>is_train</code></strong>)</p>
+<h4 id="cleanup_immns" class="doc_header"><code>cleanup_immns</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L229" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_immns</code>(<strong><code>immunizations</code></strong>, <strong><code>is_train</code></strong>)</p>
 </blockquote>
 <p>Clean <code>immunizations</code> df</p>
 
@@ -3911,7 +3978,7 @@ The dataframe looks as follows before cleanup..</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cleanup_dataset" class="doc_header"><code>cleanup_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L242" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_dataset</code>(<strong><code>path</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="cleanup_dataset" class="doc_header"><code>cleanup_dataset</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L242" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cleanup_dataset</code>(<strong><code>path</code></strong>, <strong><code>is_train</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Clean all dfs in a split</p>
 
@@ -4035,7 +4102,7 @@ dtype: int64</pre>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The labels we intend to predict are conditions and must be in the <a href="/lemonade/setup.html#CONDITIONS"><code>CONDITIONS</code></a> dict</p>
+<p>The labels we intend to predict are conditions and must be in the <a href="/lemonpie/basics.html#CONDITIONS"><code>CONDITIONS</code></a> dict</p>
 <ul>
 <li>Adding them to the <code>patients</code> df</li>
 <li>And adding the patient's age when the particular condition was recorded</li>
@@ -4065,10 +4132,10 @@ dtype: int64</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>alzheimers :: 26929004||START
-coronary_heart :: 53741008||START
-diabetes :: 44054006||START
+<pre>diabetes :: 44054006||START
 stroke :: 230690007||START
+alzheimers :: 26929004||START
+coronary_heart :: 53741008||START
 </pre>
 </div>
 </div>
@@ -4090,7 +4157,7 @@ stroke :: 230690007||START
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_ys" class="doc_header"><code>extract_ys</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L263" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_ys</code>(<strong><code>patients</code></strong>, <strong><code>conditions</code></strong>, <strong><code>cnd_dict</code></strong>=<em><code>{}</code></em>)</p>
+<h4 id="extract_ys" class="doc_header"><code>extract_ys</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L263" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_ys</code>(<strong><code>patients</code></strong>, <strong><code>conditions</code></strong>, <strong><code>cnd_dict</code></strong>=<em><code>{}</code></em>)</p>
 </blockquote>
 <p>Extract labels from conditions df and add them to patients df with age</p>
 
@@ -4151,14 +4218,14 @@ stroke :: 230690007||START
 
 <div class="output_text output_subarea output_execute_result">
 <pre>birthdate             702
-alzheimers_y          702
-alzheimers_age         12
-coronary_heart_y      702
-coronary_heart_age     39
 diabetes_y            702
 diabetes_age           43
 stroke_y              702
 stroke_age             30
+alzheimers_y          702
+alzheimers_age         12
+coronary_heart_y      702
+coronary_heart_age     39
 dtype: int64</pre>
 </div>
 
@@ -4197,7 +4264,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="insert_age" class="doc_header"><code>insert_age</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L273" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>insert_age</code>(<strong><code>df</code></strong>, <strong><code>pts_df</code></strong>)</p>
+<h4 id="insert_age" class="doc_header"><code>insert_age</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L273" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>insert_age</code>(<strong><code>df</code></strong>, <strong><code>pts_df</code></strong>)</p>
 </blockquote>
 <p>Insert age in years and months into each of the rec dfs</p>
 
@@ -4236,7 +4303,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clean_raw_ehrdata" class="doc_header"><code>clean_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="clean_raw_ehrdata" class="doc_header"><code>clean_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Split, clean, preprocess &amp; save raw EHR data</p>
 
@@ -4268,7 +4335,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_cleaned_ehrdata" class="doc_header"><code>load_cleaned_ehrdata</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L311" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_cleaned_ehrdata</code>(<strong><code>path</code></strong>)</p>
+<h4 id="load_cleaned_ehrdata" class="doc_header"><code>load_cleaned_ehrdata</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L311" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_cleaned_ehrdata</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Load cleaned, age-filtered EHR data</p>
 
@@ -4300,7 +4367,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_ehr_vocabcodes" class="doc_header"><code>load_ehr_vocabcodes</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/clean.py#L324" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_ehr_vocabcodes</code>(<strong><code>path</code></strong>)</p>
+<h4 id="load_ehr_vocabcodes" class="doc_header"><code>load_ehr_vocabcodes</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/clean.py#L324" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_ehr_vocabcodes</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Load codes for vocabs</p>
 
@@ -4317,6 +4384,45 @@ dtype: int64</pre>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_raw_ehrdata</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Splits:: train: 0.6, valid: 0.2, test: 0.2
+Split patients into:: Train: 702, Valid: 234, Test: 235 -- Total before split: 1171
+Saved train data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/train
+Saved valid data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/valid
+Saved test data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/test
+Saved cleaned &#34;train&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/train
+Saved vocab code tables to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/train/codes
+Saved cleaned &#34;valid&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/valid
+Saved cleaned &#34;test&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/test
+</pre>
+</div>
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -4363,10 +4469,263 @@ dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>patient               b1d50391-79c5-403c-919f-3ded66c9d77a
+birthdate                                       1959-09-01
+diabetes_y                                           False
+diabetes_age                                           NaN
+stroke_y                                             False
+stroke_age                                             NaN
+alzheimers_y                                         False
+alzheimers_age                                         NaN
+coronary_heart_y                                     False
+coronary_heart_age                                     NaN
+Name: 0, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;patient&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;birthdate&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(&#39;b1d50391-79c5-403c-919f-3ded66c9d77a&#39;, &#39;1959-09-01&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;diabetes_y&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;stroke_y&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;alzheimers_y&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;coronary_heart_y&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(False, False, False, False)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#     display(df.head())</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Making sure condition counts match - before and after split</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CONDITIONS</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;diabetes&#39;: &#39;44054006||START&#39;,
+ &#39;stroke&#39;: &#39;230690007||START&#39;,
+ &#39;alzheimers&#39;: &#39;26929004||START&#39;,
+ &#39;coronary_heart&#39;: &#39;53741008||START&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pts_train</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">cnd_train</span><span class="p">,</span> <span class="n">cnd_valid</span><span class="p">,</span> <span class="n">cnd_test</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">valid_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">test_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">cnd_train</span><span class="p">[</span><span class="n">cnd_train</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;44054006||START&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>43</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">pts_train</span><span class="p">[</span><span class="n">pts_train</span><span class="p">[</span><span class="s1">&#39;diabetes_y&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>43</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 

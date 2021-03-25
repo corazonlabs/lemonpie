@@ -4,7 +4,7 @@ __all__ = ['dropout_mask', 'InputDropout', 'linear_layer', 'create_linear_layers
            'conv_layer', 'EHR_CNN']
 
 # Cell
-from .setup import *
+from .basics import *
 from .preprocessing.vocab import * #for loading vocabs
 from .preprocessing.transform import * #for loading ptlist thru EHRData
 from .data import * #for EHRData

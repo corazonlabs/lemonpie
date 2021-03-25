@@ -1,4 +1,4 @@
-# lemonade
+# lemonpie
 > An open source deep learning library for Electronic Health Record (EHR) data.
 
 
@@ -16,10 +16,10 @@ The end goal is to
 
 Installable lib coming soon, for now ..
 1. Git clone the repo
-    - `https://github.com/corazonlabs/lemonade.git`
+    - `https://github.com/corazonlabs/lemonpie.git`
 2. Create a new conda env using the `environment.yml` file
-    - `cd lemonade`
-    - `conda env create --name lemonade --file environment.yml`
+    - `cd lemonpie`
+    - `conda env create --name lemonpie --file environment.yml`
 
 ## How to use
 
@@ -64,6 +64,8 @@ Installable lib coming soon, for now ..
     - Need to write more tests for more comprehensive coverage
 
 ## References
+
+This library is created using the awesome [nbdev](https://nbdev.fast.ai/)
 
 Synthea [Synthetic Patient Population Simulator](https://github.com/synthetichealth/synthea)
 

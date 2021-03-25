@@ -1,4 +1,4 @@
-name: lemonade
+name: lemonpie
 channels:
   - fastai
   - pytorch

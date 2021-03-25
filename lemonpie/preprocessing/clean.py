@@ -6,7 +6,7 @@ __all__ = ['read_raw_ehrdata', 'split_patients', 'split_ehr_dataset', 'cleanup_p
            'load_ehr_vocabcodes']
 
 # Cell
-from ..setup import *
+from ..basics import *
 from fastai.imports import *
 
 # Cell

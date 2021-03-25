@@ -4,7 +4,7 @@ __all__ = ['collate_codes_offsts', 'get_codenums_offsts', 'get_demographics', 'P
            'cpu_cnt', 'create_all_ptlists', 'preprocess_ehr_dataset']
 
 # Cell
-from ..setup import *
+from ..basics import *
 from .clean import *
 from .vocab import *
 from fastai.imports import *
@@ -216,9 +216,12 @@ class PatientList():
 
         pts = []
         for indx in indx_chnk:
-            vals = all_dfs[0].iloc[indx].values
-            ptid, birthdate = vals[0], vals[1]
-            diabetes, stroke, alzheimers, coronaryheart = vals[2], vals[4], vals[6], vals[8]
+            thispt = all_dfs[0].iloc[indx]
+            ptid, birthdate = thispt['patient'], thispt['birthdate']
+            diabetes, stroke, alzheimers, coronaryheart = thispt['diabetes_y'], thispt['stroke_y'], thispt['alzheimers_y'], thispt['coronary_heart_y']
+#             vals = all_dfs[0].iloc[indx].values
+#             ptid, birthdate = vals[0], vals[1]
+#             diabetes, stroke, alzheimers, coronaryheart = vals[2], vals[4], vals[6], vals[8]
 
             rec_dfs = []
             for rec_df in all_dfs[2:]:
