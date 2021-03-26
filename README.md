@@ -14,7 +14,13 @@ The end goal is to
 
 ## Install
 
-Installable lib coming soon, for now ..
+With conda
+- `conda install -c corazonlabs lemonpie`
+
+With pip
+- `pip install lemonpie`
+
+Or ..
 1. Git clone the repo
     - `https://github.com/corazonlabs/lemonpie.git`
 2. Create a new conda env using the `environment.yml` file
@@ -25,11 +31,13 @@ Installable lib coming soon, for now ..
 
 1. Read through and then run the following **Quick Start** guides to get a general idea. 
     - if using the cloned repo, run the noteboooks listed
-    - if using installed lib, just open a jupyter notebook and copy, paste & run cell by cell from the guides
-    - [Quick Walkthrough](./quick_walkthru.html) - notebook - `99_running_exps.ipynb`
-    - [Running Experiments](./running_exps.html) - notebook - `99_quick_walkthru.ipynb`
+        - notebook - `99_running_exps.ipynb`
+        - notebook - `99_quick_walkthru.ipynb`
+    - if using installed lib, just open a jupyter notebook and copy, paste & run cell-by-cell from these guides
+    - [Quick Walkthrough](https://corazonlabs.github.io/lemonpie/quick_walkthru.html) 
+    - [Running Experiments](https://corazonlabs.github.io/lemonpie/running_exps.html) 
 2. Setup Synthea
-    - Refer to [condensed instructions](./setup.html#Setup-Synthea)
+    - Refer to [condensed instructions](https://corazonlabs.github.io/lemonpie/setup.html#Setup-Synthea)
     - Generate different datasets you like - e.g. 1K, 5K, 10K
 3. Run experiments
     - Refer to **Detailed Docs** for customizations
