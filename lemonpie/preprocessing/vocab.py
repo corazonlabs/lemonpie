@@ -3,7 +3,7 @@
 __all__ = ['EhrVocab', 'ObsVocab', 'EhrVocabList', 'get_all_emb_dims']
 
 # Cell
-from ..setup import *
+from ..basics import *
 from .clean import *
 from fastai.imports import *
 from datetime import date

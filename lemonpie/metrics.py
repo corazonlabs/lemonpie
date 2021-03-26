@@ -4,14 +4,14 @@ __all__ = ['accuracy', 'null_accuracy', 'ROC', 'MultiLabelROC', 'plot_rocs', 'pl
            'auroc_ci']
 
 # Cell
-from .setup import *
+from .basics import *
 from fastai.imports import *
 from sklearn import metrics as skl_metrics, preprocessing as skl_preproc
 
 # Cell
 def accuracy(y:'y_true', yhat:'yhat_prob', threshold:float=0.5) -> float:
     '''Accuracy (percentage of correct predictions) for binary classification'''
-    return ((yhat>threshold) == y).float().mean()
+    return ((yhat > 0.5) == y).float().mean()
 
 # Cell
 def null_accuracy(y:'y_true') -> float:

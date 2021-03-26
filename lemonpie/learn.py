@@ -5,7 +5,7 @@ __all__ = ['save_to_checkpoint', 'load_from_checkpoint', 'get_loss_fn', 'RunHist
            'summarize_prediction', 'count_parameters']
 
 # Cell
-from .setup import *
+from .basics import *
 from .metrics import *
 from fastai.imports import *
 

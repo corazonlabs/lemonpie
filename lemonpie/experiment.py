@@ -3,7 +3,7 @@
 __all__ = ['get_data', 'get_optimizer', 'get_model', 'Experiment']
 
 # Cell
-from .setup import * #for GVs
+from .basics import * #for GVs
 from .preprocessing.vocab import * #for loading vocabs
 from .preprocessing.transform import * #for loading ptlist thru EHRData
 from .data import * #for EHRData
@@ -97,7 +97,7 @@ class Experiment:
         return cls(name, contents.config, contents.params)
 
     def fit(self, epochs, from_checkpoint=False, to_checkpoint=True,  verbosity=.75, plot=True, save=True):
-        '''Fit function that assembles everything needed and calls the `lemonade.learn.fit` function'''
+        '''Fit function that assembles everything needed and calls the `lemonpie.learn.fit` function'''
         train_dl, valid_dl, train_pos_wts, valid_pos_wts = get_data(self.params.data_params)
         model = get_model(self.params.data_params.dataset_path, self.params.model_params)
         train_loss_fn, valid_loss_fn = get_loss_fn(train_pos_wts), get_loss_fn(valid_pos_wts)
@@ -112,7 +112,7 @@ class Experiment:
         if save: self.save()
 
     def predict(self, plot=True, save=True):
-        '''Predict function that assembles everything needed and calls the `lemonade.learn.predict` function'''
+        '''Predict function that assembles everything needed and calls the `lemonpie.learn.predict` function'''
         test_dl, test_pos_wts = get_data(self.params.data_params, for_training=False)
         model = get_model(self.params.data_params.dataset_path, self.params.model_params)
         test_loss_fn = get_loss_fn(test_pos_wts)

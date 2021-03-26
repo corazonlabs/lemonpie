@@ -1,9 +1,9 @@
 
-STORES: # change these to your specific store locations, MAKE CHANGES IN THE '~/.lemonade/settings.yaml' FILE, not here
-  DATA_STORE: # will be set to '~/.lemonade/datasets' by default
-  LOG_STORE: # will be set to '~/.lemonade/logs' by default
-  MODEL_STORE: # will be set to '~/.lemonade/models' by default
-  EXPERIMENT_STORE: # will be set to '~/.lemonade/experiments' by default
+STORES: # change these to your specific store locations, MAKE CHANGES IN THE '~/.lemonpie/settings.yaml' FILE, not here
+  DATA_STORE: # will be set to '~/.lemonpie/datasets' by default
+  LOG_STORE: # will be set to '~/.lemonpie/logs' by default
+  MODEL_STORE: # will be set to '~/.lemonpie/models' by default
+  EXPERIMENT_STORE: # will be set to '~/.lemonpie/experiments' by default
 
 FILENAMES: ['patients', 'observations', 'allergies', 'careplans', 'medications', 'imaging_studies', 'procedures', 'conditions', 'immunizations']
 
