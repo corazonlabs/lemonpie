@@ -2,11 +2,11 @@
 SHELL := /bin/zsh
 SRC = $(wildcard ./*.ipynb)
 
-all: lemonade docs
+all: lemonpie docs
 
-lemonade: $(SRC)
+lemonpie: $(SRC)
 	nbdev_build_lib
-	touch lemonade
+	touch lemonpie
 
 sync:
 	nbdev_update_lib
@@ -22,8 +22,11 @@ test:
 	nbdev_test_nbs
 
 release: pypi
-	nbdev_conda_package
-	nbdev_bump_version
+		fastrelease_conda_package --upload_user corazonlabs
+		nbdev_bump_version
+
+conda_release:
+		fastrelease_conda_package --mambabuild --upload_user corazonlabs
 
 pypi: dist
 	twine upload --repository pypi dist/*

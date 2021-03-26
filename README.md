@@ -31,8 +31,8 @@ Or ..
 
 1. Read through and then run the following **Quick Start** guides to get a general idea. 
     - if using the cloned repo, run the noteboooks listed
-        - notebook - `99_running_exps.ipynb`
         - notebook - `99_quick_walkthru.ipynb`
+        - notebook - `99_running_exps.ipynb`
     - if using installed lib, just open a jupyter notebook and copy, paste & run cell-by-cell from these guides
     - [Quick Walkthrough](https://corazonlabs.github.io/lemonpie/quick_walkthru.html) 
     - [Running Experiments](https://corazonlabs.github.io/lemonpie/running_exps.html) 
