@@ -82,8 +82,8 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&#39;/home/vinod/.lemonade/datasets/synthea/1K&#39;,
- &#39;/home/vinod/.lemonade/datasets/synthea/10K&#39;)</pre>
+<pre>(&#39;/home/vinod/.lemonpie/datasets/synthea/1K&#39;,
+ &#39;/home/vinod/.lemonpie/datasets/synthea/10K&#39;)</pre>
 </div>
 
 </div>
@@ -116,10 +116,10 @@ nb_path: "03_preprocessing_transform.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;alzheimers&#39;: &#39;26929004||START&#39;,
- &#39;coronary_heart&#39;: &#39;53741008||START&#39;,
- &#39;diabetes&#39;: &#39;44054006||START&#39;,
- &#39;stroke&#39;: &#39;230690007||START&#39;}</pre>
+<pre>{&#39;diabetes&#39;: &#39;44054006||START&#39;,
+ &#39;stroke&#39;: &#39;230690007||START&#39;,
+ &#39;alzheimers&#39;: &#39;26929004||START&#39;,
+ &#39;coronary_heart&#39;: &#39;53741008||START&#39;}</pre>
 </div>
 
 </div>
@@ -223,14 +223,14 @@ nb_path: "03_preprocessing_transform.ipynb"
       <th></th>
       <th>patient</th>
       <th>birthdate</th>
-      <th>alzheimers_y</th>
-      <th>alzheimers_age</th>
-      <th>coronary_heart_y</th>
-      <th>coronary_heart_age</th>
       <th>diabetes_y</th>
       <th>diabetes_age</th>
       <th>stroke_y</th>
       <th>stroke_age</th>
+      <th>alzheimers_y</th>
+      <th>alzheimers_age</th>
+      <th>coronary_heart_y</th>
+      <th>coronary_heart_age</th>
     </tr>
     <tr>
       <th>indx</th>
@@ -290,12 +290,12 @@ nb_path: "03_preprocessing_transform.ipynb"
       <th>3</th>
       <td>18794a7c-c7fa-47d6-8387-9fc133c4e1e3</td>
       <td>1982-06-21</td>
-      <td>False</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>NaN</td>
       <td>True</td>
       <td>25.0</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>NaN</td>
       <td>False</td>
       <td>NaN</td>
     </tr>
@@ -623,14 +623,14 @@ nb_path: "03_preprocessing_transform.ipynb"
       <th></th>
       <th>patient</th>
       <th>birthdate</th>
-      <th>alzheimers_y</th>
-      <th>alzheimers_age</th>
-      <th>coronary_heart_y</th>
-      <th>coronary_heart_age</th>
       <th>diabetes_y</th>
       <th>diabetes_age</th>
       <th>stroke_y</th>
       <th>stroke_age</th>
+      <th>alzheimers_y</th>
+      <th>alzheimers_age</th>
+      <th>coronary_heart_y</th>
+      <th>coronary_heart_age</th>
     </tr>
     <tr>
       <th>indx</th>
@@ -651,12 +651,12 @@ nb_path: "03_preprocessing_transform.ipynb"
       <th>3</th>
       <td>18794a7c-c7fa-47d6-8387-9fc133c4e1e3</td>
       <td>1982-06-21</td>
-      <td>False</td>
-      <td>NaN</td>
-      <td>False</td>
-      <td>NaN</td>
       <td>True</td>
       <td>25.0</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>False</td>
+      <td>NaN</td>
       <td>False</td>
       <td>NaN</td>
     </tr>
@@ -814,7 +814,7 @@ Name: 18794a7c-c7fa-47d6-8387-9fc133c4e1e3, dtype: object</pre>
 <li><strong>Filter out for this patient</strong> <ul>
 <li><code>rec_dfs[[ptid]]</code> + <code>demographics[[ptid]]</code></li>
 <li><del>df already filtered by cutoff age</del></li>
-<li>This is being done in <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
+<li>This is being done in <a href="/lemonpie/preprocessing_transform.html#PatientList"><code>PatientList</code></a>, this is just for testing, <strong>i.e. this will never be called</strong></li>
 </ul>
 </li>
 <li>Use double <code>[[ptid]]</code> so that - even when single values are returned, we get a df</li>
@@ -868,8 +868,8 @@ Name: 18794a7c-c7fa-47d6-8387-9fc133c4e1e3, dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 14.2 ms, sys: 3.73 ms, total: 17.9 ms
-Wall time: 17.8 ms
+<pre>CPU times: user 21.3 ms, sys: 0 ns, total: 21.3 ms
+Wall time: 21.1 ms
 </pre>
 </div>
 </div>
@@ -963,7 +963,7 @@ Wall time: 17.8 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="collate_codes_offsts" class="doc_header"><code>collate_codes_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>collate_codes_offsts</code>(<strong><code>rec_df</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="collate_codes_offsts" class="doc_header"><code>collate_codes_offsts</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>collate_codes_offsts</code>(<strong><code>rec_df</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Return a single patient's EmbeddingBag lookup codes and offsets for the given age span and age units</p>
 
@@ -1048,8 +1048,8 @@ Wall time: 17.8 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 19.3 ms, sys: 0 ns, total: 19.3 ms
-Wall time: 17.4 ms
+<pre>CPU times: user 22.1 ms, sys: 1.09 ms, total: 23.2 ms
+Wall time: 21.1 ms
 </pre>
 </div>
 </div>
@@ -1252,8 +1252,8 @@ Wall time: 17.4 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 27.1 ms, sys: 0 ns, total: 27.1 ms
-Wall time: 26.8 ms
+<pre>CPU times: user 28.9 ms, sys: 330 µs, total: 29.2 ms
+Wall time: 28.9 ms
 </pre>
 </div>
 </div>
@@ -1580,7 +1580,7 @@ Wall time: 26.8 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_codenums_offsts" class="doc_header"><code>get_codenums_offsts</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_codenums_offsts</code>(<strong><code>rec_dfs</code></strong>, <strong><code>all_vocabs</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="get_codenums_offsts" class="doc_header"><code>get_codenums_offsts</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L37" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_codenums_offsts</code>(<strong><code>rec_dfs</code></strong>, <strong><code>all_vocabs</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
 <p>Get numericalized record codes and offsets for a patient for a given age span</p>
 
@@ -1612,7 +1612,7 @@ Wall time: 26.8 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_demographics" class="doc_header"><code>get_demographics</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L57" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_demographics</code>(<strong><code>demograph_vector</code></strong>, <strong><code>demographics_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>)</p>
+<h4 id="get_demographics" class="doc_header"><code>get_demographics</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L57" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_demographics</code>(<strong><code>demograph_vector</code></strong>, <strong><code>demographics_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>)</p>
 </blockquote>
 <p>Numericalize demographics and normalize age for a given patient</p>
 
@@ -1660,8 +1660,8 @@ Wall time: 26.8 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 93.3 ms, sys: 0 ns, total: 93.3 ms
-Wall time: 92.1 ms
+<pre>CPU times: user 91.3 ms, sys: 0 ns, total: 91.3 ms
+Wall time: 90.4 ms
 </pre>
 </div>
 </div>
@@ -2084,8 +2084,8 @@ Wall time: 92.1 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 458 ms, sys: 0 ns, total: 458 ms
-Wall time: 458 ms
+<pre>CPU times: user 497 ms, sys: 334 µs, total: 497 ms
+Wall time: 496 ms
 </pre>
 </div>
 </div>
@@ -2397,7 +2397,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="Patient" class="doc_header"><code>class</code> <code>Patient</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L81" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Patient</code>(<strong><code>nums</code></strong>, <strong><code>offsts</code></strong>, <strong><code>demographics</code></strong>, <strong><code>age_now</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>ptid</code></strong>)</p>
+<h3 id="Patient" class="doc_header"><code>class</code> <code>Patient</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L81" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>Patient</code>(<strong><code>nums</code></strong>, <strong><code>offsts</code></strong>, <strong><code>demographics</code></strong>, <strong><code>age_now</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>ptid</code></strong>)</p>
 </blockquote>
 <p>Class defining a patient object that holds all numericalized / transformed data for a single patient</p>
 
@@ -2422,7 +2422,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Patient.create" class="doc_header"><code>Patient.create</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.create</code>(<strong><code>rec_dfs</code></strong>, <strong><code>demograph</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>ptid</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="Patient.create" class="doc_header"><code>Patient.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L115" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.create</code>(<strong><code>rec_dfs</code></strong>, <strong><code>demograph</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>ptid</code></strong>, <strong><code>birthdate</code></strong>, <strong><code>diabetes</code></strong>, <strong><code>stroke</code></strong>, <strong><code>alzheimers</code></strong>, <strong><code>coronaryheart</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
 <p>Lookup codes, numericalize and then create patient object - given a patient id</p>
 
@@ -2447,7 +2447,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Patient.pin_memory" class="doc_header"><code>Patient.pin_memory</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.pin_memory</code>()</p>
+<h4 id="Patient.pin_memory" class="doc_header"><code>Patient.pin_memory</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.pin_memory</code>()</p>
 </blockquote>
 <p>Call <code>torch.Tensor.pin_memory</code> for (all tensors of) this patient object</p>
 
@@ -2472,7 +2472,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="Patient.to_gpu" class="doc_header"><code>Patient.to_gpu</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.to_gpu</code>(<strong><code>non_block</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="Patient.to_gpu" class="doc_header"><code>Patient.to_gpu</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>Patient.to_gpu</code>(<strong><code>non_block</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Puts (all tensors of) this patient object on GPU</p>
 
@@ -2514,8 +2514,8 @@ dtype: object</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 86.9 ms, sys: 159 µs, total: 87.1 ms
-Wall time: 86.3 ms
+<pre>CPU times: user 98.1 ms, sys: 159 µs, total: 98.2 ms
+Wall time: 97 ms
 </pre>
 </div>
 </div>
@@ -2731,7 +2731,7 @@ Wall time: 86.3 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>tensor([-0.2239], dtype=torch.float64)</pre>
+<pre>tensor([-0.2239])</pre>
 </div>
 
 </div>
@@ -2902,7 +2902,7 @@ Wall time: 86.3 ms
 
 <div class="output_text output_subarea output_execute_result">
 <pre>(tensor([22,  7, 84,  2,  3,  2,  2,  5,  5,  2,  4], device=&#39;cuda:0&#39;),
- tensor([-0.2239], device=&#39;cuda:0&#39;, dtype=torch.float64))</pre>
+ tensor([-0.2239], device=&#39;cuda:0&#39;))</pre>
 </div>
 
 </div>
@@ -2923,7 +2923,7 @@ Wall time: 86.3 ms
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Based on the concept of <code>ItemList</code> as used in fastai v1.x, which is a list of <code>ItemBase</code> objects</li>
-<li>In our case <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</li>
+<li>In our case <a href="/lemonpie/preprocessing_transform.html#PatientList"><code>PatientList</code></a> is a list of <a href="/lemonpie/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</li>
 </ul>
 
 </div>
@@ -2961,9 +2961,9 @@ Wall time: 86.3 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="get_pckl_dir" class="doc_header"><code>get_pckl_dir</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_pckl_dir</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>Util function to construct pickle dir name - for persisting transformed <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s</p>
+<p>Util function to construct pickle dir name - for persisting transformed <a href="/lemonpie/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s</p>
 
 </div>
 
@@ -3016,9 +3016,9 @@ Wall time: 86.3 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L187" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h3 id="PatientList" class="doc_header"><code>class</code> <code>PatientList</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L187" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>PatientList</code>(<strong><code>pts</code></strong>, <strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>A class to hold a list of <a href="/lemonade/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</p>
+<p>A class to hold a list of <a href="/lemonpie/preprocessing_transform.html#Patient"><code>Patient</code></a> objects</p>
 
 </div>
 
@@ -3041,9 +3041,9 @@ Wall time: 86.3 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="PatientList.create_save" class="doc_header"><code>PatientList.create_save</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L239" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.create_save</code>(<strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="PatientList.create_save" class="doc_header"><code>PatientList.create_save</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L242" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.create_save</code>(<strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
-<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
+<p>Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save <a href="/lemonpie/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
 
 </div>
 
@@ -3066,7 +3066,7 @@ Wall time: 86.3 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="PatientList._create_pts_chunk" class="doc_header"><code>PatientList._create_pts_chunk</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L214" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList._create_pts_chunk</code>(<strong><code>indx_chnk</code></strong>, <strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>)</p>
+<h4 id="PatientList._create_pts_chunk" class="doc_header"><code>PatientList._create_pts_chunk</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L214" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList._create_pts_chunk</code>(<strong><code>indx_chnk</code></strong>, <strong><code>all_dfs</code></strong>, <strong><code>vocablist</code></strong>, <strong><code>pckl_dir</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>, <strong><code>verbose</code></strong>)</p>
 </blockquote>
 <p>Parallelized function to run on one core and transform a single chunk of patients and save</p>
 
@@ -3091,9 +3091,9 @@ Wall time: 86.3 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="PatientList.load" class="doc_header"><code>PatientList.load</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L258" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.load</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
+<h4 id="PatientList.load" class="doc_header"><code>PatientList.load</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L261" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>PatientList.load</code>(<strong><code>path</code></strong>, <strong><code>split</code></strong>, <strong><code>age_start</code></strong>, <strong><code>age_stop</code></strong>, <strong><code>age_in_months</code></strong>)</p>
 </blockquote>
-<p>Load previously created <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
+<p>Load previously created <a href="/lemonpie/preprocessing_transform.html#PatientList"><code>PatientList</code></a> object</p>
 
 </div>
 
@@ -3151,7 +3151,7 @@ Wall time: 86.3 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>Path(&#39;/home/vinod/.lemonade/datasets/synthea/1K/processed/years_10_to_30/train&#39;)</pre>
+<pre>Path(&#39;/home/vinod/.lemonpie/datasets/synthea/1K/processed/years_10_to_30/train&#39;)</pre>
 </div>
 
 </div>
@@ -3182,9 +3182,9 @@ Wall time: 86.3 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>702 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/years_10_to_30/train
-CPU times: user 933 ms, sys: 433 ms, total: 1.37 s
-Wall time: 6.24 s
+<pre>702 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/years_10_to_30/train
+CPU times: user 970 ms, sys: 475 ms, total: 1.44 s
+Wall time: 6.65 s
 </pre>
 </div>
 </div>
@@ -3206,9 +3206,9 @@ Wall time: 6.24 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L271" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
+<h4 id="create_all_ptlists" class="doc_header"><code>create_all_ptlists</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L274" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>create_all_ptlists</code>(<strong><code>path</code></strong>:<code>Path</code>, <strong><code>age_start</code></strong>:<code>int</code>, <strong><code>age_stop</code></strong>:<code>int</code>, <strong><code>age_in_months</code></strong>:<code>bool</code>, <strong><code>vocab_path</code></strong>:<code>Path</code>=<em><code>None</code></em>, <strong><code>verbose</code></strong>:<code>bool</code>=<em><code>False</code></em>, <strong><code>delete_existing</code></strong>:<code>bool</code>=<em><code>True</code></em>)</p>
 </blockquote>
-<p>Create and save <a href="/lemonade/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
+<p>Create and save <a href="/lemonpie/preprocessing_transform.html#PatientList"><code>PatientList</code></a>s for train, valid and test given dataset path</p>
 
 </div>
 
@@ -3254,11 +3254,11 @@ Wall time: 6.24 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>702 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/months_240_to_360/train
-234 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/months_240_to_360/valid
-235 total patients completed, saved patient list to /home/vinod/.lemonade/datasets/synthea/1K/processed/months_240_to_360/test
-CPU times: user 2.22 s, sys: 1.39 s, total: 3.61 s
-Wall time: 21.8 s
+<pre>702 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/months_240_to_360/train
+234 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/months_240_to_360/valid
+235 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/months_240_to_360/test
+CPU times: user 2.04 s, sys: 1.52 s, total: 3.56 s
+Wall time: 22.9 s
 </pre>
 </div>
 </div>
@@ -3373,7 +3373,7 @@ Wall time: 46.8 s</code></pre>
 
 <div class="output_text output_subarea output_execute_result">
 <pre>PatientList (702 items)
-base path:/home/vinod/.lemonade/datasets/synthea/1K; split:train; age span:120 months
+base path:/home/vinod/.lemonpie/datasets/synthea/1K; split:train; age span:120 months
 age_start:240; age_stop:360; age_type:months
 ptid:0ace3e15-8aa4-41c5-8b90-2408285ebcfe, birthdate:1986-04-02, diabetes:False, device:cpu
 ptid:af1495be-5077-4087-98b1-9ff624c7582c, birthdate:2008-07-17, diabetes:False, device:cpu
@@ -3525,7 +3525,7 @@ ptid:0b6a83ae-fcb1-4b75-9ffa-d52898167d66, birthdate:1989-08-05, diabetes:False,
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="preprocess_ehr_dataset" class="doc_header"><code>preprocess_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/preprocessing/transform.py#L286" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>today</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>obs_vocab_buckets</code></strong>=<em><code>5</code></em>, <strong><code>age_start</code></strong>=<em><code>0</code></em>, <strong><code>age_stop</code></strong>=<em><code>20</code></em>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>, <strong><code>vocab_path</code></strong>=<em><code>None</code></em>, <strong><code>from_raw_data</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="preprocess_ehr_dataset" class="doc_header"><code>preprocess_ehr_dataset</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/transform.py#L289" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>preprocess_ehr_dataset</code>(<strong><code>path</code></strong>, <strong><code>today</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>obs_vocab_buckets</code></strong>=<em><code>5</code></em>, <strong><code>age_start</code></strong>=<em><code>0</code></em>, <strong><code>age_stop</code></strong>=<em><code>20</code></em>, <strong><code>age_in_months</code></strong>=<em><code>False</code></em>, <strong><code>vocab_path</code></strong>=<em><code>None</code></em>, <strong><code>from_raw_data</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Util function to do all preprocessing - split &amp; clean raw dataset, create vocab lists and create patient lists</p>
 
@@ -3542,6 +3542,52 @@ ptid:0b6a83ae-fcb1-4b75-9ffa-d52898167d66, birthdate:1989-08-05, diabetes:False,
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">preprocess_ehr_dataset</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="n">SYNTHEA_DATAGEN_DATES</span><span class="p">[</span><span class="s1">&#39;1K&#39;</span><span class="p">],</span> <span class="n">from_raw_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>------------------- Splitting and cleaning raw dataset -------------------
+Splits:: train: 0.6, valid: 0.2, test: 0.2
+Split patients into:: Train: 702, Valid: 234, Test: 235 -- Total before split: 1171
+Saved train data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/train
+Saved valid data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/valid
+Saved test data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/test
+Saved cleaned &#34;train&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/train
+Saved vocab code tables to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/train/codes
+Saved cleaned &#34;valid&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/valid
+Saved cleaned &#34;test&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/cleaned/test
+------------------- Creating vocab lists -------------------
+Saved vocab lists to /home/vinod/.lemonpie/datasets/synthea/1K/processed
+------------------- Creating patient lists -------------------
+702 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/years_0_to_20/train
+234 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/years_0_to_20/valid
+235 total patients completed, saved patient list to /home/vinod/.lemonpie/datasets/synthea/1K/processed/years_0_to_20/test
+</pre>
+</div>
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}

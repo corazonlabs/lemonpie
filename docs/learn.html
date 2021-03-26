@@ -53,7 +53,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="save_to_checkpoint" class="doc_header"><code>save_to_checkpoint</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>save_to_checkpoint</code>(<strong><code>epoch_index</code></strong>, <strong><code>model</code></strong>, <strong><code>optimizer</code></strong>, <strong><code>path</code></strong>)</p>
+<h4 id="save_to_checkpoint" class="doc_header"><code>save_to_checkpoint</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>save_to_checkpoint</code>(<strong><code>epoch_index</code></strong>, <strong><code>model</code></strong>, <strong><code>optimizer</code></strong>, <strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Save model and optimizer state_dicts to checkpoint</p>
 
@@ -85,7 +85,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="load_from_checkpoint" class="doc_header"><code>load_from_checkpoint</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_from_checkpoint</code>(<strong><code>model</code></strong>, <strong><code>path</code></strong>, <strong><code>optimizer</code></strong>=<em><code>None</code></em>, <strong><code>for_inference</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="load_from_checkpoint" class="doc_header"><code>load_from_checkpoint</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>load_from_checkpoint</code>(<strong><code>model</code></strong>, <strong><code>path</code></strong>, <strong><code>optimizer</code></strong>=<em><code>None</code></em>, <strong><code>for_inference</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Load from checkpoint - model, optimizer &amp; epoch_index for training or just model for inference</p>
 
@@ -117,7 +117,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_loss_fn" class="doc_header"><code>get_loss_fn</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_loss_fn</code>(<strong><code>pos_wts</code></strong>)</p>
+<h4 id="get_loss_fn" class="doc_header"><code>get_loss_fn</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_loss_fn</code>(<strong><code>pos_wts</code></strong>)</p>
 </blockquote>
 <p>Return <code>nn.BCEWithLogitsLoss</code> with the given positive weights</p>
 
@@ -149,7 +149,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="RunHistory" class="doc_header"><code>class</code> <code>RunHistory</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L45" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>RunHistory</code>(<strong><code>labels</code></strong>)</p>
+<h2 id="RunHistory" class="doc_header"><code>class</code> <code>RunHistory</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L45" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>RunHistory</code>(<strong><code>labels</code></strong>)</p>
 </blockquote>
 <p>Class to hold training and prediction run histories</p>
 
@@ -190,11 +190,11 @@ nb_path: "06_learn.ipynb"
 <p><strong>Note</strong></p>
 <ul>
 <li><code>y</code> and <code>y_hat</code> are actual (ground truth and predicted) values from <ul>
-<li>the last epoch of <code>fit()</code> for <a href="/lemonade/learn.html#train"><code>train</code></a> and <code>valid</code>, </li>
+<li>the last epoch of <code>fit()</code> for <a href="/lemonpie/learn.html#train"><code>train</code></a> and <code>valid</code>, </li>
 <li>the last run of <code>predict()</code> for <code>test</code> </li>
 </ul>
 </li>
-<li><a href="/lemonade/learn.html#train"><code>train</code></a>, <code>valid</code> and <code>test</code> are calculated loss and accuracy values at the end of each epoch<ul>
+<li><a href="/lemonpie/learn.html#train"><code>train</code></a>, <code>valid</code> and <code>test</code> are calculated loss and accuracy values at the end of each epoch<ul>
 <li>for <code>test</code> there is only a single epoch in each run</li>
 </ul>
 </li>
@@ -243,7 +243,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="train" class="doc_header"><code>train</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>train</code>(<strong><code>model</code></strong>, <strong><code>train_dl</code></strong>, <strong><code>train_loss_fn</code></strong>, <strong><code>optimizer</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="train" class="doc_header"><code>train</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>train</code>(<strong><code>model</code></strong>, <strong><code>train_dl</code></strong>, <strong><code>train_loss_fn</code></strong>, <strong><code>optimizer</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Train model using train dataset</p>
 
@@ -275,7 +275,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="evaluate" class="doc_header"><code>evaluate</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>evaluate</code>(<strong><code>model</code></strong>, <strong><code>eval_dl</code></strong>, <strong><code>eval_loss_fn</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="evaluate" class="doc_header"><code>evaluate</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L75" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>evaluate</code>(<strong><code>model</code></strong>, <strong><code>eval_dl</code></strong>, <strong><code>eval_loss_fn</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Evaluate model - used for validation (while training) and prediction</p>
 
@@ -307,7 +307,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="fit" class="doc_header"><code>fit</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fit</code>(<strong><code>epochs</code></strong>, <strong><code>history</code></strong>, <strong><code>model</code></strong>, <strong><code>train_loss_fn</code></strong>, <strong><code>valid_loss_fn</code></strong>, <strong><code>optimizer</code></strong>, <strong><code>accuracy_fn</code></strong>, <strong><code>train_dl</code></strong>, <strong><code>valid_dl</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>, <strong><code>to_chkpt_path</code></strong>=<em><code>None</code></em>, <strong><code>from_chkpt_path</code></strong>=<em><code>None</code></em>, <strong><code>verbosity</code></strong>=<em><code>0.75</code></em>)</p>
+<h4 id="fit" class="doc_header"><code>fit</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fit</code>(<strong><code>epochs</code></strong>, <strong><code>history</code></strong>, <strong><code>model</code></strong>, <strong><code>train_loss_fn</code></strong>, <strong><code>valid_loss_fn</code></strong>, <strong><code>optimizer</code></strong>, <strong><code>accuracy_fn</code></strong>, <strong><code>train_dl</code></strong>, <strong><code>valid_dl</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>, <strong><code>to_chkpt_path</code></strong>=<em><code>None</code></em>, <strong><code>from_chkpt_path</code></strong>=<em><code>None</code></em>, <strong><code>verbosity</code></strong>=<em><code>0.75</code></em>)</p>
 </blockquote>
 <p>Fit model and return results in <code>history</code></p>
 
@@ -339,7 +339,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="predict" class="doc_header"><code>predict</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L137" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>predict</code>(<strong><code>history</code></strong>, <strong><code>model</code></strong>, <strong><code>test_loss_fn</code></strong>, <strong><code>accuracy_fn</code></strong>, <strong><code>test_dl</code></strong>, <strong><code>chkpt_path</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="predict" class="doc_header"><code>predict</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L137" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>predict</code>(<strong><code>history</code></strong>, <strong><code>model</code></strong>, <strong><code>test_loss_fn</code></strong>, <strong><code>accuracy_fn</code></strong>, <strong><code>test_dl</code></strong>, <strong><code>chkpt_path</code></strong>, <strong><code>lazy</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Predict and return results in <code>history</code></p>
 
@@ -377,7 +377,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_loss" class="doc_header"><code>plot_loss</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L154" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_loss</code>(<strong><code>history_df</code></strong>, <strong><code>title</code></strong>=<em><code>'Loss'</code></em>, <strong><code>axis</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="plot_loss" class="doc_header"><code>plot_loss</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L154" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_loss</code>(<strong><code>history_df</code></strong>, <strong><code>title</code></strong>=<em><code>'Loss'</code></em>, <strong><code>axis</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Plot loss</p>
 
@@ -409,7 +409,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_losses" class="doc_header"><code>plot_losses</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_losses</code>(<strong><code>train_history</code></strong>, <strong><code>valid_history</code></strong>)</p>
+<h4 id="plot_losses" class="doc_header"><code>plot_losses</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L168" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_losses</code>(<strong><code>train_history</code></strong>, <strong><code>valid_history</code></strong>)</p>
 </blockquote>
 <p>Plot multiple losses (train and valid) side by side</p>
 
@@ -441,7 +441,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_aurocs" class="doc_header"><code>plot_aurocs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L177" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_aurocs</code>(<strong><code>history_df</code></strong>, <strong><code>title</code></strong>=<em><code>'AUROC Scores'</code></em>, <strong><code>axis</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="plot_aurocs" class="doc_header"><code>plot_aurocs</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L177" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_aurocs</code>(<strong><code>history_df</code></strong>, <strong><code>title</code></strong>=<em><code>'AUROC Scores'</code></em>, <strong><code>axis</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Plot AUROC scores</p>
 
@@ -473,7 +473,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_train_valid_aurocs" class="doc_header"><code>plot_train_valid_aurocs</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L190" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_train_valid_aurocs</code>(<strong><code>train_history</code></strong>, <strong><code>valid_history</code></strong>)</p>
+<h4 id="plot_train_valid_aurocs" class="doc_header"><code>plot_train_valid_aurocs</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L190" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_train_valid_aurocs</code>(<strong><code>train_history</code></strong>, <strong><code>valid_history</code></strong>)</p>
 </blockquote>
 <p>Plot train and valid AUROC scores side by side</p>
 
@@ -511,7 +511,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="plot_fit_results" class="doc_header"><code>plot_fit_results</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_fit_results</code>(<strong><code>history</code></strong>, <strong><code>labels</code></strong>)</p>
+<h4 id="plot_fit_results" class="doc_header"><code>plot_fit_results</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>plot_fit_results</code>(<strong><code>history</code></strong>, <strong><code>labels</code></strong>)</p>
 </blockquote>
 <p>All plots after fit - ROC curves, losses and AUROCs</p>
 
@@ -543,7 +543,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="summarize_prediction" class="doc_header"><code>summarize_prediction</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L207" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>summarize_prediction</code>(<strong><code>history</code></strong>, <strong><code>labels</code></strong>, <strong><code>plot</code></strong>=<em><code>True</code></em>)</p>
+<h4 id="summarize_prediction" class="doc_header"><code>summarize_prediction</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L207" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>summarize_prediction</code>(<strong><code>history</code></strong>, <strong><code>labels</code></strong>, <strong><code>plot</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Summarize after prediction - plot ROC curves, calculate auroc, optimal threshold and 95% CI for AUROC and return results in <code>history</code></p>
 
@@ -575,7 +575,7 @@ nb_path: "06_learn.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="count_parameters" class="doc_header"><code>count_parameters</code><a href="https://github.com/corazonlabs/lemonade/tree/master/lemonade/learn.py#L223" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>count_parameters</code>(<strong><code>model</code></strong>, <strong><code>printout</code></strong>=<em><code>False</code></em>)</p>
+<h4 id="count_parameters" class="doc_header"><code>count_parameters</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/learn.py#L223" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>count_parameters</code>(<strong><code>model</code></strong>, <strong><code>printout</code></strong>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Returns number of parameters in model</p>
 

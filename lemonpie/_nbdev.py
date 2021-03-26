@@ -2,23 +2,23 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"get_device": "00_setup.ipynb",
-         "read_settings": "00_setup.ipynb",
-         "DEVICE": "00_setup.ipynb",
-         "settings": "00_setup.ipynb",
-         "DATA_STORE": "00_setup.ipynb",
-         "LOG_STORE": "00_setup.ipynb",
-         "MODEL_STORE": "00_setup.ipynb",
-         "EXPERIMENT_STORE": "00_setup.ipynb",
-         "PATH_1K": "00_setup.ipynb",
-         "PATH_10K": "00_setup.ipynb",
-         "PATH_20K": "00_setup.ipynb",
-         "PATH_100K": "00_setup.ipynb",
-         "FILENAMES": "00_setup.ipynb",
-         "SYNTHEA_DATAGEN_DATES": "00_setup.ipynb",
-         "CONDITIONS": "00_setup.ipynb",
-         "LABELS": "00_setup.ipynb",
-         "LOG_NUMERICALIZE_EXCEP": "00_setup.ipynb",
+index = {"get_device": "00_basics.ipynb",
+         "read_settings": "00_basics.ipynb",
+         "DEVICE": "00_basics.ipynb",
+         "settings": "00_basics.ipynb",
+         "DATA_STORE": "00_basics.ipynb",
+         "LOG_STORE": "00_basics.ipynb",
+         "MODEL_STORE": "00_basics.ipynb",
+         "EXPERIMENT_STORE": "00_basics.ipynb",
+         "PATH_1K": "00_basics.ipynb",
+         "PATH_10K": "00_basics.ipynb",
+         "PATH_20K": "00_basics.ipynb",
+         "PATH_100K": "00_basics.ipynb",
+         "FILENAMES": "00_basics.ipynb",
+         "SYNTHEA_DATAGEN_DATES": "00_basics.ipynb",
+         "CONDITIONS": "00_basics.ipynb",
+         "LABELS": "00_basics.ipynb",
+         "LOG_NUMERICALIZE_EXCEP": "00_basics.ipynb",
          "read_raw_ehrdata": "01_preprocessing_clean.ipynb",
          "split_patients": "01_preprocessing_clean.ipynb",
          "split_ehr_dataset": "01_preprocessing_clean.ipynb",
@@ -91,7 +91,7 @@ index = {"get_device": "00_setup.ipynb",
          "get_model": "08_experiment.ipynb",
          "Experiment": "08_experiment.ipynb"}
 
-modules = ["setup.py",
+modules = ["basics.py",
            "preprocessing/clean.py",
            "preprocessing/vocab.py",
            "preprocessing/transform.py",
@@ -101,8 +101,8 @@ modules = ["setup.py",
            "models.py",
            "experiment.py"]
 
-doc_url = "https://corazonlabs.github.io/lemonade/"
+doc_url = "https://corazonlabs.github.io/lemonpie/"
 
-git_url = "https://github.com/corazonlabs/lemonade/tree/master/"
+git_url = "https://github.com/corazonlabs/lemonpie/tree/master/"
 
 def custom_doc_links(name): return None

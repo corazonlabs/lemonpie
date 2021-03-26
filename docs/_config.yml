@@ -1,7 +1,7 @@
-repository: corazonlabs/lemonade
+repository: corazonlabs/lemonpie
 output: web
-topnav_title: lemonade
-site_title: lemonade
+topnav_title: lemonpie
+site_title: lemonpie
 company_name: Corazon Labs
 description: An open source deep learning library for Electronic Health Record (EHR) data
 # Set to false to disable KaTeX math
@@ -20,7 +20,7 @@ exclude:
   - .idea/
   - .gitignore
   - vendor
- 
+
 exclude: [vendor]
 
 highlighter: rouge
@@ -60,4 +60,4 @@ sidebars:
 - home_sidebar
 
 theme: jekyll-theme-cayman
-baseurl: /lemonade/
+baseurl: /lemonpie/

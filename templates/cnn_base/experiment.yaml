@@ -1,13 +1,13 @@
 # infrastructure items in config
 config:
   name: cnn_base
-  path: #update this to absolute path of EXPERIMENT_STORE (e.g. '/home/vinod/.lemonade/experiments')
+  path: #update this to absolute path of EXPERIMENT_STORE (e.g. '/home/vinod/.lemonpie/experiments')
   desc: Baseline settings for EHR_CNN experiments
-  checkpoint_path: #update this to absolute path of MODEL_STORE (e.g. '/home/vinod/.lemonade/models')
+  checkpoint_path: #update this to absolute path of MODEL_STORE (e.g. '/home/vinod/.lemonpie/models')
 
 params:
   data_params:
-    dataset_path: #update this to absolute path of dataset (e.g. '/home/vinod/.lemonade/datasets/synthea/1K')
+    dataset_path: #update this to absolute path of dataset (e.g. '/home/vinod/.lemonpie/datasets/synthea/1K')
     labels: ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
     age_start: 0
     age_stop: 20
