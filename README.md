@@ -15,7 +15,7 @@ The end goal is to
 ## Install
 
 With conda
-- `conda install -c corazonlabs lemonpie`
+- `conda install -c corazonlabs -c fastai -c conda-forge lemonpie`
 
 With pip
 - `pip install lemonpie`
@@ -30,12 +30,12 @@ Or ..
 ## How to use
 
 1. Read through and then run the following **Quick Start** guides to get a general idea. 
-    - if using the cloned repo, run the noteboooks listed
-        - notebook - `99_quick_walkthru.ipynb`
-        - notebook - `99_running_exps.ipynb`
+    - if using the cloned repo, run these noteboooks 
+        - `99_quick_walkthru.ipynb`
+        - `99_running_exps.ipynb`
     - if using installed lib, just open a jupyter notebook and copy, paste & run cell-by-cell from these guides
-    - [Quick Walkthrough](https://corazonlabs.github.io/lemonpie/quick_walkthru.html) 
-    - [Running Experiments](https://corazonlabs.github.io/lemonpie/running_exps.html) 
+        - [Quick Walkthrough](https://corazonlabs.github.io/lemonpie/quick_walkthru.html) 
+        - [Running Experiments](https://corazonlabs.github.io/lemonpie/running_exps.html) 
 2. Setup Synthea
     - Refer to [condensed instructions](https://corazonlabs.github.io/lemonpie/setup.html#Setup-Synthea)
     - Generate different datasets you like - e.g. 1K, 5K, 10K

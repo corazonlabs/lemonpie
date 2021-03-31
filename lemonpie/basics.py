@@ -63,13 +63,13 @@ def read_settings():
 
     if not settings_file.exists():
         print('No settings file found, so creating from template ..')
-        settings = settings_template()
+        settings = Dict(settings_template())
         Path.mkdir(Path(settings_dir), exist_ok=True)
         with open(settings_file, 'w') as s:
-            yaml.dump(settings, s, sort_keys=False)
-
-    with open(settings_file, 'r') as s:
-        settings = Dict(yaml.full_load(s))
+            yaml.dump(settings.to_dict(), s, sort_keys=False)
+    else:
+        with open(settings_file, 'r') as s:
+            settings = Dict(yaml.full_load(s))
 
     return settings
 
@@ -92,7 +92,5 @@ FILENAMES = settings.FILENAMES
 SYNTHEA_DATAGEN_DATES = settings.SYNTHEA_DATAGEN_DATES
 
 CONDITIONS = settings.CONDITIONS
-
-# LABELS = settings.LABELS
 
 LOG_NUMERICALIZE_EXCEP = settings.LOG_NUMERICALIZE_EXCEP
