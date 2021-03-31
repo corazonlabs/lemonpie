@@ -2,7 +2,7 @@ topnav:
 - title: Topnav
   items:
     - title: github
-      external_url: https://github.com/corazonlabs/lemonade/tree/master/
+      external_url: https://github.com/corazonlabs/lemonpie/tree/master/
 
 #Topnav dropdowns
 topnav_dropdowns:
