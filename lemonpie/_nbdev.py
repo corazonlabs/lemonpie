@@ -3,6 +3,7 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"get_device": "00_basics.ipynb",
+         "settings_template": "00_basics.ipynb",
          "read_settings": "00_basics.ipynb",
          "DEVICE": "00_basics.ipynb",
          "settings": "00_basics.ipynb",
@@ -17,7 +18,6 @@ index = {"get_device": "00_basics.ipynb",
          "FILENAMES": "00_basics.ipynb",
          "SYNTHEA_DATAGEN_DATES": "00_basics.ipynb",
          "CONDITIONS": "00_basics.ipynb",
-         "LABELS": "00_basics.ipynb",
          "LOG_NUMERICALIZE_EXCEP": "00_basics.ipynb",
          "read_raw_ehrdata": "01_preprocessing_clean.ipynb",
          "split_patients": "01_preprocessing_clean.ipynb",
