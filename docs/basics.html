@@ -65,7 +65,7 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L12" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
+<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
 </blockquote>
 <p>Checks to see if GPU is available and sets device to GPU or CPU</p>
 
@@ -129,7 +129,39 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="read_settings" class="doc_header"><code>read_settings</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L24" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_settings</code>()</p>
+<h4 id="settings_template" class="doc_header"><code>settings_template</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L25" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>settings_template</code>()</p>
+</blockquote>
+<p>Create initial settings for library</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="read_settings" class="doc_header"><code>read_settings</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_settings</code>()</p>
 </blockquote>
 <p>Read settings file at "~/.lemonpie/settings.yaml", if doesnt exist, create it from template</p>
 
@@ -182,12 +214,24 @@ nb_path: "00_basics.ipynb"
 
 <span class="n">CONDITIONS</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">CONDITIONS</span>
 
-<span class="n">LABELS</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">LABELS</span>
-
 <span class="n">LOG_NUMERICALIZE_EXCEP</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOG_NUMERICALIZE_EXCEP</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>No settings file found, so creating from template ..
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -197,15 +241,113 @@ nb_path: "00_basics.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>These are global variables used (in this initial release of the library) for convenience in other places; this will be cleaned up in future releases.</li>
-<li><a href="/lemonpie/basics.html#CONDITIONS"><code>CONDITIONS</code></a> and <a href="/lemonpie/basics.html#LABELS"><code>LABELS</code></a> go hand-in-hand<ul>
-<li>These are the labels we are trying to predict with the deep learning models.</li>
-<li><a href="/lemonpie/basics.html#CONDITIONS"><code>CONDITIONS</code></a> is how they appear in the preprocessed dataset.</li>
-<li><a href="/lemonpie/basics.html#LABELS"><code>LABELS</code></a> is a convenient list used everywhere for display &amp; plotting purposes (again will be cleaned up in future).</li>
+<li>These global variables are used for convenience in many places in the library. They can be over-ridden by passing in different values.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">CONDITIONS</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;diabetes&#39;: &#39;44054006||START&#39;,
+ &#39;stroke&#39;: &#39;230690007||START&#39;,
+ &#39;alzheimers&#39;: &#39;26929004||START&#39;,
+ &#39;coronary_heart&#39;: &#39;53741008||START&#39;,
+ &#39;lung_cancer&#39;: &#39;254637007||START&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>These <a href="/lemonpie/basics.html#CONDITIONS"><code>CONDITIONS</code></a> are eventually transformed into <strong>labels</strong> that we will use to train the the deep learning models.<ul>
+<li>The <a href="/lemonpie/basics.html#CONDITIONS"><code>CONDITIONS</code></a> dict is used in pre-processing to identify &amp; label patients with these conditions. </li>
+<li>The final labels the models train on must be a sub-set of these. </li>
 </ul>
 </li>
 </ul>
-<p><strong>The following 2 things need to be changed in the <code>~/.lemonpie/settings.yaml</code> file based on your specific needs</strong></p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">FILENAMES</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;patients&#39;,
+ &#39;observations&#39;,
+ &#39;allergies&#39;,
+ &#39;careplans&#39;,
+ &#39;medications&#39;,
+ &#39;imaging_studies&#39;,
+ &#39;procedures&#39;,
+ &#39;conditions&#39;,
+ &#39;immunizations&#39;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="/lemonpie/basics.html#FILENAMES"><code>FILENAMES</code></a> is the list of files in the dataset that this library current runs pre-processing on.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>The following 2 global variables need to be changed in the <code>~/.lemonpie/settings.yaml</code> file based on your specific needs</strong></p>
 
 </div>
 </div>
@@ -238,11 +380,11 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;1K&#39;: &#39;03-15-2021&#39;,
- &#39;10K&#39;: &#39;03-16-2021&#39;,
- &#39;20K&#39;: &#39;11-5-2020&#39;,
- &#39;100K&#39;: &#39;4-4-2020&#39;,
- &#39;250K&#39;: &#39;11-16-2018&#39;}</pre>
+<pre>{&#39;1K&#39;: &#39;30-03-2021&#39;,
+ &#39;10K&#39;: &#39;30-03-2021&#39;,
+ &#39;20K&#39;: &#39;30-03-2021&#39;,
+ &#39;100K&#39;: &#39;30-03-2021&#39;,
+ &#39;250K&#39;: &#39;30-03-2021&#39;}</pre>
 </div>
 
 </div>
@@ -256,7 +398,7 @@ nb_path: "00_basics.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Sample dates are copied over from the settings template file and serve as examples.</li>
+<li>A few sample entries are provided to serve as examples and all dates are set to the first time the library was run.</li>
 <li>Please update these based on when you generate a particular dataset.</li>
 <li>These dates are important to calculate patient age.</li>
 </ul>
@@ -404,7 +546,7 @@ exporter.csv.export = true</code></pre>
 <li>Go to your lemonpie settings file (~/.lemonpie/settings.yaml) and add an entry (or update the entry) for the dataset you just generated</li>
 <li>For example for 10K data<ul>
 <li>Under <a href="/lemonpie/basics.html#SYNTHEA_DATAGEN_DATES"><code>SYNTHEA_DATAGEN_DATES</code></a> create the following</li>
-<li><code>'10K': '12-19-2019'</code></li>
+<li><code>'10K': '12-19-2020'</code></li>
 </ul>
 </li>
 </ul>

@@ -14,6 +14,7 @@ from fastai.imports import *
 
 # Cell
 from addict import Dict
+import pprint
 
 # Cell
 def get_data(params, for_training=True):
@@ -60,14 +61,10 @@ class Experiment:
         self.history = RunHistory(self.labels)
 
     def __repr__(self):
-        '''To print out important features of an Experiment'''
-        res =  f'Experiment name: {self.name}\n'
-        res += f'Description: {self.desc}\n'
-        res += f'Path: {self.path}\n'
-        res += f'Labels: {self.params.data_params.labels}\n'
-        res += f'Dataset: {self.params.data_params.dataset_path}\n'
-        res += f'Model: {self.params.model_params.model}\n'
-        res += f'Optim: {self.params.optim_params.optim}'
+        '''Print out Experiment details'''
+        pp = pprint.PrettyPrinter(indent=2, compact=True, sort_dicts=False)
+        res = f'{pp.pformat(self.config)}\n'
+        res += pp.pformat(self.params)
         return res
 
     def save(self):
@@ -87,14 +84,68 @@ class Experiment:
         return exp
 
     @classmethod
+    def create(cls, exp_name, desc, dataset_path, labels, optim, model,
+               exp_path='default_exp_store', chkpt_path='default_model_store',
+               age_start=0, age_stop=20, age_in_months=False, lazy_load_gpu=True, bs=128, num_workers=0,
+               lr=0.01, lr_decay=0, wt_decay=0,
+               αd=0.5736, lin_layers=4, initrange=0.3, bn=False, input_drp=0.3, linear_drp=0.3,
+               lstm_layers=4, lstm_drp=0.3, zero_bn=False):
+        '''Create a *new* Experiment object'''
+        template = {
+            'config':
+            {
+                'name': exp_name,
+                'path': EXPERIMENT_STORE if exp_path=='default_exp_store' else exp_path,
+                'desc': desc,
+                'checkpoint_path': MODEL_STORE if chkpt_path=='default_model_store' else chkpt_path
+            },
+            'params':
+            {
+                'data_params':
+                {
+                    'dataset_path': dataset_path,
+                    'labels': labels,
+                    'age_start': age_start,
+                    'age_stop': age_stop,
+                    'age_in_months': age_in_months,
+                    'bs': bs,
+                    'num_workers': num_workers,
+                    'lazy_load_gpu': lazy_load_gpu
+                },
+                'optim_params':
+                {
+                    'optim': optim,
+                    'lr': lr,
+                    'lr_decay': lr_decay,
+                    'weight_decay': wt_decay
+                },
+                'model_params':
+                {
+                    'model': model,
+                    'αd': αd,
+                    'linear_layers': lin_layers,
+                    'initrange': initrange,
+                    'bn': bn,
+                    'input_drp': input_drp,
+                    'linear_drp': linear_drp,
+                    'zero_bn': zero_bn,
+                    'lstm_layers': None if model=='CNN' else lstm_layers,
+                    'lstm_drp': None if model=='CNN' else lstm_drp
+                }
+            }
+        }
+        exp = Dict(template)
+        return cls(exp_name, exp.config, exp.params)
+
+    @classmethod
     def create_from_file(cls, path, name):
         '''Create a *new* Experiment object from the `experiment.yaml` file in the `path/name` directory'''
         exp_dir = Path(f'{path}/{name}')
         with open(f'{exp_dir}/experiment.yaml', 'rb') as f:
             contents = yaml.full_load(f)
 
-        contents = Dict(contents)
-        return cls(name, contents.config, contents.params)
+        exp = Dict(contents)
+        return cls(name, exp.config, exp.params)
 
     def fit(self, epochs, from_checkpoint=False, to_checkpoint=True,  verbosity=.75, plot=True, save=True):
         '''Fit function that assembles everything needed and calls the `lemonpie.learn.fit` function'''
