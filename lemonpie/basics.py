@@ -2,7 +2,7 @@
 
 __all__ = ['get_device', 'settings_template', 'read_settings', 'DEVICE', 'settings', 'DATA_STORE', 'LOG_STORE',
            'MODEL_STORE', 'EXPERIMENT_STORE', 'PATH_1K', 'PATH_10K', 'PATH_20K', 'PATH_100K', 'FILENAMES',
-           'SYNTHEA_DATAGEN_DATES', 'CONDITIONS', 'LOG_NUMERICALIZE_EXCEP']
+           'SYNTHEA_DATAGEN_DATES', 'CONDITIONS', 'LABELS', 'LOG_NUMERICALIZE_EXCEP']
 
 # Cell
 from fastai.imports import *
@@ -94,6 +94,6 @@ SYNTHEA_DATAGEN_DATES = settings.SYNTHEA_DATAGEN_DATES
 
 CONDITIONS = OrderedDict(settings.CONDITIONS)
 
-LABELS: ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
+LABELS = ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
 
 LOG_NUMERICALIZE_EXCEP = settings.LOG_NUMERICALIZE_EXCEP
