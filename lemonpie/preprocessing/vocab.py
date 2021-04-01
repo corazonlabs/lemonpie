@@ -42,11 +42,12 @@ class EhrVocab():
         '''Get embedding dimensions'''
         return self.vocab_size, round(6* αd * (self.vocab_size**0.25))
 
-    def numericalize(self, codes, log_excep=LOG_NUMERICALIZE_EXCEP, log_dir=LOG_STORE):
+    def numericalize(self, codes, log_excep=LOG_NUMERICALIZE_EXCEP, log_dir='default_log_store'):
         '''Lookup and return indices for codes'''
 
         if log_excep:
             today = date.today().strftime("%Y-%m-%d")
+            log_dir = LOG_STORE if log_dir=='default_log_store' else log_dir
             if not os.path.isdir(log_dir): os.mkdir(log_dir)
             logfile = f'{log_dir}/{today}_numericalize_exceptions.log'
 
@@ -80,11 +81,12 @@ class ObsVocab (EhrVocab):
         self.vocab_df = vocab_df
         self.vocab_size = len(vocab_df)
 
-    def numericalize(self, codes, log_excep=LOG_NUMERICALIZE_EXCEP, log_dir=LOG_STORE):
+    def numericalize(self, codes, log_excep=LOG_NUMERICALIZE_EXCEP, log_dir='default_log_store'):
         '''Numericalize observation codes (return indices for codes)'''
 
         if log_excep:
             today = date.today().strftime("%Y-%m-%d")
+            log_dir = LOG_STORE if log_dir=='default_log_store' else log_dir
             if not os.path.isdir(log_dir): os.mkdir(log_dir)
             logfile = f'{log_dir}/{today}_numericalize_exceptions.log'
 
