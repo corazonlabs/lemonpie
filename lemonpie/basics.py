@@ -94,4 +94,6 @@ SYNTHEA_DATAGEN_DATES = settings.SYNTHEA_DATAGEN_DATES
 
 CONDITIONS = OrderedDict(settings.CONDITIONS)
 
+LABELS: ['diabetes', 'stroke', 'alzheimers', 'coronaryheart']
+
 LOG_NUMERICALIZE_EXCEP = settings.LOG_NUMERICALIZE_EXCEP
