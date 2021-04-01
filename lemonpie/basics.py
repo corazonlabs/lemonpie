@@ -8,6 +8,7 @@ __all__ = ['get_device', 'settings_template', 'read_settings', 'DEVICE', 'settin
 from fastai.imports import *
 from addict import Dict
 from datetime import date
+from collections import OrderedDict
 
 # Cell
 def get_device():
@@ -36,19 +37,19 @@ def settings_template():
 
         'SYNTHEA_DATAGEN_DATES' :
         {
-            '1K'  : date.today().strftime('%d-%m-%Y'),
-            '10K' : date.today().strftime('%d-%m-%Y'),
-            '20K' : date.today().strftime('%d-%m-%Y'),
-            '100K': date.today().strftime('%d-%m-%Y'),
-            '250K': date.today().strftime('%d-%m-%Y')
+            '1K'  : date.today().strftime('%m-%d-%Y'),
+            '10K' : date.today().strftime('%m-%d-%Y'),
+            '20K' : date.today().strftime('%m-%d-%Y'),
+            '100K': date.today().strftime('%m-%d-%Y'),
+            '250K': date.today().strftime('%m-%d-%Y')
         },
         'CONDITIONS':
         {
-            'diabetes': '44054006||START',
-            'stroke': '230690007||START',
-            'alzheimers': '26929004||START',
-            'coronary_heart': '53741008||START',
-            'lung_cancer': '254637007||START'
+            'diabetes': '44054006',
+            'stroke': '230690007',
+            'alzheimers': '26929004',
+            'coronary_heart': '53741008',
+            'lung_cancer': '254637007'
         },
         'LOG_NUMERICALIZE_EXCEP': True
     }
@@ -66,7 +67,7 @@ def read_settings():
         settings = Dict(settings_template())
         Path.mkdir(Path(settings_dir), exist_ok=True)
         with open(settings_file, 'w') as s:
-            yaml.dump(settings.to_dict(), s, sort_keys=False)
+            yaml.dump(settings.to_dict(), s, sort_keys=False, allow_unicode=True)
     else:
         with open(settings_file, 'r') as s:
             settings = Dict(yaml.full_load(s))
@@ -91,6 +92,6 @@ FILENAMES = settings.FILENAMES
 
 SYNTHEA_DATAGEN_DATES = settings.SYNTHEA_DATAGEN_DATES
 
-CONDITIONS = settings.CONDITIONS
+CONDITIONS = OrderedDict(settings.CONDITIONS)
 
 LOG_NUMERICALIZE_EXCEP = settings.LOG_NUMERICALIZE_EXCEP

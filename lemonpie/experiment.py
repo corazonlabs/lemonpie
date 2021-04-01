@@ -74,6 +74,14 @@ class Experiment:
             pickle.dump(self, f)
         print(f'Saved experiment to {self.path}/{self.name}.experiment')
 
+        yaml_file = Path(f'{self.path}/experiment.yaml')
+        if not yaml_file.exists():
+            print('No experiment settings file found, so creating it ..')
+            exp = Dict(config=self.config, params=self.params)
+            with open(yaml_file, 'w') as e:
+                yaml.dump(exp.to_dict(), e, sort_keys=False, allow_unicode=True)
+            print(f'Saved experiment settings to {yaml_file}')
+
     @classmethod
     def load(cls, name, path=None):
         '''Load an existing Experiment'''
@@ -85,10 +93,10 @@ class Experiment:
 
     @classmethod
     def create(cls, exp_name, desc, dataset_path, labels, optim, model,
-               exp_path='default_exp_store', chkpt_path='default_model_store',
+               exp_path='default_exp_store', checkpoint_path='default_model_store',
                age_start=0, age_stop=20, age_in_months=False, lazy_load_gpu=True, bs=128, num_workers=0,
-               lr=0.01, lr_decay=0, wt_decay=0,
-               αd=0.5736, lin_layers=4, initrange=0.3, bn=False, input_drp=0.3, linear_drp=0.3,
+               lr=0.01, lr_decay=0, weight_decay=0,
+               αd=0.5736, linear_layers=4, initrange=0.3, bn=False, input_drp=0.3, linear_drp=0.3,
                lstm_layers=4, lstm_drp=0.3, zero_bn=False):
         '''Create a *new* Experiment object'''
         template = {
@@ -97,7 +105,7 @@ class Experiment:
                 'name': exp_name,
                 'path': EXPERIMENT_STORE if exp_path=='default_exp_store' else exp_path,
                 'desc': desc,
-                'checkpoint_path': MODEL_STORE if chkpt_path=='default_model_store' else chkpt_path
+                'checkpoint_path': MODEL_STORE if checkpoint_path=='default_model_store' else checkpoint_path
             },
             'params':
             {
@@ -117,13 +125,13 @@ class Experiment:
                     'optim': optim,
                     'lr': lr,
                     'lr_decay': lr_decay,
-                    'weight_decay': wt_decay
+                    'weight_decay': weight_decay
                 },
                 'model_params':
                 {
                     'model': model,
                     'αd': αd,
-                    'linear_layers': lin_layers,
+                    'linear_layers': linear_layers,
                     'initrange': initrange,
                     'bn': bn,
                     'input_drp': input_drp,

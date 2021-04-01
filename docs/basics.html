@@ -65,7 +65,7 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
+<h4 id="get_device" class="doc_header"><code>get_device</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/basics.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_device</code>()</p>
 </blockquote>
 <p>Checks to see if GPU is available and sets device to GPU or CPU</p>
 
@@ -129,7 +129,7 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="settings_template" class="doc_header"><code>settings_template</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L25" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>settings_template</code>()</p>
+<h4 id="settings_template" class="doc_header"><code>settings_template</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/basics.py#L26" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>settings_template</code>()</p>
 </blockquote>
 <p>Create initial settings for library</p>
 
@@ -161,7 +161,7 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="read_settings" class="doc_header"><code>read_settings</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/basics.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_settings</code>()</p>
+<h4 id="read_settings" class="doc_header"><code>read_settings</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/basics.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>read_settings</code>()</p>
 </blockquote>
 <p>Read settings file at "~/.lemonpie/settings.yaml", if doesnt exist, create it from template</p>
 
@@ -212,7 +212,7 @@ nb_path: "00_basics.ipynb"
 
 <span class="n">SYNTHEA_DATAGEN_DATES</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">SYNTHEA_DATAGEN_DATES</span>
 
-<span class="n">CONDITIONS</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">CONDITIONS</span>
+<span class="n">CONDITIONS</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">CONDITIONS</span><span class="p">)</span>
 
 <span class="n">LOG_NUMERICALIZE_EXCEP</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOG_NUMERICALIZE_EXCEP</span>
 </pre></div>
@@ -269,11 +269,11 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;diabetes&#39;: &#39;44054006||START&#39;,
- &#39;stroke&#39;: &#39;230690007||START&#39;,
- &#39;alzheimers&#39;: &#39;26929004||START&#39;,
- &#39;coronary_heart&#39;: &#39;53741008||START&#39;,
- &#39;lung_cancer&#39;: &#39;254637007||START&#39;}</pre>
+<pre>OrderedDict([(&#39;diabetes&#39;, &#39;44054006&#39;),
+             (&#39;stroke&#39;, &#39;230690007&#39;),
+             (&#39;alzheimers&#39;, &#39;26929004&#39;),
+             (&#39;coronary_heart&#39;, &#39;53741008&#39;),
+             (&#39;lung_cancer&#39;, &#39;254637007&#39;)])</pre>
 </div>
 
 </div>
@@ -380,11 +380,11 @@ nb_path: "00_basics.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;1K&#39;: &#39;30-03-2021&#39;,
- &#39;10K&#39;: &#39;30-03-2021&#39;,
- &#39;20K&#39;: &#39;30-03-2021&#39;,
- &#39;100K&#39;: &#39;30-03-2021&#39;,
- &#39;250K&#39;: &#39;30-03-2021&#39;}</pre>
+<pre>{&#39;1K&#39;: &#39;03-31-2021&#39;,
+ &#39;10K&#39;: &#39;03-31-2021&#39;,
+ &#39;20K&#39;: &#39;03-31-2021&#39;,
+ &#39;100K&#39;: &#39;03-31-2021&#39;,
+ &#39;250K&#39;: &#39;03-31-2021&#39;}</pre>
 </div>
 
 </div>
