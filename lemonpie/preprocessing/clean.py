@@ -263,8 +263,8 @@ def cleanup_dataset(path, is_train, today=None):
 def extract_ys(patients, conditions, cnd_dict=CONDITIONS):
     '''Extract labels from conditions df and add them to patients df with age'''
     for key in cnd_dict.keys():
-        patients = patients.merge(conditions[conditions.code==cnd_dict[key]], how='left', left_index=True, right_index=True)
-        patients[f'{key}_y'] = patients.code.notna()
+        patients = patients.merge(conditions[conditions.code==f'{cnd_dict[key]}||START'], how='left', left_index=True, right_index=True)
+        patients[f'{key}'] = patients.code.notna()
         patients[f'{key}_age'] = ((patients.date - patients.birthdate)//np.timedelta64(1,'Y'))
         patients = patients.drop(columns=['date','code'])
     return patients
