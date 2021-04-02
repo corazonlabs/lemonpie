@@ -1031,7 +1031,7 @@ Saved test data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(10529, 10513)</pre>
+<pre>(10530, 10513)</pre>
 </div>
 
 </div>
@@ -1064,7 +1064,7 @@ Saved test data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/test
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(&#39;03-15-2021&#39;, Timestamp(&#39;2021-03-31 14:20:54.088461&#39;))</pre>
+<pre>(&#39;03-15-2021&#39;, Timestamp(&#39;2021-04-01 14:18:36.220590&#39;))</pre>
 </div>
 
 </div>
@@ -1082,39 +1082,6 @@ Saved test data to /home/vinod/.lemonpie/datasets/synthea/1K/raw_split/test
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pt_codes</span><span class="o">.</span><span class="n">marital</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;M&#39;, &#39;xxxnan&#39;, &#39;S&#39;], dtype=object)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4171,46 +4138,14 @@ dtype: int64</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>diabetes :: 44054006
-stroke :: 230690007
-alzheimers :: 26929004
-coronary_heart :: 53741008
-lung_cancer :: 254637007
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">CONDITIONS</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="s2">&quot;::&quot;</span><span class="p">,</span><span class="n">CONDITIONS</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
 <pre>diabetes :: 44054006||START
 stroke :: 230690007||START
 alzheimers :: 26929004||START
 coronary_heart :: 53741008||START
+lung_cancer :: 254637007||START
+breast_cancer :: 254837009||START
+rheumatoid_arthritis :: 69896004||START
+epilepsy :: 84757009||START
 </pre>
 </div>
 </div>
@@ -4232,7 +4167,7 @@ coronary_heart :: 53741008||START
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="extract_ys" class="doc_header"><code>extract_ys</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/clean.py#L263" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_ys</code>(<strong><code>patients</code></strong>, <strong><code>conditions</code></strong>, <strong><code>cnd_dict</code></strong>=<em><code>OrderedDict([('diabetes', '44054006'), ('stroke', '230690007'), ('alzheimers', '26929004'), ('coronary_heart', '53741008'), ('lung_cancer', '254637007')])</code></em>)</p>
+<h4 id="extract_ys" class="doc_header"><code>extract_ys</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/clean.py#L263" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>extract_ys</code>(<strong><code>patients</code></strong>, <strong><code>conditions</code></strong>, <strong><code>cnd_dict</code></strong>)</p>
 </blockquote>
 <p>Extract labels from conditions df and add them to patients df with age</p>
 
@@ -4260,7 +4195,7 @@ coronary_heart :: 53741008||START
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmp_pts</span> <span class="o">=</span> <span class="n">extract_ys</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">CONDITIONS</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tmp_pts</span> <span class="o">=</span> <span class="n">extract_ys</span><span class="p">(</span><span class="n">patients</span><span class="p">,</span> <span class="n">conditions</span><span class="p">,</span> <span class="n">cnd_dict</span><span class="o">=</span><span class="n">CONDITIONS</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -4292,15 +4227,23 @@ coronary_heart :: 53741008||START
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>birthdate             702
-diabetes_y            702
-diabetes_age           43
-stroke_y              702
-stroke_age             30
-alzheimers_y          702
-alzheimers_age         12
-coronary_heart_y      702
-coronary_heart_age     39
+<pre>birthdate                   702
+diabetes                    702
+diabetes_age                 43
+stroke                      702
+stroke_age                   30
+alzheimers                  702
+alzheimers_age               12
+coronary_heart              702
+coronary_heart_age           39
+lung_cancer                 702
+lung_cancer_age              12
+breast_cancer               702
+breast_cancer_age            11
+rheumatoid_arthritis        702
+rheumatoid_arthritis_age      2
+epilepsy                    702
+epilepsy_age                 15
 dtype: int64</pre>
 </div>
 
@@ -4378,7 +4321,7 @@ dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="clean_raw_ehrdata" class="doc_header"><code>clean_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/clean.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>test_pct</code></strong>=<em><code>0.2</code></em>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="clean_raw_ehrdata" class="doc_header"><code>clean_raw_ehrdata</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/clean.py#L281" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_raw_ehrdata</code>(<strong><code>path</code></strong>, <strong><code>valid_pct</code></strong>, <strong><code>test_pct</code></strong>, <strong><code>conditions_dict</code></strong>, <strong><code>today</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Split, clean, preprocess &amp; save raw EHR data</p>
 
@@ -4470,7 +4413,7 @@ dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_raw_ehrdata</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">clean_raw_ehrdata</span><span class="p">(</span><span class="n">PATH_1K</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">CONDITIONS</span><span class="p">,</span> <span class="n">SYNTHEA_DATAGEN_DATES</span><span class="p">[</span><span class="s1">&#39;1K&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -4544,7 +4487,7 @@ Saved cleaned &#34;test&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/c
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -4576,83 +4519,25 @@ Saved cleaned &#34;test&#34; data to /home/vinod/.lemonpie/datasets/synthea/1K/c
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>patient               b1d50391-79c5-403c-919f-3ded66c9d77a
-birthdate                                       1959-09-01
-diabetes_y                                           False
-diabetes_age                                           NaN
-stroke_y                                             False
-stroke_age                                             NaN
-alzheimers_y                                         False
-alzheimers_age                                         NaN
-coronary_heart_y                                     False
-coronary_heart_age                                     NaN
-Name: 0, dtype: object</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;patient&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;birthdate&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(&#39;b1d50391-79c5-403c-919f-3ded66c9d77a&#39;, &#39;1959-09-01&#39;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;diabetes_y&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;stroke_y&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;alzheimers_y&#39;</span><span class="p">],</span> <span class="n">thispt</span><span class="p">[</span><span class="s1">&#39;coronary_heart_y&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(False, False, False, False)</pre>
+<pre>patient                     10134dbf-72d1-4381-b8f3-9530cca6622a
+birthdate                                             1958-09-08
+diabetes                                                    True
+diabetes_age                                                52.0
+stroke                                                      True
+stroke_age                                                  60.0
+alzheimers                                                 False
+alzheimers_age                                               NaN
+coronary_heart                                             False
+coronary_heart_age                                           NaN
+lung_cancer                                                False
+lung_cancer_age                                              NaN
+breast_cancer                                              False
+breast_cancer_age                                            NaN
+rheumatoid_arthritis                                       False
+rheumatoid_arthritis_age                                     NaN
+epilepsy                                                   False
+epilepsy_age                                                 NaN
+Name: 20, dtype: object</pre>
 </div>
 
 </div>
@@ -4682,7 +4567,7 @@ Name: 0, dtype: object</pre>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Making sure condition counts match - before and after split</p>
+<p>Making sure condition counts match - after extracting <code>y</code> for each patient</p>
 
 </div>
 </div>
@@ -4709,10 +4594,14 @@ Name: 0, dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;diabetes&#39;: &#39;44054006||START&#39;,
- &#39;stroke&#39;: &#39;230690007||START&#39;,
- &#39;alzheimers&#39;: &#39;26929004||START&#39;,
- &#39;coronary_heart&#39;: &#39;53741008||START&#39;}</pre>
+<pre>OrderedDict([(&#39;diabetes&#39;, &#39;44054006&#39;),
+             (&#39;stroke&#39;, &#39;230690007&#39;),
+             (&#39;alzheimers&#39;, &#39;26929004&#39;),
+             (&#39;coronary_heart&#39;, &#39;53741008&#39;),
+             (&#39;lung_cancer&#39;, &#39;254637007&#39;),
+             (&#39;breast_cancer&#39;, &#39;254837009&#39;),
+             (&#39;rheumatoid_arthritis&#39;, &#39;69896004&#39;),
+             (&#39;epilepsy&#39;, &#39;84757009&#39;)])</pre>
 </div>
 
 </div>
@@ -4723,6 +4612,13 @@ Name: 0, dtype: object</pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>patients</code> dfs after cleaning, with <code>y</code> extracted</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4730,8 +4626,7 @@ Name: 0, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pts_train</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">cnd_train</span><span class="p">,</span> <span class="n">cnd_valid</span><span class="p">,</span> <span class="n">cnd_test</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">valid_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">test_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pts_train</span><span class="p">,</span> <span class="n">pts_valid</span><span class="p">,</span> <span class="n">pts_test</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">valid_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">test_dfs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -4741,6 +4636,13 @@ Name: 0, dtype: object</pre>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>conditions</code> dfs</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -4748,7 +4650,40 @@ Name: 0, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">cnd_train</span><span class="p">[</span><span class="n">cnd_train</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;44054006||START&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cnd_train</span><span class="p">,</span> <span class="n">cnd_valid</span><span class="p">,</span> <span class="n">cnd_test</span> <span class="o">=</span> <span class="n">train_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">valid_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">test_dfs</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Counts for each condition in <code>conditions</code> and <code>patients</code> dfs in each split</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">pts</span><span class="p">,</span> <span class="n">cnds</span><span class="p">,</span> <span class="n">split</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">pts_train</span><span class="p">,</span> <span class="n">pts_valid</span><span class="p">,</span> <span class="n">pts_test</span><span class="p">],[</span><span class="n">cnd_train</span><span class="p">,</span> <span class="n">cnd_valid</span><span class="p">,</span> <span class="n">cnd_test</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span><span class="s1">&#39;test&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">split</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;diabetes:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;44054006||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;diabetes&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;stroke:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;230690007||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;stroke&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;alzheimers:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;26929004||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;alzheimers&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;coronary_heart:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;53741008||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;coronary_heart&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;lung_cancer:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;254637007||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;lung_cancer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;breast_cancer:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;254837009||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;breast_cancer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;rheumatoid_arthritis:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;69896004||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;rheumatoid_arthritis&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;epilepsy:: &#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;84757009||START&#39;</span><span class="p">]),</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;epilepsy&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 
     </div>
@@ -4760,12 +4695,39 @@ Name: 0, dtype: object</pre>
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+ train
+diabetes::  43 43
+stroke::  30 30
+alzheimers::  12 12
+coronary_heart::  39 39
+lung_cancer::  12 12
+breast_cancer::  11 11
+rheumatoid_arthritis::  2 2
+epilepsy::  15 15
 
+ valid
+diabetes::  14 14
+stroke::  7 7
+alzheimers::  7 7
+coronary_heart::  11 11
+lung_cancer::  0 0
+breast_cancer::  8 8
+rheumatoid_arthritis::  0 0
+epilepsy::  5 5
 
-<div class="output_text output_subarea output_execute_result">
-<pre>43</pre>
+ test
+diabetes::  19 19
+stroke::  11 11
+alzheimers::  6 6
+coronary_heart::  11 11
+lung_cancer::  2 2
+breast_cancer::  2 2
+rheumatoid_arthritis::  0 0
+epilepsy::  2 2
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -4781,26 +4743,18 @@ Name: 0, dtype: object</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">pts_train</span><span class="p">[</span><span class="n">pts_train</span><span class="p">[</span><span class="s1">&#39;diabetes_y&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">pts</span><span class="p">,</span> <span class="n">cnds</span><span class="p">,</span> <span class="n">split</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">pts_train</span><span class="p">,</span> <span class="n">pts_valid</span><span class="p">,</span> <span class="n">pts_test</span><span class="p">],[</span><span class="n">cnd_train</span><span class="p">,</span> <span class="n">cnd_valid</span><span class="p">,</span> <span class="n">cnd_test</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">,</span><span class="s1">&#39;valid&#39;</span><span class="p">,</span><span class="s1">&#39;test&#39;</span><span class="p">]):</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;44054006||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;diabetes&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for diabetes&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;230690007||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;stroke&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for stroke&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;26929004||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;alzheimers&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for alzheimers&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;53741008||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;coronary_heart&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for coronary_heart&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;254637007||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;lung_cancer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for lung_cancer&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;254837009||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;breast_cancer&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for breast_cancer&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;69896004||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;rheumatoid_arthritis&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for rheumatoid_arthritis&#39;</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cnds</span><span class="p">[</span><span class="n">cnds</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;84757009||START&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">[</span><span class="n">pts</span><span class="p">[</span><span class="s1">&#39;epilepsy&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]),</span> <span class="sa">f</span><span class="s1">&#39;error in </span><span class="si">{</span><span class="n">split</span><span class="si">}</span><span class="s1"> for epilepsy&#39;</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>43</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
