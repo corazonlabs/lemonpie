@@ -103,6 +103,6 @@ modules = ["basics.py",
 
 doc_url = "https://corazonlabs.github.io/lemonpie/"
 
-git_url = "https://github.com/corazonlabs/lemonpie/tree/master/"
+git_url = "https://github.com/corazonlabs/lemonpie/tree/main/"
 
 def custom_doc_links(name): return None

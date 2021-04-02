@@ -5,7 +5,7 @@
     "Running Experiments": "/running_exps"
   },
   "Detailed Docs":{
-    "Setup": "/setup",
+    "Basics": "/basics",
     "":{
       "Preprocessing":{
         "Clean": "/preprocessing_clean",

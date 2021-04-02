@@ -34,9 +34,9 @@ class EHRDataSplits():
         '''Get prevalence counts of labels in each split - returns a dataframe with counts for each split and total count'''
         counts = []
         for label in labels:
-            train_count = [getattr(self.train[i],label) == 1 for i in range(len(self.train))].count(True)
-            valid_count = [getattr(self.valid[i],label) == 1 for i in range(len(self.valid))].count(True)
-            test_count  = [getattr(self.test[i],label) == 1 for i in range(len(self.test))].count(True)
+            train_count = [self.train[i].conditions[label] == 1 for i in range(len(self.train))].count(True)
+            valid_count = [self.valid[i].conditions[label] == 1 for i in range(len(self.valid))].count(True)
+            test_count  = [self.test[i].conditions[label] == 1 for i in range(len(self.test))].count(True)
             total_count = train_count+valid_count+test_count
             counts.append([train_count, valid_count, test_count, total_count])
         return pd.DataFrame(counts, index=labels, columns=['train','valid','test','total'])
@@ -64,7 +64,7 @@ class LabelEHRData():
         '''Extract y from each patient object in ds and stack them - ds is dataset containing patient objects'''
         y = []
         for pt in ds:
-            y.append( torch.FloatTensor(np.array([getattr(pt,label) for label in labels], dtype='float')) )
+            y.append( torch.FloatTensor(np.array([pt.conditions[label] for label in labels], dtype='float')) )
         return torch.stack(y)
 
 # Cell

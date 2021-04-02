@@ -80,7 +80,8 @@ def get_demographics(demograph_vector, demographics_vocabs, age_mean, age_std):
 # Cell
 class Patient():
     '''Class defining a patient object that holds all numericalized / transformed data for a single patient'''
-    def __init__(self, nums, offsts, demographics, age_now, birthdate, diabetes, stroke, alzheimers, coronaryheart, ptid):
+    def __init__(self, nums, offsts, demographics, age_now, birthdate, conditions, ptid):
+#     def __init__(self, nums, offsts, demographics, age_now, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, ptid):
         self.obs_nums  = torch.tensor(nums[0])
         self.alg_nums  = torch.tensor(nums[1])
         self.crpl_nums = torch.tensor(nums[2])
@@ -104,24 +105,27 @@ class Patient():
 
         self.ptid = ptid
         self.birthdate = birthdate
-        self.diabetes = diabetes
-        self.stroke = stroke
-        self.alzheimers = alzheimers
-        self.coronaryheart = coronaryheart
+        self.conditions = conditions
+
+#         self.diabetes = diabetes
+#         self.stroke = stroke
+#         self.alzheimers = alzheimers
+#         self.coronaryheart = coronaryheart
 
     def __repr__(self):
-        return f'ptid:{self.ptid}, birthdate:{self.birthdate}, diabetes:{self.diabetes}, device:{self.alg_nums.device}'
+        return f'ptid:{self.ptid}, birthdate:{self.birthdate}, {list(self.conditions.items())[:2]}.., device:{self.alg_nums.device}'
 
     @classmethod
-    def create(cls, rec_dfs, demograph, vocablist, ptid, birthdate, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months):
+    def create(cls, rec_dfs, demograph, vocablist, ptid, birthdate, conditions, age_start, age_stop, age_in_months):
+#     def create(cls, rec_dfs, demograph, vocablist, ptid, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months):
         '''Lookup codes, numericalize and then create patient object - given a patient id'''
         codenums, offsts  = get_codenums_offsts(rec_dfs, vocablist.records_vocabs, age_start, age_stop, age_in_months)
         demographics, age_now = get_demographics(demograph, vocablist.demographics_vocabs, vocablist.age_mean, vocablist.age_std)
-        return cls(codenums, offsts, demographics, age_now, birthdate, diabetes, stroke, alzheimers, coronaryheart, ptid)
+#         return cls(codenums, offsts, demographics, age_now, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, ptid)
+        return cls(codenums, offsts, demographics, age_now, birthdate, conditions, ptid)
 
     def pin_memory(self):
         '''Call `torch.Tensor.pin_memory` for (all tensors of) this patient object'''
-
         if not self.obs_nums.is_pinned():
             self.obs_nums  = self.obs_nums.pin_memory()
             self.alg_nums  = self.alg_nums.pin_memory()
@@ -211,17 +215,17 @@ class PatientList():
         if len(self)>10: res = res[:-1]+ '...]'
         return res
 
-    def _create_pts_chunk(indx_chnk, all_dfs, vocablist, pckl_dir, age_start, age_stop, age_in_months, verbose):
+    def _create_pts_chunk(indx_chnk, all_dfs, vocablist, cnds, pckl_dir, age_start, age_stop, age_in_months, verbose):
         '''Parallelized function to run on one core and transform a single chunk of patients and save'''
 
         pts = []
         for indx in indx_chnk:
             thispt = all_dfs[0].iloc[indx]
             ptid, birthdate = thispt['patient'], thispt['birthdate']
-            diabetes, stroke, alzheimers, coronaryheart = thispt['diabetes_y'], thispt['stroke_y'], thispt['alzheimers_y'], thispt['coronary_heart_y']
-#             vals = all_dfs[0].iloc[indx].values
-#             ptid, birthdate = vals[0], vals[1]
-#             diabetes, stroke, alzheimers, coronaryheart = vals[2], vals[4], vals[6], vals[8]
+#             diabetes, stroke, alzheimers, coronaryheart = thispt['diabetes'], thispt['stroke'], thispt['alzheimers'], thispt['coronary_heart']
+            conditions = {}
+            for cnd in cnds:
+                conditions[cnd] = thispt[cnd]
 
             rec_dfs = []
             for rec_df in all_dfs[2:]:
@@ -231,7 +235,8 @@ class PatientList():
                     rec_dfs.append(pd.DataFrame())
 
             demograph = all_dfs[1].loc[ptid]
-            pts.append(Patient.create(rec_dfs, demograph, vocablist, ptid, birthdate, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months))
+#             pts.append(Patient.create(rec_dfs, demograph, vocablist, ptid, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months))
+            pts.append(Patient.create(rec_dfs, demograph, vocablist, ptid, birthdate, conditions, age_start, age_stop, age_in_months))
 
         with open(f'{pckl_dir}/patients_{indx_chnk[0]}_{indx_chnk[-1]}.ptlist', 'wb') as pckl_f:
             pickle.dump(pts,pckl_f)
@@ -243,16 +248,22 @@ class PatientList():
     def create_save(cls, all_dfs, vocablist, pckl_dir, age_start, age_stop, age_in_months, verbose=False):
         '''Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save `PatientList` object'''
         pckl_dir.mkdir(parents=True, exist_ok=True)
-        pts, indx_chnks = [], []
+        indx_chnks = []
 
-        total_pts = len(all_dfs[0])
+        patients_df = all_dfs[0]
+        cnds=[]
+        for col in (patients_df.columns[2:]):
+            if '_age' not in col:
+                cnds.append(col)
+
+        total_pts = len(patients_df)
         all_indxs = np.arange(total_pts)
         chnk_sz = total_pts // (cpu_cnt-1)
         for i in range(0, total_pts, chnk_sz):
             indx_chnks.append(list(all_indxs[i:i+chnk_sz]))
 
         pool = multiprocessing.Pool(processes=cpu_cnt)
-        parallelize = partial(cls._create_pts_chunk, all_dfs=all_dfs, vocablist=vocablist, pckl_dir=pckl_dir, age_start=age_start, age_stop=age_stop, age_in_months=age_in_months, verbose=verbose)
+        parallelize = partial(cls._create_pts_chunk, all_dfs=all_dfs, vocablist=vocablist, cnds=cnds, pckl_dir=pckl_dir, age_start=age_start, age_stop=age_stop, age_in_months=age_in_months, verbose=verbose)
         all_chunks = pool.map(parallelize, indx_chnks)
         pool.close()
 
@@ -286,12 +297,12 @@ def create_all_ptlists(path:Path, age_start:int, age_stop:int, age_in_months:boo
         PatientList.create_save(all_dfs, vocablist, pckl_dir, age_start, age_stop, age_in_months, verbose)
 
 # Cell
-def preprocess_ehr_dataset(path, today, valid_pct=0.2, test_pct=0.2, obs_vocab_buckets=5,
+def preprocess_ehr_dataset(path, today, conditions_dict, valid_pct=0.2, test_pct=0.2, obs_vocab_buckets=5,
                            age_start=0, age_stop=20, age_in_months=False, vocab_path=None, from_raw_data=False):
     '''Util function to do all preprocessing - split & clean raw dataset, create vocab lists and create patient lists'''
     if from_raw_data:
         print('------------------- Splitting and cleaning raw dataset -------------------')
-        clean_raw_ehrdata(path, valid_pct, test_pct, today)
+        clean_raw_ehrdata(path, valid_pct, test_pct, conditions_dict, today)
         print('------------------- Creating vocab lists -------------------')
         EhrVocabList.create(path, num_buckets=obs_vocab_buckets).save()
     else:

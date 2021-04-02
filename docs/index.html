@@ -34,8 +34,11 @@ nb_path: "index.ipynb"
 <p>In this initial release of the library ..</p>
 <ul>
 <li>it implements 2 deep learning models (an LSTM and a CNN) based on popular papers </li>
-<li>that uses synthetic EHR data, created using the open source <a href="https://github.com/synthetichealth/synthea/wiki">Synthea Patient Generator</a></li>
-<li>to predict 4 conditions that are on the <a href="https://www.cdc.gov/chronicdisease/about/costs/index.htm">CDC's list of top chronic diseases</a> that contribute most to healthcare costs</li>
+<li>that can be trained on synthetic EHR data, created using the open source <a href="https://github.com/synthetichealth/synthea/wiki">Synthea Patient Generator</a></li>
+<li>to predict conditions that are on the <a href="https://www.cdc.gov/chronicdisease/about/costs/index.htm">CDC's list of top chronic diseases</a> that contribute most to healthcare costs<ul>
+<li>and is easily configurable to train on and predict any conditions in the dataset</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -136,12 +139,12 @@ nb_path: "index.ipynb"
 <li><p>More models</p>
 <ul>
 <li>Pick some of the best EHR models out there and implement them.</li>
-<li><strong>Ideas are welcome</strong>.</li>
+<li><strong>Ideas are welcome</strong> - please use <a href="https://github.com/corazonlabs/lemonpie/discussions">Github discussions</a> for suggestions.</li>
 </ul>
 </li>
 <li>More datasets<ul>
 <li>eICU and MIMIC3 possibly.</li>
-<li><strong>Ideas are welcome</strong>.</li>
+<li><strong>Ideas are welcome</strong> -  <a href="https://github.com/corazonlabs/lemonpie/discussions">Github discussions</a></li>
 </ul>
 </li>
 <li>NLP on clinical notes<ul>
@@ -167,19 +170,13 @@ nb_path: "index.ipynb"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ol>
-<li><code>num_workers &gt; 0</code> not working yet, under investigation<ul>
-<li>Workaround - depending upon your GPU capacity, you can load the entire dataset on GPU pre-training with a single switch<ul>
-<li>If running manually set <code>lazy_load_gpu=False</code> when creating the data object with <code>EHRData(.... )</code></li>
-<li>If running through an Experiment config file, set it in the <code>experiment.yaml</code> file</li>
-</ul>
-</li>
-</ul>
-</li>
+<li><code>num_workers &gt; 0</code> not working yet, under investigation</li>
 <li>Test coverage<ul>
 <li>Need to write more tests for more comprehensive coverage</li>
 </ul>
 </li>
 </ol>
+<p>Look at <a href="https://github.com/corazonlabs/lemonpie/issues">Issues</a> for details about these and others.</p>
 
 </div>
 </div>

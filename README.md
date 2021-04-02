@@ -4,8 +4,9 @@
 
 In this initial release of the library ..
 - it implements 2 deep learning models (an LSTM and a CNN) based on popular papers 
-- that uses synthetic EHR data, created using the open source [Synthea Patient Generator](https://github.com/synthetichealth/synthea/wiki)
-- to predict 4 conditions that are on the [CDC's list of top chronic diseases](https://www.cdc.gov/chronicdisease/about/costs/index.htm) that contribute most to healthcare costs
+- that can be trained on synthetic EHR data, created using the open source [Synthea Patient Generator](https://github.com/synthetichealth/synthea/wiki)
+- to predict conditions that are on the [CDC's list of top chronic diseases](https://www.cdc.gov/chronicdisease/about/costs/index.htm) that contribute most to healthcare costs
+    - and is easily configurable to train on and predict any conditions in the dataset
 
 The end goal is to 
 - keep adding more model implementations 
@@ -52,10 +53,10 @@ Or ..
 
 - More models
     - Pick some of the best EHR models out there and implement them.
-    - **Ideas are welcome**.
+    - **Ideas are welcome** - please use [Github discussions](https://github.com/corazonlabs/lemonpie/discussions) for suggestions.
 - More datasets
     - eICU and MIMIC3 possibly.
-    - **Ideas are welcome**.
+    - **Ideas are welcome** -  [Github discussions](https://github.com/corazonlabs/lemonpie/discussions)
 - NLP on clinical notes
     - Synthea does not have clinical notes, so this can only be done with other datasets.
 - Predicting different conditions
@@ -65,11 +66,10 @@ Or ..
 ## Known Issues & Limitations
 
 1. `num_workers > 0` not working yet, under investigation
-    - Workaround - depending upon your GPU capacity, you can load the entire dataset on GPU pre-training with a single switch
-        - If running manually set `lazy_load_gpu=False` when creating the data object with `EHRData(.... )`
-        - If running through an Experiment config file, set it in the `experiment.yaml` file
 2. Test coverage
     - Need to write more tests for more comprehensive coverage
+    
+Look at [Issues](https://github.com/corazonlabs/lemonpie/issues) for details about these and others.
 
 ## References
 

@@ -19,8 +19,8 @@ entries:
     title: Quick Starts
   - folderitems:
     - output: web,pdf
-      title: Setup
-      url: /setup
+      title: Basics
+      url: /basics
       subfolders:
       - output: web
         subfolderitems:

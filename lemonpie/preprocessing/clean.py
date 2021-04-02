@@ -260,11 +260,11 @@ def cleanup_dataset(path, is_train, today=None):
     return (data_tables, code_tables) if is_train else (data_tables)
 
 # Cell
-def extract_ys(patients, conditions, cnd_dict=CONDITIONS):
+def extract_ys(patients, conditions, cnd_dict):
     '''Extract labels from conditions df and add them to patients df with age'''
     for key in cnd_dict.keys():
-        patients = patients.merge(conditions[conditions.code==cnd_dict[key]], how='left', left_index=True, right_index=True)
-        patients[f'{key}_y'] = patients.code.notna()
+        patients = patients.merge(conditions[conditions.code==f'{cnd_dict[key]}||START'], how='left', left_index=True, right_index=True)
+        patients[f'{key}'] = patients.code.notna()
         patients[f'{key}_age'] = ((patients.date - patients.birthdate)//np.timedelta64(1,'Y'))
         patients = patients.drop(columns=['date','code'])
     return patients
@@ -278,7 +278,7 @@ def insert_age(df, pts_df):
     return df.drop(columns=['date','birthdate'])
 
 # Cell
-def clean_raw_ehrdata(path, valid_pct=0.2, test_pct=0.2, today=None):
+def clean_raw_ehrdata(path, valid_pct, test_pct, conditions_dict, today=None):
     '''Split, clean, preprocess & save raw EHR data'''
     split_ehr_dataset(path, valid_pct, test_pct)
 
@@ -287,7 +287,7 @@ def clean_raw_ehrdata(path, valid_pct=0.2, test_pct=0.2, today=None):
         if split == 'train': data_tables, code_tables = cleanup_dataset(split_path, is_train=True, today=today)
         else               : data_tables = cleanup_dataset(split_path, is_train=False)
         patients, conditions, rec_tables = data_tables[0], data_tables[8], data_tables[2:]
-        patients = extract_ys(patients, conditions, CONDITIONS)
+        patients = extract_ys(patients, conditions, conditions_dict)
         rec_dfs = [insert_age(rec_df, pd.DataFrame(patients.birthdate)) for rec_df in rec_tables]
 
         cleaned_dir = Path(f'{path}/cleaned/{split}')
