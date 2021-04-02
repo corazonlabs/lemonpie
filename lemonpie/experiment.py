@@ -15,6 +15,7 @@ from fastai.imports import *
 # Cell
 from addict import Dict
 import pprint
+import sys
 
 # Cell
 def get_data(params, for_training=True):
@@ -34,16 +35,16 @@ def get_optimizer(model, params):
     return optimizer
 
 # Cell
-def get_model(dataset_path, params):
+def get_model(dataset_path, num_labels, params):
     '''Convenience fn to get model based on `model_params` in `experiment.yaml'''
     demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd = get_all_emb_dims(EhrVocabList.load(dataset_path), params.αd)
 
     if params.model == 'LSTM':
-        model = EHR_LSTM(demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd,
+        model = EHR_LSTM(demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd, num_labels,
                          params.lstm_layers, params.linear_layers, params.initrange, params.bn,
                          params.input_drp, params.lstm_drp, params.linear_drp, params.zero_bn)
     elif params.model == 'CNN':
-        model = EHR_CNN(demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd,
+        model = EHR_CNN(demograph_dims, rec_dims, demograph_dims_wd, rec_dims_wd, num_labels,
                         params.linear_layers, params.initrange, params.bn,
                         params.input_drp, params.linear_drp, params.zero_bn)
     return model.to(DEVICE)
@@ -62,7 +63,8 @@ class Experiment:
 
     def __repr__(self):
         '''Print out Experiment details'''
-        pp = pprint.PrettyPrinter(indent=2, compact=True, sort_dicts=False)
+        if sys.version_info[1]>=8: pp = pprint.PrettyPrinter(indent=2, compact=True, sort_dicts=False)
+        else:                      pp = pprint.PrettyPrinter(indent=2, compact=True)
         res = f'{pp.pformat(self.config)}\n'
         res += pp.pformat(self.params)
         return res
@@ -73,6 +75,14 @@ class Experiment:
         with open(f'{self.path}/{self.name}.experiment', 'wb')  as f:
             pickle.dump(self, f)
         print(f'Saved experiment to {self.path}/{self.name}.experiment')
+
+        yaml_file = Path(f'{self.path}/experiment.yaml')
+        if not yaml_file.exists():
+            print('No experiment settings file found, so creating it ..')
+            exp = Dict(config=self.config, params=self.params)
+            with open(yaml_file, 'w') as e:
+                yaml.dump(exp.to_dict(), e, sort_keys=False, allow_unicode=True)
+            print(f'Saved experiment settings to {yaml_file}')
 
     @classmethod
     def load(cls, name, path=None):
@@ -85,10 +95,10 @@ class Experiment:
 
     @classmethod
     def create(cls, exp_name, desc, dataset_path, labels, optim, model,
-               exp_path='default_exp_store', chkpt_path='default_model_store',
+               exp_path='default_exp_store', checkpoint_path='default_model_store',
                age_start=0, age_stop=20, age_in_months=False, lazy_load_gpu=True, bs=128, num_workers=0,
-               lr=0.01, lr_decay=0, wt_decay=0,
-               αd=0.5736, lin_layers=4, initrange=0.3, bn=False, input_drp=0.3, linear_drp=0.3,
+               lr=0.01, lr_decay=0, weight_decay=0,
+               αd=0.5736, linear_layers=4, initrange=0.3, bn=False, input_drp=0.3, linear_drp=0.3,
                lstm_layers=4, lstm_drp=0.3, zero_bn=False):
         '''Create a *new* Experiment object'''
         template = {
@@ -97,7 +107,7 @@ class Experiment:
                 'name': exp_name,
                 'path': EXPERIMENT_STORE if exp_path=='default_exp_store' else exp_path,
                 'desc': desc,
-                'checkpoint_path': MODEL_STORE if chkpt_path=='default_model_store' else chkpt_path
+                'checkpoint_path': MODEL_STORE if checkpoint_path=='default_model_store' else checkpoint_path
             },
             'params':
             {
@@ -117,13 +127,13 @@ class Experiment:
                     'optim': optim,
                     'lr': lr,
                     'lr_decay': lr_decay,
-                    'weight_decay': wt_decay
+                    'weight_decay': weight_decay
                 },
                 'model_params':
                 {
                     'model': model,
                     'αd': αd,
-                    'linear_layers': lin_layers,
+                    'linear_layers': linear_layers,
                     'initrange': initrange,
                     'bn': bn,
                     'input_drp': input_drp,
@@ -150,7 +160,7 @@ class Experiment:
     def fit(self, epochs, from_checkpoint=False, to_checkpoint=True,  verbosity=.75, plot=True, save=True):
         '''Fit function that assembles everything needed and calls the `lemonpie.learn.fit` function'''
         train_dl, valid_dl, train_pos_wts, valid_pos_wts = get_data(self.params.data_params)
-        model = get_model(self.params.data_params.dataset_path, self.params.model_params)
+        model = get_model(self.params.data_params.dataset_path, len(self.params.data_params.labels), self.params.model_params)
         train_loss_fn, valid_loss_fn = get_loss_fn(train_pos_wts), get_loss_fn(valid_pos_wts)
         optim = get_optimizer(model, self.params.optim_params)
         lazy = self.params.data_params.lazy_load_gpu
@@ -165,7 +175,7 @@ class Experiment:
     def predict(self, plot=True, save=True):
         '''Predict function that assembles everything needed and calls the `lemonpie.learn.predict` function'''
         test_dl, test_pos_wts = get_data(self.params.data_params, for_training=False)
-        model = get_model(self.params.data_params.dataset_path, self.params.model_params)
+        model = get_model(self.params.data_params.dataset_path, len(self.params.data_params.labels), self.params.model_params)
         test_loss_fn = get_loss_fn(test_pos_wts)
         lazy = self.params.data_params.lazy_load_gpu
 

@@ -1,7 +1,9 @@
 name: lemonpie
 channels:
+  - corazonlabs
   - fastai
   - pytorch
+  - conda-forge
   - defaults
 dependencies:
   - pandas>=1.2.2

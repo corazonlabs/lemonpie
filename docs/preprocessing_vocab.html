@@ -621,7 +621,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="EhrVocab" class="doc_header"><code>class</code> <code>EhrVocab</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L12" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocab</code>(<strong><code>itoc</code></strong>, <strong><code>ctoi</code></strong>, <strong><code>ctod</code></strong>=<em><code>None</code></em>)</p>
+<h3 id="EhrVocab" class="doc_header"><code>class</code> <code>EhrVocab</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L12" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocab</code>(<strong><code>itoc</code></strong>, <strong><code>ctoi</code></strong>, <strong><code>ctod</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Vocab class for most EHR datatypes</p>
 
@@ -646,7 +646,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.create" class="doc_header"><code>EhrVocab.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.create</code>(<strong><code>codes_df</code></strong>)</p>
+<h4 id="EhrVocab.create" class="doc_header"><code>EhrVocab.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L20" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.create</code>(<strong><code>codes_df</code></strong>)</p>
 </blockquote>
 <p>Create vocab object (itoc, ctoi and maybe ctod) from the codes df</p>
 
@@ -671,7 +671,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.numericalize" class="doc_header"><code>EhrVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/.lemonpie/logs'</code></em>)</p>
+<h4 id="EhrVocab.numericalize" class="doc_header"><code>EhrVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'default_log_store'</code></em>)</p>
 </blockquote>
 <p>Lookup and return indices for codes</p>
 
@@ -696,7 +696,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.textify" class="doc_header"><code>EhrVocab.textify</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L68" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
+<h4 id="EhrVocab.textify" class="doc_header"><code>EhrVocab.textify</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
 </blockquote>
 <p>Lookup and return descriptions for codes</p>
 
@@ -721,7 +721,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocab.get_emb_dims" class="doc_header"><code>EhrVocab.get_emb_dims</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.get_emb_dims</code>(<strong><code>αd</code></strong>=<em><code>0.5736</code></em>)</p>
+<h4 id="EhrVocab.get_emb_dims" class="doc_header"><code>EhrVocab.get_emb_dims</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L41" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocab.get_emb_dims</code>(<strong><code>αd</code></strong>=<em><code>0.5736</code></em>)</p>
 </blockquote>
 <p>Get embedding dimensions</p>
 
@@ -753,7 +753,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="ObsVocab" class="doc_header"><code>class</code> <code>ObsVocab</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L77" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>ObsVocab</code>(<strong><code>vocab_df</code></strong>) :: <a href="/lemonpie/preprocessing_vocab.html#EhrVocab"><code>EhrVocab</code></a></p>
+<h3 id="ObsVocab" class="doc_header"><code>class</code> <code>ObsVocab</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L78" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>ObsVocab</code>(<strong><code>vocab_df</code></strong>) :: <a href="/lemonpie/preprocessing_vocab.html#EhrVocab"><code>EhrVocab</code></a></p>
 </blockquote>
 <p>Special Vocab class for Observation codes</p>
 
@@ -778,7 +778,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.create" class="doc_header"><code>ObsVocab.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.create</code>(<strong><code>obs_codes</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
+<h4 id="ObsVocab.create" class="doc_header"><code>ObsVocab.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.create</code>(<strong><code>obs_codes</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Create vocab object from observation codes</p>
 
@@ -803,7 +803,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.numericalize" class="doc_header"><code>ObsVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'/home/vinod/.lemonpie/logs'</code></em>)</p>
+<h4 id="ObsVocab.numericalize" class="doc_header"><code>ObsVocab.numericalize</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L84" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.numericalize</code>(<strong><code>codes</code></strong>, <strong><code>log_excep</code></strong>=<em><code>True</code></em>, <strong><code>log_dir</code></strong>=<em><code>'default_log_store'</code></em>)</p>
 </blockquote>
 <p>Numericalize observation codes (return indices for codes)</p>
 
@@ -847,7 +847,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="ObsVocab.textify" class="doc_header"><code>ObsVocab.textify</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L112" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
+<h4 id="ObsVocab.textify" class="doc_header"><code>ObsVocab.textify</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L114" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ObsVocab.textify</code>(<strong><code>indxs</code></strong>)</p>
 </blockquote>
 <p>Textify observation codes (returns codes and descriptions)</p>
 
@@ -1299,7 +1299,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h3 id="EhrVocabList" class="doc_header"><code>class</code> <code>EhrVocabList</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L151" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocabList</code>(<strong><code>demographics_vocabs</code></strong>, <strong><code>records_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>, <strong><code>path</code></strong>)</p>
+<h3 id="EhrVocabList" class="doc_header"><code>class</code> <code>EhrVocabList</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L153" class="source_link" style="float:right">[source]</a></h3><blockquote><p><code>EhrVocabList</code>(<strong><code>demographics_vocabs</code></strong>, <strong><code>records_vocabs</code></strong>, <strong><code>age_mean</code></strong>, <strong><code>age_std</code></strong>, <strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Class to create and hold all vocab objects for an entire dataset</p>
 
@@ -1324,7 +1324,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocabList.create" class="doc_header"><code>EhrVocabList.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L157" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.create</code>(<strong><code>path</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
+<h4 id="EhrVocabList.create" class="doc_header"><code>EhrVocabList.create</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L159" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.create</code>(<strong><code>path</code></strong>, <strong><code>num_buckets</code></strong>=<em><code>5</code></em>)</p>
 </blockquote>
 <p>Read all code dfs from the dataset path and create all vocab objects</p>
 
@@ -1349,7 +1349,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocabList.save" class="doc_header"><code>EhrVocabList.save</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L185" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.save</code>()</p>
+<h4 id="EhrVocabList.save" class="doc_header"><code>EhrVocabList.save</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L187" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.save</code>()</p>
 </blockquote>
 <p>Save vocablist (containing all vocab objects for the dataset)</p>
 
@@ -1374,7 +1374,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="EhrVocabList.load" class="doc_header"><code>EhrVocabList.load</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.load</code>(<strong><code>path</code></strong>)</p>
+<h4 id="EhrVocabList.load" class="doc_header"><code>EhrVocabList.load</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L196" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>EhrVocabList.load</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>Load previously created vocablist object (containing all vocab objects for the dataset)</p>
 
@@ -2352,7 +2352,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(16305.340455840456, 9600.296817631992)</pre>
+<pre>(16312.340455840456, 9600.296817631992)</pre>
 </div>
 
 </div>
@@ -2380,7 +2380,7 @@ nb_path: "02_preprocessing_vocab.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="get_all_emb_dims" class="doc_header"><code>get_all_emb_dims</code><a href="https://github.com/corazonlabs/lemonpie/tree/master/lemonpie/preprocessing/vocab.py#L203" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_emb_dims</code>(<strong><code>EhrVocabList</code></strong>, <strong><code>αd</code></strong>=<em><code>0.5736</code></em>)</p>
+<h4 id="get_all_emb_dims" class="doc_header"><code>get_all_emb_dims</code><a href="https://github.com/corazonlabs/lemonpie/tree/main/lemonpie/preprocessing/vocab.py#L205" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>get_all_emb_dims</code>(<strong><code>EhrVocabList</code></strong>, <strong><code>αd</code></strong>=<em><code>0.5736</code></em>)</p>
 </blockquote>
 <p>Get embedding dimensions for all vocab objects of the dataset</p>
 
