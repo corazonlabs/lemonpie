@@ -66,7 +66,7 @@ from fastai.layers import BatchNorm1dFlat
 class EHR_LSTM(nn.Module):
     '''Based on LSTM described in this paper - https://arxiv.org/abs/1801.07860'''
 
-    def __init__(self, demograph_dims, rec_dims, demograph_wd, rec_wd, lstm_layers=4, linear_layers=4,
+    def __init__(self, demograph_dims, rec_dims, demograph_wd, rec_wd, num_labels, lstm_layers=4, linear_layers=4,
                  initrange=0.3, bn=False, input_drp=0.3, lstm_drp=0.3, linear_drp=0.3, zero_bn=False):
 
         super().__init__()
@@ -86,7 +86,7 @@ class EHR_LSTM(nn.Module):
         self.lstm     = nn.LSTM(input_size=self.nh, hidden_size=self.nh, num_layers=lstm_layers, batch_first=True, dropout=lstm_drp)
         if bn: self.lstm_bn = BatchNorm1dFlat(self.nh) #fastai - `nn.BatchNorm1d`, but first flattens leading dimensions
         out, self.lin = create_linear_layers(lin_features_start, linear_layers, bn, linear_drp)
-        self.lin_o    = nn.Linear(out, 4)
+        self.lin_o    = nn.Linear(out, num_labels)
 
         init_lstm(self, initrange, zero_bn)
 
@@ -155,7 +155,7 @@ def conv_layer(in_channels, out_channels, kernel_size, stride=1, padding=1, bn=F
 # Cell
 class EHR_CNN(nn.Module):
     '''Based on the model described in the Deepr paper - https://arxiv.org/abs/1607.07519'''
-    def __init__(self, demograph_dims, rec_dims, demograph_wd, rec_wd, linear_layers=4,
+    def __init__(self, demograph_dims, rec_dims, demograph_wd, rec_wd, num_labels, linear_layers=4,
                  initrange=0.3, bn=False, input_drp=0.3, linear_drp=0.3, zero_bn=False):
 
         super().__init__()
@@ -172,7 +172,7 @@ class EHR_CNN(nn.Module):
         self.input_dp = InputDropout(input_drp)
 
         out, self.lin = create_linear_layers(lin_features_start, linear_layers, bn, linear_drp)
-        self.lin_o    = nn.Linear(out, 4)
+        self.lin_o    = nn.Linear(out, num_labels)
 
         self.cnn = nn.Sequential(
         *conv_layer(in_channels=1, out_channels=2, kernel_size=(5,5), padding=2, bn=self.bn),
