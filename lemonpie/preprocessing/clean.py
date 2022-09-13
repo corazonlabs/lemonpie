@@ -3,7 +3,7 @@
 __all__ = ['read_raw_ehrdata', 'split_patients', 'split_ehr_dataset', 'cleanup_pts', 'cleanup_obs', 'cleanup_algs',
            'cleanup_crpls', 'cleanup_meds', 'cleanup_img', 'cleanup_procs', 'cleanup_cnds', 'cleanup_immns',
            'extract_ys', 'insert_age', 'clean_preprocess_dataset', 'persist_cleaned', 'clean_raw_ehrdata',
-           'load_cleaned_ehrdata', 'load_ehr_vocabcodes']
+           'load_cleaned_ehrdata', 'load_ehr_vocabcodes', 'get_label_counts']
 
 # Cell
 from ..basics import *
@@ -380,3 +380,16 @@ def load_ehr_vocabcodes(path):
     code_dfs = [pd.read_csv(f'{path}/cleaned/train/codes/code_{fname}.csv', low_memory=False, na_filter=False, index_col=0) for fname in FILENAMES]
 
     return code_dfs
+
+# Cell
+
+def get_label_counts(pt_dfs, conditions_dict=CONDITIONS):
+    """Get label counts in the given split of the dataset."""
+    all_counts = []
+    for pts_df, split in zip(pt_dfs, ['train','valid','test']):
+        split_counts = {}
+        for this_cnd in conditions_dict.keys():
+            split_counts[this_cnd] = len(pts_df[pts_df[this_cnd] == 1])
+        all_counts.append(split_counts)
+
+    return all_counts
