@@ -2,12 +2,13 @@
 
 __all__ = ['read_raw_ehrdata', 'split_patients', 'split_ehr_dataset', 'cleanup_pts', 'cleanup_obs', 'cleanup_algs',
            'cleanup_crpls', 'cleanup_meds', 'cleanup_img', 'cleanup_procs', 'cleanup_cnds', 'cleanup_immns',
-           'cleanup_dataset', 'extract_ys', 'insert_age', 'clean_raw_ehrdata', 'load_cleaned_ehrdata',
-           'load_ehr_vocabcodes']
+           'extract_ys', 'insert_age', 'clean_preprocess_dataset', 'persist_cleaned', 'clean_raw_ehrdata',
+           'load_cleaned_ehrdata', 'load_ehr_vocabcodes', 'get_label_counts']
 
 # Cell
 from ..basics import *
 from fastai.imports import *
+import ray
 
 # Cell
 def read_raw_ehrdata(path, csv_names = FILENAMES):
@@ -69,6 +70,7 @@ def split_ehr_dataset(path, valid_pct=0.2, test_pct=0.2, random_state=1234):
             print(f'Saved test data to {d}')
 
 # Cell
+@ray.remote(num_returns=3)
 def cleanup_pts(pts, is_train, today=None):
     '''Clean patients df'''
 
@@ -87,9 +89,10 @@ def cleanup_pts(pts, is_train, today=None):
     pt_demographics = pts
     patients = pts.loc[:,['birthdate']]
 
-    return [patients, pt_demographics, pt_codes] if is_train else [patients, pt_demographics]
+    return [patients, pt_demographics, pt_codes] if is_train else [patients, pt_demographics, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_obs(obs, is_train):
     '''Clean observations df'''
 
@@ -106,9 +109,10 @@ def cleanup_obs(obs, is_train):
     obs = obs.astype({'date':'datetime64'})
     obs.set_index('patient', inplace=True)
 
-    return [obs, obs_codes] if is_train else [obs]
+    return [obs, obs_codes] if is_train else [obs, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_algs(allergies, is_train):
     '''Clean allergies df'''
 
@@ -129,9 +133,10 @@ def cleanup_algs(allergies, is_train):
     allergies.drop(columns=['desc'], inplace=True)
     allergies = allergies.astype({'date':'datetime64'})
     allergies.set_index('patient', inplace=True)
-    return [allergies, alg_codes] if is_train else [allergies]
+    return [allergies, alg_codes] if is_train else [allergies, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_crpls(careplans, is_train):
     '''Clean careplans df'''
 
@@ -152,9 +157,10 @@ def cleanup_crpls(careplans, is_train):
     careplans.drop(columns=['desc'], inplace=True)
     careplans = careplans.astype({'date':'datetime64'})
     careplans.set_index('patient', inplace=True)
-    return [careplans, crpl_codes] if is_train else [careplans]
+    return [careplans, crpl_codes] if is_train else [careplans, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_meds(medications, is_train):
     '''Clean `medications` df'''
 
@@ -175,9 +181,10 @@ def cleanup_meds(medications, is_train):
     medications.drop(columns=['desc'], inplace=True)
     medications = medications.astype({'date':'datetime64'})
     medications.set_index('patient', inplace=True)
-    return [medications, med_codes] if is_train else [medications]
+    return [medications, med_codes] if is_train else [medications, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_img(imaging_studies, is_train):
     '''Clean `imaging` df'''
 
@@ -188,9 +195,10 @@ def cleanup_img(imaging_studies, is_train):
     imaging_studies = imaging_studies.loc[:, ['patient', 'date', 'code']]
     imaging_studies = imaging_studies.astype({'date':'datetime64'})
     imaging_studies.set_index('patient', inplace=True)
-    return [imaging_studies, img_codes] if is_train else [imaging_studies]
+    return [imaging_studies, img_codes] if is_train else [imaging_studies, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_procs(procedures, is_train):
     '''Clean `procedures` df'''
 
@@ -201,9 +209,10 @@ def cleanup_procs(procedures, is_train):
     procedures = procedures.loc[:, ['patient', 'date', 'code']]
     procedures = procedures.astype({'date':'datetime64'})
     procedures.set_index('patient', inplace=True)
-    return [procedures, proc_codes] if is_train else [procedures]
+    return [procedures, proc_codes] if is_train else [procedures, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_cnds(conditions, is_train):
     '''Clean `conditions` df'''
 
@@ -223,9 +232,10 @@ def cleanup_cnds(conditions, is_train):
     conditions.drop(columns=['desc'], inplace=True)
     conditions = conditions.astype({'date':'datetime64'})
     conditions.set_index('patient', inplace=True)
-    return [conditions, cnd_codes] if is_train else [conditions]
+    return [conditions, cnd_codes] if is_train else [conditions, None]
 
 # Cell
+@ray.remote(num_returns=2)
 def cleanup_immns(immunizations, is_train):
     '''Clean `immunizations` df'''
 
@@ -236,32 +246,12 @@ def cleanup_immns(immunizations, is_train):
     immunizations = immunizations.loc[:, ['patient', 'date', 'code']]
     immunizations = immunizations.astype({'date':'datetime64'})
     immunizations.set_index('patient', inplace=True)
-    return [immunizations, imm_codes] if is_train else [immunizations]
+    return [immunizations, imm_codes] if is_train else [immunizations, None]
 
 # Cell
-def cleanup_dataset(path, is_train, today=None):
-    '''Clean all dfs in a split'''
-    dfs = read_raw_ehrdata(path)
-
-    pt_data   = cleanup_pts(dfs[0],   is_train, today)
-    obs_data  = cleanup_obs(dfs[1],   is_train)
-    alg_data  = cleanup_algs(dfs[2],  is_train)
-    crpl_data = cleanup_crpls(dfs[3], is_train)
-    med_data  = cleanup_meds(dfs[4],  is_train)
-    img_data  = cleanup_img(dfs[5],   is_train)
-    proc_data = cleanup_procs(dfs[6], is_train)
-    cnd_data  = cleanup_cnds(dfs[7],  is_train)
-    imm_data  = cleanup_immns(dfs[8], is_train)
-
-    data_tables = [pt_data[0], pt_data[1], obs_data[0], alg_data[0], crpl_data[0], med_data[0], img_data[0], proc_data[0], cnd_data[0], imm_data[0]]
-    if is_train:
-        code_tables = [pt_data[2], obs_data[1], alg_data[1], crpl_data[1], med_data[1], img_data[1], proc_data[1], cnd_data[1], imm_data[1]]
-
-    return (data_tables, code_tables) if is_train else (data_tables)
-
-# Cell
+@ray.remote
 def extract_ys(patients, conditions, cnd_dict):
-    '''Extract labels from conditions df and add them to patients df with age'''
+    '''Extract labels from conditions df and add them to patients df with age.'''
     for key in cnd_dict.keys():
         patients = patients.merge(conditions[conditions.code==f'{cnd_dict[key]}||START'], how='left', left_index=True, right_index=True)
         patients[f'{key}'] = patients.code.notna()
@@ -270,42 +260,105 @@ def extract_ys(patients, conditions, cnd_dict):
     return patients
 
 # Cell
+@ray.remote
 def insert_age(df, pts_df):
     '''Insert age in years and months into each of the rec dfs'''
+
     df = df.merge(pts_df, left_index=True, right_index=True)
     df['age']        = (df['date'] - df['birthdate'])//np.timedelta64(1,'Y')
     df['age_months'] = (df['date'] - df['birthdate'])//np.timedelta64(1,'M')
     return df.drop(columns=['date','birthdate'])
 
 # Cell
+@ray.remote(num_returns=2)
+def clean_preprocess_dataset(path, is_train, conditions_dict, today=None):
+    '''Cleans and preprocesses all dfs in a single split'''
+    dfs = read_raw_ehrdata(path)
+
+    pt_data   = cleanup_pts.remote(dfs[0],   is_train, today)
+    obs_data  = cleanup_obs.remote(dfs[1],   is_train)
+    alg_data  = cleanup_algs.remote(dfs[2],  is_train)
+    crpl_data = cleanup_crpls.remote(dfs[3], is_train)
+    med_data  = cleanup_meds.remote(dfs[4],  is_train)
+    img_data  = cleanup_img.remote(dfs[5],   is_train)
+    proc_data = cleanup_procs.remote(dfs[6], is_train)
+    cnd_data  = cleanup_cnds.remote(dfs[7],  is_train)
+    imm_data  = cleanup_immns.remote(dfs[8], is_train)
+
+    data_tables = [pt_data[0], pt_data[1], obs_data[0], alg_data[0], crpl_data[0], med_data[0], img_data[0], proc_data[0], cnd_data[0], imm_data[0]]
+
+    patients, patient_demographics, conditions, rec_tables = data_tables[0], data_tables[1], data_tables[8], data_tables[2:]
+    rec_dfs = [insert_age.remote(rec_df, patients) for rec_df in rec_tables]
+    patients = extract_ys.remote(patients, conditions, conditions_dict)
+
+    data_tables = [patients, patient_demographics]
+    data_tables.extend(rec_dfs)
+
+    if is_train:
+        code_tables = [pt_data[2], obs_data[1], alg_data[1], crpl_data[1], med_data[1], img_data[1], proc_data[1], cnd_data[1], imm_data[1]]
+
+    return (data_tables, code_tables) if is_train else (data_tables, None)
+
+# Cell
+@ray.remote
+def persist_cleaned(path, split_name, cleaned_dfs, code_tables=None):
+    '''Save cleaned EHR data to disk'''
+    csv_names = FILENAMES.copy()
+    csv_names.insert(1,'patient_demographics')
+
+    cleaned_dir = Path(f'{path}/cleaned/{split_name}')
+    cleaned_dir.mkdir(parents=True, exist_ok=True)
+
+    cleaned_dfs = ray.get(cleaned_dfs)
+
+    patients = cleaned_dfs[0]
+    patients.reset_index(inplace=True)
+    patients.to_csv(f'{cleaned_dir}/patients.csv', index_label='indx')
+
+    for df, name in zip(cleaned_dfs[1:], csv_names[1:]):
+        df.to_csv(f'{cleaned_dir}/{name}.csv')
+
+    print(f'Saved cleaned "{split_name}" data to {cleaned_dir}')
+
+    if split_name == 'train':
+        codes_dir = Path(f'{cleaned_dir}/codes')
+        codes_dir.mkdir(parents=True, exist_ok=True)
+
+        code_tables = ray.get(code_tables)
+        for code_df,name in zip(code_tables, FILENAMES):
+            code_df.to_csv(f'{codes_dir}/code_{name}.csv', index_label='indx')
+        print(f'Saved vocab code tables to {codes_dir}')
+    return split_name
+
+# Cell
 def clean_raw_ehrdata(path, valid_pct, test_pct, conditions_dict, today=None):
-    '''Split, clean, preprocess & save raw EHR data'''
+    '''Split, clean, preprocess raw EHR data & save cleaned data to disk'''
+
+    # split
     split_ehr_dataset(path, valid_pct, test_pct)
 
+    # clean + preprocess
+    all_splits = []
     for split in ['train', 'valid', 'test']:
         split_path = f'{path}/raw_split/{split}'
-        if split == 'train': data_tables, code_tables = cleanup_dataset(split_path, is_train=True, today=today)
-        else               : data_tables = cleanup_dataset(split_path, is_train=False)
-        patients, conditions, rec_tables = data_tables[0], data_tables[8], data_tables[2:]
-        patients = extract_ys(patients, conditions, conditions_dict)
-        rec_dfs = [insert_age(rec_df, pd.DataFrame(patients.birthdate)) for rec_df in rec_tables]
 
-        cleaned_dir = Path(f'{path}/cleaned/{split}')
-        cleaned_dir.mkdir(parents=True, exist_ok=True)
+        if split == 'train': data_tables, code_tables = clean_preprocess_dataset.remote(split_path, True,  conditions_dict, today)
+        else               : data_tables, _           = clean_preprocess_dataset.remote(split_path, False, conditions_dict, today)
 
-        for rec_df,name in zip(rec_dfs,FILENAMES[1:]):
-            rec_df.to_csv(f'{cleaned_dir}/{name}.csv')
-        patients.reset_index(inplace=True)
-        patients.to_csv(f'{cleaned_dir}/patients.csv', index_label='indx')
-        data_tables[1].to_csv(f'{cleaned_dir}/patient_demographics.csv')
-        print(f'Saved cleaned "{split}" data to {cleaned_dir}')
+        all_splits.append(data_tables)
 
-        if split == 'train':
-            codes_dir = Path(f'{cleaned_dir}/codes')
-            codes_dir.mkdir(parents=True, exist_ok=True)
-            for code_df,name in zip(code_tables, FILENAMES):
-                code_df.to_csv(f'{codes_dir}/code_{name}.csv', index_label='indx')
-            print(f'Saved vocab code tables to {codes_dir}')
+    # persist
+    remaining = []
+    remaining.append(persist_cleaned.remote(path, 'train', all_splits[0], code_tables))
+    remaining.append(persist_cleaned.remote(path, 'valid', all_splits[1]))
+    remaining.append(persist_cleaned.remote(path, 'test',  all_splits[2]))
+
+    while len(remaining) > 0:
+        ready, remaining = ray.wait(remaining)
+        for r in ready:
+            split_completed = ray.get(r)
+            print(f'Completed - {split_completed}')
+    return
 
 # Cell
 def load_cleaned_ehrdata(path):
@@ -327,3 +380,16 @@ def load_ehr_vocabcodes(path):
     code_dfs = [pd.read_csv(f'{path}/cleaned/train/codes/code_{fname}.csv', low_memory=False, na_filter=False, index_col=0) for fname in FILENAMES]
 
     return code_dfs
+
+# Cell
+
+def get_label_counts(pt_dfs, conditions_dict=CONDITIONS):
+    """Get label counts in the given split of the dataset."""
+    all_counts = []
+    for pts_df, split in zip(pt_dfs, ['train','valid','test']):
+        split_counts = {}
+        for this_cnd in conditions_dict.keys():
+            split_counts[this_cnd] = len(pts_df[pts_df[this_cnd] == 1])
+        all_counts.append(split_counts)
+
+    return all_counts

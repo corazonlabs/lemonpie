@@ -50,7 +50,7 @@ class RunHistory:
         self.prediction_summary = pd.DataFrame()
 
 # Cell
-def train(model, train_dl, train_loss_fn, optimizer, lazy=True):
+def train(model, train_dl, train_loss_fn, optimizer, lazy=True, use_amp = True, scaler=None):
     '''Train model using train dataset'''
     yhat_train = y_train = Tensor([])
     train_loss = 0.
@@ -58,21 +58,29 @@ def train(model, train_dl, train_loss_fn, optimizer, lazy=True):
 
     for xb, yb in train_dl:
         if lazy: xb, yb = [x.to_gpu(non_block=True) for x in xb], yb.to(DEVICE, non_blocking=True)
-        y_hat  = model(xb)
-        loss   = train_loss_fn(y_hat, yb)
+        with torch.cuda.amp.autocast(enabled=use_amp):
+            y_hat  = model(xb)
+            loss   = train_loss_fn(y_hat, yb)
 
         train_loss += loss.item()
-        yhat_train = torch.cat((yhat_train, torch.sigmoid( y_hat.cpu().detach() ) ))
+        yhat_train = torch.cat((yhat_train, y_hat.cpu().detach() ))
+#         yhat_train = torch.cat((yhat_train, torch.sigmoid( y_hat.cpu().detach() ) )) #just for AMP testing for now
         y_train    = torch.cat((y_train, yb.cpu().detach()))
 
-        loss.backward()
-        optimizer.step()
+        if use_amp:
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
+        else:
+            loss.backward()
+            optimizer.step()
+
         model.zero_grad(set_to_none=True)
 
     return train_loss, yhat_train, y_train, model
 
 # Cell
-def evaluate(model, eval_dl, eval_loss_fn, lazy=True):
+def evaluate(model, eval_dl, eval_loss_fn, lazy=True, use_amp = True):
     '''Evaluate model - used for validation (while training) and prediction'''
     yhat_eval = y_eval = Tensor([])
     eval_loss = 0.
@@ -81,17 +89,21 @@ def evaluate(model, eval_dl, eval_loss_fn, lazy=True):
     with torch.no_grad():
         for xb, yb in eval_dl:
             if lazy: xb, yb = [x.to_gpu(non_block=True) for x in xb], yb.to(DEVICE, non_blocking=True)
-            y_hat  = model(xb)
+            with torch.cuda.amp.autocast(enabled=use_amp):
+                y_hat  = model(xb)
+                loss   = eval_loss_fn(y_hat, yb)
 
-            eval_loss += (eval_loss_fn(y_hat, yb)).item()
-            yhat_eval = torch.cat((yhat_eval, torch.sigmoid( y_hat.cpu().detach() ) ))
+#             eval_loss += (eval_loss_fn(y_hat, yb)).item()
+            eval_loss += loss.item()
+#             yhat_eval = torch.cat((yhat_eval, torch.sigmoid( y_hat.cpu().detach() ) )) # for amp testing
+            yhat_eval = torch.cat((yhat_eval, y_hat.cpu().detach() ))
             y_eval    = torch.cat((y_eval, yb.cpu().detach()))
 
     return eval_loss, yhat_eval, y_eval
 
 # Cell
 def fit(epochs, history, model, train_loss_fn, valid_loss_fn, optimizer, accuracy_fn,
-        train_dl, valid_dl, lazy=True, to_chkpt_path=None, from_chkpt_path=None, verbosity=0.75):
+        train_dl, valid_dl, lazy=True, to_chkpt_path=None, from_chkpt_path=None, verbosity=0.75, use_amp=True):
     '''Fit model and return results in `history`'''
 
     if from_chkpt_path:
@@ -106,10 +118,12 @@ def fit(epochs, history, model, train_loss_fn, valid_loss_fn, optimizer, accurac
     print('{:>5} {:>16} {:^20} {:>25} {:^20}'.format('epoch |', 'train loss |', 'train aurocs', 'valid loss |', 'valid aurocs'))
     print('{:-^100}'.format('-'))
 
+    scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+
     for epoch in range (start_epoch, start_epoch+epochs):
 
-        train_loss, yhat_train, y_train, model = train(model, train_dl, train_loss_fn, optimizer, lazy)
-        valid_loss, yhat_valid, y_valid = evaluate(model, valid_dl, valid_loss_fn, lazy)
+        train_loss, yhat_train, y_train, model = train(model, train_dl, train_loss_fn, optimizer, lazy, use_amp, scaler)
+        valid_loss, yhat_valid, y_valid = evaluate(model, valid_dl, valid_loss_fn, lazy, use_amp)
 
         train_loss,   valid_loss   = train_loss/len(train_dl), valid_loss/len(valid_dl)
         train_aurocs, valid_aurocs = accuracy_fn(y_train, yhat_train), accuracy_fn(y_valid, yhat_valid)

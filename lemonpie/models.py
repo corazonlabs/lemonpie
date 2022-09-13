@@ -42,8 +42,13 @@ def create_linear_layers(in_features_start, num_layers, bn=False, dropout_p=0.0)
     layers = []
 
     for l in range(num_layers):
+
         in_features = in_features_start if l==0 else out_features
+
         out_features = in_features * 2
+        amp_roundup, _ = multiple_of_8(out_features)
+        out_features += amp_roundup
+
         layers.extend(linear_layer(in_features, out_features, bn, dropout_p))
 
     return out_features, nn.Sequential(*layers)
@@ -79,7 +84,8 @@ class EHR_LSTM(nn.Module):
         self.nh            = rec_wd
         self.lstm_layers   = lstm_layers
         self.bn            = bn
-        lin_features_start = (demograph_wd + 1) + rec_wd #adding 1 for age_now
+        self.amp_pad, _    = multiple_of_8(demograph_wd + 1)
+        lin_features_start = (demograph_wd + 1 + self.amp_pad) + rec_wd     # +1 for age_now
 
 
         self.input_dp = InputDropout(input_drp)
@@ -101,7 +107,8 @@ class EHR_LSTM(nn.Module):
                                          self.embgs[5](x[p].proc_nums,x[p].proc_offsts),
                                          self.embgs[6](x[p].cnd_nums,x[p].cnd_offsts),
                                          self.embgs[7](x[p].imm_nums,x[p].imm_offsts)),
-                                        dim=1) #for the entire age span, example all 20 yrs
+                                        dim=1) #for the entire age span, example all 24 yrs
+
             ptbatch_demogs[p] = torch.cat((self.embs[0](x[p].demographics[0]),
                                            self.embs[1](x[p].demographics[1]),
                                            self.embs[2](x[p].demographics[2]),
@@ -113,7 +120,8 @@ class EHR_LSTM(nn.Module):
                                            self.embs[8](x[p].demographics[8]),
                                            self.embs[9](x[p].demographics[9]),
                                            self.embs[10](x[p].demographics[10]),
-                                           x[p].age_now))
+                                           x[p].age_now,
+                                           torch.zeros(self.amp_pad, device=DEVICE) ))
 
         return ptbatch_recs, ptbatch_demogs
 
@@ -124,7 +132,7 @@ class EHR_LSTM(nn.Module):
         h    = torch.zeros(self.lstm_layers,bs,self.nh, device=DEVICE)
 
         ptbatch_recs   = torch.empty(bs,bptt,self.rec_wd, device=DEVICE)
-        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1, device=DEVICE)
+        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1+self.amp_pad, device=DEVICE)
         ptbatch_recs, ptbatch_demogs = self.get_embs(ptbatch_recs, ptbatch_demogs, x)
 
         ptbatch_recs = self.input_dp(ptbatch_recs)                                     #apply input dropout
@@ -166,7 +174,8 @@ class EHR_CNN(nn.Module):
         self.rec_wd        = rec_wd
         self.demograph_wd  = demograph_wd
         self.bn            = bn
-        lin_features_start = (demograph_wd + 1) + 512 #adding 1 for 'age_now', 512 = cnn output
+        self.amp_pad, _    = multiple_of_8(demograph_wd + 1)
+        lin_features_start = (demograph_wd + 1 + self.amp_pad) + 512 # 1 for 'age_now', 512 = cnn output
 
 
         self.input_dp = InputDropout(input_drp)
@@ -209,7 +218,8 @@ class EHR_CNN(nn.Module):
                                            self.embs[8](x[p].demographics[8]),
                                            self.embs[9](x[p].demographics[9]),
                                            self.embs[10](x[p].demographics[10]),
-                                           x[p].age_now))
+                                           x[p].age_now,
+                                           torch.zeros(self.amp_pad, device=DEVICE) ))
 
         return ptbatch_recs, ptbatch_demogs
 
@@ -220,9 +230,9 @@ class EHR_CNN(nn.Module):
         width  = self.rec_wd
 
         ptbatch_recs   = torch.empty(bs,height,width, device=DEVICE)
-        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1, device=DEVICE)
-
+        ptbatch_demogs = torch.empty(bs,self.demograph_wd+1+self.amp_pad, device=DEVICE)
         ptbatch_recs, ptbatch_demogs = self.get_embs(ptbatch_recs, ptbatch_demogs, x)
+
         ptbatch_recs = self.input_dp(ptbatch_recs)                                    #apply input dropout
 
         res = self.cnn(ptbatch_recs.reshape(bs,1,height,width))                       #cnn output
