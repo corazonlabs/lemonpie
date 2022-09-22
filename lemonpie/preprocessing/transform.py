@@ -81,7 +81,7 @@ def get_demographics(demograph_vector, demographics_vocabs, age_mean, age_std):
 class Patient():
     '''Class defining a patient object that holds all numericalized / transformed data for a single patient'''
     def __init__(self, nums, offsts, demographics, age_now, birthdate, conditions, ptid):
-#     def __init__(self, nums, offsts, demographics, age_now, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, ptid):
+
         self.obs_nums  = torch.tensor(nums[0])
         self.alg_nums  = torch.tensor(nums[1])
         self.crpl_nums = torch.tensor(nums[2])
@@ -107,21 +107,24 @@ class Patient():
         self.birthdate = birthdate
         self.conditions = conditions
 
-#         self.diabetes = diabetes
-#         self.stroke = stroke
-#         self.alzheimers = alzheimers
-#         self.coronaryheart = coronaryheart
-
     def __repr__(self):
         return f'ptid:{self.ptid}, birthdate:{self.birthdate}, {list(self.conditions.items())[:2]}.., device:{self.alg_nums.device}'
 
     @classmethod
-    def create(cls, rec_dfs, demograph, vocablist, ptid, birthdate, conditions, age_start, age_stop, age_in_months):
-#     def create(cls, rec_dfs, demograph, vocablist, ptid, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months):
+    def create(cls, rec_dfs, demograph, vocablist, ptid, birthdate, conditions, age_start, age_range, start_is_date, age_in_months):
         '''Lookup codes, numericalize and then create patient object - given a patient id'''
+
+        if start_is_date:
+            age_start, birthdate = pd.to_datetime(age_start), pd.to_datetime(birthdate)
+            if age_in_months:
+                age_start = (age_start - birthdate) // np.timedelta64(1,'M')
+            else:
+                age_start = (age_start - birthdate) // np.timedelta64(1,'Y')
+        age_stop = age_start + age_range
+
         codenums, offsts  = get_codenums_offsts(rec_dfs, vocablist.records_vocabs, age_start, age_stop, age_in_months)
         demographics, age_now = get_demographics(demograph, vocablist.demographics_vocabs, vocablist.age_mean, vocablist.age_std)
-#         return cls(codenums, offsts, demographics, age_now, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, ptid)
+
         return cls(codenums, offsts, demographics, age_now, birthdate, conditions, ptid)
 
     def pin_memory(self):
@@ -176,11 +179,11 @@ class Patient():
         return self
 
 # Cell
-def get_pckl_dir(path, split, age_start, age_stop, age_in_months):
+def get_pckl_dir(path, split, age_start, age_range, age_in_months):
     '''Util function to construct pickle dir name - for persisting transformed `PatientList`s'''
     dir_name = ''
     dir_name += 'months' if age_in_months else 'years'
-    dir_name += f'_{age_start}_to_{age_stop}'
+    dir_name += f'_{age_start}_plus_{age_range}'
     pckl_dir = Path(f'{path}/processed/{dir_name}/{split}')
     return pckl_dir
 
@@ -190,12 +193,12 @@ cpu_cnt = int(multiprocessing.cpu_count())
 
 class PatientList():
     '''A class to hold a list of `Patient` objects'''
-    def __init__(self, pts, path, split, age_start, age_stop, age_in_months):
+    def __init__(self, pts, path, split, age_start, age_range, start_is_date, age_in_months):
         self.items     = pts
         self.base_path = path
         self.split     = split
         self.age_start = age_start
-        self.age_stop  = age_stop
+        self.age_range  = age_range
         self.age_type  = 'months' if age_in_months else 'years'
 
     def __len__(self): return len(self.items)
@@ -208,21 +211,31 @@ class PatientList():
         return [self.items[i] for i in idx]
     def __repr__(self):
         res  = f'{self.__class__.__name__} ({len(self)} items)\n'
-        res += f'base path:{self.base_path}; split:{self.split}; age span:{self.age_stop - self.age_start} {self.age_type}\n'
-        res += f'age_start:{self.age_start}; age_stop:{self.age_stop}; age_type:{self.age_type}\n'
+        res += f'base path:{self.base_path}; split:{self.split}\n'
+        res += f'age_start:{self.age_start}; age_range:{self.age_range}; age_type:{self.age_type}\n'
         for item in self.items[:10]:
             res += f'{item.__repr__()}\n'
         if len(self)>10: res = res[:-1]+ '...]'
         return res
 
-    def _create_pts_chunk(indx_chnk, all_dfs, vocablist, cnds, pckl_dir, age_start, age_stop, age_in_months, verbose):
+    def _create_pts_chunk(
+        indx_chnk,
+        all_dfs,
+        vocablist,
+        cnds,
+        pckl_dir,
+        age_start,
+        age_range,
+        start_is_date,
+        age_in_months,
+        verbose):
         '''Parallelized function to run on one core and transform a single chunk of patients and save'''
 
         pts = []
         for indx in indx_chnk:
             thispt = all_dfs[0].iloc[indx]
             ptid, birthdate = thispt['patient'], thispt['birthdate']
-#             diabetes, stroke, alzheimers, coronaryheart = thispt['diabetes'], thispt['stroke'], thispt['alzheimers'], thispt['coronary_heart']
+
             conditions = {}
             for cnd in cnds:
                 conditions[cnd] = thispt[cnd]
@@ -235,8 +248,18 @@ class PatientList():
                     rec_dfs.append(pd.DataFrame())
 
             demograph = all_dfs[1].loc[ptid]
-#             pts.append(Patient.create(rec_dfs, demograph, vocablist, ptid, birthdate, conditions, diabetes, stroke, alzheimers, coronaryheart, age_start, age_stop, age_in_months))
-            pts.append(Patient.create(rec_dfs, demograph, vocablist, ptid, birthdate, conditions, age_start, age_stop, age_in_months))
+
+            pts.append(Patient.create(
+                rec_dfs,
+                demograph,
+                vocablist,
+                ptid,
+                birthdate,
+                conditions,
+                age_start,
+                age_range,
+                start_is_date,
+                age_in_months))
 
         with open(f'{pckl_dir}/patients_{indx_chnk[0]}_{indx_chnk[-1]}.ptlist', 'wb') as pckl_f:
             pickle.dump(pts,pckl_f)
@@ -245,7 +268,7 @@ class PatientList():
         return len(pts)
 
     @classmethod
-    def create_save(cls, all_dfs, vocablist, pckl_dir, age_start, age_stop, age_in_months, verbose=False):
+    def create_save(cls, all_dfs, vocablist, pckl_dir, age_start, age_range, start_is_date, age_in_months, verbose=False):
         '''Function to parellelize (based on available CPU cores), transformation for all patients in given dataset and save `PatientList` object'''
         pckl_dir.mkdir(parents=True, exist_ok=True)
         indx_chnks = []
@@ -263,42 +286,72 @@ class PatientList():
             indx_chnks.append(list(all_indxs[i:i+chnk_sz]))
 
         pool = multiprocessing.Pool(processes=cpu_cnt)
-        parallelize = partial(cls._create_pts_chunk, all_dfs=all_dfs, vocablist=vocablist, cnds=cnds, pckl_dir=pckl_dir, age_start=age_start, age_stop=age_stop, age_in_months=age_in_months, verbose=verbose)
+        parallelize = partial(
+            cls._create_pts_chunk,
+            all_dfs=all_dfs,
+            vocablist=vocablist,
+            cnds=cnds,
+            pckl_dir=pckl_dir,
+            age_start=age_start,
+            age_range=age_range,
+            start_is_date=start_is_date,
+            age_in_months=age_in_months,
+            verbose=verbose)
         all_chunks = pool.map(parallelize, indx_chnks)
         pool.close()
 
         print(f'{sum(all_chunks)} total patients completed, saved patient list to {pckl_dir}')
 
     @classmethod
-    def load(cls, path, split, age_start, age_stop, age_in_months):
+    def load(cls, path, split, age_start, age_range, start_is_date, age_in_months):
         '''Load previously created `PatientList` object'''
-        pckl_dir = get_pckl_dir(path, split, age_start, age_stop, age_in_months)
+        pckl_dir = get_pckl_dir(path, split, age_start, age_range, age_in_months)
         if not pckl_dir.exists(): raise Exception(f'"{pckl_dir}" does not exist, run pre-processing to create that dataset first.')
         ptlist = []
         for file in Path(pckl_dir).glob("*.ptlist"):
             with open(file, 'rb') as infile:
                 ptlist.extend(pickle.load(infile))
 
-        return(cls(ptlist, path, split, age_start, age_stop, age_in_months))
+        return(cls(ptlist, path, split, age_start, age_range, start_is_date, age_in_months))
 
 # Cell
-def create_all_ptlists(path:Path, age_start:int, age_stop:int, age_in_months:bool, vocab_path:Path=None, verbose:bool=False, delete_existing:bool=True):
+def create_all_ptlists(
+    path:Path,
+    age_start:Any,
+    age_range:int,
+    start_is_date:bool,
+    age_in_months:bool,
+    vocab_path:Path=None,
+    verbose:bool=False,
+    delete_existing:bool=True):
     '''Create and save `PatientList`s for train, valid and test given dataset path'''
+
     if vocab_path is None: vocab_path = path
     all_dfs_splits = load_cleaned_ehrdata(path) #train_dfs, valid_dfs, test_dfs
     splits = ['train', 'valid', 'test']
     vocablist = EhrVocabList.load(vocab_path)
 
     for all_dfs, split in zip(all_dfs_splits, splits):
-        pckl_dir = get_pckl_dir(path, split, age_start, age_stop, age_in_months)
+        pckl_dir = get_pckl_dir(path, split, age_start, age_range, age_in_months)
         if delete_existing:
             for file in Path(pckl_dir).glob("*.ptlist"):
                 file.unlink()
-        PatientList.create_save(all_dfs, vocablist, pckl_dir, age_start, age_stop, age_in_months, verbose)
+        PatientList.create_save(all_dfs, vocablist, pckl_dir, age_start, age_range, start_is_date, age_in_months, verbose)
 
 # Cell
-def preprocess_ehr_dataset(path, today, conditions_dict, valid_pct=0.2, test_pct=0.2, obs_vocab_buckets=5,
-                           age_start=0, age_stop=20, age_in_months=False, vocab_path=None, from_raw_data=False):
+def preprocess_ehr_dataset(
+    path,
+    today,
+    conditions_dict,
+    age_start,
+    age_range,
+    start_is_date,
+    age_in_months,
+    valid_pct=0.2,
+    test_pct=0.2,
+    obs_vocab_buckets=5,
+    vocab_path=None,
+    from_raw_data=False):
     '''Util function to do all preprocessing - split & clean raw dataset, create vocab lists and create patient lists'''
     if from_raw_data:
         print('------------------- Splitting and cleaning raw dataset -------------------')
@@ -309,4 +362,4 @@ def preprocess_ehr_dataset(path, today, conditions_dict, valid_pct=0.2, test_pct
         print('Since data is pre-cleaned, skipping Cleaning, Splitting and Vocab-creation')
 
     print('------------------- Creating patient lists -------------------')
-    create_all_ptlists(path, age_start, age_stop, age_in_months, vocab_path)
+    create_all_ptlists(path, age_start, age_range, start_is_date, age_in_months, vocab_path)

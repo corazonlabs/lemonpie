@@ -267,7 +267,7 @@ def insert_age(df, pts_df):
     df = df.merge(pts_df, left_index=True, right_index=True)
     df['age']        = (df['date'] - df['birthdate'])//np.timedelta64(1,'Y')
     df['age_months'] = (df['date'] - df['birthdate'])//np.timedelta64(1,'M')
-    return df.drop(columns=['date','birthdate'])
+    return df.drop(columns=['birthdate'])
 
 # Cell
 @ray.remote(num_returns=2)

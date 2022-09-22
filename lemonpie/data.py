@@ -10,15 +10,15 @@ import copy
 
 # Cell
 class EHRDataSplits():
-    '''Class to hold the PatientList splits; defaults to loading 0 to 20 years age span'''
-    def __init__(self, path, age_start=0, age_stop=20, age_in_months=False):
-        self.train, self.valid, self.test = self._load_splits(path, age_start, age_stop, age_in_months)
+    '''Class to hold the PatientList splits'''
+    def __init__(self, path, age_start, age_range, start_is_date, age_in_months):
+        self.train, self.valid, self.test = self._load_splits(path, age_start, age_range, start_is_date, age_in_months)
 
-    def _load_splits(self, path, age_start, age_stop, age_in_months):
+    def _load_splits(self, path, age_start, age_range, start_is_date, age_in_months):
         '''Load splits of preprocessed `PatientList`s from persistent store using path'''
-        train = PatientList.load(path, 'train', age_start, age_stop, age_in_months)
-        valid = PatientList.load(path, 'valid', age_start, age_stop, age_in_months)
-        test  = PatientList.load(path, 'test',  age_start, age_stop, age_in_months)
+        train = PatientList.load(path, 'train', age_start, age_range, start_is_date, age_in_months)
+        valid = PatientList.load(path, 'valid', age_start, age_range, start_is_date, age_in_months)
+        test  = PatientList.load(path, 'test',  age_start, age_range, start_is_date, age_in_months)
         return train, valid, test
 
     def get_splits(self):
@@ -93,14 +93,15 @@ class EHRDataset(torch.utils.data.Dataset):
 # Cell
 class EHRData:
     '''All encompassing class for EHR data - holds Splits, Labels, Datasets, DataLoaders and provides convenience fns for training and prediction'''
-    def __init__(self, path, labels, age_start=0, age_stop=20, age_in_months=False, lazy_load_gpu=True):
+    def __init__(self, path, labels, age_start, age_range, start_is_date, age_in_months, lazy_load_gpu=True):
         self.path, self.labels = path, labels
-        self.age_start, self.age_stop, self.age_in_months = age_start, age_stop, age_in_months
+        self.age_start, self.age_range = age_start, age_range
+        self.start_is_date, self.age_in_months = start_is_date, age_in_months
         self.lazy_load_gpu = lazy_load_gpu
 
     def load_splits(self):
         '''Load data splits given dataset path'''
-        self.splits = EHRDataSplits(self.path, self.age_start, self.age_stop, self.age_in_months)
+        self.splits = EHRDataSplits(self.path, self.age_start, self.age_range, self.start_is_date, self.age_in_months)
 
     def label(self):
         '''Run labeler - i.e. extract y from patient objects'''
