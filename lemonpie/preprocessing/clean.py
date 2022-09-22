@@ -3,7 +3,7 @@
 __all__ = ['read_raw_ehrdata', 'split_patients', 'split_ehr_dataset', 'cleanup_pts', 'cleanup_obs', 'cleanup_algs',
            'cleanup_crpls', 'cleanup_meds', 'cleanup_img', 'cleanup_procs', 'cleanup_cnds', 'cleanup_immns',
            'extract_ys', 'insert_age', 'clean_preprocess_dataset', 'persist_cleaned', 'clean_raw_ehrdata',
-           'load_cleaned_ehrdata', 'load_ehr_vocabcodes', 'get_label_counts']
+           'load_cleaned_ehrdata', 'load_ehr_vocabcodes', 'test_extract_ys', 'get_label_counts', 'test_cleaned_ehrdata']
 
 # Cell
 from ..basics import *
@@ -383,6 +383,21 @@ def load_ehr_vocabcodes(path):
 
 # Cell
 
+def test_extract_ys(pt_dfs, cnd_dfs, conditions_dict=CONDITIONS):
+    """Test for extract_ys function."""
+    for pts_df, cnds_df, split in zip(pt_dfs, cnd_dfs, ['train','valid','test']):
+        print(f"Checking {split} dfs...")
+        for this_cnd in conditions_dict.keys():
+            code = f"{conditions_dict[this_cnd]}||START"
+            cnds_df_counts = len(cnds_df[cnds_df['code'] == code])
+            pts_df_counts = len(pts_df[pts_df[this_cnd] == 1])
+            assert cnds_df_counts == pts_df_counts, f"Error in {split} for {this_cnd} -- {cnds_df_counts} != {pts_df_counts}"
+
+        print(f"Tests passed for {split} - all condition counts match")
+    return
+
+# Cell
+
 def get_label_counts(pt_dfs, conditions_dict=CONDITIONS):
     """Get label counts in the given split of the dataset."""
     all_counts = []
@@ -393,6 +408,23 @@ def get_label_counts(pt_dfs, conditions_dict=CONDITIONS):
         all_counts.append(split_counts)
 
     return all_counts
+
+# Cell
+
+def test_cleaned_ehrdata(dataset_paths = [PATH_1K, PATH_10K, PATH_20K, PATH_100K]):
+    """Loads and sanity checks cleaned data for all datasets."""
+
+    for dataset_path in dataset_paths:
+        train_dfs, valid_dfs, test_dfs = load_cleaned_ehrdata(dataset_path)
+        code_dfs = load_ehr_vocabcodes(dataset_path)
+        pts_train, pts_valid, pts_test = train_dfs[0], valid_dfs[0], test_dfs[0]
+        cnd_train, cnd_valid, cnd_test = train_dfs[8], valid_dfs[8], test_dfs[8]
+        print("\n----------")
+        print(f"Running tests for {dataset_path}")
+        test_extract_ys([pts_train, pts_valid, pts_test],[cnd_train, cnd_valid, cnd_test])
+        print(f"Label counts")
+        for label_counts in get_label_counts([pts_train, pts_valid, pts_test]):
+            print(label_counts)
 
 # Cell
 from ..basics import *
