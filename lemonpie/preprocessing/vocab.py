@@ -171,7 +171,10 @@ class ObsVocab (EhrVocab):
             vocab_rows.append(['xxamp','Padding for AMP','xxamp','xxamp','xxamp'])
 
         obs_vocab = pd.DataFrame(data=vocab_rows, columns=['code','desc','value','units','type'])
-        assert obs_codes.orig_code.nunique() == obs_vocab.code.nunique() - (2+amp_pad_sz), "Possible bug, obs_code nuniques don't match"
+
+        # test
+        xtra_uniqs = 3 if amp_pad_sz > 0 else 2
+        assert obs_codes.orig_code.nunique() == obs_vocab.code.nunique() - xtra_uniqs, "Possible bug, obs_code nuniques don't match"
 
         return cls(obs_vocab)
 

@@ -6,7 +6,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - pandas>=1.2.2
+  - pandas==1.2.2
   - requests
   - pyyaml
   - addict
@@ -17,8 +17,8 @@ dependencies:
   - torchvision>=0.8
   - matplotlib
   - fastprogress>=0.2.4
-  - scikit-learn
+  - scikit-learn=1.0.2
   - jupyterlab
   - jupyter_contrib_nbextensions
   - pip:
-    - ray[all] >= 1.2
+      - ray[all] >= 1.2
