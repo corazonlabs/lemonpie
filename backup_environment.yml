@@ -14,13 +14,13 @@ dependencies:
   - matplotlib=3.3.4
   - nbdev=1.1.13
   - pandas=1.2.3
-  - pytorch-lightning=1.7.0
-  - pytorch=1.12.1
+  - pytorch-lightning=0.8.5
+  - pytorch=1.8.1
   - pyyaml=5.4.1
   - requests=2.25.1
   - scikit-learn=0.24.1
-  - tensorboard-2.10.0
+  - tensorboard-1.15.0
   - torchmetrics-0.9.3
-  - torchvision=0.13.1
+  - torchvision=0.9.1
   - pip:
       - ray[all]==1.5.1
