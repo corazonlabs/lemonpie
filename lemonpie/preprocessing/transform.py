@@ -363,9 +363,9 @@ class PatientList:
         )
 
     @classmethod
-    def load(cls, path, split, age_start, age_range, start_is_date, age_in_months):
+    def load(cls, path, split, modality_type, age_start, age_range, start_is_date, age_in_months):
         """Load previously created `PatientList` object"""
-        pckl_dir = get_pckl_dir(path, split, age_start, age_range, age_in_months)
+        pckl_dir = get_pckl_dir(path, split, modality_type, age_start, age_range, age_in_months)
         if not pckl_dir.exists():
             raise Exception(
                 f'"{pckl_dir}" does not exist, run pre-processing to create that dataset first.'
@@ -388,9 +388,9 @@ def create_all_ptlists(
     start_is_date: bool,
     age_in_months: bool,
     vocab_path: Path = None,
+    modalities_file_path: str = None,
     verbose: bool = False,
     delete_existing: bool = True,
-    modalities_file_path: str = None,
 ):
     """Create and save `PatientList`s for train, valid and test given dataset path"""
 
@@ -432,9 +432,7 @@ def create_all_ptlists(
                 )
         else:
             # do once with moality_type = 0 (for EHR only)
-            pckl_dir = get_pckl_dir(
-                path, split, 0, age_start, age_range, age_in_months
-            )
+            pckl_dir = get_pckl_dir(path, split, 0, age_start, age_range, age_in_months)
             if delete_existing:
                 for file in Path(pckl_dir).glob("*.ptlist"):
                     file.unlink()
@@ -463,7 +461,7 @@ def preprocess_ehr_dataset(
     test_pct=0.2,
     obs_vocab_buckets=5,
     vocab_path=None,
-    modalities_csv=None,
+    modalities_file_path=None,
     from_raw_data=False,
 ):
     """Do all preprocessing - split, clean raw data; create vocab lists; create patient lists"""
@@ -477,5 +475,11 @@ def preprocess_ehr_dataset(
 
     print("------------ Creating patient lists ------------")
     create_all_ptlists(
-        path, age_start, age_range, start_is_date, age_in_months, vocab_path, modalities_csv
+        path=path,
+        age_start=age_start,
+        age_range=age_range,
+        start_is_date=start_is_date,
+        age_in_months=age_in_months,
+        vocab_path=vocab_path,
+        modalities_file_path=modalities_file_path,
     )
